@@ -3,6 +3,7 @@
 	import NameInput from "./NameInput.svelte";
 	import PlayerList from "./PlayerList.svelte";
   import Settings from "./Settings.svelte";
+  import StartButton from "./StartButton.svelte";
 	import { playerId } from "./store.js";
 
 	$: addedName = $playerId !== '';
@@ -17,5 +18,7 @@
   <br>
   {#if addedName}
     <Settings />
+    <br>
+    <StartButton />
   {/if}
 </main>

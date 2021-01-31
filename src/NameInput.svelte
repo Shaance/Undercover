@@ -10,12 +10,18 @@
     }
   }
 
+  function handleKeyup() {
+    if (event.code === 'Enter') {
+			handleClick();
+		}
+  }
+
 </script>
 
 <main>
   <!-- svelte-ignore a11y-label-has-associated-control -->
   <label> Input name </label>
-  <input type="text" bind:value={message} />
+  <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
   <button on:click={handleClick}> OK </button>
 </main>
 

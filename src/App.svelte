@@ -1,7 +1,5 @@
 <script lang="ts">
-
 	import Lobby from "./Lobby.svelte";
-
 </script>
 
 <main>
@@ -23,9 +21,9 @@
 		font-weight: 100;
 	} */
 
-	@media (min-width: 640px) {
+	/* @media (min-width: 350px) {
 		main {
 			max-width: none;
 		}
-	}
+	} */
 </style>

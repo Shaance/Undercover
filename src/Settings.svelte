@@ -20,6 +20,7 @@
 <style>
   button {
     display: inline-block;
+    min-width: 30px;
   }
 
   p {
@@ -29,11 +30,11 @@
 
 <main>
   <h3> Settings </h3>
-  <p>Undercover(s): {$undercoverCount}</p>
   <button on:click={() => updateValue('undercover', 'increment')}> + </button>
   <button on:click={() => updateValue('undercover', 'decrement')}> - </button>
+  <p>Undercover(s): {$undercoverCount}</p>
   <br>
-  <p>Mr White(s): {$mrWhiteCount}</p>
   <button on:click={() => updateValue('white', 'increment')}> + </button>
   <button on:click={() => updateValue('white', 'decrement')}> - </button>
+  <p>Mr White(s): {$mrWhiteCount}</p>
 </main>
