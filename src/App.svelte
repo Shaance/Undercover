@@ -1,18 +1,11 @@
 <script lang="ts">
 
-	import NameInput from "./NameInput.svelte";
-	import PlayerList from "./PlayerList.svelte";
-	import { playerId } from "./store.js";
-
-	$: addedName = $playerId !== '';
+	import Lobby from "./Lobby.svelte";
 
 </script>
 
 <main>
-	{#if !addedName}
-		<NameInput />
-	{/if}
-	<PlayerList />
+	<Lobby />
 </main>
 
 <style>

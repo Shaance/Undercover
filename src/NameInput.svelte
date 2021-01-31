@@ -1,11 +1,11 @@
 <script>
-  import { addPlayer, playerId } from "./store.js";
+  import { sendMessage, playerId } from "./store.js";
   import { wrapAddPlayerPayload } from "./wsHelper";
   let message = "";
 
   function handleClick() {
     if (message.length > 0) {
-      addPlayer(wrapAddPlayerPayload(message));
+      sendMessage(wrapAddPlayerPayload(message));
       playerId.set(message);
     }
   }

@@ -11,15 +11,7 @@
 
 <main>
   <h3> Connected players </h3>
-  <ul>
     {#each players as player}
-      <li> {@html formatName($playerId, player)} </li>
+      <p> {@html formatName($playerId, player)} </p>
     {/each}
-  </ul>
 </main>
-
-<style>
-  li {
-    text-align: left;
-  }
-</style>
