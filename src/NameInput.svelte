@@ -1,12 +1,18 @@
 <script>
-  import { sendMessage, playerId } from "./store.js";
+  import { sendMessage, playerId, playerStore } from "./store.js";
   import { wrapAddPlayerPayload } from "./wsHelper";
   let message = "";
 
+  $: players = $playerStore;
+
   function handleClick() {
     if (message.length > 0) {
-      sendMessage(wrapAddPlayerPayload(message));
-      playerId.set(message);
+      if (players.indexOf(message) === -1) {
+        sendMessage(wrapAddPlayerPayload(message));
+        playerId.set(message);
+      } else {
+        alert('This name has already been picked!');
+      }
     }
   }
 
