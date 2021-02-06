@@ -8734,12 +8734,16 @@ var app = (function () {
 
     function create_fragment$5(ctx) {
     	let main;
-    	let label;
+    	let h1;
     	let t1;
-    	let br;
-    	let t2;
-    	let input;
+    	let h2;
     	let t3;
+    	let br0;
+    	let t4;
+    	let input;
+    	let t5;
+    	let br1;
+    	let t6;
     	let button;
     	let mounted;
     	let dispose;
@@ -8747,34 +8751,48 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			label = element("label");
-    			label.textContent = "Input name";
+    			h1 = element("h1");
+    			h1.textContent = "Undercover";
     			t1 = space();
-    			br = element("br");
-    			t2 = space();
-    			input = element("input");
+    			h2 = element("h2");
+    			h2.textContent = "Input your name";
     			t3 = space();
+    			br0 = element("br");
+    			t4 = space();
+    			input = element("input");
+    			t5 = space();
+    			br1 = element("br");
+    			t6 = space();
     			button = element("button");
     			button.textContent = "OK";
-    			add_location(label, file$5, 31, 2, 730);
-    			add_location(br, file$5, 32, 2, 760);
+    			attr_dev(h1, "class", "svelte-zco9vn");
+    			add_location(h1, file$5, 48, 2, 873);
+    			attr_dev(h2, "class", "svelte-zco9vn");
+    			add_location(h2, file$5, 49, 2, 897);
+    			add_location(br0, file$5, 50, 2, 926);
     			attr_dev(input, "type", "text");
-    			add_location(input, file$5, 33, 2, 767);
-    			add_location(button, file$5, 34, 2, 849);
-    			add_location(main, file$5, 29, 0, 662);
+    			attr_dev(input, "class", "svelte-zco9vn");
+    			add_location(input, file$5, 51, 2, 933);
+    			add_location(br1, file$5, 52, 2, 1015);
+    			add_location(button, file$5, 53, 2, 1022);
+    			add_location(main, file$5, 47, 0, 864);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, label);
+    			append_dev(main, h1);
     			append_dev(main, t1);
-    			append_dev(main, br);
-    			append_dev(main, t2);
+    			append_dev(main, h2);
+    			append_dev(main, t3);
+    			append_dev(main, br0);
+    			append_dev(main, t4);
     			append_dev(main, input);
     			set_input_value(input, /*message*/ ctx[0]);
-    			append_dev(main, t3);
+    			append_dev(main, t5);
+    			append_dev(main, br1);
+    			append_dev(main, t6);
     			append_dev(main, button);
 
     			if (!mounted) {

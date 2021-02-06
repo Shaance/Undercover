@@ -27,11 +27,30 @@
   }
 </script>
 
+<style>
+  input {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+		color: #ff3e00;
+		text-transform: uppercase;
+		font-size: 2em;
+		font-weight: 100;
+	}
+
+  h2 {
+		font-size: 1em;
+		font-weight: 350;
+	}
+</style>
+
 <main>
-  <!-- svelte-ignore a11y-label-has-associated-control -->
-  <label> Input name </label>
+  <h1> Undercover </h1>
+  <h2> Input your name </h2>
   <br>
   <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
+  <br>
   <button on:click={handleClick}> OK </button>
 </main>
 
