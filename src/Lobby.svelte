@@ -14,9 +14,9 @@
 	{#if !addedName}
 		<NameInput />
 	{/if}
-  <PlayerList />
-  <br>
   {#if addedName}
+    <PlayerList />
+    <br>
     <Settings />
     <br>
     <StartButton />

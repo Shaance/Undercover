@@ -22,10 +22,6 @@
     display: inline-block;
     min-width: 30px;
   }
-
-  /* p {
-    display: inline-block;
-  } */
 </style>
 
 <main>

@@ -1,9 +1,13 @@
 <script>
-  import { sendMessage, playerId, playerStore } from "./store.js";
-  import { wrapAddPlayerPayload } from "./wsHelper";
+  import { sendMessage, playerId, playerStore, connectionOpened } from "./store.js";
+  import { getPlayersPayload, wrapAddPlayerPayload } from "./wsHelper";
+  
   let message = "";
 
   $: players = $playerStore;
+  $: if ($connectionOpened) {
+    sendMessage(getPlayersPayload());
+  }
 
   function handleClick() {
     if (message.length > 0) {
@@ -21,7 +25,6 @@
 			handleClick();
 		}
   }
-
 </script>
 
 <main>

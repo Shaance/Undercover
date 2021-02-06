@@ -1,16 +1,17 @@
-import { writable, get } from 'svelte/store';
+import { writable } from 'svelte/store';
 import type { UpdatePlayerMessage, Message, SettingTopicResponse } from './wsTypes';
 
 export const playerStore = writable([]);
 export const playerId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
+export const connectionOpened = writable(false);
 
 const socket = new WebSocket('ws://localhost:3000');
 
-// socket.addEventListener('open', function (event) {
-//   console.log("It's open");
-// });
+socket.addEventListener('open', function (event) {
+  connectionOpened.set(true);
+});
 
 socket.addEventListener('message', onMessageEvent);
 

@@ -8,6 +8,13 @@ export function wrapAddPlayerPayload(message: string): AddPlayerPayload {
   }
 }
 
+export function getPlayersPayload(): Message {
+  return {
+    topic: 'player',
+    subtopic: 'get',
+  }
+}
+
 export function createGetSettingsPayload(): Message {
   return {
     topic: 'settings',
