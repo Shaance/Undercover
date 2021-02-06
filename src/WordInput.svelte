@@ -22,6 +22,16 @@
   }
 </script>
 
+<style>
+  main {
+    font-size: 1em;
+		font-weight: 200;
+  }
+  input {
+    margin-bottom: 20px;
+  }
+</style>
+
 <main>
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
