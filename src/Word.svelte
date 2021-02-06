@@ -6,14 +6,15 @@
   function getText(word: string) {
     if (word) {
       if (word === 'init') {
-        return 'Retrieving your word..'
+        return '<p>Retrieving your word..</p>'
       }
-      return word;
+      return `<p> Your word is </p>
+      <p><b>${word}</b></p>`;
     }
-    return 'You are Mr.white!'
+    return '<p><b>You are Mr.white!</b></p>'
   }
 </script>
 
 <main>
-  <p>{text}</p>
+  <div>{@html text}</div>
 </main>
