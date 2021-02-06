@@ -20,6 +20,7 @@
     "svelte-preprocess": "^4.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "typescript": "^3.9.3",
+    "typescript-logging": "^0.6.4",
     "tslib": "^2.0.0",
     "@tsconfig/svelte": "^1.0.0"
   },

@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import factory from './ConfigLog4j';
 import type { UpdatePlayerMessage, Message, SettingTopicResponse } from './wsTypes';
 
 export const playerStore = writable([]);
@@ -7,16 +8,15 @@ export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
 
+const logger = factory.getLogger('store');
 const socket = new WebSocket('ws://localhost:3000');
 
-socket.addEventListener('open', function (event) {
-  connectionOpened.set(true);
-});
+socket.addEventListener('open', () => connectionOpened.set(true));
 
 socket.addEventListener('message', onMessageEvent);
 
 function onMessageEvent(event) {
-  console.log(`Received data from WS, ${event.data}`);
+  logger.info(`Received data from WS, ${event.data}`);
   const resp: Message = JSON.parse(event.data);
   if (resp.topic === 'player') {
     if (resp.subtopic === 'update') {
