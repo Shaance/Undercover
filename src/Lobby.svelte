@@ -6,19 +6,24 @@
   import Settings from "./Settings.svelte";
   import StartButton from "./StartButton.svelte";
 	import { playerId } from "./store.js";
+  import statefulSwap from "./statefulSwap"
 
-	$: addedName = $playerId !== '';
+  const { onOutro, transitionTo, state } = statefulSwap("init");
+
+  $: if ($playerId) {
+    transitionTo($playerId);
+  }
 
 </script>
 
 <main>
-	{#if !addedName}
-    <div out:fly="{{ y: 500, duration: 400 }}">
+	{#if $state === "init"}
+    <div out:fly="{{ y: 500, duration: 300 }}" on:outroend={onOutro}>
       <NameInput />
     </div>
 	{/if}
-  {#if addedName}
-    <div in:fly="{{ y: 800, duration: 800 }}">
+  {#if $state === $playerId}
+    <div in:fly="{{ y: 500, duration: 500 }}" on:outroend={onOutro}>
       <PlayerList />
       <br>
       <Settings />
