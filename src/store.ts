@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import factory from './ConfigLog4j';
 import type { UpdatePlayerMessage, Message, SettingTopicResponse } from './wsTypes';
 
@@ -42,7 +42,7 @@ function updatePlayerStore(resp: UpdatePlayerMessage) {
 }
 
 export const sendMessage = (message) => {
-  if (socket.readyState <= 1) {
+  if (get(connectionOpened)) {
     // console.log(`Sending ${JSON.stringify(message)}`);
     socket.send(JSON.stringify(message));
   }
