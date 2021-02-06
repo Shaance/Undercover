@@ -9008,22 +9008,36 @@ var app = (function () {
     function create_if_block$1(ctx) {
     	let div;
     	let vote;
+    	let t0;
+    	let br;
+    	let t1;
+    	let playersgrid;
     	let div_intro;
     	let div_outro;
     	let current;
     	let mounted;
     	let dispose;
     	vote = new Vote({ $$inline: true });
+    	playersgrid = new PlayersGrid({ $$inline: true });
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			create_component(vote.$$.fragment);
+    			t0 = space();
+    			br = element("br");
+    			t1 = space();
+    			create_component(playersgrid.$$.fragment);
+    			add_location(br, file$5, 32, 4, 888);
     			add_location(div, file$5, 28, 2, 760);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			mount_component(vote, div, null);
+    			append_dev(div, t0);
+    			append_dev(div, br);
+    			append_dev(div, t1);
+    			mount_component(playersgrid, div, null);
     			current = true;
 
     			if (!mounted) {
@@ -9035,6 +9049,7 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
     			transition_in(vote.$$.fragment, local);
+    			transition_in(playersgrid.$$.fragment, local);
 
     			add_render_callback(() => {
     				if (div_outro) div_outro.end(1);
@@ -9046,6 +9061,7 @@ var app = (function () {
     		},
     		o: function outro(local) {
     			transition_out(vote.$$.fragment, local);
+    			transition_out(playersgrid.$$.fragment, local);
     			if (div_intro) div_intro.invalidate();
     			div_outro = create_out_transition(div, fly, { y: 500, duration: 300 });
     			current = false;
@@ -9053,6 +9069,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			destroy_component(vote);
+    			destroy_component(playersgrid);
     			if (detaching && div_outro) div_outro.end();
     			mounted = false;
     			dispose();

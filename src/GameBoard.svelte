@@ -33,6 +33,8 @@
     in:fly="{{ y: 500, duration: 300 }}"
     on:outroend={onOutro}>
     <Vote />
+    <br>
+    <PlayersGrid />
   </div>
   {/if}
   
