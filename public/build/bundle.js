@@ -7986,7 +7986,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (20:6) {#each entry[1] as word}
+    // (34:6) {#each entry[1] as word}
     function create_each_block_1(ctx) {
     	let p;
     	let t_value = /*word*/ ctx[4] + "";
@@ -7996,7 +7996,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file, 20, 8, 333);
+    			attr_dev(p, "class", "item svelte-8e6fra");
+    			add_location(p, file, 34, 8, 545);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -8014,21 +8015,21 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(20:6) {#each entry[1] as word}",
+    		source: "(34:6) {#each entry[1] as word}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (16:2) {#each $playerToWords as entry}
+    // (30:2) {#each $playerToWords as entry}
     function create_each_block(ctx) {
-    	let div;
-    	let p0;
+    	let div1;
+    	let div0;
     	let t0_value = /*entry*/ ctx[1][0] + "";
     	let t0;
     	let t1;
-    	let p1;
+    	let p;
     	let t3;
     	let t4;
     	let each_value_1 = /*entry*/ ctx[1][1];
@@ -8041,12 +8042,12 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
-    			p0 = element("p");
+    			div1 = element("div");
+    			div0 = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			p1 = element("p");
-    			p1.textContent = "* * *";
+    			p = element("p");
+    			p.textContent = "* * *";
     			t3 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -8054,24 +8055,25 @@ var app = (function () {
     			}
 
     			t4 = space();
-    			add_location(p0, file, 17, 6, 257);
-    			add_location(p1, file, 18, 6, 281);
-    			attr_dev(div, "class", "item svelte-1dtmp2w");
-    			add_location(div, file, 16, 4, 232);
+    			add_location(div0, file, 31, 6, 465);
+    			attr_dev(p, "class", "svelte-8e6fra");
+    			add_location(p, file, 32, 6, 493);
+    			attr_dev(div1, "class", "card svelte-8e6fra");
+    			add_location(div1, file, 30, 4, 440);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, p0);
-    			append_dev(p0, t0);
-    			append_dev(div, t1);
-    			append_dev(div, p1);
-    			append_dev(div, t3);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div1, t1);
+    			append_dev(div1, p);
+    			append_dev(div1, t3);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div, null);
+    				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(div, t4);
+    			append_dev(div1, t4);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*$playerToWords*/ 1 && t0_value !== (t0_value = /*entry*/ ctx[1][0] + "")) set_data_dev(t0, t0_value);
@@ -8089,7 +8091,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block_1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div, t4);
+    						each_blocks[i].m(div1, t4);
     					}
     				}
 
@@ -8101,7 +8103,7 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			destroy_each(each_blocks, detaching);
     		}
     	};
@@ -8110,7 +8112,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(16:2) {#each $playerToWords as entry}",
+    		source: "(30:2) {#each $playerToWords as entry}",
     		ctx
     	});
 
@@ -8135,8 +8137,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(main, "class", "svelte-1dtmp2w");
-    			add_location(main, file, 14, 0, 187);
+    			attr_dev(main, "class", "svelte-8e6fra");
+    			add_location(main, file, 28, 0, 395);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8635,6 +8637,8 @@ var app = (function () {
     	let t1;
     	let wordinput;
     	let t2;
+    	let br;
+    	let t3;
     	let playersgrid;
     	let current;
     	word = new Word({ $$inline: true });
@@ -8651,7 +8655,10 @@ var app = (function () {
     			t1 = space();
     			create_component(wordinput.$$.fragment);
     			t2 = space();
+    			br = element("br");
+    			t3 = space();
     			create_component(playersgrid.$$.fragment);
+    			add_location(br, file$4, 10, 2, 254);
     			add_location(main, file$4, 6, 0, 201);
     		},
     		l: function claim(nodes) {
@@ -8665,6 +8672,8 @@ var app = (function () {
     			append_dev(main, t1);
     			mount_component(wordinput, main, null);
     			append_dev(main, t2);
+    			append_dev(main, br);
+    			append_dev(main, t3);
     			mount_component(playersgrid, main, null);
     			current = true;
     		},

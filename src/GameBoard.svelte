@@ -9,5 +9,6 @@ import PlayerTurn from './PlayerTurn.svelte';
   <Word />
   <PlayerTurn />
   <WordInput />
+  <br>
   <PlayersGrid />
 </main>
