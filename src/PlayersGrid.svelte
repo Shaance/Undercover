@@ -9,7 +9,6 @@
   }
 
   .item {
-    min-height: 500px;
     min-width: 100px; 
   }
 </style>
