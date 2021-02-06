@@ -30,15 +30,23 @@
 	});
 </script>
 
+<style>
+  h2 {
+    color:darkslateblue;
+    font-size: 1.5em;
+    font-weight: 350;
+  }
+</style>
+
 <main>
-  <h3>Connected players</h3>
-    {#each players as player, _ (player)}
-      <p 
-        in:receive="{{key: $playerId}}"
-        out:send="{{key: $playerId}}"
-        animate:flip
-      > 
-        {@html formatName($playerId, player)}
-      </p>
-    {/each}
+  <h2>Connected players</h2>
+  {#each players as player, _ (player)}
+    <p 
+      in:receive="{{key: $playerId}}"
+      out:send="{{key: $playerId}}"
+      animate:flip
+    > 
+      {@html formatName($playerId, player)}
+    </p>
+  {/each}
 </main>

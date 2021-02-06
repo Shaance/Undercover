@@ -28,10 +28,19 @@
     min-width: 50px;
   }
 
+  h2 {
+    color:darkslateblue;
+		font-size: 2em;
+		font-weight: 350;
+	}
+  main {
+    font-size: 1.1em;
+    font-weight: 200;
+  }
 </style>
 
 <main>
-  <h3> Settings </h3>
+  <h2> Settings </h2>
   <p>Undercover</p>
   <button on:click={() => updateValue('undercover', 'decrement')}> {'<'} </button>
   <div>{$undercoverCount}</div>

@@ -8765,17 +8765,19 @@ var app = (function () {
     			t6 = space();
     			button = element("button");
     			button.textContent = "OK";
-    			attr_dev(h1, "class", "svelte-zco9vn");
-    			add_location(h1, file$5, 48, 2, 873);
-    			attr_dev(h2, "class", "svelte-zco9vn");
-    			add_location(h2, file$5, 49, 2, 897);
-    			add_location(br0, file$5, 50, 2, 926);
+    			attr_dev(h1, "class", "svelte-4w4a9t");
+    			add_location(h1, file$5, 53, 2, 931);
+    			attr_dev(h2, "class", "svelte-4w4a9t");
+    			add_location(h2, file$5, 54, 2, 955);
+    			add_location(br0, file$5, 55, 2, 984);
     			attr_dev(input, "type", "text");
-    			attr_dev(input, "class", "svelte-zco9vn");
-    			add_location(input, file$5, 51, 2, 933);
-    			add_location(br1, file$5, 52, 2, 1015);
-    			add_location(button, file$5, 53, 2, 1022);
-    			add_location(main, file$5, 47, 0, 864);
+    			attr_dev(input, "size", "15");
+    			attr_dev(input, "class", "svelte-4w4a9t");
+    			add_location(input, file$5, 56, 2, 991);
+    			add_location(br1, file$5, 60, 2, 1097);
+    			attr_dev(button, "class", "svelte-4w4a9t");
+    			add_location(button, file$5, 61, 2, 1104);
+    			add_location(main, file$5, 52, 0, 922);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8957,7 +8959,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (30:4) {#each players as player, _ (player)}
+    // (38:2) {#each players as player, _ (player)}
     function create_each_block$1(key_1, ctx) {
     	let p;
     	let html_tag;
@@ -8976,7 +8978,7 @@ var app = (function () {
     			p = element("p");
     			t = space();
     			html_tag = new HtmlTag(t);
-    			add_location(p, file$6, 30, 6, 871);
+    			add_location(p, file$6, 38, 4, 965);
     			this.first = p;
     		},
     		m: function mount(target, anchor) {
@@ -9027,7 +9029,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(30:4) {#each players as player, _ (player)}",
+    		source: "(38:2) {#each players as player, _ (player)}",
     		ctx
     	});
 
@@ -9036,7 +9038,7 @@ var app = (function () {
 
     function create_fragment$6(ctx) {
     	let main;
-    	let h3;
+    	let h2;
     	let t1;
     	let each_blocks = [];
     	let each_1_lookup = new Map();
@@ -9055,23 +9057,24 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			h3 = element("h3");
-    			h3.textContent = "Connected players";
+    			h2 = element("h2");
+    			h2.textContent = "Connected players";
     			t1 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			add_location(h3, file$6, 28, 2, 796);
-    			add_location(main, file$6, 27, 0, 787);
+    			attr_dev(h2, "class", "svelte-dk8aud");
+    			add_location(h2, file$6, 36, 2, 894);
+    			add_location(main, file$6, 35, 0, 885);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, h3);
+    			append_dev(main, h2);
     			append_dev(main, t1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -9218,7 +9221,7 @@ var app = (function () {
 
     function create_fragment$7(ctx) {
     	let main;
-    	let h3;
+    	let h2;
     	let t1;
     	let p0;
     	let t3;
@@ -9243,8 +9246,8 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			h3 = element("h3");
-    			h3.textContent = "Settings";
+    			h2 = element("h2");
+    			h2.textContent = "Settings";
     			t1 = space();
     			p0 = element("p");
     			p0.textContent = "Undercover";
@@ -9269,29 +9272,31 @@ var app = (function () {
     			t15 = space();
     			button3 = element("button");
     			button3.textContent = `${">"}`;
-    			add_location(h3, file$7, 29, 2, 530);
-    			add_location(p0, file$7, 30, 2, 552);
-    			attr_dev(button0, "class", "svelte-11oyu0c");
-    			add_location(button0, file$7, 31, 2, 572);
-    			attr_dev(div0, "class", "svelte-11oyu0c");
-    			add_location(div0, file$7, 32, 2, 655);
-    			attr_dev(button1, "class", "svelte-11oyu0c");
-    			add_location(button1, file$7, 33, 2, 687);
-    			add_location(p1, file$7, 34, 2, 770);
-    			attr_dev(button2, "class", "svelte-11oyu0c");
-    			add_location(button2, file$7, 35, 2, 788);
-    			attr_dev(div1, "class", "svelte-11oyu0c");
-    			add_location(div1, file$7, 36, 2, 866);
-    			attr_dev(button3, "class", "svelte-11oyu0c");
-    			add_location(button3, file$7, 37, 2, 895);
-    			add_location(main, file$7, 28, 0, 521);
+    			attr_dev(h2, "class", "svelte-15h6cuf");
+    			add_location(h2, file$7, 38, 2, 660);
+    			add_location(p0, file$7, 39, 2, 682);
+    			attr_dev(button0, "class", "svelte-15h6cuf");
+    			add_location(button0, file$7, 40, 2, 702);
+    			attr_dev(div0, "class", "svelte-15h6cuf");
+    			add_location(div0, file$7, 41, 2, 785);
+    			attr_dev(button1, "class", "svelte-15h6cuf");
+    			add_location(button1, file$7, 42, 2, 817);
+    			add_location(p1, file$7, 43, 2, 900);
+    			attr_dev(button2, "class", "svelte-15h6cuf");
+    			add_location(button2, file$7, 44, 2, 918);
+    			attr_dev(div1, "class", "svelte-15h6cuf");
+    			add_location(div1, file$7, 45, 2, 996);
+    			attr_dev(button3, "class", "svelte-15h6cuf");
+    			add_location(button3, file$7, 46, 2, 1025);
+    			attr_dev(main, "class", "svelte-15h6cuf");
+    			add_location(main, file$7, 37, 0, 651);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, h3);
+    			append_dev(main, h2);
     			append_dev(main, t1);
     			append_dev(main, p0);
     			append_dev(main, t3);

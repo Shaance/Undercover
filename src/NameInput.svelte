@@ -43,13 +43,21 @@
 		font-size: 1em;
 		font-weight: 350;
 	}
+  
+  button {
+    font-size: 1em;
+		font-weight: 200;
+  }
 </style>
 
 <main>
   <h1> Undercover </h1>
   <h2> Input your name </h2>
   <br>
-  <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
+  <input type="text" 
+    size="15"
+    bind:value={message} 
+    on:keyup|preventDefault={handleKeyup}/>
   <br>
   <button on:click={handleClick}> OK </button>
 </main>
