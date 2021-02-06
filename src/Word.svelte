@@ -16,5 +16,5 @@
 </script>
 
 <main>
-  <div>{@html text}</div>
+  {@html text}
 </main>

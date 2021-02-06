@@ -24,11 +24,11 @@
 	{/if}
   {#if $state === $playerId}
     <div in:fly="{{ y: 500, duration: 500 }}" on:outroend={onOutro}>
-      <PlayerList />
-      <br>
       <Settings />
       <br>
       <StartButton />
+      <br>
+      <PlayerList />
     </div>
   {/if}
 </main>
