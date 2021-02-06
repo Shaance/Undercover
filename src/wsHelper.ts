@@ -1,4 +1,4 @@
-import type { AddPlayerPayload, Message } from "./wsTypes";
+import type { AddPlayerPayload, AddWordPayload, Message } from "./wsTypes";
 
 export function wrapAddPlayerPayload(message: string): AddPlayerPayload {
   return {
@@ -19,5 +19,13 @@ export function createGetSettingsPayload(): Message {
   return {
     topic: 'settings',
     subtopic: 'get',
+  }
+}
+
+export function getAddWordPayload(word: string): AddWordPayload {
+  return {
+    topic: 'game',
+    subtopic: 'add',
+    data: word
   }
 }

@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import factory from './ConfigLog4j';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse } from './wsTypes';
+import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse } from './wsTypes';
 
 export const playerStore = writable([]);
 export const playerId = writable('');
@@ -9,6 +9,8 @@ export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
 export const ownWord = writable('init');
 export const playingState = writable('init');
+export const playerToWords = writable([]);
+export const currentPlayerTurn = writable('');
 
 const logger = factory.getLogger('store');
 const socket = new WebSocket('ws://localhost:3000');
@@ -33,6 +35,10 @@ function onMessageEvent(event) {
       const getWordResp = resp as GetWordResponse;
       ownWord.set(getWordResp.data);
       playingState.set('started');
+    } else if (resp.subtopic === 'update') {
+      const inGameResponse = resp as InGameResponse;
+      playerToWords.set(inGameResponse.data.playerToWords);
+      currentPlayerTurn.set(inGameResponse.data.player);
     }
   }
 }

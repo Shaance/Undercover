@@ -11,6 +11,10 @@ export interface GetWordResponse extends Message {
   data: string;
 }
 
+export interface AddWordPayload extends Message {
+  data: string;
+}
+
 export interface SettingTopicResponse extends Message {
   data: {
     underCoverCount: number,
@@ -20,4 +24,11 @@ export interface SettingTopicResponse extends Message {
 
 export interface UpdatePlayerMessage extends Message {
   data: string[];
+}
+export interface InGameResponse extends Message {
+  data: {
+    turn: number,
+    player: string,
+    playerToWords: any[]
+  }
 }
