@@ -1,5 +1,6 @@
 <script lang="ts">
 
+  import { fly } from 'svelte/transition';
 	import NameInput from "./NameInput.svelte";
 	import PlayerList from "./PlayerList.svelte";
   import Settings from "./Settings.svelte";
@@ -12,13 +13,17 @@
 
 <main>
 	{#if !addedName}
-		<NameInput />
+    <div out:fly="{{ y: 500, duration: 400 }}">
+      <NameInput />
+    </div>
 	{/if}
   {#if addedName}
-    <PlayerList />
-    <br>
-    <Settings />
-    <br>
-    <StartButton />
+    <div in:fly="{{ y: 800, duration: 800 }}">
+      <PlayerList />
+      <br>
+      <Settings />
+      <br>
+      <StartButton />
+    </div>
   {/if}
 </main>

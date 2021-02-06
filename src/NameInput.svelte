@@ -30,12 +30,8 @@
 <main>
   <!-- svelte-ignore a11y-label-has-associated-control -->
   <label> Input name </label>
+  <br>
   <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
   <button on:click={handleClick}> OK </button>
 </main>
 
-<style>
-  label {
-    display: inline-block;
-  }
-</style>
