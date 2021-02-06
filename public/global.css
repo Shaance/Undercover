@@ -60,3 +60,7 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+button:hover {
+	background-color:lightgray;
+}

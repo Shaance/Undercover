@@ -37,8 +37,12 @@ function onMessageEvent(event) {
       playingState.set('started');
     } else if (resp.subtopic === 'update') {
       const inGameResponse = resp as InGameResponse;
-      playerToWords.set(inGameResponse.data.playerToWords);
-      currentPlayerTurn.set(inGameResponse.data.player);
+      const data = inGameResponse.data;
+      playerToWords.set(data.playerToWords);
+      currentPlayerTurn.set(data.player);
+      if (data.turn !== 0 && data.turn % get(playerStore).length === 0) {
+        playingState.set('voting');
+      }
     }
   }
 }
