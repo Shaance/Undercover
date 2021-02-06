@@ -1,12 +1,14 @@
 import { writable, get } from 'svelte/store';
 import factory from './ConfigLog4j';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse } from './wsTypes';
+import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse } from './wsTypes';
 
 export const playerStore = writable([]);
 export const playerId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
+export const ownWord = writable('init');
+export const playingState = writable('init');
 
 const logger = factory.getLogger('store');
 const socket = new WebSocket('ws://localhost:3000');
@@ -26,6 +28,12 @@ function onMessageEvent(event) {
   } else if (resp.topic === 'settings') {
     const settingsResponse = resp as SettingTopicResponse;
     updateSettings(settingsResponse);
+  } else if (resp.topic === 'game') {
+    if (resp.subtopic === 'word') {
+      const getWordResp = resp as GetWordResponse;
+      ownWord.set(getWordResp.data);
+      playingState.set('started');
+    }
   }
 }
 

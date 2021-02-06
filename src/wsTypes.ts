@@ -7,6 +7,10 @@ export interface AddPlayerPayload extends Message {
   data: string;
 }
 
+export interface GetWordResponse extends Message {
+  data: string;
+}
+
 export interface SettingTopicResponse extends Message {
   data: {
     underCoverCount: number,

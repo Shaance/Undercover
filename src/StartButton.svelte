@@ -1,8 +1,6 @@
 <script lang="ts">
+  import { undercoverCount, mrWhiteCount, playerStore, sendMessage } from './store';
 
-  import { undercoverCount, mrWhiteCount, playerStore } from './store';
-
-  // let errMsg = '';
   $: playerNumbers = $playerStore.length;
   $: disabledButton = !canStartGame($undercoverCount, $mrWhiteCount, playerNumbers);
 
@@ -16,12 +14,15 @@
 
     return otherCount >= 2;
   }
+
+  function startGame() {
+    sendMessage({
+      topic: 'game',
+      subtopic: 'start'
+    });
+  }
 </script>
 
-<style>
-
-</style>
-
-<button disabled="{disabledButton}">
+<button disabled="{disabledButton}" on:click={startGame}>
   Start
 </button>
