@@ -22,16 +22,22 @@
     display: inline-block;
     min-width: 30px;
   }
+
+  div {
+    display: inline-block;
+    min-width: 50px;
+  }
+
 </style>
 
 <main>
   <h3> Settings </h3>
   <p>Undercover</p>
   <button on:click={() => updateValue('undercover', 'decrement')}> {'<'} </button>
-  {$undercoverCount}
+  <div>{$undercoverCount}</div>
   <button on:click={() => updateValue('undercover', 'increment')}> {'>'} </button>
   <p>Mr White</p>
   <button on:click={() => updateValue('white', 'decrement')}> {'<'} </button>
-  {$mrWhiteCount}
+  <div>{$mrWhiteCount}</div>
   <button on:click={() => updateValue('white', 'increment')}> {'>'} </button>
 </main>
