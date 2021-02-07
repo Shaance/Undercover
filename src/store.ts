@@ -22,7 +22,7 @@ export const playersWhoVoted = writable([]);
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
 // @ts-ignore
-const socket = new WebSocket(process.env.API_URL);
+const socket = new WebSocket("wss://144cdb54fada.ngrok.io");
 
 socket.addEventListener('open', () => connectionOpened.set(true));
 
