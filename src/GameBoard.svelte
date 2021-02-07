@@ -3,7 +3,7 @@
   import PlayerTurn from './PlayerTurn.svelte';
   import Word from './Word.svelte';
   import WordInput from './WordInput.svelte';
-  import statefulSwap from "./statefulSwap"
+  import statefulSwap from "./StatefulSwap"
   import { fly } from 'svelte/transition';
   import { playingState } from './store';
   import VoteScreen from './VoteScreen.svelte';

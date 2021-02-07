@@ -1,6 +1,6 @@
 <script>
   import VotePicker from "./VotePicker.svelte";
-  import statefulSwap from "./statefulSwap";
+  import statefulSwap from "./StatefulSwap";
   import HasVoted from './HasVoted.svelte';
   import PlayersGrid from './PlayersGrid.svelte';
   import { hasVoted } from './store';

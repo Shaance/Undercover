@@ -6,7 +6,7 @@
   import Settings from "./Settings.svelte";
   import StartButton from "./StartButton.svelte";
 	import { playerId } from "./store.js";
-  import statefulSwap from "./statefulSwap"
+  import statefulSwap from "./StatefulSwap"
 
   const { onOutro, transitionTo, state } = statefulSwap("init");
 
