@@ -1,4 +1,6 @@
-# undercover
+# Undercover
+
+WIP - This project relies on the WS server logic to work.
 
 ## TODO
 
@@ -6,12 +8,9 @@
 - go back to lobby
 - skip word
 - vote
-- turn system
 - mr white guess
 - polish with transitions
 - polish with css styling
-- display input word
-- input word
 - voting timer
 - input word timer
 - point system
