@@ -63,14 +63,11 @@ function updateSettings(resp: SettingTopicResponse) {
 }
 
 function updatePlayerStore(resp: UpdatePlayerMessage) {
-  // console.log(`Before: ${get(playerStore)}`);
   playerStore.set(resp.data);
-  // console.log(`After: ${get(playerStore)}`);
 }
 
 export const sendMessage = (message) => {
   if (get(connectionOpened)) {
-    // console.log(`Sending ${JSON.stringify(message)}`);
     socket.send(JSON.stringify(message));
   }
 }
