@@ -19,6 +19,7 @@ export const voteResult = writable<VoteResult>({
 });
 export const playersWhoVoted = writable([]);
 
+// TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
 // @ts-ignore
