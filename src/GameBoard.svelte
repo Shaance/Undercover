@@ -6,7 +6,7 @@
   import statefulSwap from "./statefulSwap"
   import { fly } from 'svelte/transition';
   import { playingState } from './store';
-  import Vote from './Vote.svelte';
+  import VoteScreen from './VoteScreen.svelte';
 
   const { onOutro, transitionTo, state } = statefulSwap("started");
 
@@ -32,9 +32,7 @@
   <div out:fly="{{ y: 500, duration: 300 }}"
     in:fly="{{ y: 500, duration: 300 }}"
     on:outroend={onOutro}>
-    <Vote />
-    <br>
-    <PlayersGrid />
+    <VoteScreen />
   </div>
   {/if}
   

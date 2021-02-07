@@ -1,6 +1,12 @@
 <script lang="ts">
-  import { playerStore, playerId } from './store';
+  import { playerStore, playerId, sendMessage, hasVoted } from './store';
+  import { getVoteAgainstPayload } from './wsHelper';
   $: players = $playerStore;
+  
+  function handleClick(selected: string) {
+    sendMessage(getVoteAgainstPayload(selected));
+    hasVoted.set(true);
+  }
 </script>
 
 <style>
@@ -9,7 +15,6 @@
     font-size: 1.5em;
     font-weight: 350;
   }
-
   button {
     border: none;
   }
@@ -20,7 +25,7 @@
   {#each players as player, _ (player)}
     {#if player !== $playerId}
       <p>
-        <button> {player} </button>
+        <button on:click={() => handleClick(player)}> {player} </button>
       </p>
     {/if}
   {/each}

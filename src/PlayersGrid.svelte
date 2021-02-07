@@ -1,6 +1,7 @@
 <script lang="ts">
   import { playerToWords } from './store';
-
+  import { receive } from './Animations';
+  import { flip } from 'svelte/animate';
   // TODO try to fix when too many items
 </script>
 
@@ -33,8 +34,10 @@
     <div class="card">
       <div>{entry[0]}</div>
       <p>* * *</p>
-      {#each entry[1] as word}
-        <p class="item">{word}</p>
+      {#each entry[1] as word, _ (word)}
+        <p class="item" in:receive="{{key: word}}" animate:flip>
+          {word}
+        </p>
       {/each}
     </div>
   {/each}

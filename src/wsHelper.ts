@@ -1,4 +1,4 @@
-import type { AddPlayerPayload, AddWordPayload, Message } from "./wsTypes";
+import type { AddPlayerPayload, AddWordPayload, Message, VoteAgainstPayload } from "./wsTypes";
 
 export function wrapAddPlayerPayload(message: string): AddPlayerPayload {
   return {
@@ -27,5 +27,13 @@ export function getAddWordPayload(word: string): AddWordPayload {
     topic: 'game',
     subtopic: 'add',
     data: word
+  }
+}
+
+export function getVoteAgainstPayload(player: string): VoteAgainstPayload {
+  return {
+    topic: 'vote',
+    subtopic: 'against',
+    data: player
   }
 }

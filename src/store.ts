@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import factory from './ConfigLog4j';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse } from './wsTypes';
+import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse } from './wsTypes';
 
 export const playerStore = writable([]);
 export const playerId = writable('');
@@ -11,6 +11,10 @@ export const ownWord = writable('init');
 export const playingState = writable('init');
 export const playerToWords = writable([]);
 export const currentPlayerTurn = writable('');
+export const hasVoted = writable(false);
+export const votedOutPlayers = writable([]);
+export const voteResult = writable({});
+export const playersWhoVoted = writable([]);
 
 const logger = factory.getLogger('store');
 const socket = new WebSocket('ws://localhost:3000');
@@ -43,6 +47,11 @@ function onMessageEvent(event) {
       if (data.turn !== 0 && data.turn % get(playerStore).length === 0) {
         playingState.set('voting');
       }
+    }
+  } else if (resp.topic === 'vote') {
+    if (resp.subtopic === 'update') {
+      const response = resp as VoteUpdateResponse;
+      playersWhoVoted.set(response.data.playersWhoVoted);
     }
   }
 }
