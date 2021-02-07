@@ -1,24 +1,26 @@
 import { writable, get } from 'svelte/store';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse } from './wsTypes';
+import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult } from './wsTypes';
 
-export const playerStore = writable([]);
+export const playerStore = writable<string[]>([]);
 export const playerId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
 export const ownWord = writable('init');
 export const playingState = writable('init');
-export const playerToWords = writable([]);
+export const playerToWords = writable<[string, string][]>([]);
 export const currentPlayerTurn = writable('');
 export const hasVoted = writable(false);
+export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
-export const voteResult = writable({});
+export const voteResult = writable<VoteResult>({
+  turn: 0,
+  result: 'DRAW'
+});
 export const playersWhoVoted = writable([]);
 
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
-// @ts-ignore
-console.log('\nprocess.env.OTHER ' + process.env.OTHER);
 // @ts-ignore
 const socket = new WebSocket(process.env.API_URL);
 
@@ -54,6 +56,11 @@ function onMessageEvent(event) {
     if (resp.subtopic === 'update') {
       const response = resp as VoteUpdateResponse;
       playersWhoVoted.set(response.data.playersWhoVoted);
+    } else if (resp.subtopic === 'result') {
+      const response = resp as VoteResultResponse;
+      voteResult.set(response.data);
+      voteEnded.set(true);
+      hasVoted.set(false);
     }
   }
 }
