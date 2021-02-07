@@ -10,6 +10,10 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-replace": "^2.3.4",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@tsconfig/svelte": "^1.0.0",
+    "dotenv": "^8.2.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -18,11 +22,8 @@
     "svelte": "^3.0.0",
     "svelte-check": "^1.0.0",
     "svelte-preprocess": "^4.0.0",
-    "@rollup/plugin-typescript": "^6.0.0",
-    "typescript": "^3.9.3",
-    "typescript-logging": "^0.6.4",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^1.0.0"
+    "typescript": "^3.9.3"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0"

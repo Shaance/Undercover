@@ -1,5 +1,4 @@
 import { writable, get } from 'svelte/store';
-import factory from './ConfigLog4j';
 import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse } from './wsTypes';
 
 export const playerStore = writable([]);
@@ -16,15 +15,14 @@ export const votedOutPlayers = writable([]);
 export const voteResult = writable({});
 export const playersWhoVoted = writable([]);
 
-const logger = factory.getLogger('store');
-const socket = new WebSocket('wss://b455891f6f6b.ngrok.io');
+// @ts-ignore
+const socket = new WebSocket(process.env.API_URL);
 
 socket.addEventListener('open', () => connectionOpened.set(true));
 
 socket.addEventListener('message', onMessageEvent);
 
 function onMessageEvent(event) {
-  logger.info(`Received data from WS, ${event.data}`);
   const resp: Message = JSON.parse(event.data);
   if (resp.topic === 'player') {
     if (resp.subtopic === 'update') {
