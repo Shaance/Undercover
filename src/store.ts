@@ -17,7 +17,7 @@ export const voteResult = writable({});
 export const playersWhoVoted = writable([]);
 
 const logger = factory.getLogger('store');
-const socket = new WebSocket('ws://b455891f6f6b.ngrok.io');
+const socket = new WebSocket('wss://b455891f6f6b.ngrok.io');
 
 socket.addEventListener('open', () => connectionOpened.set(true));
 
