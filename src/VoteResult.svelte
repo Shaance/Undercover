@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { playersWhoVoted, playingState, voteEnded, voteResult } from "./store";
+  import { playersWhoVoted, playingState, votedOutPlayers, voteEnded, voteResult } from "./store";
 
   $: isDraw = $voteResult.result === 'DRAW';
   $: detail = $voteResult.voteDetails;
@@ -17,6 +17,7 @@
       voteEnded.set(false);
       playingState.set('voting');
     } else {
+      votedOutPlayers.set([...$votedOutPlayers, $voteResult.playerOut]);
       playingState.set('started');
     }
   }

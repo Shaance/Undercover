@@ -10,7 +10,9 @@
 
   const { onOutro, transitionTo, state } = statefulSwap("started");
 
-  $: if ($playingState) {
+  $: if ($playingState === "voting") {
+    transitionTo($playingState);
+  } else if ($playingState === "started") {
     transitionTo($playingState);
   }
 </script>
