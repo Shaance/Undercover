@@ -1,5 +1,877 @@
-var app=function(){"use strict";function e(){}const t=e=>e;function n(e,t){for(const n in t)e[n]=t[n];return e}function r(e){return e()}function o(){return Object.create(null)}function i(e){e.forEach(r)}function a(e){return"function"==typeof e}function s(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}function u(t,...n){if(null==t)return e;const r=t.subscribe(...n);return r.unsubscribe?()=>r.unsubscribe():r}function l(e){let t;return u(e,(e=>t=e))(),t}function g(e,t,n){e.$$.on_destroy.push(u(t,n))}const c="undefined"!=typeof window;let f=c?()=>window.performance.now():()=>Date.now(),p=c?e=>requestAnimationFrame(e):e;const h=new Set;function d(e){h.forEach((t=>{t.c(e)||(h.delete(t),t.f())})),0!==h.size&&p(d)}function m(e){let t;return 0===h.size&&p(d),{promise:new Promise((n=>{h.add(t={c:e,f:n})})),abort(){h.delete(t)}}}function y(e,t){e.appendChild(t)}function v(e,t,n){e.insertBefore(t,n||null)}function _(e){e.parentNode.removeChild(e)}function b(e){return document.createElement(e)}function L(e){return document.createTextNode(e)}function w(){return L(" ")}function C(){return L("")}function S(e,t,n,r){return e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)}function O(e){return function(t){return t.preventDefault(),e.call(this,t)}}function E(e,t,n){null==n?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function F(e,t){t=""+t,e.wholeText!==t&&(e.data=t)}function M(e,t){e.value=null==t?"":t}class ${constructor(e=null){this.a=e,this.e=this.n=null}m(e,t,n=null){this.e||(this.e=b(t.nodeName),this.t=t,this.h(e)),this.i(n)}h(e){this.e.innerHTML=e,this.n=Array.from(this.e.childNodes)}i(e){for(let t=0;t<this.n.length;t+=1)v(this.t,this.n[t],e)}p(e){this.d(),this.h(e),this.i(this.a)}d(){this.n.forEach(_)}}const T=new Set;let N,R=0;function A(e,t,n,r,o,i,a,s=0){const u=16.666/r;let l="{\n";for(let e=0;e<=1;e+=u){const r=t+(n-t)*i(e);l+=100*e+`%{${a(r,1-r)}}\n`}const g=l+`100% {${a(n,1-n)}}\n}`,c=`__svelte_${function(e){let t=5381,n=e.length;for(;n--;)t=(t<<5)-t^e.charCodeAt(n);return t>>>0}(g)}_${s}`,f=e.ownerDocument;T.add(f);const p=f.__svelte_stylesheet||(f.__svelte_stylesheet=f.head.appendChild(b("style")).sheet),h=f.__svelte_rules||(f.__svelte_rules={});h[c]||(h[c]=!0,p.insertRule(`@keyframes ${c} ${g}`,p.cssRules.length));const d=e.style.animation||"";return e.style.animation=`${d?`${d}, `:""}${c} ${r}ms linear ${o}ms 1 both`,R+=1,c}function x(e,t){const n=(e.style.animation||"").split(", "),r=n.filter(t?e=>e.indexOf(t)<0:e=>-1===e.indexOf("__svelte")),o=n.length-r.length;o&&(e.style.animation=r.join(", "),R-=o,R||p((()=>{R||(T.forEach((e=>{const t=e.__svelte_stylesheet;let n=t.cssRules.length;for(;n--;)t.deleteRule(n);e.__svelte_rules={}})),T.clear())})))}function k(n,r,o,i){if(!r)return e;const a=n.getBoundingClientRect();if(r.left===a.left&&r.right===a.right&&r.top===a.top&&r.bottom===a.bottom)return e;const{delay:s=0,duration:u=300,easing:l=t,start:g=f()+s,end:c=g+u,tick:p=e,css:h}=o(n,{from:r,to:a},i);let d,y=!0,v=!1;function _(){h&&x(n,d),y=!1}return m((e=>{if(!v&&e>=g&&(v=!0),v&&e>=c&&(p(1,0),_()),!y)return!1;if(v){const t=0+1*l((e-g)/u);p(t,1-t)}return!0})),h&&(d=A(n,0,1,u,s,l,h)),s||(v=!0),p(0,1),_}function P(e){const t=getComputedStyle(e);if("absolute"!==t.position&&"fixed"!==t.position){const{width:n,height:r}=t,o=e.getBoundingClientRect();e.style.position="absolute",e.style.width=n,e.style.height=r,j(e,o)}}function j(e,t){const n=e.getBoundingClientRect();if(t.left!==n.left||t.top!==n.top){const r=getComputedStyle(e),o="none"===r.transform?"":r.transform;e.style.transform=`${o} translate(${t.left-n.left}px, ${t.top-n.top}px)`}}function I(e){N=e}function D(e){(function(){if(!N)throw new Error("Function called outside component initialization");return N})().$$.on_mount.push(e)}const G=[],B=[],U=[],W=[],Y=Promise.resolve();let z=!1;function H(e){U.push(e)}let V=!1;const J=new Set;function q(){if(!V){V=!0;do{for(let e=0;e<G.length;e+=1){const t=G[e];I(t),K(t.$$)}for(I(null),G.length=0;B.length;)B.pop()();for(let e=0;e<U.length;e+=1){const t=U[e];J.has(t)||(J.add(t),t())}U.length=0}while(G.length);for(;W.length;)W.pop()();z=!1,V=!1,J.clear()}}function K(e){if(null!==e.fragment){e.update(),i(e.before_update);const t=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,t),e.after_update.forEach(H)}}let Z;function X(){return Z||(Z=Promise.resolve(),Z.then((()=>{Z=null}))),Z}function Q(e,t,n){e.dispatchEvent(function(e,t){const n=document.createEvent("CustomEvent");return n.initCustomEvent(e,!1,!1,t),n}(`${t?"intro":"outro"}${n}`))}const ee=new Set;let te;function ne(){te={r:0,c:[],p:te}}function re(){te.r||i(te.c),te=te.p}function oe(e,t){e&&e.i&&(ee.delete(e),e.i(t))}function ie(e,t,n,r){if(e&&e.o){if(ee.has(e))return;ee.add(e),te.c.push((()=>{ee.delete(e),r&&(n&&e.d(1),r())})),e.o(t)}}const ae={duration:0};function se(n,r,o){let i,s,u=r(n,o),l=!1,g=0;function c(){i&&x(n,i)}function p(){const{delay:r=0,duration:o=300,easing:a=t,tick:p=e,css:h}=u||ae;h&&(i=A(n,0,1,o,r,a,h,g++)),p(0,1);const d=f()+r,y=d+o;s&&s.abort(),l=!0,H((()=>Q(n,!0,"start"))),s=m((e=>{if(l){if(e>=y)return p(1,0),Q(n,!0,"end"),c(),l=!1;if(e>=d){const t=a((e-d)/o);p(t,1-t)}}return l}))}let h=!1;return{start(){h||(x(n),a(u)?(u=u(),X().then(p)):p())},invalidate(){h=!1},end(){l&&(c(),l=!1)}}}function ue(n,r,o){let s,u=r(n,o),l=!0;const g=te;function c(){const{delay:r=0,duration:o=300,easing:a=t,tick:c=e,css:p}=u||ae;p&&(s=A(n,1,0,o,r,a,p));const h=f()+r,d=h+o;H((()=>Q(n,!1,"start"))),m((e=>{if(l){if(e>=d)return c(0,1),Q(n,!1,"end"),--g.r||i(g.c),!1;if(e>=h){const t=a((e-h)/o);c(1-t,t)}}return l}))}return g.r+=1,a(u)?X().then((()=>{u=u(),c()})):c(),{end(e){e&&u.tick&&u.tick(1,0),l&&(s&&x(n,s),l=!1)}}}function le(e,t){e.d(1),t.delete(e.key)}function ge(e,t){e.f(),le(e,t)}function ce(e,t){e.f(),function(e,t){ie(e,1,1,(()=>{t.delete(e.key)}))}(e,t)}function fe(e,t,n,r,o,i,a,s,u,l,g,c){let f=e.length,p=i.length,h=f;const d={};for(;h--;)d[e[h].key]=h;const m=[],y=new Map,v=new Map;for(h=p;h--;){const e=c(o,i,h),s=n(e);let u=a.get(s);u?r&&u.p(e,t):(u=l(s,e),u.c()),y.set(s,m[h]=u),s in d&&v.set(s,Math.abs(h-d[s]))}const _=new Set,b=new Set;function L(e){oe(e,1),e.m(s,g),a.set(e.key,e),g=e.first,p--}for(;f&&p;){const t=m[p-1],n=e[f-1],r=t.key,o=n.key;t===n?(g=t.first,f--,p--):y.has(o)?!a.has(r)||_.has(r)?L(t):b.has(o)?f--:v.get(r)>v.get(o)?(b.add(r),L(t)):(_.add(o),f--):(u(n,a),f--)}for(;f--;){const t=e[f];y.has(t.key)||u(t,a)}for(;p;)L(m[p-1]);return m}function pe(e){e&&e.c()}function he(e,t,n){const{fragment:o,on_mount:s,on_destroy:u,after_update:l}=e.$$;o&&o.m(t,n),H((()=>{const t=s.map(r).filter(a);u?u.push(...t):i(t),e.$$.on_mount=[]})),l.forEach(H)}function de(e,t){const n=e.$$;null!==n.fragment&&(i(n.on_destroy),n.fragment&&n.fragment.d(t),n.on_destroy=n.fragment=null,n.ctx=[])}function me(e,t){-1===e.$$.dirty[0]&&(G.push(e),z||(z=!0,Y.then(q)),e.$$.dirty.fill(0)),e.$$.dirty[t/31|0]|=1<<t%31}function ye(t,n,r,a,s,u,l=[-1]){const g=N;I(t);const c=n.props||{},f=t.$$={fragment:null,ctx:null,props:u,update:e,not_equal:s,bound:o(),on_mount:[],on_destroy:[],before_update:[],after_update:[],context:new Map(g?g.$$.context:[]),callbacks:o(),dirty:l,skip_bound:!1};let p=!1;if(f.ctx=r?r(t,c,((e,n,...r)=>{const o=r.length?r[0]:n;return f.ctx&&s(f.ctx[e],f.ctx[e]=o)&&(!f.skip_bound&&f.bound[e]&&f.bound[e](o),p&&me(t,e)),n})):[],f.update(),p=!0,i(f.before_update),f.fragment=!!a&&a(f.ctx),n.target){if(n.hydrate){const e=function(e){return Array.from(e.childNodes)}(n.target);f.fragment&&f.fragment.l(e),e.forEach(_)}else f.fragment&&f.fragment.c();n.intro&&oe(t.$$.fragment),he(t,n.target,n.anchor),q()}I(g)}class ve{$destroy(){de(this,1),this.$destroy=e}$on(e,t){const n=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return n.push(t),()=>{const e=n.indexOf(t);-1!==e&&n.splice(e,1)}}$set(e){var t;this.$$set&&(t=e,0!==Object.keys(t).length)&&(this.$$.skip_bound=!0,this.$$set(e),this.$$.skip_bound=!1)}}function _e(e){const t=e-1;return t*t*t+1}function be(e){return--e*e*e*e*e+1}
-/*! *****************************************************************************
+
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    const identity = x => x;
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function get_store_value(store) {
+        let value;
+        subscribe(store, _ => value = _)();
+        return value;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+    const tasks = new Set();
+    function run_tasks(now) {
+        tasks.forEach(task => {
+            if (!task.c(now)) {
+                tasks.delete(task);
+                task.f();
+            }
+        });
+        if (tasks.size !== 0)
+            raf(run_tasks);
+    }
+    /**
+     * Creates a new task that runs on each raf frame
+     * until it returns a falsy value or is aborted
+     */
+    function loop(callback) {
+        let task;
+        if (tasks.size === 0)
+            raf(run_tasks);
+        return {
+            promise: new Promise(fulfill => {
+                tasks.add(task = { c: callback, f: fulfill });
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function prevent_default(fn) {
+        return function (event) {
+            event.preventDefault();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
+    class HtmlTag {
+        constructor(anchor = null) {
+            this.a = anchor;
+            this.e = this.n = null;
+        }
+        m(html, target, anchor = null) {
+            if (!this.e) {
+                this.e = element(target.nodeName);
+                this.t = target;
+                this.h(html);
+            }
+            this.i(anchor);
+        }
+        h(html) {
+            this.e.innerHTML = html;
+            this.n = Array.from(this.e.childNodes);
+        }
+        i(anchor) {
+            for (let i = 0; i < this.n.length; i += 1) {
+                insert(this.t, this.n[i], anchor);
+            }
+        }
+        p(html) {
+            this.d();
+            this.h(html);
+            this.i(this.a);
+        }
+        d() {
+            this.n.forEach(detach);
+        }
+    }
+
+    const active_docs = new Set();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = node.ownerDocument;
+        active_docs.add(doc);
+        const stylesheet = doc.__svelte_stylesheet || (doc.__svelte_stylesheet = doc.head.appendChild(element('style')).sheet);
+        const current_rules = doc.__svelte_rules || (doc.__svelte_rules = {});
+        if (!current_rules[name]) {
+            current_rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            active_docs.forEach(doc => {
+                const stylesheet = doc.__svelte_stylesheet;
+                let i = stylesheet.cssRules.length;
+                while (i--)
+                    stylesheet.deleteRule(i);
+                doc.__svelte_rules = {};
+            });
+            active_docs.clear();
+        });
+    }
+
+    function create_animation(node, from, fn, params) {
+        if (!from)
+            return noop;
+        const to = node.getBoundingClientRect();
+        if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom)
+            return noop;
+        const { delay = 0, duration = 300, easing = identity, 
+        // @ts-ignore todo: should this be separated from destructuring? Or start/end added to public api and documentation?
+        start: start_time = now() + delay, 
+        // @ts-ignore todo:
+        end = start_time + duration, tick = noop, css } = fn(node, { from, to }, params);
+        let running = true;
+        let started = false;
+        let name;
+        function start() {
+            if (css) {
+                name = create_rule(node, 0, 1, duration, delay, easing, css);
+            }
+            if (!delay) {
+                started = true;
+            }
+        }
+        function stop() {
+            if (css)
+                delete_rule(node, name);
+            running = false;
+        }
+        loop(now => {
+            if (!started && now >= start_time) {
+                started = true;
+            }
+            if (started && now >= end) {
+                tick(1, 0);
+                stop();
+            }
+            if (!running) {
+                return false;
+            }
+            if (started) {
+                const p = now - start_time;
+                const t = 0 + 1 * easing(p / duration);
+                tick(t, 1 - t);
+            }
+            return true;
+        });
+        start();
+        tick(0, 1);
+        return stop;
+    }
+    function fix_position(node) {
+        const style = getComputedStyle(node);
+        if (style.position !== 'absolute' && style.position !== 'fixed') {
+            const { width, height } = style;
+            const a = node.getBoundingClientRect();
+            node.style.position = 'absolute';
+            node.style.width = width;
+            node.style.height = height;
+            add_transform(node, a);
+        }
+    }
+    function add_transform(node, a) {
+        const b = node.getBoundingClientRect();
+        if (a.left !== b.left || a.top !== b.top) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
+            node.style.transform = `${transform} translate(${a.left - b.left}px, ${a.top - b.top}px)`;
+        }
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    let flushing = false;
+    const seen_callbacks = new Set();
+    function flush() {
+        if (flushing)
+            return;
+        flushing = true;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            for (let i = 0; i < dirty_components.length; i += 1) {
+                const component = dirty_components[i];
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        flushing = false;
+        seen_callbacks.clear();
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
+    const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+    }
+    const null_transition = { duration: 0 };
+    function create_in_transition(node, fn, params) {
+        let config = fn(node, params);
+        let running = false;
+        let animation_name;
+        let task;
+        let uid = 0;
+        function cleanup() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function go() {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            if (css)
+                animation_name = create_rule(node, 0, 1, duration, delay, easing, css, uid++);
+            tick(0, 1);
+            const start_time = now() + delay;
+            const end_time = start_time + duration;
+            if (task)
+                task.abort();
+            running = true;
+            add_render_callback(() => dispatch(node, true, 'start'));
+            task = loop(now => {
+                if (running) {
+                    if (now >= end_time) {
+                        tick(1, 0);
+                        dispatch(node, true, 'end');
+                        cleanup();
+                        return running = false;
+                    }
+                    if (now >= start_time) {
+                        const t = easing((now - start_time) / duration);
+                        tick(t, 1 - t);
+                    }
+                }
+                return running;
+            });
+        }
+        let started = false;
+        return {
+            start() {
+                if (started)
+                    return;
+                delete_rule(node);
+                if (is_function(config)) {
+                    config = config();
+                    wait().then(go);
+                }
+                else {
+                    go();
+                }
+            },
+            invalidate() {
+                started = false;
+            },
+            end() {
+                if (running) {
+                    cleanup();
+                    running = false;
+                }
+            }
+        };
+    }
+    function create_out_transition(node, fn, params) {
+        let config = fn(node, params);
+        let running = true;
+        let animation_name;
+        const group = outros;
+        group.r += 1;
+        function go() {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            if (css)
+                animation_name = create_rule(node, 1, 0, duration, delay, easing, css);
+            const start_time = now() + delay;
+            const end_time = start_time + duration;
+            add_render_callback(() => dispatch(node, false, 'start'));
+            loop(now => {
+                if (running) {
+                    if (now >= end_time) {
+                        tick(0, 1);
+                        dispatch(node, false, 'end');
+                        if (!--group.r) {
+                            // this will result in `end()` being called,
+                            // so we don't need to clean up here
+                            run_all(group.c);
+                        }
+                        return false;
+                    }
+                    if (now >= start_time) {
+                        const t = easing((now - start_time) / duration);
+                        tick(1 - t, t);
+                    }
+                }
+                return running;
+            });
+        }
+        if (is_function(config)) {
+            wait().then(() => {
+                // @ts-ignore
+                config = config();
+                go();
+            });
+        }
+        else {
+            go();
+        }
+        return {
+            end(reset) {
+                if (reset && config.tick) {
+                    config.tick(1, 0);
+                }
+                if (running) {
+                    if (animation_name)
+                        delete_rule(node, animation_name);
+                    running = false;
+                }
+            }
+        };
+    }
+
+    function destroy_block(block, lookup) {
+        block.d(1);
+        lookup.delete(block.key);
+    }
+    function outro_and_destroy_block(block, lookup) {
+        transition_out(block, 1, 1, () => {
+            lookup.delete(block.key);
+        });
+    }
+    function fix_and_destroy_block(block, lookup) {
+        block.f();
+        destroy_block(block, lookup);
+    }
+    function fix_and_outro_and_destroy_block(block, lookup) {
+        block.f();
+        outro_and_destroy_block(block, lookup);
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next);
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error('Cannot have duplicate keys in a keyed each');
+            }
+            keys.add(key);
+        }
+    }
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        // onMount happens before the initial afterUpdate
+        add_render_callback(() => {
+            const new_on_destroy = on_mount.map(run).filter(is_function);
+            if (on_destroy) {
+                on_destroy.push(...new_on_destroy);
+            }
+            else {
+                // Edge case - component was destroyed immediately,
+                // most likely as a result of a binding initialising
+                run_all(new_on_destroy);
+            }
+            component.$$.on_mount = [];
+        });
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const prop_values = options.props || {};
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, prop_values, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.31.2' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev('SvelteDOMInsert', { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev('SvelteDOMRemove', { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
+        else
+            dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev('SvelteDOMSetData', { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error("'target' is a required option");
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn('Component was already destroyed'); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+
+    function cubicOut(t) {
+        const f = t - 1.0;
+        return f * f * f + 1.0;
+    }
+    function quintOut(t) {
+        return --t * t * t * t * t + 1;
+    }
+
+    /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -12,5 +884,10497 @@ var app=function(){"use strict";function e(){}const t=e=>e;function n(e,t){for(c
     LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
     OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
     PERFORMANCE OF THIS SOFTWARE.
-    ***************************************************************************** */function Le(e,{delay:n=0,duration:r=400,easing:o=t}){const i=+getComputedStyle(e).opacity;return{delay:n,duration:r,easing:o,css:e=>"opacity: "+e*i}}function we(e,{delay:t=0,duration:n=400,easing:r=_e,x:o=0,y:i=0,opacity:a=0}){const s=getComputedStyle(e),u=+s.opacity,l="none"===s.transform?"":s.transform,g=u*(1-a);return{delay:t,duration:n,easing:r,css:(e,t)=>`\n\t\t\ttransform: ${l} translate(${(1-e)*o}px, ${(1-e)*i}px);\n\t\t\topacity: ${u-g*t}`}}const Ce=[];function Se(t,n=e){let r;const o=[];function i(e){if(s(t,e)&&(t=e,r)){const e=!Ce.length;for(let e=0;e<o.length;e+=1){const n=o[e];n[1](),Ce.push(n,t)}if(e){for(let e=0;e<Ce.length;e+=2)Ce[e][0](Ce[e+1]);Ce.length=0}}}return{set:i,update:function(e){i(e(t))},subscribe:function(a,s=e){const u=[a,s];return o.push(u),1===o.length&&(r=n(i)||e),a(t),()=>{const e=o.indexOf(u);-1!==e&&o.splice(e,1),0===o.length&&(r(),r=null)}}}}var Oe="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function Ee(e){var t={exports:{}};return e(t,t.exports),t.exports}var Fe=Ee((function(e,t){var n,r,o;Object.defineProperty(t,"__esModule",{value:!0}),(n=t.LogLevel||(t.LogLevel={}))[n.Trace=0]="Trace",n[n.Debug=1]="Debug",n[n.Info=2]="Info",n[n.Warn=3]="Warn",n[n.Error=4]="Error",n[n.Fatal=5]="Fatal",function(e){e.fromString=function(t){if(null==t)throw new Error("Argument must be set");switch(t.toLowerCase()){case"trace":return e.Trace;case"debug":return e.Debug;case"info":return e.Info;case"warn":return e.Warn;case"error":return e.Error;case"fatal":return e.Fatal;default:throw new Error("Unsupported value for conversion: "+t)}}}(t.LogLevel||(t.LogLevel={})),(r=t.LoggerType||(t.LoggerType={}))[r.Console=0]="Console",r[r.MessageBuffer=1]="MessageBuffer",r[r.Custom=2]="Custom",function(e){e[e.Default=0]="Default",e[e.YearMonthDayTime=1]="YearMonthDayTime",e[e.YearDayMonthWithFullTime=2]="YearDayMonthWithFullTime",e[e.YearDayMonthTime=3]="YearDayMonthTime"}(t.DateFormatEnum||(t.DateFormatEnum={})),function(e){e.fromString=function(t){if(null==t)throw new Error("Argument must be set");switch(t.toLowerCase()){case"default":return e.Default;case"yearmonthdayTime":return e.YearMonthDayTime;case"yeardaymonthwithfulltime":return e.YearDayMonthWithFullTime;case"yeardaymonthtime":return e.YearDayMonthTime;default:throw new Error("Unsupported value for conversion: "+t)}}}(o=t.DateFormatEnum||(t.DateFormatEnum={}));var i=function(){function e(e,t){void 0===e&&(e=o.Default),void 0===t&&(t="-"),this._formatEnum=e,this._dateSeparator=t}return Object.defineProperty(e.prototype,"formatEnum",{get:function(){return this._formatEnum},set:function(e){this._formatEnum=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"dateSeparator",{get:function(){return this._dateSeparator},set:function(e){this._dateSeparator=e},enumerable:!0,configurable:!0}),e.prototype.copy=function(){return new e(this._formatEnum,this._dateSeparator)},e}();t.DateFormat=i;var a=function(){function e(e,t,n){void 0===e&&(e=new i),void 0===t&&(t=!0),void 0===n&&(n=!0),this._showTimeStamp=!0,this._showLoggerName=!0,this._dateFormat=e,this._showTimeStamp=t,this._showLoggerName=n}return Object.defineProperty(e.prototype,"dateFormat",{get:function(){return this._dateFormat},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"showTimeStamp",{get:function(){return this._showTimeStamp},set:function(e){this._showTimeStamp=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"showLoggerName",{get:function(){return this._showLoggerName},set:function(e){this._showLoggerName=e},enumerable:!0,configurable:!0}),e}();t.LogFormat=a;var s=function(){function e(e,t,n){void 0===e&&(e=new i),void 0===t&&(t=!0),void 0===n&&(n=!0),this._dateFormat=e,this._showTimeStamp=t,this._showCategoryName=n}return Object.defineProperty(e.prototype,"dateFormat",{get:function(){return this._dateFormat},set:function(e){this._dateFormat=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"showTimeStamp",{get:function(){return this._showTimeStamp},set:function(e){this._showTimeStamp=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"showCategoryName",{get:function(){return this._showCategoryName},set:function(e){this._showCategoryName=e},enumerable:!0,configurable:!0}),e.prototype.copy=function(){return new e(this._dateFormat.copy(),this._showTimeStamp,this._showCategoryName)},e}();t.CategoryLogFormat=s})),Me=function(){function e(e){this._previous=null,this._next=null,this._value=e}return Object.defineProperty(e.prototype,"previous",{get:function(){return this._previous},set:function(e){this._previous=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"next",{get:function(){return this._next},set:function(e){this._next=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"value",{get:function(){return this._value},enumerable:!0,configurable:!0}),e}(),$e=function(){function e(){this.head=null,this.size=0}return e.prototype.addHead=function(e){if(!this.createHeadIfNeeded(e)){if(null==this.head)throw new Error("This should never happen, list implementation broken");var t=this.head.next,n=new Me(e);null!=t&&(t.previous=n,n.next=t),this.head=n}this.size++},e.prototype.addTail=function(e){if(!this.createHeadIfNeeded(e)){var t=this.getTailNode();if(null==t)throw new Error("List implementation broken");var n=new Me(e);t.next=n,n.previous=t}this.size++},e.prototype.clear=function(){this.head=null,this.size=0},e.prototype.getHead=function(){return null!=this.head?this.head.value:null},e.prototype.removeHead=function(){if(null!=this.head){var e=this.head,t=e.value;return this.head=e.next,this.size--,t}return null},e.prototype.getTail=function(){var e=this.getTailNode();return null!=e?e.value:null},e.prototype.removeTail=function(){var e=this.getTailNode();if(null!=e){if(e===this.head)this.head=null;else{var t=e.previous;if(null==t)throw new Error("List implementation is broken");t.next=null}return this.size--,e.value}return null},e.prototype.getSize=function(){return this.size},e.prototype.filter=function(e){var t=function(e,n,r){e(n.value)&&r.push(n.value);var o=n.next;null!=o&&t(e,o,r)},n=[],r=this.head;return null!=r&&t(e,r,n),n},e.prototype.createHeadIfNeeded=function(e){return null==this.head&&(this.head=new Me(e),!0)},e.prototype.getTailNode=function(){if(null==this.head)return null;for(var e=this.head;null!=e.next;)e=e.next;return e},e}(),Te=function(){function e(){this.array={}}return e.prototype.put=function(e,t){this.array[e]=t},e.prototype.get=function(e){return this.array[e]},e.prototype.exists=function(e){return void 0!==this.array[e]},e.prototype.remove=function(e){var t=this.array[e];return void 0!==t&&delete this.array[e],t},e.prototype.keys=function(){var e=[];for(var t in this.array)this.array.hasOwnProperty(t)&&e.push(t);return e},e.prototype.values=function(){var e=[];for(var t in this.array)this.array.hasOwnProperty(t)&&e.push(this.get(t));return e},e.prototype.size=function(){return this.keys().length},e.prototype.isEmpty=function(){return 0===this.size()},e.prototype.clear=function(){this.array={}},e.prototype.forEach=function(e){var t=0;for(var n in this.array){if(this.array.hasOwnProperty(n))e(n,this.array[n],t),t++}},e.prototype.forEachValue=function(e){var t=0;for(var n in this.array){if(this.array.hasOwnProperty(n))e(this.array[n],t),t++}},e}(),Ne=function(){function e(e,t){this._x=e,this._y=t}return Object.defineProperty(e.prototype,"x",{get:function(){return this._x},set:function(e){this._x=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"y",{get:function(){return this._y},set:function(e){this._y=e},enumerable:!0,configurable:!0}),e}(),Re=function(){function e(){this.data=[]}return e.prototype.append=function(e){if(void 0===e||null==e)throw new Error("String must be set, cannot append null or undefined");return this.data.push(e),this},e.prototype.appendLine=function(e){return this.data.push(e+"\n"),this},e.prototype.isEmpty=function(){return 0===this.data.length},e.prototype.clear=function(){this.data=[]},e.prototype.toString=function(e){return void 0===e&&(e=""),this.data.join(e)},e}(),Ae=Object.defineProperty({LinkedList:$e,SimpleMap:Te,TuplePair:Ne,StringBuilder:Re},"__esModule",{value:!0}),xe=Ee((function(e,t){e.exports=function(){function e(e){return!isNaN(parseFloat(e))&&isFinite(e)}function t(e,t,n,r,o,i){void 0!==e&&this.setFunctionName(e),void 0!==t&&this.setArgs(t),void 0!==n&&this.setFileName(n),void 0!==r&&this.setLineNumber(r),void 0!==o&&this.setColumnNumber(o),void 0!==i&&this.setSource(i)}return t.prototype={getFunctionName:function(){return this.functionName},setFunctionName:function(e){this.functionName=String(e)},getArgs:function(){return this.args},setArgs:function(e){if("[object Array]"!==Object.prototype.toString.call(e))throw new TypeError("Args must be an Array");this.args=e},getFileName:function(){return this.fileName},setFileName:function(e){this.fileName=String(e)},getLineNumber:function(){return this.lineNumber},setLineNumber:function(t){if(!e(t))throw new TypeError("Line Number must be a Number");this.lineNumber=Number(t)},getColumnNumber:function(){return this.columnNumber},setColumnNumber:function(t){if(!e(t))throw new TypeError("Column Number must be a Number");this.columnNumber=Number(t)},getSource:function(){return this.source},setSource:function(e){this.source=String(e)},toString:function(){return(this.getFunctionName()||"{anonymous}")+"("+(this.getArgs()||[]).join(",")+")"+(this.getFileName()?"@"+this.getFileName():"")+(e(this.getLineNumber())?":"+this.getLineNumber():"")+(e(this.getColumnNumber())?":"+this.getColumnNumber():"")}},t}()})),ke=Ee((function(e,t){e.exports=function(e){var t=/(^|@)\S+\:\d+/,n=/^\s*at .*(\S+\:\d+|\(native\))/m,r=/^(eval@)?(\[native code\])?$/;function o(e,t,n){if("function"==typeof Array.prototype.map)return e.map(t,n);for(var r=new Array(e.length),o=0;o<e.length;o++)r[o]=t.call(n,e[o]);return r}function i(e,t,n){if("function"==typeof Array.prototype.filter)return e.filter(t,n);for(var r=[],o=0;o<e.length;o++)t.call(n,e[o])&&r.push(e[o]);return r}function a(e,t){if("function"==typeof Array.prototype.indexOf)return e.indexOf(t);for(var n=0;n<e.length;n++)if(e[n]===t)return n;return-1}return{parse:function(e){if(void 0!==e.stacktrace||void 0!==e["opera#sourceloc"])return this.parseOpera(e);if(e.stack&&e.stack.match(n))return this.parseV8OrIE(e);if(e.stack)return this.parseFFOrSafari(e);throw new Error("Cannot parse given Error object")},extractLocation:function(e){if(-1===e.indexOf(":"))return[e];var t=/(.+?)(?:\:(\d+))?(?:\:(\d+))?$/.exec(e.replace(/[\(\)]/g,""));return[t[1],t[2]||void 0,t[3]||void 0]},parseV8OrIE:function(t){return o(i(t.stack.split("\n"),(function(e){return!!e.match(n)}),this),(function(t){t.indexOf("(eval ")>-1&&(t=t.replace(/eval code/g,"eval").replace(/(\(eval at [^\()]*)|(\)\,.*$)/g,""));var n=t.replace(/^\s+/,"").replace(/\(eval code/g,"(").split(/\s+/).slice(1),r=this.extractLocation(n.pop()),o=n.join(" ")||void 0,i=a(["eval","<anonymous>"],r[0])>-1?void 0:r[0];return new e(o,void 0,i,r[1],r[2],t)}),this)},parseFFOrSafari:function(t){return o(i(t.stack.split("\n"),(function(e){return!e.match(r)}),this),(function(t){if(t.indexOf(" > eval")>-1&&(t=t.replace(/ line (\d+)(?: > eval line \d+)* > eval\:\d+\:\d+/g,":$1")),-1===t.indexOf("@")&&-1===t.indexOf(":"))return new e(t);var n=t.split("@"),r=this.extractLocation(n.pop()),o=n.join("@")||void 0;return new e(o,void 0,r[0],r[1],r[2],t)}),this)},parseOpera:function(e){return!e.stacktrace||e.message.indexOf("\n")>-1&&e.message.split("\n").length>e.stacktrace.split("\n").length?this.parseOpera9(e):e.stack?this.parseOpera11(e):this.parseOpera10(e)},parseOpera9:function(t){for(var n=/Line (\d+).*script (?:in )?(\S+)/i,r=t.message.split("\n"),o=[],i=2,a=r.length;i<a;i+=2){var s=n.exec(r[i]);s&&o.push(new e(void 0,void 0,s[2],s[1],void 0,r[i]))}return o},parseOpera10:function(t){for(var n=/Line (\d+).*script (?:in )?(\S+)(?:: In function (\S+))?$/i,r=t.stacktrace.split("\n"),o=[],i=0,a=r.length;i<a;i+=2){var s=n.exec(r[i]);s&&o.push(new e(s[3]||void 0,void 0,s[2],s[1],void 0,r[i]))}return o},parseOpera11:function(n){return o(i(n.stack.split("\n"),(function(e){return!!e.match(t)&&!e.match(/^Error created at/)}),this),(function(t){var n,r=t.split("@"),o=this.extractLocation(r.pop()),i=r.shift()||"",a=i.replace(/<anonymous function(: (\w+))?>/,"$2").replace(/\([^\)]*\)/g,"")||void 0;i.match(/\(([^\)]*)\)/)&&(n=i.replace(/^[^\(]+\(([^\)]*)\)$/,"$1"));var s=void 0===n||"[arguments not available]"===n?void 0:n.split(",");return new e(a,s,o[0],o[1],o[2],t)}),this)}}}(xe)})),Pe=Ee((function(e,t){e.exports=function(){function e(e){return!isNaN(parseFloat(e))&&isFinite(e)}function t(e){return e.charAt(0).toUpperCase()+e.substring(1)}function n(e){return function(){return this[e]}}var r=["isConstructor","isEval","isNative","isToplevel"],o=["columnNumber","lineNumber"],i=["fileName","functionName","source"],a=["args"],s=["evalOrigin"],u=r.concat(o,i,a,s);function l(e){if(e)for(var n=0;n<u.length;n++)void 0!==e[u[n]]&&this["set"+t(u[n])](e[u[n]])}l.prototype={getArgs:function(){return this.args},setArgs:function(e){if("[object Array]"!==Object.prototype.toString.call(e))throw new TypeError("Args must be an Array");this.args=e},getEvalOrigin:function(){return this.evalOrigin},setEvalOrigin:function(e){if(e instanceof l)this.evalOrigin=e;else{if(!(e instanceof Object))throw new TypeError("Eval Origin must be an Object or StackFrame");this.evalOrigin=new l(e)}},toString:function(){var e=this.getFileName()||"",t=this.getLineNumber()||"",n=this.getColumnNumber()||"",r=this.getFunctionName()||"";return this.getIsEval()?e?"[eval] ("+e+":"+t+":"+n+")":"[eval]:"+t+":"+n:r?r+" ("+e+":"+t+":"+n+")":e+":"+t+":"+n}},l.fromString=function(e){var t=e.indexOf("("),n=e.lastIndexOf(")"),r=e.substring(0,t),o=e.substring(t+1,n).split(","),i=e.substring(n+1);if(0===i.indexOf("@"))var a=/@(.+?)(?::(\d+))?(?::(\d+))?$/.exec(i,""),s=a[1],u=a[2],g=a[3];return new l({functionName:r,args:o||void 0,fileName:s,lineNumber:u||void 0,columnNumber:g||void 0})};for(var g=0;g<r.length;g++)l.prototype["get"+t(r[g])]=n(r[g]),l.prototype["set"+t(r[g])]=function(e){return function(t){this[e]=Boolean(t)}}(r[g]);for(var c=0;c<o.length;c++)l.prototype["get"+t(o[c])]=n(o[c]),l.prototype["set"+t(o[c])]=function(t){return function(n){if(!e(n))throw new TypeError(t+" must be a Number");this[t]=Number(n)}}(o[c]);for(var f=0;f<i.length;f++)l.prototype["get"+t(i[f])]=n(i[f]),l.prototype["set"+t(i[f])]=function(e){return function(t){this[e]=String(t)}}(i[f]);return l}()})),je=Ee((function(e,t){var n;e.exports=(n=Pe,{backtrace:function(e){var t=[],r=10;"object"==typeof e&&"number"==typeof e.maxStackSize&&(r=e.maxStackSize);for(var o=arguments.callee;o&&t.length<r;){for(var i=new Array(o.arguments.length),a=0;a<i.length;++a)i[a]=o.arguments[a];/function(?:\s+([\w$]+))+\s*\(/.test(o.toString())?t.push(new n({functionName:RegExp.$1||void 0,args:i})):t.push(new n({args:i}));try{o=o.caller}catch(e){break}}return t}})})),Ie=Ee((function(e,t){t.getArg=function(e,t,n){if(t in e)return e[t];if(3===arguments.length)return n;throw new Error('"'+t+'" is a required argument.')};var n=/^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.]*)(?::(\d+))?(\S*)$/,r=/^data:.+\,.+$/;function o(e){var t=e.match(n);return t?{scheme:t[1],auth:t[2],host:t[3],port:t[4],path:t[5]}:null}function i(e){var t="";return e.scheme&&(t+=e.scheme+":"),t+="//",e.auth&&(t+=e.auth+"@"),e.host&&(t+=e.host),e.port&&(t+=":"+e.port),e.path&&(t+=e.path),t}function a(e){var n=e,r=o(e);if(r){if(!r.path)return e;n=r.path}for(var a,s=t.isAbsolute(n),u=n.split(/\/+/),l=0,g=u.length-1;g>=0;g--)"."===(a=u[g])?u.splice(g,1):".."===a?l++:l>0&&(""===a?(u.splice(g+1,l),l=0):(u.splice(g,2),l--));return""===(n=u.join("/"))&&(n=s?"/":"."),r?(r.path=n,i(r)):n}t.urlParse=o,t.urlGenerate=i,t.normalize=a,t.join=function(e,t){""===e&&(e="."),""===t&&(t=".");var n=o(t),s=o(e);if(s&&(e=s.path||"/"),n&&!n.scheme)return s&&(n.scheme=s.scheme),i(n);if(n||t.match(r))return t;if(s&&!s.host&&!s.path)return s.host=t,i(s);var u="/"===t.charAt(0)?t:a(e.replace(/\/+$/,"")+"/"+t);return s?(s.path=u,i(s)):u},t.isAbsolute=function(e){return"/"===e.charAt(0)||!!e.match(n)},t.relative=function(e,t){""===e&&(e="."),e=e.replace(/\/$/,"");for(var n=0;0!==t.indexOf(e+"/");){var r=e.lastIndexOf("/");if(r<0)return t;if((e=e.slice(0,r)).match(/^([^\/]+:\/)?\/*$/))return t;++n}return Array(n+1).join("../")+t.substr(e.length+1)};var s=!("__proto__"in Object.create(null));function u(e){return e}function l(e){if(!e)return!1;var t=e.length;if(t<9)return!1;if(95!==e.charCodeAt(t-1)||95!==e.charCodeAt(t-2)||111!==e.charCodeAt(t-3)||116!==e.charCodeAt(t-4)||111!==e.charCodeAt(t-5)||114!==e.charCodeAt(t-6)||112!==e.charCodeAt(t-7)||95!==e.charCodeAt(t-8)||95!==e.charCodeAt(t-9))return!1;for(var n=t-10;n>=0;n--)if(36!==e.charCodeAt(n))return!1;return!0}function g(e,t){return e===t?0:e>t?1:-1}t.toSetString=s?u:function(e){return l(e)?"$"+e:e},t.fromSetString=s?u:function(e){return l(e)?e.slice(1):e},t.compareByOriginalPositions=function(e,t,n){var r=e.source-t.source;return 0!==r||0!==(r=e.originalLine-t.originalLine)||0!==(r=e.originalColumn-t.originalColumn)||n||0!==(r=e.generatedColumn-t.generatedColumn)||0!==(r=e.generatedLine-t.generatedLine)?r:e.name-t.name},t.compareByGeneratedPositionsDeflated=function(e,t,n){var r=e.generatedLine-t.generatedLine;return 0!==r||0!==(r=e.generatedColumn-t.generatedColumn)||n||0!==(r=e.source-t.source)||0!==(r=e.originalLine-t.originalLine)||0!==(r=e.originalColumn-t.originalColumn)?r:e.name-t.name},t.compareByGeneratedPositionsInflated=function(e,t){var n=e.generatedLine-t.generatedLine;return 0!==n||0!==(n=e.generatedColumn-t.generatedColumn)||0!==(n=g(e.source,t.source))||0!==(n=e.originalLine-t.originalLine)||0!==(n=e.originalColumn-t.originalColumn)?n:g(e.name,t.name)}})),De=Ee((function(e,t){function n(e,r,o,i,a,s){var u=Math.floor((r-e)/2)+e,l=a(o,i[u],!0);return 0===l?u:l>0?r-u>1?n(u,r,o,i,a,s):s==t.LEAST_UPPER_BOUND?r<i.length?r:-1:u:u-e>1?n(e,u,o,i,a,s):s==t.LEAST_UPPER_BOUND?u:e<0?-1:e}t.GREATEST_LOWER_BOUND=1,t.LEAST_UPPER_BOUND=2,t.search=function(e,r,o,i){if(0===r.length)return-1;var a=n(-1,r.length,e,r,o,i||t.GREATEST_LOWER_BOUND);if(a<0)return-1;for(;a-1>=0&&0===o(r[a],r[a-1],!0);)--a;return a}})),Ge=Object.prototype.hasOwnProperty;function Be(){this._array=[],this._set=Object.create(null)}Be.fromArray=function(e,t){for(var n=new Be,r=0,o=e.length;r<o;r++)n.add(e[r],t);return n},Be.prototype.size=function(){return Object.getOwnPropertyNames(this._set).length},Be.prototype.add=function(e,t){var n=Ie.toSetString(e),r=Ge.call(this._set,n),o=this._array.length;r&&!t||this._array.push(e),r||(this._set[n]=o)},Be.prototype.has=function(e){var t=Ie.toSetString(e);return Ge.call(this._set,t)},Be.prototype.indexOf=function(e){var t=Ie.toSetString(e);if(Ge.call(this._set,t))return this._set[t];throw new Error('"'+e+'" is not in the set.')},Be.prototype.at=function(e){if(e>=0&&e<this._array.length)return this._array[e];throw new Error("No element indexed by "+e)},Be.prototype.toArray=function(){return this._array.slice()};var Ue={ArraySet:Be},We=("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(""),function(e){return 65<=e&&e<=90?e-65:97<=e&&e<=122?e-97+26:48<=e&&e<=57?e-48+52:43==e?62:47==e?63:-1});var Ye=function(e,t,n){var r,o,i,a,s=e.length,u=0,l=0;do{if(t>=s)throw new Error("Expected more digits in base 64 VLQ value.");if(-1===(o=We(e.charCodeAt(t++))))throw new Error("Invalid base64 digit: "+e.charAt(t-1));r=!!(32&o),u+=(o&=31)<<l,l+=5}while(r);n.value=(a=(i=u)>>1,1==(1&i)?-a:a),n.rest=t};function ze(e,t,n){var r=e[t];e[t]=e[n],e[n]=r}function He(e,t,n,r){if(n<r){var o=n-1;ze(e,(u=n,l=r,Math.round(u+Math.random()*(l-u))),r);for(var i=e[r],a=n;a<r;a++)t(e[a],i)<=0&&ze(e,o+=1,a);ze(e,o+1,a);var s=o+1;He(e,t,n,s-1),He(e,t,s+1,r)}var u,l}var Ve=Ue.ArraySet,Je=function(e,t){He(e,t,0,e.length-1)};function qe(e){var t=e;return"string"==typeof e&&(t=JSON.parse(e.replace(/^\)\]\}'/,""))),null!=t.sections?new et(t):new Ze(t)}qe.fromSourceMap=function(e){return Ze.fromSourceMap(e)},qe.prototype._version=3,qe.prototype.__generatedMappings=null,Object.defineProperty(qe.prototype,"_generatedMappings",{get:function(){return this.__generatedMappings||this._parseMappings(this._mappings,this.sourceRoot),this.__generatedMappings}}),qe.prototype.__originalMappings=null,Object.defineProperty(qe.prototype,"_originalMappings",{get:function(){return this.__originalMappings||this._parseMappings(this._mappings,this.sourceRoot),this.__originalMappings}}),qe.prototype._charIsMappingSeparator=function(e,t){var n=e.charAt(t);return";"===n||","===n},qe.prototype._parseMappings=function(e,t){throw new Error("Subclasses must implement _parseMappings")},qe.GENERATED_ORDER=1,qe.ORIGINAL_ORDER=2,qe.GREATEST_LOWER_BOUND=1,qe.LEAST_UPPER_BOUND=2,qe.prototype.eachMapping=function(e,t,n){var r,o=t||null;switch(n||qe.GENERATED_ORDER){case qe.GENERATED_ORDER:r=this._generatedMappings;break;case qe.ORIGINAL_ORDER:r=this._originalMappings;break;default:throw new Error("Unknown order of iteration.")}var i=this.sourceRoot;r.map((function(e){var t=null===e.source?null:this._sources.at(e.source);return null!=t&&null!=i&&(t=Ie.join(i,t)),{source:t,generatedLine:e.generatedLine,generatedColumn:e.generatedColumn,originalLine:e.originalLine,originalColumn:e.originalColumn,name:null===e.name?null:this._names.at(e.name)}}),this).forEach(e,o)},qe.prototype.allGeneratedPositionsFor=function(e){var t=Ie.getArg(e,"line"),n={source:Ie.getArg(e,"source"),originalLine:t,originalColumn:Ie.getArg(e,"column",0)};if(null!=this.sourceRoot&&(n.source=Ie.relative(this.sourceRoot,n.source)),!this._sources.has(n.source))return[];n.source=this._sources.indexOf(n.source);var r=[],o=this._findMapping(n,this._originalMappings,"originalLine","originalColumn",Ie.compareByOriginalPositions,De.LEAST_UPPER_BOUND);if(o>=0){var i=this._originalMappings[o];if(void 0===e.column)for(var a=i.originalLine;i&&i.originalLine===a;)r.push({line:Ie.getArg(i,"generatedLine",null),column:Ie.getArg(i,"generatedColumn",null),lastColumn:Ie.getArg(i,"lastGeneratedColumn",null)}),i=this._originalMappings[++o];else for(var s=i.originalColumn;i&&i.originalLine===t&&i.originalColumn==s;)r.push({line:Ie.getArg(i,"generatedLine",null),column:Ie.getArg(i,"generatedColumn",null),lastColumn:Ie.getArg(i,"lastGeneratedColumn",null)}),i=this._originalMappings[++o]}return r};var Ke=qe;function Ze(e){var t=e;"string"==typeof e&&(t=JSON.parse(e.replace(/^\)\]\}'/,"")));var n=Ie.getArg(t,"version"),r=Ie.getArg(t,"sources"),o=Ie.getArg(t,"names",[]),i=Ie.getArg(t,"sourceRoot",null),a=Ie.getArg(t,"sourcesContent",null),s=Ie.getArg(t,"mappings"),u=Ie.getArg(t,"file",null);if(n!=this._version)throw new Error("Unsupported version: "+n);r=r.map(String).map(Ie.normalize).map((function(e){return i&&Ie.isAbsolute(i)&&Ie.isAbsolute(e)?Ie.relative(i,e):e})),this._names=Ve.fromArray(o.map(String),!0),this._sources=Ve.fromArray(r,!0),this.sourceRoot=i,this.sourcesContent=a,this._mappings=s,this.file=u}function Xe(){this.generatedLine=0,this.generatedColumn=0,this.source=null,this.originalLine=null,this.originalColumn=null,this.name=null}Ze.prototype=Object.create(qe.prototype),Ze.prototype.consumer=qe,Ze.fromSourceMap=function(e){var t=Object.create(Ze.prototype),n=t._names=Ve.fromArray(e._names.toArray(),!0),r=t._sources=Ve.fromArray(e._sources.toArray(),!0);t.sourceRoot=e._sourceRoot,t.sourcesContent=e._generateSourcesContent(t._sources.toArray(),t.sourceRoot),t.file=e._file;for(var o=e._mappings.toArray().slice(),i=t.__generatedMappings=[],a=t.__originalMappings=[],s=0,u=o.length;s<u;s++){var l=o[s],g=new Xe;g.generatedLine=l.generatedLine,g.generatedColumn=l.generatedColumn,l.source&&(g.source=r.indexOf(l.source),g.originalLine=l.originalLine,g.originalColumn=l.originalColumn,l.name&&(g.name=n.indexOf(l.name)),a.push(g)),i.push(g)}return Je(t.__originalMappings,Ie.compareByOriginalPositions),t},Ze.prototype._version=3,Object.defineProperty(Ze.prototype,"sources",{get:function(){return this._sources.toArray().map((function(e){return null!=this.sourceRoot?Ie.join(this.sourceRoot,e):e}),this)}}),Ze.prototype._parseMappings=function(e,t){for(var n,r,o,i,a,s=1,u=0,l=0,g=0,c=0,f=0,p=e.length,h=0,d={},m={},y=[],v=[];h<p;)if(";"===e.charAt(h))s++,h++,u=0;else if(","===e.charAt(h))h++;else{for((n=new Xe).generatedLine=s,i=h;i<p&&!this._charIsMappingSeparator(e,i);i++);if(o=d[r=e.slice(h,i)])h+=r.length;else{for(o=[];h<i;)Ye(e,h,m),a=m.value,h=m.rest,o.push(a);if(2===o.length)throw new Error("Found a source, but no line and column");if(3===o.length)throw new Error("Found a source and line, but no column");d[r]=o}n.generatedColumn=u+o[0],u=n.generatedColumn,o.length>1&&(n.source=c+o[1],c+=o[1],n.originalLine=l+o[2],l=n.originalLine,n.originalLine+=1,n.originalColumn=g+o[3],g=n.originalColumn,o.length>4&&(n.name=f+o[4],f+=o[4])),v.push(n),"number"==typeof n.originalLine&&y.push(n)}Je(v,Ie.compareByGeneratedPositionsDeflated),this.__generatedMappings=v,Je(y,Ie.compareByOriginalPositions),this.__originalMappings=y},Ze.prototype._findMapping=function(e,t,n,r,o,i){if(e[n]<=0)throw new TypeError("Line must be greater than or equal to 1, got "+e[n]);if(e[r]<0)throw new TypeError("Column must be greater than or equal to 0, got "+e[r]);return De.search(e,t,o,i)},Ze.prototype.computeColumnSpans=function(){for(var e=0;e<this._generatedMappings.length;++e){var t=this._generatedMappings[e];if(e+1<this._generatedMappings.length){var n=this._generatedMappings[e+1];if(t.generatedLine===n.generatedLine){t.lastGeneratedColumn=n.generatedColumn-1;continue}}t.lastGeneratedColumn=1/0}},Ze.prototype.originalPositionFor=function(e){var t={generatedLine:Ie.getArg(e,"line"),generatedColumn:Ie.getArg(e,"column")},n=this._findMapping(t,this._generatedMappings,"generatedLine","generatedColumn",Ie.compareByGeneratedPositionsDeflated,Ie.getArg(e,"bias",qe.GREATEST_LOWER_BOUND));if(n>=0){var r=this._generatedMappings[n];if(r.generatedLine===t.generatedLine){var o=Ie.getArg(r,"source",null);null!==o&&(o=this._sources.at(o),null!=this.sourceRoot&&(o=Ie.join(this.sourceRoot,o)));var i=Ie.getArg(r,"name",null);return null!==i&&(i=this._names.at(i)),{source:o,line:Ie.getArg(r,"originalLine",null),column:Ie.getArg(r,"originalColumn",null),name:i}}}return{source:null,line:null,column:null,name:null}},Ze.prototype.hasContentsOfAllSources=function(){return!!this.sourcesContent&&(this.sourcesContent.length>=this._sources.size()&&!this.sourcesContent.some((function(e){return null==e})))},Ze.prototype.sourceContentFor=function(e,t){if(!this.sourcesContent)return null;if(null!=this.sourceRoot&&(e=Ie.relative(this.sourceRoot,e)),this._sources.has(e))return this.sourcesContent[this._sources.indexOf(e)];var n;if(null!=this.sourceRoot&&(n=Ie.urlParse(this.sourceRoot))){var r=e.replace(/^file:\/\//,"");if("file"==n.scheme&&this._sources.has(r))return this.sourcesContent[this._sources.indexOf(r)];if((!n.path||"/"==n.path)&&this._sources.has("/"+e))return this.sourcesContent[this._sources.indexOf("/"+e)]}if(t)return null;throw new Error('"'+e+'" is not in the SourceMap.')},Ze.prototype.generatedPositionFor=function(e){var t=Ie.getArg(e,"source");if(null!=this.sourceRoot&&(t=Ie.relative(this.sourceRoot,t)),!this._sources.has(t))return{line:null,column:null,lastColumn:null};var n={source:t=this._sources.indexOf(t),originalLine:Ie.getArg(e,"line"),originalColumn:Ie.getArg(e,"column")},r=this._findMapping(n,this._originalMappings,"originalLine","originalColumn",Ie.compareByOriginalPositions,Ie.getArg(e,"bias",qe.GREATEST_LOWER_BOUND));if(r>=0){var o=this._originalMappings[r];if(o.source===n.source)return{line:Ie.getArg(o,"generatedLine",null),column:Ie.getArg(o,"generatedColumn",null),lastColumn:Ie.getArg(o,"lastGeneratedColumn",null)}}return{line:null,column:null,lastColumn:null}};var Qe=Ze;function et(e){var t=e;"string"==typeof e&&(t=JSON.parse(e.replace(/^\)\]\}'/,"")));var n=Ie.getArg(t,"version"),r=Ie.getArg(t,"sections");if(n!=this._version)throw new Error("Unsupported version: "+n);this._sources=new Ve,this._names=new Ve;var o={line:-1,column:0};this._sections=r.map((function(e){if(e.url)throw new Error("Support for url field in sections not implemented.");var t=Ie.getArg(e,"offset"),n=Ie.getArg(t,"line"),r=Ie.getArg(t,"column");if(n<o.line||n===o.line&&r<o.column)throw new Error("Section offsets must be ordered and non-overlapping.");return o=t,{generatedOffset:{generatedLine:n+1,generatedColumn:r+1},consumer:new qe(Ie.getArg(e,"map"))}}))}et.prototype=Object.create(qe.prototype),et.prototype.constructor=qe,et.prototype._version=3,Object.defineProperty(et.prototype,"sources",{get:function(){for(var e=[],t=0;t<this._sections.length;t++)for(var n=0;n<this._sections[t].consumer.sources.length;n++)e.push(this._sections[t].consumer.sources[n]);return e}}),et.prototype.originalPositionFor=function(e){var t={generatedLine:Ie.getArg(e,"line"),generatedColumn:Ie.getArg(e,"column")},n=De.search(t,this._sections,(function(e,t){var n=e.generatedLine-t.generatedOffset.generatedLine;return n||e.generatedColumn-t.generatedOffset.generatedColumn})),r=this._sections[n];return r?r.consumer.originalPositionFor({line:t.generatedLine-(r.generatedOffset.generatedLine-1),column:t.generatedColumn-(r.generatedOffset.generatedLine===t.generatedLine?r.generatedOffset.generatedColumn-1:0),bias:e.bias}):{source:null,line:null,column:null,name:null}},et.prototype.hasContentsOfAllSources=function(){return this._sections.every((function(e){return e.consumer.hasContentsOfAllSources()}))},et.prototype.sourceContentFor=function(e,t){for(var n=0;n<this._sections.length;n++){var r=this._sections[n].consumer.sourceContentFor(e,!0);if(r)return r}if(t)return null;throw new Error('"'+e+'" is not in the SourceMap.')},et.prototype.generatedPositionFor=function(e){for(var t=0;t<this._sections.length;t++){var n=this._sections[t];if(-1!==n.consumer.sources.indexOf(Ie.getArg(e,"source"))){var r=n.consumer.generatedPositionFor(e);if(r)return{line:r.line+(n.generatedOffset.generatedLine-1),column:r.column+(n.generatedOffset.generatedLine===r.line?n.generatedOffset.generatedColumn-1:0)}}}return{line:null,column:null}},et.prototype._parseMappings=function(e,t){this.__generatedMappings=[],this.__originalMappings=[];for(var n=0;n<this._sections.length;n++)for(var r=this._sections[n],o=r.consumer._generatedMappings,i=0;i<o.length;i++){var a=o[i],s=r.consumer._sources.at(a.source);null!==r.consumer.sourceRoot&&(s=Ie.join(r.consumer.sourceRoot,s)),this._sources.add(s),s=this._sources.indexOf(s);var u=r.consumer._names.at(a.name);this._names.add(u),u=this._names.indexOf(u);var l={source:s,generatedLine:a.generatedLine+(r.generatedOffset.generatedLine-1),generatedColumn:a.generatedColumn+(r.generatedOffset.generatedLine===a.generatedLine?r.generatedOffset.generatedColumn-1:0),originalLine:a.originalLine,originalColumn:a.originalColumn,name:u};this.__generatedMappings.push(l),"number"==typeof l.originalLine&&this.__originalMappings.push(l)}Je(this.__generatedMappings,Ie.compareByGeneratedPositionsDeflated),Je(this.__originalMappings,Ie.compareByOriginalPositions)};var tt,nt={SourceMapConsumer:Ke,BasicSourceMapConsumer:Qe,IndexedSourceMapConsumer:et},rt=Ee((function(e,t){e.exports=function(e,t){function n(e){return new Promise((function(t,n){var r=new XMLHttpRequest;r.open("get",e),r.onerror=n,r.onreadystatechange=function(){4===r.readyState&&(r.status>=200&&r.status<300?t(r.responseText):n(new Error("HTTP status: "+r.status+" retrieving "+e)))},r.send()}))}function r(e){if("undefined"!=typeof window&&window.atob)return window.atob(e);throw new Error("You must supply a polyfill for window.atob in this environment")}function o(e){if("undefined"!=typeof JSON&&JSON.parse)return JSON.parse(e);throw new Error("You must supply a polyfill for JSON.parse in this environment")}function i(e,t){for(var n,r=/function\s+([^(]*?)\s*\(([^)]*)\)/,o=/['"]?([$_A-Za-z][$_A-Za-z0-9]*)['"]?\s*[:=]\s*function\b/,i=/['"]?([$_A-Za-z][$_A-Za-z0-9]*)['"]?\s*[:=]\s*(?:eval|new Function)\b/,a=e.split("\n"),s="",u=Math.min(t,20),l=0;l<u;++l){var g=a[t-l-1],c=g.indexOf("//");if(c>=0&&(g=g.substr(0,c)),g){if(s=g+s,(n=o.exec(s))&&n[1])return n[1];if((n=r.exec(s))&&n[1])return n[1];if((n=i.exec(s))&&n[1])return n[1]}}}function a(){if("function"!=typeof Object.defineProperty||"function"!=typeof Object.create)throw new Error("Unable to consume source maps in older browsers")}function s(e){if("object"!=typeof e)throw new TypeError("Given StackFrame is not an object");if("string"!=typeof e.fileName)throw new TypeError("Given file name is not a String");if("number"!=typeof e.lineNumber||e.lineNumber%1!=0||e.lineNumber<1)throw new TypeError("Given line number must be a positive integer");if("number"!=typeof e.columnNumber||e.columnNumber%1!=0||e.columnNumber<0)throw new TypeError("Given column number must be a non-negative integer");return!0}function u(e){var t=/\/\/[#@] ?sourceMappingURL=([^\s'"]+)\s*$/.exec(e);if(t&&t[1])return t[1];throw new Error("sourceMappingURL not found")}function l(n,r,o){return new Promise((function(i,a){var s=new e.SourceMapConsumer(r),u=s.originalPositionFor({line:n.lineNumber,column:n.columnNumber});if(u.source){var l=s.sourceContentFor(u.source);l&&(o[u.source]=l),i(new t(u.name||n.functionName,n.args,u.source,u.line,u.column))}else a(new Error("Could not get original source for given stackframe and source map"))}))}return function e(g){if(!(this instanceof e))return new e(g);g=g||{},this.sourceCache=g.sourceCache||{},this.ajax=g.ajax||n,this._atob=g.atob||r,this._get=function(e){return new Promise(function(t,n){var r="data:"===e.substr(0,5);if(this.sourceCache[e])t(this.sourceCache[e]);else if(g.offline&&!r)n(new Error("Cannot make network requests in offline mode"));else if(r){var o=/^data:application\/json;([\w=:"-]+;)*base64,/,i=e.match(o);if(i){var a=i[0].length,s=e.substr(a),u=this._atob(s);this.sourceCache[e]=u,t(u)}else n(new Error("The encoding of the inline sourcemap is not supported"))}else{var l=this.ajax(e,{method:"get"});this.sourceCache[e]=l,l.then(t,n)}}.bind(this))},this.pinpoint=function(e){return new Promise(function(t,n){this.getMappedLocation(e).then(function(e){function n(){t(e)}this.findFunctionName(e).then(t,n).catch(n)}.bind(this),n)}.bind(this))},this.findFunctionName=function(e){return new Promise(function(n,r){s(e),this._get(e.fileName).then((function(r){var o=e.lineNumber,a=e.columnNumber,s=i(r,o);n(s?new t(s,e.args,e.fileName,o,a):e)}),r).catch(r)}.bind(this))},this.getMappedLocation=function(e){return new Promise(function(t,n){a(),s(e);var r=this.sourceCache,i=e.fileName;this._get(i).then(function(a){var s=u(a),g="data:"===s.substr(0,5),c=i.substring(0,i.lastIndexOf("/")+1);"/"===s[0]||g||/^https?:\/\/|^\/\//i.test(s)||(s=c+s),this._get(s).then((function(n){"string"==typeof n&&(n=o(n.replace(/^\)\]\}'/,""))),void 0===n.sourceRoot&&(n.sourceRoot=c),l(e,n,r).then(t).catch((function(){t(e)}))}),n).catch(n)}.bind(this),n).catch(n)}.bind(this))}}}(nt,xe)})),ot=Ee((function(e,t){e.exports=function(e,t,n){var r={filter:function(e){return-1===(e.functionName||"").indexOf("StackTrace$$")&&-1===(e.functionName||"").indexOf("ErrorStackParser$$")&&-1===(e.functionName||"").indexOf("StackTraceGPS$$")&&-1===(e.functionName||"").indexOf("StackGenerator$$")},sourceCache:{}},o=function(){try{throw new Error}catch(e){return e}};function i(e,t){var n={};return[e,t].forEach((function(e){for(var t in e)e.hasOwnProperty(t)&&(n[t]=e[t]);return n})),n}function a(e){return e.stack||e["opera#sourceloc"]}function s(e,t){return"function"==typeof t?e.filter(t):e}return{get:function(e){var t=o();return a(t)?this.fromError(t,e):this.generateArtificially(e)},getSync:function(n){n=i(r,n);var u=o();return s(a(u)?e.parse(u):t.backtrace(n),n.filter)},fromError:function(t,o){o=i(r,o);var a=new n(o);return new Promise(function(n){var r=s(e.parse(t),o.filter);n(Promise.all(r.map((function(e){return new Promise((function(t){function n(){t(e)}a.pinpoint(e).then(t,n).catch(n)}))}))))}.bind(this))},generateArtificially:function(e){e=i(r,e);var n=t.backtrace(e);return"function"==typeof e.filter&&(n=n.filter(e.filter)),Promise.resolve(n)},instrument:function(e,t,n,r){if("function"!=typeof e)throw new Error("Cannot instrument non-function object");if("function"==typeof e.__stacktraceOriginalFn)return e;var o=function(){try{return this.get().then(t,n).catch(n),e.apply(r||this,arguments)}catch(e){throw a(e)&&this.fromError(e).then(t,n).catch(n),e}}.bind(this);return o.__stacktraceOriginalFn=e,o},deinstrument:function(e){if("function"!=typeof e)throw new Error("Cannot de-instrument non-function object");return"function"==typeof e.__stacktraceOriginalFn?e.__stacktraceOriginalFn:e},report:function(e,t,n){return new Promise((function(r,o){var i=new XMLHttpRequest;i.onerror=o,i.onreadystatechange=function(){4===i.readyState&&(i.status>=200&&i.status<400?r(i.responseText):o(new Error("POST to "+t+" failed with status: "+i.status)))},i.open("post",t),i.setRequestHeader("Content-Type","application/json");var a={stack:e};void 0!==n&&(a.message=n),i.send(JSON.stringify(a))}))}}}(ke,je,rt)})),it=function(){function e(){}return e.renderDate=function(e,t){var n=function(e,t,n){var r=t-e.length;if(r>0){for(var o="",i=0;i<r;i++)o+=n;return o+=e}return e},r=function(e){return n(e.getFullYear().toString(),4,"0")},o=function(e){return n((e.getMonth()+1).toString(),2,"0")},i=function(e){return n(e.getDate().toString(),2,"0")},a=function(e){return n(e.getHours().toString(),2,"0")},s=function(e){return n(e.getMinutes().toString(),2,"0")},u=function(e){return n(e.getSeconds().toString(),2,"0")},l=function(e){return n(e.getMilliseconds().toString(),3,"0")},g=t.dateSeparator,c="";switch(t.formatEnum){case Fe.DateFormatEnum.Default:c=r(e)+g+o(e)+g+i(e)+" "+a(e)+":"+s(e)+":"+u(e)+","+l(e);break;case Fe.DateFormatEnum.YearMonthDayTime:c=r(e)+g+o(e)+g+i(e)+" "+a(e)+":"+s(e)+":"+u(e);break;case Fe.DateFormatEnum.YearDayMonthWithFullTime:c=r(e)+g+i(e)+g+o(e)+" "+a(e)+":"+s(e)+":"+u(e)+","+l(e);break;case Fe.DateFormatEnum.YearDayMonthTime:c=r(e)+g+i(e)+g+o(e)+" "+a(e)+":"+s(e)+":"+u(e);break;default:throw new Error("Unsupported date format enum: "+t.formatEnum)}return c},e.renderDefaultMessage=function(t,n){var r="",o=t.logFormat;o.showTimeStamp&&(r+=e.renderDate(t.date,o.dateFormat)+" "),r+=Fe.LogLevel[t.level].toUpperCase(),t.isResolvedErrorMessage&&(r+=" (resolved)"),r+=" ",o.showCategoryName&&(r+="[",t.categories.forEach((function(e,t){t>0&&(r+=", "),r+=e.name})),r+="]");var i="",a="",s=t.message;if("string"==typeof s)i=s;else{var u=s;i=u.msg,u.data&&(a=" [data]: "+(u.ds?u.ds(u.data):JSON.stringify(u.data)))}return r+=" "+i+a,n&&null!==t.errorAsStack&&(r+="\n"+t.errorAsStack),r},e.renderDefaultLog4jMessage=function(t,n){var r=t.logGroupRule.logFormat,o="";r.showTimeStamp&&(o+=e.renderDate(t.date,r.dateFormat)+" "),o+=Fe.LogLevel[t.level].toUpperCase()+" ",r.showLoggerName&&(o+="["+t.loggerName+"]");var i="",a="";if("string"==typeof t.message)i=t.message;else{var s=t.message;i=s.msg,s.data&&(a=" [data]: "+(s.ds?s.ds(s.data):JSON.stringify(s.data)))}return o+=" "+i+a,n&&null!==t.errorAsStack&&(o+="\n"+t.errorAsStack),o},e.renderError=function(e){var t=e.name+": "+e.message+"\n@";return new Promise((function(n){ot.fromError(e,{offline:!0}).then((function(e){var r=e.map((function(e){return e.toString()})).join("\n  ");n(t+="\n"+r)})).catch((function(){t="Unexpected error object was passed in. ";try{t+="Could not resolve it, stringified object: "+JSON.stringify(e)}catch(e){t+="Could not resolve it or stringify it."}n(t)}))}))},e}(),at=Object.defineProperty({MessageFormatUtils:it},"__esModule",{value:!0}),st=function(){function e(e,t,n,r,o,i,a,s){this._errorAsStack=null,this._error=null,this._loggerName=e,this._message=t,this._errorAsStack=n,this._error=r,this._logGroupRule=o,this._date=i,this._level=a,this._ready=s}return Object.defineProperty(e.prototype,"loggerName",{get:function(){return this._loggerName},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"message",{get:function(){return this._message},set:function(e){this._message=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"errorAsStack",{get:function(){return this._errorAsStack},set:function(e){this._errorAsStack=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"error",{get:function(){return this._error},set:function(e){this._error=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logGroupRule",{get:function(){return this._logGroupRule},set:function(e){this._logGroupRule=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"date",{get:function(){return this._date},set:function(e){this._date=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"level",{get:function(){return this._level},set:function(e){this._level=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"isMessageLogData",{get:function(){return"string"!=typeof this._message},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"ready",{get:function(){return this._ready},set:function(e){this._ready=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"messageAsString",{get:function(){return"string"==typeof this._message?this._message:this._message.msg},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logData",{get:function(){var e=null;return"string"!=typeof this._message&&(e=this.message),e},enumerable:!0,configurable:!0}),e}(),ut=function(){function e(e,t){this._allMessages=new Ae.LinkedList,this._open=!0,this._name=e,this._logGroupRuntimeSettings=t}return Object.defineProperty(e.prototype,"name",{get:function(){return this._name},enumerable:!0,configurable:!0}),e.prototype.trace=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Trace,e,t)},e.prototype.debug=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Debug,e,t)},e.prototype.info=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Info,e,t)},e.prototype.warn=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Warn,e,t)},e.prototype.error=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Error,e,t)},e.prototype.fatal=function(e,t){void 0===t&&(t=null),this._log(Fe.LogLevel.Fatal,e,t)},e.prototype.isTraceEnabled=function(){return this._logGroupRuntimeSettings.level===Fe.LogLevel.Trace},e.prototype.isDebugEnabled=function(){return this._logGroupRuntimeSettings.level<=Fe.LogLevel.Debug},e.prototype.isInfoEnabled=function(){return this._logGroupRuntimeSettings.level<=Fe.LogLevel.Info},e.prototype.isWarnEnabled=function(){return this._logGroupRuntimeSettings.level<=Fe.LogLevel.Warn},e.prototype.isErrorEnabled=function(){return this._logGroupRuntimeSettings.level<=Fe.LogLevel.Error},e.prototype.isFatalEnabled=function(){return this._logGroupRuntimeSettings.level<=Fe.LogLevel.Fatal},e.prototype.getLogLevel=function(){return this._logGroupRuntimeSettings.level},e.prototype.isOpen=function(){return this._open},e.prototype.close=function(){this._open=!1,this._allMessages.clear()},e.prototype.createDefaultLogMessage=function(e){return at.MessageFormatUtils.renderDefaultLog4jMessage(e,!0)},e.prototype._getMessageFormatter=function(){return this._logGroupRuntimeSettings.formatterLogMessage},e.prototype._log=function(e,t,n){if(void 0===n&&(n=null),this._open&&this._logGroupRuntimeSettings.level<=e){this._allMessages.addTail(this.createMessage(e,(function(){return"function"==typeof t?t():t}),(function(){return"function"==typeof n?n():n}),new Date)),this.processMessages()}},e.prototype.createMessage=function(e,t,n,r){var o=this,i=n();if(null!==i){var a=new st(this._name,t(),null,i,this._logGroupRuntimeSettings.logGroupRule,r,e,!1);return at.MessageFormatUtils.renderError(i).then((function(e){a.errorAsStack=e,a.ready=!0,o.processMessages()})).catch((function(){a.errorAsStack="<UNKNOWN> unable to get stack.",a.ready=!0,o.processMessages()})),a}return new st(this._name,t(),null,i,this._logGroupRuntimeSettings.logGroupRule,r,e,!0)},e.prototype.processMessages=function(){var e=this._allMessages;if(e.getSize()>0)do{var t=e.getHead();if(null!=t){if(!t.ready)break;e.removeHead(),null!==t.message&&this.doLog(t)}}while(e.getSize()>0)},e}(),lt=Object.defineProperty({AbstractLogger:ut},"__esModule",{value:!0}),gt=Oe&&Oe.__extends||(tt=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])},function(e,t){function n(){this.constructor=e}tt(e,t),e.prototype=null===t?Object.create(t):(n.prototype=t.prototype,new n)}),ct=function(e){function t(t,n){return e.call(this,t,n)||this}return gt(t,e),t.prototype.doLog=function(e){if(void 0===console)throw new Error("Console is not defined, cannot log msg: "+e.message);var t=!1,n=e.level,r=this._getMessageFormatter(),o=void 0;switch(o=null===r?this.createDefaultLogMessage(e):r(e),n){case Fe.LogLevel.Trace:case Fe.LogLevel.Debug:break;case Fe.LogLevel.Info:console.info&&(console.info(o),t=!0);break;case Fe.LogLevel.Warn:console.warn&&(console.warn(o),t=!0);break;case Fe.LogLevel.Error:case Fe.LogLevel.Fatal:console.error&&(console.error(o),t=!0);break;default:throw new Error("Log level not supported: "+n)}t||console.log(o)},t}(lt.AbstractLogger),ft=Object.defineProperty({ConsoleLoggerImpl:ct},"__esModule",{value:!0}),pt=Oe&&Oe.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),ht=function(e){function t(t,n){var r=e.call(this,t,n)||this;return r.messages=[],r}return pt(t,e),t.prototype.close=function(){this.messages=[],e.prototype.close.call(this)},t.prototype.getMessages=function(){return this.messages},t.prototype.toString=function(){return this.messages.map((function(e){return e})).join("\n")},t.prototype.doLog=function(e){var t,n=this._getMessageFormatter();t=null===n?this.createDefaultLogMessage(e):n(e),this.messages.push(t)},t}(lt.AbstractLogger),dt=Object.defineProperty({MessageBufferLoggerImpl:ht},"__esModule",{value:!0}),mt=function(){function e(e){this._formatterLogMessage=null,this._logGroupRule=e,this._level=e.level,this._loggerType=e.loggerType,this._logFormat=new Fe.LogFormat(new Fe.DateFormat(e.logFormat.dateFormat.formatEnum,e.logFormat.dateFormat.dateSeparator),e.logFormat.showTimeStamp,e.logFormat.showLoggerName),this._callBackLogger=e.callBackLogger,this._formatterLogMessage=e.formatterLogMessage}return Object.defineProperty(e.prototype,"logGroupRule",{get:function(){return this._logGroupRule},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"level",{get:function(){return this._level},set:function(e){this._level=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"loggerType",{get:function(){return this._loggerType},set:function(e){this._loggerType=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logFormat",{get:function(){return this._logFormat},set:function(e){this._logFormat=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"callBackLogger",{get:function(){return this._callBackLogger},set:function(e){this._callBackLogger=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"formatterLogMessage",{get:function(){return this._formatterLogMessage},set:function(e){this._formatterLogMessage=e},enumerable:!0,configurable:!0}),e}(),yt=Object.defineProperty({LogGroupRuntimeSettings:mt},"__esModule",{value:!0}),vt=function(){function e(e,t){this._loggers=new Ae.SimpleMap,this._logGroupRuntimeSettingsIndexed=[],this._loggerToLogGroupSettings=new Ae.SimpleMap,this._name=e,this.configure(t)}return e.prototype.configure=function(e){this._options=e,this.closeLoggers(),this._loggerToLogGroupSettings.clear(),this._logGroupRuntimeSettingsIndexed=[];for(var t=this._options.logGroupRules,n=0;n<t.length;n++)this._logGroupRuntimeSettingsIndexed.push(new yt.LogGroupRuntimeSettings(t[n]))},e.prototype.getLogger=function(e){if(!this._options.enabled)throw new Error("LoggerFactory is not enabled, please check your options passed in");var t=this._loggers.get(e);return void 0!==t||(t=this.loadLogger(e),this._loggers.put(e,t)),t},e.prototype.isEnabled=function(){return this._options.enabled},e.prototype.closeLoggers=function(){this._loggers.forEachValue((function(e){e instanceof lt.AbstractLogger&&e.close()})),this._loggers.clear()},e.prototype.getName=function(){return this._name},e.prototype.getLogGroupRuntimeSettingsByIndex=function(e){return e>=0&&e<this._logGroupRuntimeSettingsIndexed.length?this._logGroupRuntimeSettingsIndexed[e]:null},e.prototype.getLogGroupRuntimeSettingsByLoggerName=function(e){var t=this._loggerToLogGroupSettings.get(e);return void 0===t?null:t},e.prototype.getLogGroupRuntimeSettings=function(){return this._logGroupRuntimeSettingsIndexed.slice(0)},e.prototype.loadLogger=function(e){for(var t=this._options.logGroupRules,n=0;n<t.length;n++){var r=t[n];if(r.regExp.test(e)){var o=this._logGroupRuntimeSettingsIndexed[n],i=void 0;switch(r.loggerType){case Fe.LoggerType.Console:i=new ft.ConsoleLoggerImpl(e,o);break;case Fe.LoggerType.MessageBuffer:i=new dt.MessageBufferLoggerImpl(e,o);break;case Fe.LoggerType.Custom:if(null==r.callBackLogger)throw new Error("Cannot create a custom logger, custom callback is null");i=r.callBackLogger(e,o);break;default:throw new Error("Cannot create a Logger for LoggerType: "+r.loggerType)}return this._loggerToLogGroupSettings.put(e,o),i}}throw new Error("Failed to find a match to create a Logger for: "+e)},e}(),_t=Object.defineProperty({LoggerFactoryImpl:vt},"__esModule",{value:!0}),bt=function(){function e(e,t,n,r,o,i,a){this._resolvedErrorMessage=!1,this._errorAsStack=null,this._message=e,this._error=t,this._categories=n,this._date=r,this._level=o,this._logFormat=i,this._ready=a}return Object.defineProperty(e.prototype,"message",{get:function(){return this._message},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"error",{get:function(){return this._error},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"categories",{get:function(){return this._categories},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"date",{get:function(){return this._date},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"level",{get:function(){return this._level},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logFormat",{get:function(){return this._logFormat},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"isMessageLogData",{get:function(){return"string"!=typeof this._message},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"messageAsString",{get:function(){return"string"==typeof this._message?this._message:this._message.msg},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logData",{get:function(){var e=null;return"string"!=typeof this._message&&(e=this.message),e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"isResolvedErrorMessage",{get:function(){return this._resolvedErrorMessage},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"errorAsStack",{get:function(){return this._errorAsStack},set:function(e){this._errorAsStack=e},enumerable:!0,configurable:!0}),e.prototype.isReady=function(){return this._ready},e.prototype.setReady=function(e){this._ready=e},Object.defineProperty(e.prototype,"resolvedErrorMessage",{get:function(){return this._resolvedErrorMessage},set:function(e){this._resolvedErrorMessage=e},enumerable:!0,configurable:!0}),e}(),Lt=function(){function e(e,t){this.allMessages=new Ae.LinkedList,this.rootCategory=e,this.runtimeSettings=t}return e.prototype.trace=function(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n];this._log.apply(this,[Fe.LogLevel.Trace,e,null,!1].concat(t))},e.prototype.debug=function(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n];this._log.apply(this,[Fe.LogLevel.Debug,e,null,!1].concat(t))},e.prototype.info=function(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n];this._log.apply(this,[Fe.LogLevel.Info,e,null,!1].concat(t))},e.prototype.warn=function(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n];this._log.apply(this,[Fe.LogLevel.Warn,e,null,!1].concat(t))},e.prototype.error=function(e,t){for(var n=[],r=2;r<arguments.length;r++)n[r-2]=arguments[r];this._log.apply(this,[Fe.LogLevel.Error,e,t,!1].concat(n))},e.prototype.fatal=function(e,t){for(var n=[],r=2;r<arguments.length;r++)n[r-2]=arguments[r];this._log.apply(this,[Fe.LogLevel.Fatal,e,t,!1].concat(n))},e.prototype.resolved=function(e,t){for(var n=[],r=2;r<arguments.length;r++)n[r-2]=arguments[r];this._log.apply(this,[Fe.LogLevel.Error,e,t,!0].concat(n))},e.prototype.log=function(e,t,n){for(var r=[],o=3;o<arguments.length;o++)r[o-3]=arguments[o];this._log.apply(this,[e,t,n,!1].concat(r))},e.prototype.getRootCategory=function(){return this.rootCategory},e.prototype.createDefaultLogMessage=function(e){return at.MessageFormatUtils.renderDefaultMessage(e,!0)},e.prototype._getMessageFormatter=function(){var e=this.runtimeSettings.getCategorySettings(this.rootCategory);if(null===e)throw new Error("Did not find CategorySettings for rootCategory: "+this.rootCategory.name);return e.formatterLogMessage},e.prototype._log=function(e,t,n,r){void 0===n&&(n=null),void 0===r&&(r=!1);for(var o=[],i=4;i<arguments.length;i++)o[i-4]=arguments[i];var a=function(){return"function"==typeof t?t():t},s=function(){return"function"==typeof n?n():n};this._logInternal.apply(this,[e,a,s,r].concat(o))},e.prototype._logInternal=function(e,t,n,r){for(var o=this,i=[],a=4;a<arguments.length;a++)i[a-4]=arguments[a];var s=[this.rootCategory];void 0!==i&&i.length>0&&(s=s.concat(i.filter((function(e){return e!==o.rootCategory}))));for(var u=function(i){var a=s[i];if(null===a)throw new Error("Cannot have a null element within categories, at index="+i);var u=l.runtimeSettings.getCategorySettings(a);if(null===u)throw new Error("Category with path: "+a.getCategoryPath()+" is not registered with this logger, maybe you registered it with a different root logger?");if(u.logLevel<=e){var g=null!==n?n():null;if(null===g){var c=new bt(t(),g,s,new Date,e,u.logFormat,!0);c.resolvedErrorMessage=r,l.allMessages.addTail(c),l.processMessages()}else{var f=new bt(t(),g,s,new Date,e,u.logFormat,!1);f.resolvedErrorMessage=r,l.allMessages.addTail(f),at.MessageFormatUtils.renderError(g).then((function(e){f.errorAsStack=e,f.setReady(!0),o.processMessages()})).catch((function(){f.errorAsStack="<UNKNOWN> unable to get stack.",f.setReady(!0),o.processMessages()}))}return"break"}},l=this,g=0;g<s.length;g++){var c=u(g);if("break"===c)break}},e.prototype.processMessages=function(){var e=this.allMessages;if(e.getSize()>0)do{var t=e.getHead();if(null!=t){if(!t.isReady())break;e.removeHead(),this.doLog(t)}}while(e.getSize()>0)},e}(),wt=Object.defineProperty({AbstractCategoryLogger:Lt},"__esModule",{value:!0}),Ct=Oe&&Oe.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),St=function(e){function t(t,n){return e.call(this,t,n)||this}return Ct(t,e),t.prototype.doLog=function(e){if(void 0===console)throw new Error("Console is not defined, cannot log msg: "+e.messageAsString);var t=this._getMessageFormatter(),n=void 0;n=null===t?this.createDefaultLogMessage(e):t(e);var r=!1;switch(e.level){case Fe.LogLevel.Trace:case Fe.LogLevel.Debug:break;case Fe.LogLevel.Info:console.info&&(console.info(n),r=!0);break;case Fe.LogLevel.Warn:console.warn&&(console.warn(n),r=!0);break;case Fe.LogLevel.Error:case Fe.LogLevel.Fatal:console.error&&(console.error(n),r=!0);break;default:throw new Error("Unsupported level: "+e.level)}r||console.log(n)},t}(wt.AbstractCategoryLogger),Ot=Object.defineProperty({CategoryConsoleLoggerImpl:St},"__esModule",{value:!0}),Et=function(){function e(e){this._delegate=e}return Object.defineProperty(e.prototype,"delegate",{get:function(){return this._delegate},set:function(e){this._delegate=e},enumerable:!0,configurable:!0}),e.prototype.trace=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];(t=this._delegate).trace.apply(t,[e].concat(n))},e.prototype.debug=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];(t=this._delegate).debug.apply(t,[e].concat(n))},e.prototype.info=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];(t=this._delegate).info.apply(t,[e].concat(n))},e.prototype.warn=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];(t=this._delegate).warn.apply(t,[e].concat(n))},e.prototype.error=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];(n=this._delegate).error.apply(n,[e,t].concat(r))},e.prototype.fatal=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];(n=this._delegate).fatal.apply(n,[e,t].concat(r))},e.prototype.resolved=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];(n=this._delegate).resolved.apply(n,[e,t].concat(r))},e.prototype.log=function(e,t,n){for(var r,o=[],i=3;i<arguments.length;i++)o[i-3]=arguments[i];(r=this._delegate).log.apply(r,[e,t,n].concat(o))},e}(),Ft=Object.defineProperty({CategoryDelegateLoggerImpl:Et},"__esModule",{value:!0}),Mt=Oe&&Oe.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),$t=function(e){function t(t,n){return e.call(this,t,n)||this}return Mt(t,e),t.prototype.doLog=function(e){"undefined"!=typeof window?Wt.ExtensionHelper.sendCategoryLogMessage(e):console.log("window is not available, you must be running in a browser for this. Dropped message.")},t}(wt.AbstractCategoryLogger),Tt=Object.defineProperty({CategoryExtensionLoggerImpl:$t},"__esModule",{value:!0}),Nt=Oe&&Oe.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),Rt=function(e){function t(){var t=null!==e&&e.apply(this,arguments)||this;return t.messages=[],t}return Nt(t,e),t.prototype.getMessages=function(){return this.messages},t.prototype.toString=function(){return this.messages.map((function(e){return e})).join("\n")},t.prototype.doLog=function(e){var t,n=this._getMessageFormatter();t=null===n?this.createDefaultLogMessage(e):n(e),this.messages.push(t)},t}(wt.AbstractCategoryLogger),At=Object.defineProperty({CategoryMessageBufferLoggerImpl:Rt},"__esModule",{value:!0}),xt=function(){function e(e,t,n,r,o,i){void 0===t&&(t=Fe.LogLevel.Error),void 0===n&&(n=Fe.LoggerType.Console),void 0===r&&(r=new Fe.CategoryLogFormat),void 0===o&&(o=null),void 0===i&&(i=null),this._formatterLogMessage=null,this._category=e,this._logLevel=t,this._loggerType=n,this._logFormat=r,this._callBackLogger=o,this._formatterLogMessage=i}return Object.defineProperty(e.prototype,"category",{get:function(){return this._category},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logLevel",{get:function(){return this._logLevel},set:function(e){this._logLevel=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"loggerType",{get:function(){return this._loggerType},set:function(e){this._loggerType=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logFormat",{get:function(){return this._logFormat},set:function(e){this._logFormat=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"callBackLogger",{get:function(){return this._callBackLogger},set:function(e){this._callBackLogger=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"formatterLogMessage",{get:function(){return this._formatterLogMessage},set:function(e){this._formatterLogMessage=e},enumerable:!0,configurable:!0}),e}(),kt=Object.defineProperty({CategoryRuntimeSettings:xt},"__esModule",{value:!0}),Pt=function(){function e(e,t,n,r){if(void 0===e&&(e=Fe.LogLevel.Error),void 0===t&&(t=Fe.LoggerType.Console),void 0===n&&(n=new Fe.CategoryLogFormat),void 0===r&&(r=null),this._formatterLogMessage=null,this._logLevel=e,this._loggerType=t,this._logFormat=n,this._callBackLogger=r,this._loggerType===Fe.LoggerType.Custom&&null===this.callBackLogger)throw new Error("If you specify loggerType to be Custom, you must provide the callBackLogger argument")}return Object.defineProperty(e.prototype,"logLevel",{get:function(){return this._logLevel},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"loggerType",{get:function(){return this._loggerType},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logFormat",{get:function(){return this._logFormat},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"callBackLogger",{get:function(){return this._callBackLogger},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"formatterLogMessage",{get:function(){return this._formatterLogMessage},set:function(e){if(null!==e&&this._loggerType===Fe.LoggerType.Custom)throw new Error("You cannot specify a formatter for log messages if your loggerType is Custom");this._formatterLogMessage=e},enumerable:!0,configurable:!0}),e.prototype.copy=function(){var t=new e(this.logLevel,this.loggerType,this.logFormat.copy(),this.callBackLogger);return t.formatterLogMessage=this.formatterLogMessage,t},e}(),jt=Object.defineProperty({CategoryConfiguration:Pt},"__esModule",{value:!0}),It=function(){function e(){this._defaultConfig=new jt.CategoryConfiguration,this._mapState=new Ae.SimpleMap,Wt.ExtensionHelper.register()}return e.getInstance=function(){return null===e._INSTANCE&&(e._INSTANCE=new e),e._INSTANCE},e.prototype.getLogger=function(e){return this.createOrGetCategoryState(e).logger},e.prototype.clear=function(){this._mapState.clear(),this.setDefaultConfiguration(new jt.CategoryConfiguration)},e.prototype.getCategorySettings=function(e){return this.createOrGetCategoryState(e).currentRuntimeSettings},e.prototype.getOriginalCategorySettings=function(e){return this.createOrGetCategoryState(e).originalRuntimeSettings},e.prototype.setDefaultConfiguration=function(e,t){void 0===t&&(t=!0),this._defaultConfig=e,t&&this._mapState.forEachValue((function(t){t.updateSettings(e)}))},e.prototype.setConfigurationCategory=function(e,t,n){var r=this;void 0===n&&(n=!1),this.createOrGetCategoryState(t).updateSettings(e),n&&t.children.forEach((function(t){r.setConfigurationCategory(e,t,n)}))},e.prototype.registerCategory=function(t){if(null==t)throw new Error("Category CANNOT be null/undefined");if(this._mapState.exists(e.getCategoryKey(t)))throw new Error("Cannot add this root category with name: "+t.name+", it already exists (same name in hierarchy).");this.createOrGetCategoryState(t)},e.prototype.enableExtensionIntegration=function(){var e=this;this._mapState.forEachValue((function(t){return t.enableForExtension(e)}))},e.prototype.getRootCategories=function(){return this._mapState.values().filter((function(e){return null==e.category.parent})).map((function(e){return e.category}))},e.prototype.getCategoryById=function(e){var t=this._mapState.values().filter((function(t){return t.category.id===e})).map((function(e){return e.category}));return 1===t.length?t[0]:null},e.prototype.createOrGetCategoryState=function(t){var n=e.getCategoryKey(t),r=this._mapState.get(n);if(void 0!==r)return r;var o=this.createState(t);return this._mapState.put(n,o),o},e.prototype.createState=function(e){var t=this;return new Dt(e,(function(){return t._defaultConfig}),(function(e,n){return t.createLogger(e,n)}))},e.prototype.createLogger=function(e,t){switch(e.loggerType){case Fe.LoggerType.Console:return new Ot.CategoryConsoleLoggerImpl(t,this);case Fe.LoggerType.MessageBuffer:return new At.CategoryMessageBufferLoggerImpl(t,this);case Fe.LoggerType.Custom:if(null===e.callBackLogger)throw new Error("Cannot create custom logger, custom callback is null");return e.callBackLogger(t,this);default:throw new Error("Cannot create a Logger for LoggerType: "+e.loggerType)}},e.getCategoryKey=function(e){return e.getCategoryPath()},e._INSTANCE=null,e}(),Dt=function(){function e(e,t,n){this._category=e,this._lazyState=new Gt(e,t,n)}return Object.defineProperty(e.prototype,"category",{get:function(){return this._category},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logger",{get:function(){return this._lazyState.getLogger()},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"originalRuntimeSettings",{get:function(){return this._lazyState.getOriginalRuntimeSettings()},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"currentRuntimeSettings",{get:function(){return this._lazyState.getCurrentRuntimeSettings()},enumerable:!0,configurable:!0}),e.prototype.enableForExtension=function(e){this._lazyState.enableForExtension(e)},e.prototype.updateSettings=function(e){this._lazyState.updateSettings(e)},e}(),Gt=function(){function e(e,t,n){this._category=e,this._defaultConfig=t,this._createLogger=n}return e.prototype.isLoaded=function(){return void 0!==this._logger},e.prototype.getLogger=function(){return this.loadLoggerOnDemand(),this._delegateLogger},e.prototype.getOriginalRuntimeSettings=function(){return this.loadLoggerOnDemand(),this._originalRuntimeSettings},e.prototype.getCurrentRuntimeSettings=function(){return this.loadLoggerOnDemand(),this._currentRuntimeSettings},e.prototype.enableForExtension=function(e){this.loadLoggerOnDemand(),this._wrappedLogger instanceof Tt.CategoryExtensionLoggerImpl||(console.log("Reconfiguring logger for extension for category: "+this._category.name),this._wrappedLogger=new Tt.CategoryExtensionLoggerImpl(this._category,e),this._delegateLogger.delegate=this._wrappedLogger)},e.prototype.updateSettings=function(e){this.isLoaded()?(this._currentRuntimeSettings.logLevel=e.logLevel,this._currentRuntimeSettings.loggerType=e.loggerType,this._currentRuntimeSettings.logFormat=e.logFormat,this._currentRuntimeSettings.callBackLogger=e.callBackLogger,this._currentRuntimeSettings.formatterLogMessage=e.formatterLogMessage,this._logger=this._createLogger(e,this._category),this._wrappedLogger instanceof Tt.CategoryExtensionLoggerImpl||(this._wrappedLogger=this._logger),this._delegateLogger.delegate=this._wrappedLogger):this._defaultConfig=function(){return e}},e.prototype.loadLoggerOnDemand=function(){this.isLoaded()||(this._logger=this._createLogger(this._defaultConfig(),this._category),this._wrappedLogger=this._logger,this._delegateLogger=new Ft.CategoryDelegateLoggerImpl(this._wrappedLogger),this._originalRuntimeSettings=this.initNewSettings(),this._currentRuntimeSettings=this.initNewSettings())},e.prototype.initNewSettings=function(){var e=this._defaultConfig().copy();return new kt.CategoryRuntimeSettings(this._category,e.logLevel,e.loggerType,e.logFormat,e.callBackLogger,e.formatterLogMessage)},e}(),Bt=Object.defineProperty({CategoryServiceImpl:It},"__esModule",{value:!0}),Ut=function(){function e(){}return e.register=function(){if(!e.registered){var t=function(t){var n=t.data;null!==n&&e.processMessageFromExtension(n)};"undefined"!=typeof window&&void 0!==window.removeEventListener&&void 0!==window.addEventListener&&(window.removeEventListener("message",t),window.addEventListener("message",t),e.registered=!0)}},e.processMessageFromExtension=function(t){if(e.registered&&"tsl-extension"===t.from){var n=t.data;switch(n.type){case"register":e.enableExtensionIntegration();break;case"request-change-loglevel":var r=n.value,o=e.applyLogLevel(r.categoryId,r.logLevel,r.recursive);o.length>0&&e.sendCategoriesRuntimeUpdateMessage(o);break;default:console.log("Unknown command to process message from extension, command was: "+n.type)}}},e.sendCategoryLogMessage=function(t){if(e.registered){var n={data:{type:"log-message",value:{categories:t.categories.map((function(e){return e.id})),errorAsStack:t.errorAsStack,formattedMessage:at.MessageFormatUtils.renderDefaultMessage(t,!1),logLevel:Fe.LogLevel[t.level].toString(),message:t.messageAsString,resolvedErrorMessage:t.isResolvedErrorMessage}},from:"tsl-logging"};e.sendMessage(n)}},e.sendCategoriesRuntimeUpdateMessage=function(t){if(e.registered){var n=Bt.CategoryServiceImpl.getInstance(),r={categories:Array()};t.forEach((function(e){var t=n.getCategorySettings(e);null!=t&&r.categories.push({id:e.id,logLevel:Fe.LogLevel[t.logLevel].toString()})}));var o={data:{type:"categories-rt-update",value:r},from:"tsl-logging"};e.sendMessage(o)}},e.sendRootCategoriesToExtension=function(){if(e.registered){var t={data:{type:"root-categories-tree",value:Bt.CategoryServiceImpl.getInstance().getRootCategories().map((function(t){return e.getCategoryAsJSON(t)}))},from:"tsl-logging"};e.sendMessage(t)}},e.getCategoryAsJSON=function(t){return{children:t.children.map((function(t){return e.getCategoryAsJSON(t)})),id:t.id,logLevel:Fe.LogLevel[t.logLevel].toString(),name:t.name,parentId:null!=t.parent?t.parent.id:null}},e.applyLogLevel=function(t,n,r){var o=[],i=Bt.CategoryServiceImpl.getInstance().getCategoryById(t);return null!=i?e._applyLogLevelRecursive(i,Fe.LogLevel.fromString(n),r,o):console.log("Could not change log level, failed to find category with id: "+t),o},e._applyLogLevelRecursive=function(t,n,r,o){var i=Bt.CategoryServiceImpl.getInstance().getCategorySettings(t);null!=i&&(i.logLevel=n,o.push(t),r&&t.children.forEach((function(t){e._applyLogLevelRecursive(t,n,r,o)})))},e.getAllCategories=function(){var e=[],t=function(e,n){n.push(e),e.children.forEach((function(e){t(e,n)}))};return Bt.CategoryServiceImpl.getInstance().getRootCategories().forEach((function(n){t(n,e)})),e},e.sendMessage=function(t){e.registered&&"undefined"!=typeof window&&void 0!==window.postMessage&&window.postMessage(t,"*")},e.enableExtensionIntegration=function(){if(e.registered){Bt.CategoryServiceImpl.getInstance().enableExtensionIntegration(),e.sendRootCategoriesToExtension();var t=e.getAllCategories();e.sendCategoriesRuntimeUpdateMessage(t)}},e.registered=!1,e}(),Wt=Object.defineProperty({ExtensionHelper:Ut},"__esModule",{value:!0}),Yt=function(){function e(e,t,n,r,o){void 0===n&&(n=new Fe.LogFormat),void 0===r&&(r=Fe.LoggerType.Console),void 0===o&&(o=null),this._formatterLogMessage=null,this._regExp=e,this._level=t,this._logFormat=n,this._loggerType=r,this._callBackLogger=o}return Object.defineProperty(e.prototype,"regExp",{get:function(){return this._regExp},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"level",{get:function(){return this._level},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"loggerType",{get:function(){return this._loggerType},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logFormat",{get:function(){return this._logFormat},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"callBackLogger",{get:function(){return this._callBackLogger},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"formatterLogMessage",{get:function(){return this._formatterLogMessage},set:function(e){if(null!==e&&this._loggerType===Fe.LoggerType.Custom)throw new Error("You cannot specify a formatter for log messages if your loggerType is Custom");this._formatterLogMessage=e},enumerable:!0,configurable:!0}),e}(),zt=Object.defineProperty({LogGroupRule:Yt},"__esModule",{value:!0}),Ht=function(){function e(){this._logGroupRules=[],this._enabled=!0}return e.prototype.addLogGroupRule=function(e){return this._logGroupRules.push(e),this},e.prototype.setEnabled=function(e){return this._enabled=e,this},Object.defineProperty(e.prototype,"logGroupRules",{get:function(){return this._logGroupRules},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"enabled",{get:function(){return this._enabled},enumerable:!0,configurable:!0}),e}(),Vt=Object.defineProperty({LoggerFactoryOptions:Ht},"__esModule",{value:!0}),Jt=function(){function e(){this._nameCounter=1,this._mapFactories=new Ae.SimpleMap,Wt.ExtensionHelper.register()}return e.getInstance=function(){return null===e._INSTANCE&&(e._INSTANCE=new e),e._INSTANCE},e.prototype.createLoggerFactory=function(e){void 0===e&&(e=null);var t="LoggerFactory"+this._nameCounter++;return this.createNamedLoggerFactory(t,e)},e.prototype.createNamedLoggerFactory=function(t,n){if(void 0===n&&(n=null),this._mapFactories.exists(t))throw new Error("LoggerFactory with name "+t+" already exists.");var r;return r=null!==n?new _t.LoggerFactoryImpl(t,n):new _t.LoggerFactoryImpl(t,e.createDefaultOptions()),this._mapFactories.put(t,r),r},e.prototype.closeLoggers=function(){this._mapFactories.values().forEach((function(e){e.closeLoggers()})),this._mapFactories.clear(),this._nameCounter=1},e.prototype.getRuntimeSettingsForLoggerFactories=function(){var e=[];return this._mapFactories.forEachValue((function(t){return e.push(t)})),e},e.prototype.getLogGroupSettings=function(e,t){var n=this._mapFactories.get(e);return void 0===n?null:n.getLogGroupRuntimeSettingsByIndex(t)},e.prototype.getLoggerFactoryRuntimeSettingsByName=function(e){var t=this._mapFactories.get(e);return void 0===t?null:t},e.createDefaultOptions=function(){return(new Vt.LoggerFactoryOptions).addLogGroupRule(new zt.LogGroupRule(new RegExp(".+"),Fe.LogLevel.Info))},e._INSTANCE=null,e}(),qt=function(){function e(){}return e.createLoggerFactory=function(t){return void 0===t&&(t=null),e.INSTANCE_SERVICE.createLoggerFactory(t)},e.createNamedLoggerFactory=function(t,n){if(void 0===n&&(n=null),t===e.DEFAULT_LOGGER_FACTORY_NAME)throw new Error("LoggerFactory name: "+e.DEFAULT_LOGGER_FACTORY_NAME+" is reserved and cannot be used.");return e.INSTANCE_SERVICE.createNamedLoggerFactory(t,n)},e.closeLoggers=function(){return e.INSTANCE_SERVICE.closeLoggers()},e.getRuntimeSettings=function(){return e.INSTANCE_SERVICE},Object.defineProperty(e,"DEFAULT",{get:function(){return e.getDefault()},enumerable:!0,configurable:!0}),e.getDefault=function(){return null===e.DEFAULT_LOGGER_FACTORY&&(e.DEFAULT_LOGGER_FACTORY=e.DEFAULT_LOGGER_FACTORY=e.INSTANCE_SERVICE.createNamedLoggerFactory(e.DEFAULT_LOGGER_FACTORY_NAME,(new Vt.LoggerFactoryOptions).addLogGroupRule(new zt.LogGroupRule(new RegExp(".+"),Fe.LogLevel.Error)))),e.DEFAULT_LOGGER_FACTORY},e.DEFAULT_LOGGER_FACTORY_NAME="DEFAULT",e.INSTANCE_SERVICE=Jt.getInstance(),e.DEFAULT_LOGGER_FACTORY=null,e}(),Kt=Object.defineProperty({LFService:qt},"__esModule",{value:!0}),Zt=function(){function e(){}return e.prototype.help=function(){console.log(e._help)},e.prototype.listFactories=function(){var t=e._getRuntimeSettingsLoggerFactories(),n=new Ae.StringBuilder;n.appendLine("Registered LoggerFactories (index / name)");for(var r=0;r<t.length;r++){var o=t[r];n.append("  "+r).append(": "+o.getName()+"\n")}console.log(n.toString())},e.prototype.showSettings=function(t){void 0===t&&(t="all");var n=[];if("all"===t){var r=0;e._getRuntimeSettingsLoggerFactories().forEach((function(e){n.push(new Ae.TuplePair(r++,e))}))}else{var o=e._getRuntimeSettingsLoggerFactories();if(!(t>=0&&t<o.length))throw new Error("Requested number: "+t+" was not found.");n.push(new Ae.TuplePair(t,o[t]))}for(var i=0,a=n;i<a.length;i++){var s=a[i];console.log("  LoggerFactory: "+s.y.getName()+" (id="+s.x+")");for(var u=s.y.getLogGroupRuntimeSettings(),l=0;l<u.length;l++){var g=u[l];console.log("     LogGroup: (id="+l+")"),console.log("       RegExp: "+g.logGroupRule.regExp.source),console.log("       Level: "+Fe.LogLevel[g.level].toString()),console.log("       LoggerType: "+Fe.LoggerType[g.loggerType].toString())}}},e.prototype.reset=function(t){void 0===t&&(t="all");var n=e._getRuntimeSettingsLoggerFactories(),r=[];"all"===t?r=n:t>=0&&t<n.length&&r.push(n[t]),r.forEach((function(e){console.log("Reset all settings for factory "+t),new Xt(e).reset()}))},e.prototype.getLoggerFactoryControl=function(t){var n=e._getRuntimeSettingsLoggerFactories();if(t>=0&&t<n.length)return new Xt(n[t]);throw new Error("idFactory is invalid (less than 0) or non existing id.")},e._getRuntimeSettingsLoggerFactories=function(){return e._getSettings().getRuntimeSettingsForLoggerFactories()},e._getSettings=function(){return Kt.LFService.getRuntimeSettings()},e._help='\n  help(): void\n    ** Shows this help.\n\n  listFactories(): void\n    ** List all registered LoggerFactories with associated log groups with respective ids (ids can be used to target a factory and/or group).\n\n  showSettings(idFactory: number | "all"): void\n    ** Show log group settings for idFactory (use listFactories to find id for a LoggerFactory). If idFactory is "all" shows all factories.\n\n  getLoggerFactoryControl(idFactory: number): LoggerFactoryControl\n    ** Return LoggerFactoryControl when found for given idFactory or throws Error if invalid or null, get the id by using listFactories()\n\n  reset(idFactory: number | "all"): void\n    ** Resets given factory or all factories back to original values.\n',e}(),Xt=function(){function e(e){this._settings=e}return e.prototype.help=function(){console.log(e._help)},e.prototype.example=function(){console.log(e._example)},e.prototype.showSettings=function(e){var t=new Ae.StringBuilder,n=this._settings.getLogGroupRuntimeSettings();t.appendLine("Registered LogGroups (index / expression)");for(var r=0;r<n.length;r++){var o=n[r];t.appendLine("  "+r+": "+o.logGroupRule.regExp.source+", logLevel="+Fe.LogLevel[o.level].toString()+", showTimestamp="+o.logFormat.showTimeStamp+", showLoggerName="+o.logFormat.showLoggerName+", format="+Fe.DateFormatEnum[o.logFormat.dateFormat.formatEnum].toString())}console.log(t.toString())},e.prototype.change=function(e){var t=this._getLogGroupRunTimeSettingsFor(e.group),n=null,r=null,o=null,i=null,a=null,s=function(e){null!==a&&(a+=", "),null===a?a=e:a+=e};"string"==typeof e.logLevel&&(n=Fe.LogLevel.fromString(e.logLevel),s("logLevel="+e.logLevel)),"string"==typeof e.logFormat&&(r=Fe.DateFormatEnum.fromString(e.logFormat),s("logFormat="+e.logFormat)),"boolean"==typeof e.showLoggerName&&(o=e.showLoggerName,s("showLoggerName="+e.showLoggerName)),"boolean"==typeof e.showTimestamp&&(i=e.showTimestamp,s("showTimestamp="+e.showTimestamp)),t.forEach((function(e){null!==n&&(e.level=n),null!==r&&(e.logFormat.dateFormat.formatEnum=r),null!==i&&(e.logFormat.showTimeStamp=i),null!==o&&(e.logFormat.showLoggerName=o)})),console.log("Applied changes: "+a+" to log groups '"+e.group+"'.")},e.prototype.reset=function(e){void 0===e&&(e="all");for(var t=0,n=this._getLogGroupRunTimeSettingsFor(e);t<n.length;t++){var r=n[t];r.level=r.logGroupRule.level,r.logFormat.showTimeStamp=r.logGroupRule.logFormat.showTimeStamp,r.logFormat.showLoggerName=r.logGroupRule.logFormat.showLoggerName,r.logFormat.dateFormat.formatEnum=r.logGroupRule.logFormat.dateFormat.formatEnum}console.log("Reset all settings for group "+e)},e.prototype._getLogGroupRunTimeSettingsFor=function(e){var t=[];return"all"===e?t=this._settings.getLogGroupRuntimeSettings():(this._checkIndex(e),t.push(this._settings.getLogGroupRuntimeSettings()[e])),t},e.prototype._checkIndex=function(e){if(e<0||e>=this._settings.getLogGroupRuntimeSettings().length)throw new Error("Invalid index, use listLogGroups to find out a valid one.")},e._help='\n  help(): void\n    ** Shows this help.\n\n  example(): void\n    ** Shows an example of usage.\n\n  showSettings(id: number | "all"): void\n    ** Prints settings for given group id, "all" for all group.\n\n  change(settings: LogGroupControlSettings): void\n    ** Changes the current settings for one or all log groups.\n    **\n       LogGroupControlSettings, properties of object:\n         group: number | "all"\n           ** Apply to specific group, or "all".\n           ** Required\n\n         logLevel: "Fatal" | "Error" | "Warn" | "Info" | "Debug" | "Trace" | undefined\n           ** Set log level, undefined will not change the setting.\n           ** Optional\n\n         logFormat: "Default" | "YearMonthDayTime" | "YearDayMonthWithFullTime" | "YearDayMonthTime" | undefined\n           ** Set the log format, undefined will not change the setting.\n           ** Optional\n\n         showTimestamp: boolean | undefined\n           ** Whether to show timestamp, undefined will not change the setting.\n           ** Optional\n\n         showLoggerName: boolean | undefined\n           ** Whether to show the logger name, undefined will not change the setting.\n           ** Optional\n\n  reset(id: number | "all"): void\n    ** Resets everything to original values, for one specific or for all groups.\n\n  help():\n    ** Shows this help.\n',e._example='\n  Examples:\n    change({group: "all", logLevel: "Info"})\n      ** Change loglevel to Info for all groups.\n\n    change({group: 1, recursive:false, logLevel: "Warn"})\n      ** Change logLevel for group 1 to Warn.\n\n    change({group: "all", logLevel: "Debug", logFormat: "YearDayMonthTime", showTimestamp:false, showLoggerName:false})\n      ** Change loglevel to Debug for all groups, apply format, do not show timestamp and logger names.\n',e}(),Qt=Object.defineProperty({LoggerControlImpl:Zt},"__esModule",{value:!0}),en=function(){function e(){}return e.prototype.help=function(){console.log(e._help)},e.prototype.example=function(){console.log(e._example)},e.prototype.showSettings=function(t){void 0===t&&(t="all");var n=new Ae.StringBuilder,r=e._getCategoryService();e._getCategories(t).forEach((function(t){e._processCategory(r,t,n,0)})),console.log(n.toString())},e.prototype.change=function(t){var n=e._getCategoryService(),r=e._getCategories(t.category),o=null,i=null,a=null,s=null,u=null,l=function(e){null!==u&&(u+=", "),null===u?u=e:u+=e};l("recursive="+t.recursive),"string"==typeof t.logLevel&&(o=Fe.LogLevel.fromString(t.logLevel),l("logLevel="+t.logLevel)),"string"==typeof t.logFormat&&(i=Fe.DateFormatEnum.fromString(t.logFormat),l("logFormat="+t.logFormat)),"boolean"==typeof t.showCategoryName&&(a=t.showCategoryName,l("showCategoryName="+t.showCategoryName)),"boolean"==typeof t.showTimestamp&&(s=t.showTimestamp,l("showTimestamp="+t.showTimestamp));var g=function(e){var t=n.getCategorySettings(e);null!==t&&(null!==o&&(t.logLevel=o),null!==i&&(t.logFormat.dateFormat.formatEnum=i),null!==s&&(t.logFormat.showTimeStamp=s),null!==a&&(t.logFormat.showCategoryName=a))};r.forEach((function(n){return e._applyToCategory(n,t.recursive,g)})),console.log("Applied changes: "+u+" to categories '"+t.category+"'.")},e.prototype.reset=function(t){void 0===t&&(t="all");var n=e._getCategoryService(),r=e._getCategories(t),o=function(e){var t=n.getCategorySettings(e),r=n.getOriginalCategorySettings(e);null!==t&&null!==r&&(t.logLevel=r.logLevel,t.logFormat.dateFormat.formatEnum=r.logFormat.dateFormat.formatEnum,t.logFormat.showTimeStamp=r.logFormat.showTimeStamp,t.logFormat.showCategoryName=r.logFormat.showCategoryName)};r.forEach((function(t){return e._applyToCategory(t,!0,o)})),console.log("Applied reset to category: "+t+".")},e._processCategory=function(t,n,r,o){var i=t.getCategorySettings(n);if(null!==i){if(r.append("  "+n.id+": "),o>0)for(var a=0;a<o;a++)r.append("  ");r.append(n.name+" ("+Fe.LogLevel[i.logLevel].toString()+"@"+Fe.LoggerType[i.loggerType].toString()+")\n"),n.children.length>0&&n.children.forEach((function(n){e._processCategory(t,n,r,o+1)}))}},e._applyToCategory=function(t,n,r){r(t),n&&t.children.forEach((function(t){e._applyToCategory(t,n,r)}))},e._getCategoryService=function(){return Bt.CategoryServiceImpl.getInstance()},e._getCategories=function(t){var n=e._getCategoryService(),r=[];if("all"===t)r=n.getRootCategories();else{var o=n.getCategoryById(t);if(null===o)throw new Error("Failed to find category with id "+t);r.push(o)}return r},e._help='\n  help(): void\n    ** Shows this help.\n\n  example(): void\n    ** Shows an example on how to use this.\n\n  showSettings(id: number | "all" = "all"): void\n    ** Shows settings for a specific category, or for all. The id of categories can be found by calling this method without parameter.\n\n  change(settings: CategoryServiceControlSettings): void\n    ** Changes the current settings for one or all categories.\n    **\n       CategoryServiceControlSettings, properties of object:\n         category: number | "all"\n           ** Apply to specific category, or "all".\n           ** Required\n\n         recursive: boolean\n           ** Apply to child categories (true) or not.\n           ** Required\n\n         logLevel: "Fatal" | "Error" | "Warn" | "Info" | "Debug" | "Trace" | undefined\n           ** Set log level, undefined will not change the setting.\n           ** Optional\n\n         logFormat: "Default" | "YearMonthDayTime" | "YearDayMonthWithFullTime" | "YearDayMonthTime" | undefined\n           ** Set the log format, undefined will not change the setting.\n           ** Optional\n\n         showTimestamp: boolean | undefined\n           ** Whether to show timestamp, undefined will not change the setting.\n           ** Optional\n\n         showCategoryName: boolean | undefined\n           ** Whether to show the category name, undefined will not change the setting.\n           ** Optional\n\n   reset(id: number | "all"): void\n     ** Resets everything to original values, for one specific or for all categories.\n',e._example='\n  Examples:\n    change({category: "all", recursive:true, logLevel: "Info"})\n      ** Change loglevel to Info for all categories, apply to child categories as well.\n\n    change({category: 1, recursive:false, logLevel: "Warn"})\n      ** Change logLevel for category 1, do not recurse.\n\n    change({category: "all", recursive:true, logLevel: "Debug", logFormat: "YearDayMonthTime", showTimestamp:false, showCategoryName:false})\n      ** Change loglevel to Debug for all categories, apply format, do not show timestamp and category names - recursively to child categories.\n\n',e}(),tn=Object.defineProperty({CategoryServiceControlImpl:en},"__esModule",{value:!0}),nn=function(){function e(t,n){if(void 0===n&&(n=null),this._children=[],this._logLevel=Fe.LogLevel.Error,-1!==t.indexOf("#"))throw new Error("Cannot use # in a name of a Category");this._id=e.nextId(),this._name=t,this._parent=n,null!==this._parent&&this._parent._children.push(this),Bt.CategoryServiceImpl.getInstance().registerCategory(this)}return Object.defineProperty(e.prototype,"name",{get:function(){return this._name},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"parent",{get:function(){return this._parent},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"children",{get:function(){return this._children},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"logLevel",{get:function(){return this._logLevel},enumerable:!0,configurable:!0}),e.prototype.trace=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];this.loadCategoryLogger(),(t=this._logger).trace.apply(t,[e].concat(n))},e.prototype.debug=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];this.loadCategoryLogger(),(t=this._logger).debug.apply(t,[e].concat(n))},e.prototype.info=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];this.loadCategoryLogger(),(t=this._logger).info.apply(t,[e].concat(n))},e.prototype.warn=function(e){for(var t,n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];this.loadCategoryLogger(),(t=this._logger).warn.apply(t,[e].concat(n))},e.prototype.error=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];this.loadCategoryLogger(),(n=this._logger).error.apply(n,[e,t].concat(r))},e.prototype.fatal=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];this.loadCategoryLogger(),(n=this._logger).fatal.apply(n,[e,t].concat(r))},e.prototype.resolved=function(e,t){for(var n,r=[],o=2;o<arguments.length;o++)r[o-2]=arguments[o];this.loadCategoryLogger(),(n=this._logger).resolved.apply(n,[e,t].concat(r))},e.prototype.log=function(e,t,n){for(var r,o=[],i=3;i<arguments.length;i++)o[i-3]=arguments[i];this.loadCategoryLogger(),(r=this._logger).log.apply(r,[e,t,n].concat(o))},e.prototype.getCategoryPath=function(){for(var e=this.name,t=this.parent;null!=t;)e=t.name+"#"+e,t=t.parent;return e},Object.defineProperty(e.prototype,"id",{get:function(){return this._id},enumerable:!0,configurable:!0}),e.prototype.loadCategoryLogger=function(){if(this._logger||(this._logger=Bt.CategoryServiceImpl.getInstance().getLogger(this)),void 0===this._logger||null===this._logger)throw new Error("Failed to load a logger for category (should not happen): "+this.name)},e.nextId=function(){return e.currentId++},e.currentId=1,e}(),rn=Object.defineProperty({Category:nn},"__esModule",{value:!0}),on=function(){function e(){}return e.getLogger=function(e){return Bt.CategoryServiceImpl.getInstance().getLogger(e)},e.clear=function(){return Bt.CategoryServiceImpl.getInstance().clear()},e.setDefaultConfiguration=function(e,t){void 0===t&&(t=!0),Bt.CategoryServiceImpl.getInstance().setDefaultConfiguration(e,t)},e.setConfigurationCategory=function(e,t,n){void 0===n&&(n=!1),Bt.CategoryServiceImpl.getInstance().setConfigurationCategory(e,t,n)},e}(),an=Object.defineProperty({CategoryServiceFactory:on},"__esModule",{value:!0}),sn=Oe&&Oe.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),un=function(){function e(e){this._value=e}return e.prototype.getValue=function(){return this._value},e.prototype.toString=function(){var e=this.getValue();return null!=e?e.toString():"null"},e}(),ln=function(e){function t(t){return e.call(this,t)||this}return sn(t,e),t}(un),gn=function(e){function t(t){return e.call(this,t)||this}return sn(t,e),t}(un),cn=function(e){function t(t){return e.call(this,t)||this}return sn(t,e),t.prototype.toString=function(){var e=this.getValue();return null!=e?JSON.stringify(e.toString()):"null"},t}(un),fn=function(e){function t(t){return e.call(this,t)||this}return sn(t,e),t}(un),pn=function(e){function t(t){return e.call(this,t)||this}return sn(t,e),t.prototype.toString=function(){var e=this.getValue();return null!=e?e.toString():"null"},t}(un),hn=function(e){function t(){return e.call(this,null)||this}return sn(t,e),t.prototype.toString=function(){return"null"},t}(un),dn=function(){function e(){}return e.toJSONType=function(e){if(null===e)return new hn;if("string"==typeof e)return new cn(e);if("number"==typeof e)return new gn(e);if("boolean"==typeof e)return new ln(e);if(e instanceof mn)return new fn(e);throw new Error("Type not supported for value: "+e)},e}(),mn=function(){function e(){this.values=new Ae.SimpleMap}return e.prototype.addBoolean=function(t,n){return this.checkName(t),e.checkValue(n),this.values.put(t,new ln(n)),this},e.prototype.addNumber=function(t,n){return this.checkName(t),e.checkValue(n),this.values.put(t,new gn(n)),this},e.prototype.addString=function(t,n){return this.checkName(t),e.checkValue(n),this.values.put(t,new cn(n)),this},e.prototype.addNull=function(e){return this.checkName(e),this.values.put(e,new hn),this},e.prototype.addArray=function(t,n){if(this.checkName(t),e.checkValue(n),null==n)throw new Error("Cannot add array as null");return this.values.put(t,new pn(n)),this},e.prototype.addObject=function(t,n){if(this.checkName(t),e.checkValue(n),null==n)throw new Error("Cannot add object as null");return this.values.put(t,new fn(n)),this},e.prototype.toString=function(e){var t=this,n=!1,r=new Ae.StringBuilder;return r.append("{"),this.values.keys().forEach((function(e){var o=t.values.get(e);null!=o&&(n&&r.append(","),r.append('"').append(e).append('":').append(o.toString()),n=!0)})),r.append("}"),r.toString()},e.prototype.checkName=function(e){if(null==e||void 0===e)throw new Error("Name is null or undefined");if(this.values.exists(e))throw new Error("Name "+e+" is already present for this object")},e.checkValue=function(e){if(void 0===e)throw new Error("Value is undefined")},e}(),yn=mn,vn=function(){function e(){this.objects=[]}return e.prototype.add=function(e){if(void 0===e)throw new Error("Object is not allowed to be undefined");return this.objects.push(dn.toJSONType(e)),this},e.prototype.toString=function(e){var t=new Ae.StringBuilder;return t.append("["),this.objects.forEach((function(e,n){n>0&&t.append(","),t.append(e.toString())})),t.append("]"),t.toString()},e}(),_n=vn,bn=function(){function e(){}return e.categoryToJSON=function(t,n){var r=new vn;e._categoryToJSON(t,r,n);var o=new mn;return o.addArray("categories",r),o},e._categoryToJSON=function(t,n,r){var o=new mn;o.addNumber("id",t.id),o.addString("name",t.name),o.addString("logLevel",Fe.LogLevel[t.logLevel].toString()),null!=t.parent?o.addNumber("parent",t.parent.id):o.addNull("parent"),n.add(o),r&&t.children.forEach((function(t){e._categoryToJSON(t,n,r)}))},e}(),Ln=Object.defineProperty({JSONObject:yn,JSONArray:_n,JSONHelper:bn},"__esModule",{value:!0}),wn=Ee((function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.ExtensionHelper=Wt.ExtensionHelper,t.AbstractCategoryLogger=wt.AbstractCategoryLogger,t.CategoryConsoleLoggerImpl=Ot.CategoryConsoleLoggerImpl,t.CategoryDelegateLoggerImpl=Ft.CategoryDelegateLoggerImpl,t.Category=rn.Category,t.CategoryRuntimeSettings=kt.CategoryRuntimeSettings,t.CategoryConfiguration=jt.CategoryConfiguration,t.CategoryMessageBufferLoggerImpl=At.CategoryMessageBufferLoggerImpl,t.CategoryServiceFactory=an.CategoryServiceFactory,t.LoggerFactoryOptions=Vt.LoggerFactoryOptions,t.LogGroupRule=zt.LogGroupRule,t.LFService=Kt.LFService,t.AbstractLogger=lt.AbstractLogger,t.ConsoleLoggerImpl=ft.ConsoleLoggerImpl,t.MessageBufferLoggerImpl=dt.MessageBufferLoggerImpl,t.CategoryLogFormat=Fe.CategoryLogFormat,t.DateFormat=Fe.DateFormat,t.DateFormatEnum=Fe.DateFormatEnum,t.LogFormat=Fe.LogFormat,t.LoggerType=Fe.LoggerType,t.LogLevel=Fe.LogLevel,t.SimpleMap=Ae.SimpleMap,t.LinkedList=Ae.LinkedList,function(e){for(var n in e)t.hasOwnProperty(n)||(t[n]=e[n])}(Ln),t.MessageFormatUtils=at.MessageFormatUtils,t.help=function(){console.log("help()\n   ** Shows this help\n\n getLogControl(): LoggerControl\n   ** Returns LoggerControl Object, use to dynamically change loglevels for log4j logging.\n   ** Call .help() on LoggerControl object for available options.\n\n getCategoryControl(): CategoryServiceControl\n   ** Returns CategoryServiceControl Object, use to dynamically change loglevels for category logging.\n   ** Call .help() on CategoryServiceControl object for available options.\n")},t.getLogControl=function(){return new Qt.LoggerControlImpl},t.getCategoryControl=function(){return new tn.CategoryServiceControlImpl}}));const Cn=(new wn.LoggerFactoryOptions).addLogGroupRule(new wn.LogGroupRule(new RegExp(".+"),wn.LogLevel.Info));var Sn=wn.LFService.createNamedLoggerFactory("LoggerFactory",Cn);const On=Se([]),En=Se(""),Fn=Se(0),Mn=Se(0),$n=Se(!1),Tn=Se("init"),Nn=Se("init"),Rn=Se([]),An=Se(""),xn=Se(!1),kn=Se([]),Pn=Sn.getLogger("store"),jn=new WebSocket("ws://localhost:3000");jn.addEventListener("open",(()=>$n.set(!0))),jn.addEventListener("message",(function(e){Pn.info(`Received data from WS, ${e.data}`);const t=JSON.parse(e.data);if("player"===t.topic){if("update"===t.subtopic){!function(e){On.set(e.data)}(t)}}else if("settings"===t.topic){!function(e){const t=e.data;Fn.set(t.underCoverCount),Mn.set(t.mrWhiteCount)}(t)}else if("game"===t.topic){if("word"===t.subtopic){const e=t;Tn.set(e.data),Nn.set("started")}else if("update"===t.subtopic){const e=t.data;Rn.set(e.playerToWords),An.set(e.player),0!==e.turn&&e.turn%l(On).length==0&&Nn.set("voting")}}else if("vote"===t.topic&&"update"===t.subtopic){const e=t;kn.set(e.data.playersWhoVoted)}}));const In=e=>{l($n)&&jn.send(JSON.stringify(e))},[Dn,Gn]=function(e){var{fallback:t}=e,r=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(r=Object.getOwnPropertySymbols(e);o<r.length;o++)t.indexOf(r[o])<0&&Object.prototype.propertyIsEnumerable.call(e,r[o])&&(n[r[o]]=e[r[o]])}return n}(e,["fallback"]);const o=new Map,i=new Map;function s(e,o,i){return(s,u)=>(e.set(u.key,{rect:s.getBoundingClientRect()}),()=>{if(o.has(u.key)){const{rect:e}=o.get(u.key);return o.delete(u.key),function(e,t,o){const{delay:i=0,duration:s=(e=>30*Math.sqrt(e)),easing:u=_e}=n(n({},r),o),l=t.getBoundingClientRect(),g=e.left-l.left,c=e.top-l.top,f=e.width/l.width,p=e.height/l.height,h=Math.sqrt(g*g+c*c),d=getComputedStyle(t),m="none"===d.transform?"":d.transform,y=+d.opacity;return{delay:i,duration:a(s)?s(h):s,easing:u,css:(e,t)=>`\n\t\t\t\topacity: ${e*y};\n\t\t\t\ttransform-origin: top left;\n\t\t\t\ttransform: ${m} translate(${t*g}px,${t*c}px) scale(${e+(1-e)*f}, ${e+(1-e)*p});\n\t\t\t`}}(e,s,u)}return e.delete(u.key),t&&t(s,u,i)})}return[s(i,o,!1),s(o,i,!0)]}({duration:e=>Math.sqrt(200*e),fallback(e){const t=getComputedStyle(e),n="none"===t.transform?"":t.transform;return{duration:600,easing:be,css:e=>`\n        transform: ${n} scale(${e});\n        opacity: ${e}\n      `}}}),Bn=Dn,Un=Gn;function Wn(e,t,n){const r=getComputedStyle(e),o="none"===r.transform?"":r.transform,i=t.from.width/e.clientWidth,s=t.from.height/e.clientHeight,u=(t.from.left-t.to.left)/i,l=(t.from.top-t.to.top)/s,g=Math.sqrt(u*u+l*l),{delay:c=0,duration:f=(e=>120*Math.sqrt(e)),easing:p=_e}=n;return{delay:c,duration:a(f)?f(g):f,easing:p,css:(e,t)=>`transform: ${o} translate(${t*u}px, ${t*l}px);`}}function Yn(e,t,n){const r=e.slice();return r[1]=t[n],r}function zn(e,t,n){const r=e.slice();return r[4]=t[n],r[6]=n,r}function Hn(t,n){let r,o,i,a,s=n[4]+"",u=e;return{key:t,first:null,c(){r=b("p"),o=L(s),E(r,"class","item svelte-8e6fra"),this.first=r},m(e,t){v(e,r,t),y(r,o)},p(e,t){n=e,1&t&&s!==(s=n[4]+"")&&F(o,s)},r(){a=r.getBoundingClientRect()},f(){P(r),u()},a(){u(),u=k(r,a,Wn,{})},i(e){i||H((()=>{i=se(r,Un,{key:n[4]}),i.start()}))},o:e,d(e){e&&_(r)}}}function Vn(t){let n,r,o,i,a,s,u,l=t[1][0]+"",g=[],c=new Map,f=t[1][1];const p=e=>e[4];for(let e=0;e<f.length;e+=1){let n=zn(t,f,e),r=p(n);c.set(r,g[e]=Hn(r,n))}return{c(){n=b("div"),r=b("div"),o=L(l),i=w(),a=b("p"),a.textContent="* * *",s=w();for(let e=0;e<g.length;e+=1)g[e].c();u=w(),E(a,"class","svelte-8e6fra"),E(n,"class","card svelte-8e6fra")},m(e,t){v(e,n,t),y(n,r),y(r,o),y(n,i),y(n,a),y(n,s);for(let e=0;e<g.length;e+=1)g[e].m(n,null);y(n,u)},p(e,t){if(1&t&&l!==(l=e[1][0]+"")&&F(o,l),1&t){f=e[1][1];for(let e=0;e<g.length;e+=1)g[e].r();g=fe(g,t,p,1,e,f,c,n,ge,Hn,u,zn);for(let e=0;e<g.length;e+=1)g[e].a()}},i(e){for(let e=0;e<f.length;e+=1)oe(g[e])},o:e,d(e){e&&_(n);for(let e=0;e<g.length;e+=1)g[e].d()}}}function Jn(t){let n,r=t[0],o=[];for(let e=0;e<r.length;e+=1)o[e]=Vn(Yn(t,r,e));return{c(){n=b("main");for(let e=0;e<o.length;e+=1)o[e].c();E(n,"class","svelte-8e6fra")},m(e,t){v(e,n,t);for(let e=0;e<o.length;e+=1)o[e].m(n,null)},p(e,[t]){if(1&t){let i;for(r=e[0],i=0;i<r.length;i+=1){const a=Yn(e,r,i);o[i]?(o[i].p(a,t),oe(o[i],1)):(o[i]=Vn(a),o[i].c(),oe(o[i],1),o[i].m(n,null))}for(;i<o.length;i+=1)o[i].d(1);o.length=r.length}},i(e){for(let e=0;e<r.length;e+=1)oe(o[e])},o:e,d(e){e&&_(n),function(e,t){for(let n=0;n<e.length;n+=1)e[n]&&e[n].d(t)}(o,e)}}}function qn(e,t,n){let r;return g(e,Rn,(e=>n(0,r=e))),[r]}class Kn extends ve{constructor(e){super(),ye(this,e,qn,Jn,s,{})}}function Zn(t){let n,r,o;return{c(){n=b("main"),r=b("p"),o=L(t[0])},m(e,t){v(e,n,t),y(n,r),y(r,o)},p(e,[t]){1&t&&F(o,e[0])},i:e,o:e,d(e){e&&_(n)}}}function Xn(e,t,n){let r,o,i;return g(e,An,(e=>n(1,o=e))),g(e,En,(e=>n(2,i=e))),e.$$.update=()=>{var t;2&e.$$.dirty&&n(0,r=i===(t=o)?"It's your turn!":`It's ${t}'s turn`)},[r,o]}class Qn extends ve{constructor(e){super(),ye(this,e,Xn,Zn,s,{})}}function er(t){let n;return{c(){n=b("main")},m(e,r){v(e,n,r),n.innerHTML=t[0]},p(e,[t]){1&t&&(n.innerHTML=e[0])},i:e,o:e,d(e){e&&_(n)}}}function tr(e,t,n){let r,o;return g(e,Tn,(e=>n(1,o=e))),e.$$.update=()=>{var t;2&e.$$.dirty&&n(0,r=(t=o)?"init"===t?"<p>Retrieving your word..</p>":`<p> Your word is </p>\n      <p><b>${t}</b></p>`:"<p><b>You are Mr.white!</b></p>")},[r,o]}class nr extends ve{constructor(e){super(),ye(this,e,tr,er,s,{})}}function rr(t){let n,r,o,a,s,u,l;return{c(){n=b("main"),r=b("input"),o=w(),a=b("button"),s=L("Describe"),E(r,"type","text"),E(r,"class","svelte-16ysrrr"),a.disabled=t[1],E(n,"class","svelte-16ysrrr")},m(e,i){v(e,n,i),y(n,r),M(r,t[0]),y(n,o),y(n,a),y(a,s),u||(l=[S(r,"input",t[6]),S(r,"keyup",O(t[3])),S(a,"click",t[2])],u=!0)},p(e,[t]){1&t&&r.value!==e[0]&&M(r,e[0]),2&t&&(a.disabled=e[1])},i:e,o:e,d(e){e&&_(n),u=!1,i(l)}}}function or(e,t,n){let r,o,i;g(e,An,(e=>n(4,o=e))),g(e,En,(e=>n(5,i=e)));let a="";function s(){a.length>0&&(In({topic:"game",subtopic:"add",data:a}),n(0,a=""))}return e.$$.update=()=>{48&e.$$.dirty&&n(1,r=o!==i)},[a,r,s,function(){"Enter"===event.code&&s()},o,i,function(){a=this.value,n(0,a)}]}class ir extends ve{constructor(e){super(),ye(this,e,or,rr,s,{})}}function ar(e){const t=Se(e);let n=e;return{state:t,transitionTo:function(e){n!==e&&(n=e,t.set(null))},onOutro:function(){t.set(n)}}}function sr(e,t,n){const r=e.slice();return r[5]=t[n],r[7]=n,r}function ur(e){let t,n,r,o,i,a,s=e[5]+"";function u(){return e[4](e[5])}return{c(){t=b("p"),n=b("button"),r=L(s),o=w(),E(n,"class","svelte-1ci3dly")},m(e,s){v(e,t,s),y(t,n),y(n,r),y(t,o),i||(a=S(n,"click",u),i=!0)},p(t,n){e=t,1&n&&s!==(s=e[5]+"")&&F(r,s)},d(e){e&&_(t),i=!1,a()}}}function lr(e,t){let n,r,o=t[5]!==t[1]&&ur(t);return{key:e,first:null,c(){n=C(),o&&o.c(),r=C(),this.first=n},m(e,t){v(e,n,t),o&&o.m(e,t),v(e,r,t)},p(e,n){(t=e)[5]!==t[1]?o?o.p(t,n):(o=ur(t),o.c(),o.m(r.parentNode,r)):o&&(o.d(1),o=null)},d(e){e&&_(n),o&&o.d(e),e&&_(r)}}}function gr(t){let n,r,o,i=[],a=new Map,s=t[0];const u=e=>e[5];for(let e=0;e<s.length;e+=1){let n=sr(t,s,e),r=u(n);a.set(r,i[e]=lr(r,n))}return{c(){n=b("main"),r=b("h2"),r.textContent="Vote against",o=w();for(let e=0;e<i.length;e+=1)i[e].c();E(r,"class","svelte-1ci3dly")},m(e,t){v(e,n,t),y(n,r),y(n,o);for(let e=0;e<i.length;e+=1)i[e].m(n,null)},p(e,[t]){7&t&&(s=e[0],i=fe(i,t,u,1,e,s,a,n,le,lr,null,sr))},i:e,o:e,d(e){e&&_(n);for(let e=0;e<i.length;e+=1)i[e].d()}}}function cr(e,t,n){let r,o,i;function a(e){In({topic:"vote",subtopic:"against",data:e}),xn.set(!0)}g(e,On,(e=>n(3,o=e))),g(e,En,(e=>n(1,i=e)));return e.$$.update=()=>{8&e.$$.dirty&&n(0,r=o)},[r,i,a,o,e=>a(e)]}class fr extends ve{constructor(e){super(),ye(this,e,cr,gr,s,{})}}function pr(e,t,n){const r=e.slice();return r[2]=t[n],r[4]=n,r}function hr(t,n){let r,o,i,a,s,u,l=`${n[2]} `,g=e;return{key:t,first:null,c(){r=b("div"),o=L(l),E(r,"class","item svelte-194m0yb"),this.first=r},m(e,t){v(e,r,t),y(r,o),u=!0},p(e,t){n=e,(!u||1&t)&&l!==(l=`${n[2]} `)&&F(o,l)},r(){s=r.getBoundingClientRect()},f(){P(r),g(),j(r,s)},a(){g(),g=k(r,s,Wn,{})},i(e){u||(H((()=>{a&&a.end(1),i||(i=se(r,Un,{key:n[2]})),i.start()})),u=!0)},o(e){i&&i.invalidate(),a=ue(r,Bn,{key:n[2]}),u=!1},d(e){e&&_(r),e&&a&&a.end()}}}function dr(e){let t,n,r,o,i,a,s,u=[],l=new Map,g=e[0];const c=e=>e[2];for(let t=0;t<g.length;t+=1){let n=pr(e,g,t),r=c(n);l.set(r,u[t]=hr(r,n))}return{c(){t=b("main"),n=b("h2"),r=L(e[1]),o=w(),i=b("br"),a=w();for(let e=0;e<u.length;e+=1)u[e].c();E(n,"class","svelte-194m0yb"),E(t,"class","svelte-194m0yb")},m(e,l){v(e,t,l),y(t,n),y(n,r),y(t,o),y(t,i),y(t,a);for(let e=0;e<u.length;e+=1)u[e].m(t,null);s=!0},p(e,[n]){if((!s||2&n)&&F(r,e[1]),1&n){g=e[0],ne();for(let e=0;e<u.length;e+=1)u[e].r();u=fe(u,n,c,1,e,g,l,t,ce,hr,null,pr);for(let e=0;e<u.length;e+=1)u[e].a();re()}},i(e){if(!s){for(let e=0;e<g.length;e+=1)oe(u[e]);s=!0}},o(e){for(let e=0;e<u.length;e+=1)ie(u[e]);s=!1},d(e){e&&_(t);for(let e=0;e<u.length;e+=1)u[e].d()}}}function mr(e,t,n){let r,o;return g(e,kn,(e=>n(0,o=e))),e.$$.update=()=>{1&e.$$.dirty&&n(1,r=o.length>0?"Has voted: ":"Nobody has voted yet 🤷‍♂️")},[o,r]}class yr extends ve{constructor(e){super(),ye(this,e,mr,dr,s,{})}}function vr(t){let n;return{c(){n=b("h2"),n.textContent="Waiting for vote completion..",E(n,"class","svelte-ydyzfp")},m(e,t){v(e,n,t)},p:e,i:e,o:e,d(e){e&&_(n)}}}class _r extends ve{constructor(e){super(),ye(this,e,null,vr,s,{})}}function br(t){let n,r,o,i,a,s,u,l,g,c;return r=new fr({}),i=new yr({}),s=new Kn({}),{c(){n=b("div"),pe(r.$$.fragment),o=w(),pe(i.$$.fragment),a=w(),pe(s.$$.fragment)},m(e,u){v(e,n,u),he(r,n,null),y(n,o),he(i,n,null),y(n,a),he(s,n,null),l=!0,g||(c=S(n,"outroend",t[1]),g=!0)},p:e,i(e){l||(oe(r.$$.fragment,e),oe(i.$$.fragment,e),oe(s.$$.fragment,e),u&&u.end(1),l=!0)},o(e){ie(r.$$.fragment,e),ie(i.$$.fragment,e),ie(s.$$.fragment,e),u=ue(n,Le,{}),l=!1},d(e){e&&_(n),de(r),de(i),de(s),e&&u&&u.end(),g=!1,c()}}}function Lr(t){let n,r,o,i,a,s,u,l;return r=new _r({}),i=new yr({}),{c(){n=b("div"),pe(r.$$.fragment),o=w(),pe(i.$$.fragment)},m(e,a){v(e,n,a),he(r,n,null),y(n,o),he(i,n,null),s=!0,u||(l=S(n,"outroend",t[1]),u=!0)},p:e,i(e){s||(oe(r.$$.fragment,e),oe(i.$$.fragment,e),a||H((()=>{a=se(n,Le,{}),a.start()})),s=!0)},o(e){ie(r.$$.fragment,e),ie(i.$$.fragment,e),s=!1},d(e){e&&_(n),de(r),de(i),u=!1,l()}}}function wr(e){let t,n,r,o="init"===e[0]&&br(e),i="voted"===e[0]&&Lr(e);return{c(){t=b("main"),o&&o.c(),n=w(),i&&i.c()},m(e,a){v(e,t,a),o&&o.m(t,null),y(t,n),i&&i.m(t,null),r=!0},p(e,[r]){"init"===e[0]?o?(o.p(e,r),1&r&&oe(o,1)):(o=br(e),o.c(),oe(o,1),o.m(t,n)):o&&(ne(),ie(o,1,1,(()=>{o=null})),re()),"voted"===e[0]?i?(i.p(e,r),1&r&&oe(i,1)):(i=Lr(e),i.c(),oe(i,1),i.m(t,null)):i&&(ne(),ie(i,1,1,(()=>{i=null})),re())},i(e){r||(oe(o),oe(i),r=!0)},o(e){ie(o),ie(i),r=!1},d(e){e&&_(t),o&&o.d(),i&&i.d()}}}function Cr(e,t,n){let r,o;g(e,xn,(e=>n(3,r=e)));const{onOutro:i,transitionTo:a,state:s}=ar("init");return g(e,s,(e=>n(0,o=e))),e.$$.update=()=>{8&e.$$.dirty&&r&&a("voted")},[o,i,s,r]}class Sr extends ve{constructor(e){super(),ye(this,e,Cr,wr,s,{})}}function Or(t){let n,r,o,i,a,s,u,l,g,c,f,p,h,d,m;return r=new nr({}),i=new Qn({}),s=new ir({}),c=new Kn({}),{c(){n=b("div"),pe(r.$$.fragment),o=w(),pe(i.$$.fragment),a=w(),pe(s.$$.fragment),u=w(),l=b("br"),g=w(),pe(c.$$.fragment)},m(e,f){v(e,n,f),he(r,n,null),y(n,o),he(i,n,null),y(n,a),he(s,n,null),y(n,u),y(n,l),y(n,g),he(c,n,null),h=!0,d||(m=S(n,"outroend",t[1]),d=!0)},p:e,i(e){h||(oe(r.$$.fragment,e),oe(i.$$.fragment,e),oe(s.$$.fragment,e),oe(c.$$.fragment,e),H((()=>{p&&p.end(1),f||(f=se(n,we,{y:500,duration:300})),f.start()})),h=!0)},o(e){ie(r.$$.fragment,e),ie(i.$$.fragment,e),ie(s.$$.fragment,e),ie(c.$$.fragment,e),f&&f.invalidate(),p=ue(n,we,{y:500,duration:300}),h=!1},d(e){e&&_(n),de(r),de(i),de(s),de(c),e&&p&&p.end(),d=!1,m()}}}function Er(t){let n,r,o,i,a,s,u;return r=new Sr({}),{c(){n=b("div"),pe(r.$$.fragment)},m(e,o){v(e,n,o),he(r,n,null),a=!0,s||(u=S(n,"outroend",t[1]),s=!0)},p:e,i(e){a||(oe(r.$$.fragment,e),H((()=>{i&&i.end(1),o||(o=se(n,we,{y:500,duration:300})),o.start()})),a=!0)},o(e){ie(r.$$.fragment,e),o&&o.invalidate(),i=ue(n,we,{y:500,duration:300}),a=!1},d(e){e&&_(n),de(r),e&&i&&i.end(),s=!1,u()}}}function Fr(e){let t,n,r,o="started"===e[0]&&Or(e),i="voting"===e[0]&&Er(e);return{c(){t=b("main"),o&&o.c(),n=w(),i&&i.c()},m(e,a){v(e,t,a),o&&o.m(t,null),y(t,n),i&&i.m(t,null),r=!0},p(e,[r]){"started"===e[0]?o?(o.p(e,r),1&r&&oe(o,1)):(o=Or(e),o.c(),oe(o,1),o.m(t,n)):o&&(ne(),ie(o,1,1,(()=>{o=null})),re()),"voting"===e[0]?i?(i.p(e,r),1&r&&oe(i,1)):(i=Er(e),i.c(),oe(i,1),i.m(t,null)):i&&(ne(),ie(i,1,1,(()=>{i=null})),re())},i(e){r||(oe(o),oe(i),r=!0)},o(e){ie(o),ie(i),r=!1},d(e){e&&_(t),o&&o.d(),i&&i.d()}}}function Mr(e,t,n){let r,o;g(e,Nn,(e=>n(3,r=e)));const{onOutro:i,transitionTo:a,state:s}=ar("started");return g(e,s,(e=>n(0,o=e))),e.$$.update=()=>{8&e.$$.dirty&&r&&a(r)},[o,i,s,r]}class $r extends ve{constructor(e){super(),ye(this,e,Mr,Fr,s,{})}}function Tr(t){let n,r,o,a,s,u,l,g,c,f,p,h,d,m;return{c(){n=b("main"),r=b("h1"),r.textContent="Undercover",o=w(),a=b("h2"),a.textContent="Input your name",s=w(),u=b("br"),l=w(),g=b("input"),c=w(),f=b("br"),p=w(),h=b("button"),h.textContent="OK",E(r,"class","svelte-4w4a9t"),E(a,"class","svelte-4w4a9t"),E(g,"type","text"),E(g,"size","15"),E(g,"class","svelte-4w4a9t"),E(h,"class","svelte-4w4a9t")},m(e,i){v(e,n,i),y(n,r),y(n,o),y(n,a),y(n,s),y(n,u),y(n,l),y(n,g),M(g,t[0]),y(n,c),y(n,f),y(n,p),y(n,h),d||(m=[S(g,"input",t[5]),S(g,"keyup",O(t[2])),S(h,"click",t[1])],d=!0)},p(e,[t]){1&t&&g.value!==e[0]&&M(g,e[0])},i:e,o:e,d(e){e&&_(n),d=!1,i(m)}}}function Nr(e,t,n){let r,o,i;g(e,On,(e=>n(3,o=e))),g(e,$n,(e=>n(4,i=e)));let a="";function s(){a.length>0&&(-1===r.indexOf(a)?(In(function(e){return{topic:"player",subtopic:"add",data:e}}(a)),En.set(a)):alert("This name has already been picked!"))}return e.$$.update=()=>{8&e.$$.dirty&&(r=o),16&e.$$.dirty&&i&&In({topic:"player",subtopic:"get"})},[a,s,function(){"Enter"===event.code&&s()},o,i,function(){a=this.value,n(0,a)}]}class Rr extends ve{constructor(e){super(),ye(this,e,Nr,Tr,s,{})}}function Ar(e,t,n){const r=e.slice();return r[3]=t[n],r[5]=n,r}function xr(t,n){let r,o,i,a,s,u,l,g=Pr(n[1],n[3])+"",c=e;return{key:t,first:null,c(){r=b("p"),i=w(),o=new $(i),this.first=r},m(e,t){v(e,r,t),o.m(g,r),y(r,i),l=!0},p(e,t){n=e,(!l||3&t)&&g!==(g=Pr(n[1],n[3])+"")&&o.p(g)},r(){u=r.getBoundingClientRect()},f(){P(r),c(),j(r,u)},a(){c(),c=k(r,u,Wn,{})},i(e){l||(H((()=>{s&&s.end(1),a||(a=se(r,Un,{key:n[1]})),a.start()})),l=!0)},o(e){a&&a.invalidate(),s=ue(r,Bn,{key:n[1]}),l=!1},d(e){e&&_(r),e&&s&&s.end()}}}function kr(e){let t,n,r,o,i=[],a=new Map,s=e[0];const u=e=>e[3];for(let t=0;t<s.length;t+=1){let n=Ar(e,s,t),r=u(n);a.set(r,i[t]=xr(r,n))}return{c(){t=b("main"),n=b("h2"),n.textContent="Connected players",r=w();for(let e=0;e<i.length;e+=1)i[e].c();E(n,"class","svelte-dk8aud")},m(e,a){v(e,t,a),y(t,n),y(t,r);for(let e=0;e<i.length;e+=1)i[e].m(t,null);o=!0},p(e,[n]){if(3&n){s=e[0],ne();for(let e=0;e<i.length;e+=1)i[e].r();i=fe(i,n,u,1,e,s,a,t,ce,xr,null,Ar);for(let e=0;e<i.length;e+=1)i[e].a();re()}},i(e){if(!o){for(let e=0;e<s.length;e+=1)oe(i[e]);o=!0}},o(e){for(let e=0;e<i.length;e+=1)ie(i[e]);o=!1},d(e){e&&_(t);for(let e=0;e<i.length;e+=1)i[e].d()}}}function Pr(e,t){return e===t?`<b> ${t} <b>`:t}function jr(e,t,n){let r,o,i;return g(e,On,(e=>n(2,o=e))),g(e,En,(e=>n(1,i=e))),e.$$.update=()=>{4&e.$$.dirty&&n(0,r=o)},[r,i,o]}class Ir extends ve{constructor(e){super(),ye(this,e,jr,kr,s,{})}}function Dr(t){let n,r,o,a,s,u,l,g,c,f,p,h,d,m,C,O,M,$,T,N,R,A;return{c(){n=b("main"),r=b("h2"),r.textContent="Settings",o=w(),a=b("p"),a.textContent="Undercover",s=w(),u=b("button"),u.textContent="<",l=w(),g=b("div"),c=L(t[0]),f=w(),p=b("button"),p.textContent=">",h=w(),d=b("p"),d.textContent="Mr White",m=w(),C=b("button"),C.textContent="<",O=w(),M=b("div"),$=L(t[1]),T=w(),N=b("button"),N.textContent=">",E(r,"class","svelte-15h6cuf"),E(u,"class","svelte-15h6cuf"),E(g,"class","svelte-15h6cuf"),E(p,"class","svelte-15h6cuf"),E(C,"class","svelte-15h6cuf"),E(M,"class","svelte-15h6cuf"),E(N,"class","svelte-15h6cuf"),E(n,"class","svelte-15h6cuf")},m(e,i){v(e,n,i),y(n,r),y(n,o),y(n,a),y(n,s),y(n,u),y(n,l),y(n,g),y(g,c),y(n,f),y(n,p),y(n,h),y(n,d),y(n,m),y(n,C),y(n,O),y(n,M),y(M,$),y(n,T),y(n,N),R||(A=[S(u,"click",t[3]),S(p,"click",t[4]),S(C,"click",t[5]),S(N,"click",t[6])],R=!0)},p(e,[t]){1&t&&F(c,e[0]),2&t&&F($,e[1])},i:e,o:e,d(e){e&&_(n),R=!1,i(A)}}}function Gr(e,t,n){let r,o;function i(e,t){In({topic:"settings",subtopic:e,data:t})}g(e,Fn,(e=>n(0,r=e))),g(e,Mn,(e=>n(1,o=e))),D((()=>{In({topic:"settings",subtopic:"get"})}));return[r,o,i,()=>i("undercover","decrement"),()=>i("undercover","increment"),()=>i("white","decrement"),()=>i("white","increment")]}class Br extends ve{constructor(e){super(),ye(this,e,Gr,Dr,s,{})}}function Ur(t){let n,r,o,i;return{c(){n=b("button"),r=L("Start"),n.disabled=t[0]},m(e,a){v(e,n,a),y(n,r),o||(i=S(n,"click",t[1]),o=!0)},p(e,[t]){1&t&&(n.disabled=e[0])},i:e,o:e,d(e){e&&_(n),o=!1,i()}}}function Wr(e,t,n){let r,o,i,a,s;return g(e,On,(e=>n(3,i=e))),g(e,Fn,(e=>n(4,a=e))),g(e,Mn,(e=>n(5,s=e))),e.$$.update=()=>{8&e.$$.dirty&&n(2,r=i.length),52&e.$$.dirty&&n(0,o=!function(e,t,n){let r=e+t;return!(n<3||0===r||r>=n)&&n-r>=2}(a,s,r))},[o,function(){In({topic:"game",subtopic:"start"})},r,i,a,s]}class Yr extends ve{constructor(e){super(),ye(this,e,Wr,Ur,s,{})}}function zr(t){let n,r,o,i,a,s;return r=new Rr({}),{c(){n=b("div"),pe(r.$$.fragment)},m(e,o){v(e,n,o),he(r,n,null),i=!0,a||(s=S(n,"outroend",t[2]),a=!0)},p:e,i(e){i||(oe(r.$$.fragment,e),o&&o.end(1),i=!0)},o(e){ie(r.$$.fragment,e),o=ue(n,we,{y:500,duration:300}),i=!1},d(e){e&&_(n),de(r),e&&o&&o.end(),a=!1,s()}}}function Hr(t){let n,r,o,i,a,s,u,l,g,c,f,p,h,d;return r=new Br({}),s=new Yr({}),c=new Ir({}),{c(){n=b("div"),pe(r.$$.fragment),o=w(),i=b("br"),a=w(),pe(s.$$.fragment),u=w(),l=b("br"),g=w(),pe(c.$$.fragment)},m(e,f){v(e,n,f),he(r,n,null),y(n,o),y(n,i),y(n,a),he(s,n,null),y(n,u),y(n,l),y(n,g),he(c,n,null),p=!0,h||(d=S(n,"outroend",t[2]),h=!0)},p:e,i(e){p||(oe(r.$$.fragment,e),oe(s.$$.fragment,e),oe(c.$$.fragment,e),f||H((()=>{f=se(n,we,{y:500,duration:500}),f.start()})),p=!0)},o(e){ie(r.$$.fragment,e),ie(s.$$.fragment,e),ie(c.$$.fragment,e),p=!1},d(e){e&&_(n),de(r),de(s),de(c),h=!1,d()}}}function Vr(e){let t,n,r,o="init"===e[1]&&zr(e),i=e[1]===e[0]&&Hr(e);return{c(){t=b("main"),o&&o.c(),n=w(),i&&i.c()},m(e,a){v(e,t,a),o&&o.m(t,null),y(t,n),i&&i.m(t,null),r=!0},p(e,[r]){"init"===e[1]?o?(o.p(e,r),2&r&&oe(o,1)):(o=zr(e),o.c(),oe(o,1),o.m(t,n)):o&&(ne(),ie(o,1,1,(()=>{o=null})),re()),e[1]===e[0]?i?(i.p(e,r),3&r&&oe(i,1)):(i=Hr(e),i.c(),oe(i,1),i.m(t,null)):i&&(ne(),ie(i,1,1,(()=>{i=null})),re())},i(e){r||(oe(o),oe(i),r=!0)},o(e){ie(o),ie(i),r=!1},d(e){e&&_(t),o&&o.d(),i&&i.d()}}}function Jr(e,t,n){let r,o;g(e,En,(e=>n(0,r=e)));const{onOutro:i,transitionTo:a,state:s}=ar("init");return g(e,s,(e=>n(1,o=e))),e.$$.update=()=>{1&e.$$.dirty&&r&&a(r)},[r,o,i,s]}class qr extends ve{constructor(e){super(),ye(this,e,Jr,Vr,s,{})}}function Kr(t){let n,r,o,i,a,s;return r=new qr({}),{c(){n=b("div"),pe(r.$$.fragment)},m(e,o){v(e,n,o),he(r,n,null),i=!0,a||(s=S(n,"outroend",t[1]),a=!0)},p:e,i(e){i||(oe(r.$$.fragment,e),o&&o.end(1),i=!0)},o(e){ie(r.$$.fragment,e),o=ue(n,we,{y:500,duration:300}),i=!1},d(e){e&&_(n),de(r),e&&o&&o.end(),a=!1,s()}}}function Zr(t){let n,r,o,i,a,s;return r=new $r({}),{c(){n=b("div"),pe(r.$$.fragment)},m(e,o){v(e,n,o),he(r,n,null),i=!0,a||(s=S(n,"outroend",t[1]),a=!0)},p:e,i(e){i||(oe(r.$$.fragment,e),o||H((()=>{o=se(n,we,{y:500,duration:500}),o.start()})),i=!0)},o(e){ie(r.$$.fragment,e),i=!1},d(e){e&&_(n),de(r),a=!1,s()}}}function Xr(e){let t,n,r,o="init"===e[0]&&Kr(e),i="started"===e[0]&&Zr(e);return{c(){t=b("main"),o&&o.c(),n=w(),i&&i.c(),E(t,"class","svelte-yg16s0")},m(e,a){v(e,t,a),o&&o.m(t,null),y(t,n),i&&i.m(t,null),r=!0},p(e,[r]){"init"===e[0]?o?(o.p(e,r),1&r&&oe(o,1)):(o=Kr(e),o.c(),oe(o,1),o.m(t,n)):o&&(ne(),ie(o,1,1,(()=>{o=null})),re()),"started"===e[0]?i?(i.p(e,r),1&r&&oe(i,1)):(i=Zr(e),i.c(),oe(i,1),i.m(t,null)):i&&(ne(),ie(i,1,1,(()=>{i=null})),re())},i(e){r||(oe(o),oe(i),r=!0)},o(e){ie(o),ie(i),r=!1},d(e){e&&_(t),o&&o.d(),i&&i.d()}}}function Qr(e,t,n){let r,o;g(e,Nn,(e=>n(3,r=e)));const{onOutro:i,transitionTo:a,state:s}=ar("init");return g(e,s,(e=>n(0,o=e))),e.$$.update=()=>{8&e.$$.dirty&&"started"===r&&a("started")},[o,i,s,r]}return new class extends ve{constructor(e){super(),ye(this,e,Qr,Xr,s,{})}}({target:document.body})}();
+    ***************************************************************************** */
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+    function fade(node, { delay = 0, duration = 400, easing = identity }) {
+        const o = +getComputedStyle(node).opacity;
+        return {
+            delay,
+            duration,
+            easing,
+            css: t => `opacity: ${t * o}`
+        };
+    }
+    function fly(node, { delay = 0, duration = 400, easing = cubicOut, x = 0, y = 0, opacity = 0 }) {
+        const style = getComputedStyle(node);
+        const target_opacity = +style.opacity;
+        const transform = style.transform === 'none' ? '' : style.transform;
+        const od = target_opacity * (1 - opacity);
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y}px);
+			opacity: ${target_opacity - (od * u)}`
+        };
+    }
+    function crossfade(_a) {
+        var { fallback } = _a, defaults = __rest(_a, ["fallback"]);
+        const to_receive = new Map();
+        const to_send = new Map();
+        function crossfade(from, node, params) {
+            const { delay = 0, duration = d => Math.sqrt(d) * 30, easing = cubicOut } = assign(assign({}, defaults), params);
+            const to = node.getBoundingClientRect();
+            const dx = from.left - to.left;
+            const dy = from.top - to.top;
+            const dw = from.width / to.width;
+            const dh = from.height / to.height;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
+            const opacity = +style.opacity;
+            return {
+                delay,
+                duration: is_function(duration) ? duration(d) : duration,
+                easing,
+                css: (t, u) => `
+				opacity: ${t * opacity};
+				transform-origin: top left;
+				transform: ${transform} translate(${u * dx}px,${u * dy}px) scale(${t + (1 - t) * dw}, ${t + (1 - t) * dh});
+			`
+            };
+        }
+        function transition(items, counterparts, intro) {
+            return (node, params) => {
+                items.set(params.key, {
+                    rect: node.getBoundingClientRect()
+                });
+                return () => {
+                    if (counterparts.has(params.key)) {
+                        const { rect } = counterparts.get(params.key);
+                        counterparts.delete(params.key);
+                        return crossfade(rect, node, params);
+                    }
+                    // if the node is disappearing altogether
+                    // (i.e. wasn't claimed by the other list)
+                    // then we need to supply an outro
+                    items.delete(params.key);
+                    return fallback && fallback(node, params, intro);
+                };
+            };
+        }
+        return [
+            transition(to_send, to_receive, false),
+            transition(to_receive, to_send, true)
+        ];
+    }
+
+    const subscriber_queue = [];
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (let i = 0; i < subscribers.length; i += 1) {
+                        const s = subscribers[i];
+                        s[1]();
+                        subscriber_queue.push(s, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+    function createCommonjsModule(fn) {
+      var module = { exports: {} };
+    	return fn(module, module.exports), module.exports;
+    }
+
+    var LoggerOptions = createCommonjsModule(function (module, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+    (function (LogLevel) {
+        LogLevel[LogLevel["Trace"] = 0] = "Trace";
+        LogLevel[LogLevel["Debug"] = 1] = "Debug";
+        LogLevel[LogLevel["Info"] = 2] = "Info";
+        LogLevel[LogLevel["Warn"] = 3] = "Warn";
+        LogLevel[LogLevel["Error"] = 4] = "Error";
+        LogLevel[LogLevel["Fatal"] = 5] = "Fatal";
+    })(exports.LogLevel || (exports.LogLevel = {}));
+    /* tslint:disable:no-namespace */
+    (function (LogLevel) {
+        /**
+         * Returns LogLevel based on string representation
+         * @param val Value
+         * @returns {LogLevel}, Error is thrown if invalid.
+         */
+        function fromString(val) {
+            if (val == null) {
+                throw new Error("Argument must be set");
+            }
+            switch (val.toLowerCase()) {
+                case "trace":
+                    return LogLevel.Trace;
+                case "debug":
+                    return LogLevel.Debug;
+                case "info":
+                    return LogLevel.Info;
+                case "warn":
+                    return LogLevel.Warn;
+                case "error":
+                    return LogLevel.Error;
+                case "fatal":
+                    return LogLevel.Fatal;
+                default:
+                    throw new Error("Unsupported value for conversion: " + val);
+            }
+        }
+        LogLevel.fromString = fromString;
+    })(exports.LogLevel || (exports.LogLevel = {}));
+    (function (LoggerType) {
+        LoggerType[LoggerType["Console"] = 0] = "Console";
+        LoggerType[LoggerType["MessageBuffer"] = 1] = "MessageBuffer";
+        LoggerType[LoggerType["Custom"] = 2] = "Custom";
+    })(exports.LoggerType || (exports.LoggerType = {}));
+    /**
+     * Defines several date enums used for formatting a date.
+     */
+    var DateFormatEnum;
+    (function (DateFormatEnum) {
+        /**
+         * Displays as: year-month-day hour:minute:second,millis -> 1999-02-12 23:59:59,123
+         * Note the date separator can be set separately.
+         */
+        DateFormatEnum[DateFormatEnum["Default"] = 0] = "Default";
+        /**
+         * Displays as: year-month-day hour:minute:second -> 1999-02-12 23:59:59
+         * Note the date separator can be set separately.
+         */
+        DateFormatEnum[DateFormatEnum["YearMonthDayTime"] = 1] = "YearMonthDayTime";
+        /**
+         * Displays as: year-day-month hour:minute:second,millis -> 1999-12-02 23:59:59,123
+         * Note the date separator can be set separately.
+         */
+        DateFormatEnum[DateFormatEnum["YearDayMonthWithFullTime"] = 2] = "YearDayMonthWithFullTime";
+        /**
+         * Displays as: year-day-month hour:minute:second -> 1999-12-02 23:59:59
+         * Note the date separator can be set separately.
+         */
+        DateFormatEnum[DateFormatEnum["YearDayMonthTime"] = 3] = "YearDayMonthTime";
+    })(DateFormatEnum = exports.DateFormatEnum || (exports.DateFormatEnum = {}));
+    /* tslint:disable:no-namespace */
+    (function (DateFormatEnum) {
+        /**
+         * Returns LogLevel based on string representation
+         * @param val Value
+         * @returns {LogLevel}, Error is thrown if invalid.
+         */
+        function fromString(val) {
+            if (val == null) {
+                throw new Error("Argument must be set");
+            }
+            switch (val.toLowerCase()) {
+                case "default":
+                    return DateFormatEnum.Default;
+                case "yearmonthdayTime":
+                    return DateFormatEnum.YearMonthDayTime;
+                case "yeardaymonthwithfulltime":
+                    return DateFormatEnum.YearDayMonthWithFullTime;
+                case "yeardaymonthtime":
+                    return DateFormatEnum.YearDayMonthTime;
+                default:
+                    throw new Error("Unsupported value for conversion: " + val);
+            }
+        }
+        DateFormatEnum.fromString = fromString;
+    })(DateFormatEnum = exports.DateFormatEnum || (exports.DateFormatEnum = {}));
+    /* tslint:disable:enable-namespace */
+    /**
+     * DateFormat class, stores data on how to format a date.
+     */
+    var DateFormat = (function () {
+        /**
+         * Constructor to define the dateformat used for logging, can be called empty as it uses defaults.
+         * @param formatEnum DateFormatEnum, use one of the constants from the enum. Defaults to DateFormatEnum.Default
+         * @param dateSeparator Separator used between dates, defaults to -
+         */
+        function DateFormat(formatEnum, dateSeparator) {
+            if (formatEnum === void 0) { formatEnum = DateFormatEnum.Default; }
+            if (dateSeparator === void 0) { dateSeparator = "-"; }
+            this._formatEnum = formatEnum;
+            this._dateSeparator = dateSeparator;
+        }
+        Object.defineProperty(DateFormat.prototype, "formatEnum", {
+            get: function () {
+                return this._formatEnum;
+            },
+            set: function (value) {
+                this._formatEnum = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(DateFormat.prototype, "dateSeparator", {
+            get: function () {
+                return this._dateSeparator;
+            },
+            set: function (value) {
+                this._dateSeparator = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        DateFormat.prototype.copy = function () {
+            return new DateFormat(this._formatEnum, this._dateSeparator);
+        };
+        return DateFormat;
+    }());
+    exports.DateFormat = DateFormat;
+    /**
+     * Information about the log format, what will a log line look like?
+     */
+    var LogFormat = (function () {
+        /**
+         * Constructor to create a LogFormat. Can be created without parameters where it will use sane defaults.
+         * @param dateFormat DateFormat (what needs the date look like in the log line)
+         * @param showTimeStamp Show date timestamp at all?
+         * @param showLoggerName Show the logger name?
+         */
+        function LogFormat(dateFormat, showTimeStamp, showLoggerName) {
+            if (dateFormat === void 0) { dateFormat = new DateFormat(); }
+            if (showTimeStamp === void 0) { showTimeStamp = true; }
+            if (showLoggerName === void 0) { showLoggerName = true; }
+            this._showTimeStamp = true;
+            this._showLoggerName = true;
+            this._dateFormat = dateFormat;
+            this._showTimeStamp = showTimeStamp;
+            this._showLoggerName = showLoggerName;
+        }
+        Object.defineProperty(LogFormat.prototype, "dateFormat", {
+            get: function () {
+                return this._dateFormat;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogFormat.prototype, "showTimeStamp", {
+            get: function () {
+                return this._showTimeStamp;
+            },
+            set: function (value) {
+                this._showTimeStamp = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogFormat.prototype, "showLoggerName", {
+            get: function () {
+                return this._showLoggerName;
+            },
+            set: function (value) {
+                this._showLoggerName = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LogFormat;
+    }());
+    exports.LogFormat = LogFormat;
+    /**
+     * Information about the log format, what will a log line look like?
+     */
+    var CategoryLogFormat = (function () {
+        /**
+         * Create an instance defining the category log format used.
+         * @param dateFormat Date format (uses default), for details see DateFormat class.
+         * @param showTimeStamp True to show timestamp in the logging, defaults to true.
+         * @param showCategoryName True to show category name in the logging, defaults to true.
+         */
+        function CategoryLogFormat(dateFormat, showTimeStamp, showCategoryName) {
+            if (dateFormat === void 0) { dateFormat = new DateFormat(); }
+            if (showTimeStamp === void 0) { showTimeStamp = true; }
+            if (showCategoryName === void 0) { showCategoryName = true; }
+            this._dateFormat = dateFormat;
+            this._showTimeStamp = showTimeStamp;
+            this._showCategoryName = showCategoryName;
+        }
+        Object.defineProperty(CategoryLogFormat.prototype, "dateFormat", {
+            get: function () {
+                return this._dateFormat;
+            },
+            set: function (value) {
+                this._dateFormat = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogFormat.prototype, "showTimeStamp", {
+            get: function () {
+                return this._showTimeStamp;
+            },
+            set: function (value) {
+                this._showTimeStamp = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogFormat.prototype, "showCategoryName", {
+            get: function () {
+                return this._showCategoryName;
+            },
+            set: function (value) {
+                this._showCategoryName = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CategoryLogFormat.prototype.copy = function () {
+            return new CategoryLogFormat(this._dateFormat.copy(), this._showTimeStamp, this._showCategoryName);
+        };
+        return CategoryLogFormat;
+    }());
+    exports.CategoryLogFormat = CategoryLogFormat;
+
+    });
+
+    var LinkedNode = (function () {
+        function LinkedNode(value) {
+            this._previous = null;
+            this._next = null;
+            this._value = value;
+        }
+        Object.defineProperty(LinkedNode.prototype, "previous", {
+            get: function () {
+                return this._previous;
+            },
+            set: function (value) {
+                this._previous = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LinkedNode.prototype, "next", {
+            get: function () {
+                return this._next;
+            },
+            set: function (value) {
+                this._next = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LinkedNode.prototype, "value", {
+            get: function () {
+                return this._value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LinkedNode;
+    }());
+    /**
+     * Double linkedlist implementation.
+     */
+    var LinkedList = (function () {
+        function LinkedList() {
+            this.head = null;
+            this.size = 0;
+        }
+        LinkedList.prototype.addHead = function (value) {
+            if (!this.createHeadIfNeeded(value)) {
+                if (this.head != null) {
+                    var nextNode = this.head.next;
+                    var newHeadNode = new LinkedNode(value);
+                    if (nextNode != null) {
+                        nextNode.previous = newHeadNode;
+                        newHeadNode.next = nextNode;
+                    }
+                    this.head = newHeadNode;
+                }
+                else {
+                    throw new Error("This should never happen, list implementation broken");
+                }
+            }
+            this.size++;
+        };
+        LinkedList.prototype.addTail = function (value) {
+            if (!this.createHeadIfNeeded(value)) {
+                var oldTailNode = this.getTailNode();
+                if (oldTailNode != null) {
+                    var newTailNode = new LinkedNode(value);
+                    oldTailNode.next = newTailNode;
+                    newTailNode.previous = oldTailNode;
+                }
+                else {
+                    throw new Error("List implementation broken");
+                }
+            }
+            this.size++;
+        };
+        LinkedList.prototype.clear = function () {
+            this.head = null;
+            this.size = 0;
+        };
+        LinkedList.prototype.getHead = function () {
+            if (this.head != null) {
+                return this.head.value;
+            }
+            return null;
+        };
+        LinkedList.prototype.removeHead = function () {
+            if (this.head != null) {
+                var oldHead = this.head;
+                var value = oldHead.value;
+                this.head = oldHead.next;
+                this.size--;
+                return value;
+            }
+            return null;
+        };
+        LinkedList.prototype.getTail = function () {
+            var node = this.getTailNode();
+            if (node != null) {
+                return node.value;
+            }
+            return null;
+        };
+        LinkedList.prototype.removeTail = function () {
+            var node = this.getTailNode();
+            if (node != null) {
+                if (node === this.head) {
+                    this.head = null;
+                }
+                else {
+                    var previousNode = node.previous;
+                    if (previousNode != null) {
+                        previousNode.next = null;
+                    }
+                    else {
+                        throw new Error("List implementation is broken");
+                    }
+                }
+                this.size--;
+                return node.value;
+            }
+            return null;
+        };
+        LinkedList.prototype.getSize = function () {
+            return this.size;
+        };
+        LinkedList.prototype.filter = function (f) {
+            var recurse = function (fn, node, values) {
+                if (fn(node.value)) {
+                    values.push(node.value);
+                }
+                var nextNode = node.next;
+                if (nextNode != null) {
+                    recurse(fn, nextNode, values);
+                }
+            };
+            var result = [];
+            var currentNode = this.head;
+            if (currentNode != null) {
+                recurse(f, currentNode, result);
+            }
+            return result;
+        };
+        LinkedList.prototype.createHeadIfNeeded = function (value) {
+            if (this.head == null) {
+                this.head = new LinkedNode(value);
+                return true;
+            }
+            return false;
+        };
+        LinkedList.prototype.getTailNode = function () {
+            if (this.head == null) {
+                return null;
+            }
+            var node = this.head;
+            while (node.next != null) {
+                node = node.next;
+            }
+            return node;
+        };
+        return LinkedList;
+    }());
+    var LinkedList_1 = LinkedList;
+    /**
+     * Map implementation keyed by string (always).
+     */
+    var SimpleMap = (function () {
+        function SimpleMap() {
+            this.array = {};
+        }
+        SimpleMap.prototype.put = function (key, value) {
+            this.array[key] = value;
+        };
+        SimpleMap.prototype.get = function (key) {
+            return this.array[key];
+        };
+        SimpleMap.prototype.exists = function (key) {
+            var value = this.array[key];
+            return (typeof value !== "undefined");
+        };
+        SimpleMap.prototype.remove = function (key) {
+            var value = this.array[key];
+            if (typeof value !== "undefined") {
+                delete this.array[key];
+            }
+            return value;
+        };
+        SimpleMap.prototype.keys = function () {
+            var keys = [];
+            for (var key in this.array) {
+                // To prevent random stuff to appear
+                if (this.array.hasOwnProperty(key)) {
+                    keys.push(key);
+                }
+            }
+            return keys;
+        };
+        SimpleMap.prototype.values = function () {
+            var values = [];
+            for (var key in this.array) {
+                // To prevent random stuff to appear
+                if (this.array.hasOwnProperty(key)) {
+                    values.push(this.get(key));
+                }
+            }
+            return values;
+        };
+        SimpleMap.prototype.size = function () {
+            return this.keys().length;
+        };
+        SimpleMap.prototype.isEmpty = function () {
+            return this.size() === 0;
+        };
+        SimpleMap.prototype.clear = function () {
+            this.array = {};
+        };
+        SimpleMap.prototype.forEach = function (cbFunction) {
+            var count = 0;
+            for (var key in this.array) {
+                // To prevent random stuff to appear
+                if (this.array.hasOwnProperty(key)) {
+                    var value = this.array[key];
+                    cbFunction(key, value, count);
+                    count++;
+                }
+            }
+        };
+        SimpleMap.prototype.forEachValue = function (cbFunction) {
+            var count = 0;
+            for (var key in this.array) {
+                // To prevent random stuff to appear
+                if (this.array.hasOwnProperty(key)) {
+                    var value = this.array[key];
+                    cbFunction(value, count);
+                    count++;
+                }
+            }
+        };
+        return SimpleMap;
+    }());
+    var SimpleMap_1 = SimpleMap;
+    /**
+     * Tuple to hold two values.
+     */
+    var TuplePair = (function () {
+        function TuplePair(x, y) {
+            this._x = x;
+            this._y = y;
+        }
+        Object.defineProperty(TuplePair.prototype, "x", {
+            get: function () {
+                return this._x;
+            },
+            set: function (value) {
+                this._x = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(TuplePair.prototype, "y", {
+            get: function () {
+                return this._y;
+            },
+            set: function (value) {
+                this._y = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return TuplePair;
+    }());
+    var TuplePair_1 = TuplePair;
+    /**
+     * Utility class to build up a string.
+     */
+    var StringBuilder = (function () {
+        function StringBuilder() {
+            this.data = [];
+        }
+        StringBuilder.prototype.append = function (line) {
+            if (line === undefined || line == null) {
+                throw new Error("String must be set, cannot append null or undefined");
+            }
+            this.data.push(line);
+            return this;
+        };
+        StringBuilder.prototype.appendLine = function (line) {
+            this.data.push(line + "\n");
+            return this;
+        };
+        StringBuilder.prototype.isEmpty = function () {
+            return this.data.length === 0;
+        };
+        StringBuilder.prototype.clear = function () {
+            this.data = [];
+        };
+        StringBuilder.prototype.toString = function (separator) {
+            if (separator === void 0) { separator = ""; }
+            return this.data.join(separator);
+        };
+        return StringBuilder;
+    }());
+    var StringBuilder_1 = StringBuilder;
+
+
+    var DataStructures = /*#__PURE__*/Object.defineProperty({
+    	LinkedList: LinkedList_1,
+    	SimpleMap: SimpleMap_1,
+    	TuplePair: TuplePair_1,
+    	StringBuilder: StringBuilder_1
+    }, '__esModule', {value: true});
+
+    var stackframe = createCommonjsModule(function (module, exports) {
+    (function (root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory();
+        }
+    }(commonjsGlobal, function () {
+        function _isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function StackFrame(functionName, args, fileName, lineNumber, columnNumber, source) {
+            if (functionName !== undefined) {
+                this.setFunctionName(functionName);
+            }
+            if (args !== undefined) {
+                this.setArgs(args);
+            }
+            if (fileName !== undefined) {
+                this.setFileName(fileName);
+            }
+            if (lineNumber !== undefined) {
+                this.setLineNumber(lineNumber);
+            }
+            if (columnNumber !== undefined) {
+                this.setColumnNumber(columnNumber);
+            }
+            if (source !== undefined) {
+                this.setSource(source);
+            }
+        }
+
+        StackFrame.prototype = {
+            getFunctionName: function () {
+                return this.functionName;
+            },
+            setFunctionName: function (v) {
+                this.functionName = String(v);
+            },
+
+            getArgs: function () {
+                return this.args;
+            },
+            setArgs: function (v) {
+                if (Object.prototype.toString.call(v) !== '[object Array]') {
+                    throw new TypeError('Args must be an Array');
+                }
+                this.args = v;
+            },
+
+            // NOTE: Property name may be misleading as it includes the path,
+            // but it somewhat mirrors V8's JavaScriptStackTraceApi
+            // https://code.google.com/p/v8/wiki/JavaScriptStackTraceApi and Gecko's
+            // http://mxr.mozilla.org/mozilla-central/source/xpcom/base/nsIException.idl#14
+            getFileName: function () {
+                return this.fileName;
+            },
+            setFileName: function (v) {
+                this.fileName = String(v);
+            },
+
+            getLineNumber: function () {
+                return this.lineNumber;
+            },
+            setLineNumber: function (v) {
+                if (!_isNumber(v)) {
+                    throw new TypeError('Line Number must be a Number');
+                }
+                this.lineNumber = Number(v);
+            },
+
+            getColumnNumber: function () {
+                return this.columnNumber;
+            },
+            setColumnNumber: function (v) {
+                if (!_isNumber(v)) {
+                    throw new TypeError('Column Number must be a Number');
+                }
+                this.columnNumber = Number(v);
+            },
+
+            getSource: function () {
+                return this.source;
+            },
+            setSource: function (v) {
+                this.source = String(v);
+            },
+
+            toString: function() {
+                var functionName = this.getFunctionName() || '{anonymous}';
+                var args = '(' + (this.getArgs() || []).join(',') + ')';
+                var fileName = this.getFileName() ? ('@' + this.getFileName()) : '';
+                var lineNumber = _isNumber(this.getLineNumber()) ? (':' + this.getLineNumber()) : '';
+                var columnNumber = _isNumber(this.getColumnNumber()) ? (':' + this.getColumnNumber()) : '';
+                return functionName + args + fileName + lineNumber + columnNumber;
+            }
+        };
+
+        return StackFrame;
+    }));
+    });
+
+    var errorStackParser = createCommonjsModule(function (module, exports) {
+    (function(root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory(stackframe);
+        }
+    }(commonjsGlobal, function ErrorStackParser(StackFrame) {
+
+        var FIREFOX_SAFARI_STACK_REGEXP = /(^|@)\S+\:\d+/;
+        var CHROME_IE_STACK_REGEXP = /^\s*at .*(\S+\:\d+|\(native\))/m;
+        var SAFARI_NATIVE_CODE_REGEXP = /^(eval@)?(\[native code\])?$/;
+
+        function _map(array, fn, thisArg) {
+            if (typeof Array.prototype.map === 'function') {
+                return array.map(fn, thisArg);
+            } else {
+                var output = new Array(array.length);
+                for (var i = 0; i < array.length; i++) {
+                    output[i] = fn.call(thisArg, array[i]);
+                }
+                return output;
+            }
+        }
+
+        function _filter(array, fn, thisArg) {
+            if (typeof Array.prototype.filter === 'function') {
+                return array.filter(fn, thisArg);
+            } else {
+                var output = [];
+                for (var i = 0; i < array.length; i++) {
+                    if (fn.call(thisArg, array[i])) {
+                        output.push(array[i]);
+                    }
+                }
+                return output;
+            }
+        }
+
+        function _indexOf(array, target) {
+            if (typeof Array.prototype.indexOf === 'function') {
+                return array.indexOf(target);
+            } else {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] === target) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        }
+
+        return {
+            /**
+             * Given an Error object, extract the most information from it.
+             *
+             * @param {Error} error object
+             * @return {Array} of StackFrames
+             */
+            parse: function ErrorStackParser$$parse(error) {
+                if (typeof error.stacktrace !== 'undefined' || typeof error['opera#sourceloc'] !== 'undefined') {
+                    return this.parseOpera(error);
+                } else if (error.stack && error.stack.match(CHROME_IE_STACK_REGEXP)) {
+                    return this.parseV8OrIE(error);
+                } else if (error.stack) {
+                    return this.parseFFOrSafari(error);
+                } else {
+                    throw new Error('Cannot parse given Error object');
+                }
+            },
+
+            // Separate line and column numbers from a string of the form: (URI:Line:Column)
+            extractLocation: function ErrorStackParser$$extractLocation(urlLike) {
+                // Fail-fast but return locations like "(native)"
+                if (urlLike.indexOf(':') === -1) {
+                    return [urlLike];
+                }
+
+                var regExp = /(.+?)(?:\:(\d+))?(?:\:(\d+))?$/;
+                var parts = regExp.exec(urlLike.replace(/[\(\)]/g, ''));
+                return [parts[1], parts[2] || undefined, parts[3] || undefined];
+            },
+
+            parseV8OrIE: function ErrorStackParser$$parseV8OrIE(error) {
+                var filtered = _filter(error.stack.split('\n'), function(line) {
+                    return !!line.match(CHROME_IE_STACK_REGEXP);
+                }, this);
+
+                return _map(filtered, function(line) {
+                    if (line.indexOf('(eval ') > -1) {
+                        // Throw away eval information until we implement stacktrace.js/stackframe#8
+                        line = line.replace(/eval code/g, 'eval').replace(/(\(eval at [^\()]*)|(\)\,.*$)/g, '');
+                    }
+                    var tokens = line.replace(/^\s+/, '').replace(/\(eval code/g, '(').split(/\s+/).slice(1);
+                    var locationParts = this.extractLocation(tokens.pop());
+                    var functionName = tokens.join(' ') || undefined;
+                    var fileName = _indexOf(['eval', '<anonymous>'], locationParts[0]) > -1 ? undefined : locationParts[0];
+
+                    return new StackFrame(functionName, undefined, fileName, locationParts[1], locationParts[2], line);
+                }, this);
+            },
+
+            parseFFOrSafari: function ErrorStackParser$$parseFFOrSafari(error) {
+                var filtered = _filter(error.stack.split('\n'), function(line) {
+                    return !line.match(SAFARI_NATIVE_CODE_REGEXP);
+                }, this);
+
+                return _map(filtered, function(line) {
+                    // Throw away eval information until we implement stacktrace.js/stackframe#8
+                    if (line.indexOf(' > eval') > -1) {
+                        line = line.replace(/ line (\d+)(?: > eval line \d+)* > eval\:\d+\:\d+/g, ':$1');
+                    }
+
+                    if (line.indexOf('@') === -1 && line.indexOf(':') === -1) {
+                        // Safari eval frames only have function names and nothing else
+                        return new StackFrame(line);
+                    } else {
+                        var tokens = line.split('@');
+                        var locationParts = this.extractLocation(tokens.pop());
+                        var functionName = tokens.join('@') || undefined;
+                        return new StackFrame(functionName,
+                            undefined,
+                            locationParts[0],
+                            locationParts[1],
+                            locationParts[2],
+                            line);
+                    }
+                }, this);
+            },
+
+            parseOpera: function ErrorStackParser$$parseOpera(e) {
+                if (!e.stacktrace || (e.message.indexOf('\n') > -1 &&
+                    e.message.split('\n').length > e.stacktrace.split('\n').length)) {
+                    return this.parseOpera9(e);
+                } else if (!e.stack) {
+                    return this.parseOpera10(e);
+                } else {
+                    return this.parseOpera11(e);
+                }
+            },
+
+            parseOpera9: function ErrorStackParser$$parseOpera9(e) {
+                var lineRE = /Line (\d+).*script (?:in )?(\S+)/i;
+                var lines = e.message.split('\n');
+                var result = [];
+
+                for (var i = 2, len = lines.length; i < len; i += 2) {
+                    var match = lineRE.exec(lines[i]);
+                    if (match) {
+                        result.push(new StackFrame(undefined, undefined, match[2], match[1], undefined, lines[i]));
+                    }
+                }
+
+                return result;
+            },
+
+            parseOpera10: function ErrorStackParser$$parseOpera10(e) {
+                var lineRE = /Line (\d+).*script (?:in )?(\S+)(?:: In function (\S+))?$/i;
+                var lines = e.stacktrace.split('\n');
+                var result = [];
+
+                for (var i = 0, len = lines.length; i < len; i += 2) {
+                    var match = lineRE.exec(lines[i]);
+                    if (match) {
+                        result.push(
+                            new StackFrame(
+                                match[3] || undefined,
+                                undefined,
+                                match[2],
+                                match[1],
+                                undefined,
+                                lines[i]
+                            )
+                        );
+                    }
+                }
+
+                return result;
+            },
+
+            // Opera 10.65+ Error.stack very similar to FF/Safari
+            parseOpera11: function ErrorStackParser$$parseOpera11(error) {
+                var filtered = _filter(error.stack.split('\n'), function(line) {
+                    return !!line.match(FIREFOX_SAFARI_STACK_REGEXP) && !line.match(/^Error created at/);
+                }, this);
+
+                return _map(filtered, function(line) {
+                    var tokens = line.split('@');
+                    var locationParts = this.extractLocation(tokens.pop());
+                    var functionCall = (tokens.shift() || '');
+                    var functionName = functionCall
+                            .replace(/<anonymous function(: (\w+))?>/, '$2')
+                            .replace(/\([^\)]*\)/g, '') || undefined;
+                    var argsRaw;
+                    if (functionCall.match(/\(([^\)]*)\)/)) {
+                        argsRaw = functionCall.replace(/^[^\(]+\(([^\)]*)\)$/, '$1');
+                    }
+                    var args = (argsRaw === undefined || argsRaw === '[arguments not available]') ?
+                        undefined : argsRaw.split(',');
+                    return new StackFrame(
+                        functionName,
+                        args,
+                        locationParts[0],
+                        locationParts[1],
+                        locationParts[2],
+                        line);
+                }, this);
+            }
+        };
+    }));
+    });
+
+    var stackframe$1 = createCommonjsModule(function (module, exports) {
+    (function(root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory();
+        }
+    }(commonjsGlobal, function() {
+        function _isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function _capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.substring(1);
+        }
+
+        function _getter(p) {
+            return function() {
+                return this[p];
+            };
+        }
+
+        var booleanProps = ['isConstructor', 'isEval', 'isNative', 'isToplevel'];
+        var numericProps = ['columnNumber', 'lineNumber'];
+        var stringProps = ['fileName', 'functionName', 'source'];
+        var arrayProps = ['args'];
+        var objectProps = ['evalOrigin'];
+
+        var props = booleanProps.concat(numericProps, stringProps, arrayProps, objectProps);
+
+        function StackFrame(obj) {
+            if (!obj) return;
+            for (var i = 0; i < props.length; i++) {
+                if (obj[props[i]] !== undefined) {
+                    this['set' + _capitalize(props[i])](obj[props[i]]);
+                }
+            }
+        }
+
+        StackFrame.prototype = {
+            getArgs: function() {
+                return this.args;
+            },
+            setArgs: function(v) {
+                if (Object.prototype.toString.call(v) !== '[object Array]') {
+                    throw new TypeError('Args must be an Array');
+                }
+                this.args = v;
+            },
+
+            getEvalOrigin: function() {
+                return this.evalOrigin;
+            },
+            setEvalOrigin: function(v) {
+                if (v instanceof StackFrame) {
+                    this.evalOrigin = v;
+                } else if (v instanceof Object) {
+                    this.evalOrigin = new StackFrame(v);
+                } else {
+                    throw new TypeError('Eval Origin must be an Object or StackFrame');
+                }
+            },
+
+            toString: function() {
+                var fileName = this.getFileName() || '';
+                var lineNumber = this.getLineNumber() || '';
+                var columnNumber = this.getColumnNumber() || '';
+                var functionName = this.getFunctionName() || '';
+                if (this.getIsEval()) {
+                    if (fileName) {
+                        return '[eval] (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
+                    }
+                    return '[eval]:' + lineNumber + ':' + columnNumber;
+                }
+                if (functionName) {
+                    return functionName + ' (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
+                }
+                return fileName + ':' + lineNumber + ':' + columnNumber;
+            }
+        };
+
+        StackFrame.fromString = function StackFrame$$fromString(str) {
+            var argsStartIndex = str.indexOf('(');
+            var argsEndIndex = str.lastIndexOf(')');
+
+            var functionName = str.substring(0, argsStartIndex);
+            var args = str.substring(argsStartIndex + 1, argsEndIndex).split(',');
+            var locationString = str.substring(argsEndIndex + 1);
+
+            if (locationString.indexOf('@') === 0) {
+                var parts = /@(.+?)(?::(\d+))?(?::(\d+))?$/.exec(locationString, '');
+                var fileName = parts[1];
+                var lineNumber = parts[2];
+                var columnNumber = parts[3];
+            }
+
+            return new StackFrame({
+                functionName: functionName,
+                args: args || undefined,
+                fileName: fileName,
+                lineNumber: lineNumber || undefined,
+                columnNumber: columnNumber || undefined
+            });
+        };
+
+        for (var i = 0; i < booleanProps.length; i++) {
+            StackFrame.prototype['get' + _capitalize(booleanProps[i])] = _getter(booleanProps[i]);
+            StackFrame.prototype['set' + _capitalize(booleanProps[i])] = (function(p) {
+                return function(v) {
+                    this[p] = Boolean(v);
+                };
+            })(booleanProps[i]);
+        }
+
+        for (var j = 0; j < numericProps.length; j++) {
+            StackFrame.prototype['get' + _capitalize(numericProps[j])] = _getter(numericProps[j]);
+            StackFrame.prototype['set' + _capitalize(numericProps[j])] = (function(p) {
+                return function(v) {
+                    if (!_isNumber(v)) {
+                        throw new TypeError(p + ' must be a Number');
+                    }
+                    this[p] = Number(v);
+                };
+            })(numericProps[j]);
+        }
+
+        for (var k = 0; k < stringProps.length; k++) {
+            StackFrame.prototype['get' + _capitalize(stringProps[k])] = _getter(stringProps[k]);
+            StackFrame.prototype['set' + _capitalize(stringProps[k])] = (function(p) {
+                return function(v) {
+                    this[p] = String(v);
+                };
+            })(stringProps[k]);
+        }
+
+        return StackFrame;
+    }));
+    });
+
+    var stackGenerator = createCommonjsModule(function (module, exports) {
+    (function (root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory(stackframe$1);
+        }
+    }(commonjsGlobal, function (StackFrame) {
+        return {
+            backtrace: function StackGenerator$$backtrace(opts) {
+                var stack = [];
+                var maxStackSize = 10;
+
+                if (typeof opts === 'object' && typeof opts.maxStackSize === 'number') {
+                    maxStackSize = opts.maxStackSize;
+                }
+
+                var curr = arguments.callee;
+                while (curr && stack.length < maxStackSize) {
+                    // Allow V8 optimizations
+                    var args = new Array(curr['arguments'].length);
+                    for(var i = 0; i < args.length; ++i) {
+                        args[i] = curr['arguments'][i];
+                    }
+                    if (/function(?:\s+([\w$]+))+\s*\(/.test(curr.toString())) {
+                        stack.push(new StackFrame({functionName: RegExp.$1 || undefined, args: args}));
+                    } else {
+                        stack.push(new StackFrame({args: args}));
+                    }
+
+                    try {
+                        curr = curr.caller;
+                    } catch (e) {
+                        break;
+                    }
+                }
+                return stack;
+            }
+        };
+    }));
+    });
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+
+    var util = createCommonjsModule(function (module, exports) {
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+    /**
+     * This is a helper function for getting values from parameter/options
+     * objects.
+     *
+     * @param args The object we are extracting values from
+     * @param name The name of the property we are getting.
+     * @param defaultValue An optional value to return if the property is missing
+     * from the object. If this is not specified and the property is missing, an
+     * error will be thrown.
+     */
+    function getArg(aArgs, aName, aDefaultValue) {
+      if (aName in aArgs) {
+        return aArgs[aName];
+      } else if (arguments.length === 3) {
+        return aDefaultValue;
+      } else {
+        throw new Error('"' + aName + '" is a required argument.');
+      }
+    }
+    exports.getArg = getArg;
+
+    var urlRegexp = /^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.]*)(?::(\d+))?(\S*)$/;
+    var dataUrlRegexp = /^data:.+\,.+$/;
+
+    function urlParse(aUrl) {
+      var match = aUrl.match(urlRegexp);
+      if (!match) {
+        return null;
+      }
+      return {
+        scheme: match[1],
+        auth: match[2],
+        host: match[3],
+        port: match[4],
+        path: match[5]
+      };
+    }
+    exports.urlParse = urlParse;
+
+    function urlGenerate(aParsedUrl) {
+      var url = '';
+      if (aParsedUrl.scheme) {
+        url += aParsedUrl.scheme + ':';
+      }
+      url += '//';
+      if (aParsedUrl.auth) {
+        url += aParsedUrl.auth + '@';
+      }
+      if (aParsedUrl.host) {
+        url += aParsedUrl.host;
+      }
+      if (aParsedUrl.port) {
+        url += ":" + aParsedUrl.port;
+      }
+      if (aParsedUrl.path) {
+        url += aParsedUrl.path;
+      }
+      return url;
+    }
+    exports.urlGenerate = urlGenerate;
+
+    /**
+     * Normalizes a path, or the path portion of a URL:
+     *
+     * - Replaces consecutive slashes with one slash.
+     * - Removes unnecessary '.' parts.
+     * - Removes unnecessary '<dir>/..' parts.
+     *
+     * Based on code in the Node.js 'path' core module.
+     *
+     * @param aPath The path or url to normalize.
+     */
+    function normalize(aPath) {
+      var path = aPath;
+      var url = urlParse(aPath);
+      if (url) {
+        if (!url.path) {
+          return aPath;
+        }
+        path = url.path;
+      }
+      var isAbsolute = exports.isAbsolute(path);
+
+      var parts = path.split(/\/+/);
+      for (var part, up = 0, i = parts.length - 1; i >= 0; i--) {
+        part = parts[i];
+        if (part === '.') {
+          parts.splice(i, 1);
+        } else if (part === '..') {
+          up++;
+        } else if (up > 0) {
+          if (part === '') {
+            // The first part is blank if the path is absolute. Trying to go
+            // above the root is a no-op. Therefore we can remove all '..' parts
+            // directly after the root.
+            parts.splice(i + 1, up);
+            up = 0;
+          } else {
+            parts.splice(i, 2);
+            up--;
+          }
+        }
+      }
+      path = parts.join('/');
+
+      if (path === '') {
+        path = isAbsolute ? '/' : '.';
+      }
+
+      if (url) {
+        url.path = path;
+        return urlGenerate(url);
+      }
+      return path;
+    }
+    exports.normalize = normalize;
+
+    /**
+     * Joins two paths/URLs.
+     *
+     * @param aRoot The root path or URL.
+     * @param aPath The path or URL to be joined with the root.
+     *
+     * - If aPath is a URL or a data URI, aPath is returned, unless aPath is a
+     *   scheme-relative URL: Then the scheme of aRoot, if any, is prepended
+     *   first.
+     * - Otherwise aPath is a path. If aRoot is a URL, then its path portion
+     *   is updated with the result and aRoot is returned. Otherwise the result
+     *   is returned.
+     *   - If aPath is absolute, the result is aPath.
+     *   - Otherwise the two paths are joined with a slash.
+     * - Joining for example 'http://' and 'www.example.com' is also supported.
+     */
+    function join(aRoot, aPath) {
+      if (aRoot === "") {
+        aRoot = ".";
+      }
+      if (aPath === "") {
+        aPath = ".";
+      }
+      var aPathUrl = urlParse(aPath);
+      var aRootUrl = urlParse(aRoot);
+      if (aRootUrl) {
+        aRoot = aRootUrl.path || '/';
+      }
+
+      // `join(foo, '//www.example.org')`
+      if (aPathUrl && !aPathUrl.scheme) {
+        if (aRootUrl) {
+          aPathUrl.scheme = aRootUrl.scheme;
+        }
+        return urlGenerate(aPathUrl);
+      }
+
+      if (aPathUrl || aPath.match(dataUrlRegexp)) {
+        return aPath;
+      }
+
+      // `join('http://', 'www.example.com')`
+      if (aRootUrl && !aRootUrl.host && !aRootUrl.path) {
+        aRootUrl.host = aPath;
+        return urlGenerate(aRootUrl);
+      }
+
+      var joined = aPath.charAt(0) === '/'
+        ? aPath
+        : normalize(aRoot.replace(/\/+$/, '') + '/' + aPath);
+
+      if (aRootUrl) {
+        aRootUrl.path = joined;
+        return urlGenerate(aRootUrl);
+      }
+      return joined;
+    }
+    exports.join = join;
+
+    exports.isAbsolute = function (aPath) {
+      return aPath.charAt(0) === '/' || !!aPath.match(urlRegexp);
+    };
+
+    /**
+     * Make a path relative to a URL or another path.
+     *
+     * @param aRoot The root path or URL.
+     * @param aPath The path or URL to be made relative to aRoot.
+     */
+    function relative(aRoot, aPath) {
+      if (aRoot === "") {
+        aRoot = ".";
+      }
+
+      aRoot = aRoot.replace(/\/$/, '');
+
+      // It is possible for the path to be above the root. In this case, simply
+      // checking whether the root is a prefix of the path won't work. Instead, we
+      // need to remove components from the root one by one, until either we find
+      // a prefix that fits, or we run out of components to remove.
+      var level = 0;
+      while (aPath.indexOf(aRoot + '/') !== 0) {
+        var index = aRoot.lastIndexOf("/");
+        if (index < 0) {
+          return aPath;
+        }
+
+        // If the only part of the root that is left is the scheme (i.e. http://,
+        // file:///, etc.), one or more slashes (/), or simply nothing at all, we
+        // have exhausted all components, so the path is not relative to the root.
+        aRoot = aRoot.slice(0, index);
+        if (aRoot.match(/^([^\/]+:\/)?\/*$/)) {
+          return aPath;
+        }
+
+        ++level;
+      }
+
+      // Make sure we add a "../" for each component we removed from the root.
+      return Array(level + 1).join("../") + aPath.substr(aRoot.length + 1);
+    }
+    exports.relative = relative;
+
+    var supportsNullProto = (function () {
+      var obj = Object.create(null);
+      return !('__proto__' in obj);
+    }());
+
+    function identity (s) {
+      return s;
+    }
+
+    /**
+     * Because behavior goes wacky when you set `__proto__` on objects, we
+     * have to prefix all the strings in our set with an arbitrary character.
+     *
+     * See https://github.com/mozilla/source-map/pull/31 and
+     * https://github.com/mozilla/source-map/issues/30
+     *
+     * @param String aStr
+     */
+    function toSetString(aStr) {
+      if (isProtoString(aStr)) {
+        return '$' + aStr;
+      }
+
+      return aStr;
+    }
+    exports.toSetString = supportsNullProto ? identity : toSetString;
+
+    function fromSetString(aStr) {
+      if (isProtoString(aStr)) {
+        return aStr.slice(1);
+      }
+
+      return aStr;
+    }
+    exports.fromSetString = supportsNullProto ? identity : fromSetString;
+
+    function isProtoString(s) {
+      if (!s) {
+        return false;
+      }
+
+      var length = s.length;
+
+      if (length < 9 /* "__proto__".length */) {
+        return false;
+      }
+
+      if (s.charCodeAt(length - 1) !== 95  /* '_' */ ||
+          s.charCodeAt(length - 2) !== 95  /* '_' */ ||
+          s.charCodeAt(length - 3) !== 111 /* 'o' */ ||
+          s.charCodeAt(length - 4) !== 116 /* 't' */ ||
+          s.charCodeAt(length - 5) !== 111 /* 'o' */ ||
+          s.charCodeAt(length - 6) !== 114 /* 'r' */ ||
+          s.charCodeAt(length - 7) !== 112 /* 'p' */ ||
+          s.charCodeAt(length - 8) !== 95  /* '_' */ ||
+          s.charCodeAt(length - 9) !== 95  /* '_' */) {
+        return false;
+      }
+
+      for (var i = length - 10; i >= 0; i--) {
+        if (s.charCodeAt(i) !== 36 /* '$' */) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    /**
+     * Comparator between two mappings where the original positions are compared.
+     *
+     * Optionally pass in `true` as `onlyCompareGenerated` to consider two
+     * mappings with the same original source/line/column, but different generated
+     * line and column the same. Useful when searching for a mapping with a
+     * stubbed out mapping.
+     */
+    function compareByOriginalPositions(mappingA, mappingB, onlyCompareOriginal) {
+      var cmp = mappingA.source - mappingB.source;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalLine - mappingB.originalLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalColumn - mappingB.originalColumn;
+      if (cmp !== 0 || onlyCompareOriginal) {
+        return cmp;
+      }
+
+      cmp = mappingA.generatedColumn - mappingB.generatedColumn;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.generatedLine - mappingB.generatedLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      return mappingA.name - mappingB.name;
+    }
+    exports.compareByOriginalPositions = compareByOriginalPositions;
+
+    /**
+     * Comparator between two mappings with deflated source and name indices where
+     * the generated positions are compared.
+     *
+     * Optionally pass in `true` as `onlyCompareGenerated` to consider two
+     * mappings with the same generated line and column, but different
+     * source/name/original line and column the same. Useful when searching for a
+     * mapping with a stubbed out mapping.
+     */
+    function compareByGeneratedPositionsDeflated(mappingA, mappingB, onlyCompareGenerated) {
+      var cmp = mappingA.generatedLine - mappingB.generatedLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.generatedColumn - mappingB.generatedColumn;
+      if (cmp !== 0 || onlyCompareGenerated) {
+        return cmp;
+      }
+
+      cmp = mappingA.source - mappingB.source;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalLine - mappingB.originalLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalColumn - mappingB.originalColumn;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      return mappingA.name - mappingB.name;
+    }
+    exports.compareByGeneratedPositionsDeflated = compareByGeneratedPositionsDeflated;
+
+    function strcmp(aStr1, aStr2) {
+      if (aStr1 === aStr2) {
+        return 0;
+      }
+
+      if (aStr1 > aStr2) {
+        return 1;
+      }
+
+      return -1;
+    }
+
+    /**
+     * Comparator between two mappings with inflated source and name strings where
+     * the generated positions are compared.
+     */
+    function compareByGeneratedPositionsInflated(mappingA, mappingB) {
+      var cmp = mappingA.generatedLine - mappingB.generatedLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.generatedColumn - mappingB.generatedColumn;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = strcmp(mappingA.source, mappingB.source);
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalLine - mappingB.originalLine;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      cmp = mappingA.originalColumn - mappingB.originalColumn;
+      if (cmp !== 0) {
+        return cmp;
+      }
+
+      return strcmp(mappingA.name, mappingB.name);
+    }
+    exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
+    });
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+
+    var binarySearch = createCommonjsModule(function (module, exports) {
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+    exports.GREATEST_LOWER_BOUND = 1;
+    exports.LEAST_UPPER_BOUND = 2;
+
+    /**
+     * Recursive implementation of binary search.
+     *
+     * @param aLow Indices here and lower do not contain the needle.
+     * @param aHigh Indices here and higher do not contain the needle.
+     * @param aNeedle The element being searched for.
+     * @param aHaystack The non-empty array being searched.
+     * @param aCompare Function which takes two elements and returns -1, 0, or 1.
+     * @param aBias Either 'binarySearch.GREATEST_LOWER_BOUND' or
+     *     'binarySearch.LEAST_UPPER_BOUND'. Specifies whether to return the
+     *     closest element that is smaller than or greater than the one we are
+     *     searching for, respectively, if the exact element cannot be found.
+     */
+    function recursiveSearch(aLow, aHigh, aNeedle, aHaystack, aCompare, aBias) {
+      // This function terminates when one of the following is true:
+      //
+      //   1. We find the exact element we are looking for.
+      //
+      //   2. We did not find the exact element, but we can return the index of
+      //      the next-closest element.
+      //
+      //   3. We did not find the exact element, and there is no next-closest
+      //      element than the one we are searching for, so we return -1.
+      var mid = Math.floor((aHigh - aLow) / 2) + aLow;
+      var cmp = aCompare(aNeedle, aHaystack[mid], true);
+      if (cmp === 0) {
+        // Found the element we are looking for.
+        return mid;
+      }
+      else if (cmp > 0) {
+        // Our needle is greater than aHaystack[mid].
+        if (aHigh - mid > 1) {
+          // The element is in the upper half.
+          return recursiveSearch(mid, aHigh, aNeedle, aHaystack, aCompare, aBias);
+        }
+
+        // The exact needle element was not found in this haystack. Determine if
+        // we are in termination case (3) or (2) and return the appropriate thing.
+        if (aBias == exports.LEAST_UPPER_BOUND) {
+          return aHigh < aHaystack.length ? aHigh : -1;
+        } else {
+          return mid;
+        }
+      }
+      else {
+        // Our needle is less than aHaystack[mid].
+        if (mid - aLow > 1) {
+          // The element is in the lower half.
+          return recursiveSearch(aLow, mid, aNeedle, aHaystack, aCompare, aBias);
+        }
+
+        // we are in termination case (3) or (2) and return the appropriate thing.
+        if (aBias == exports.LEAST_UPPER_BOUND) {
+          return mid;
+        } else {
+          return aLow < 0 ? -1 : aLow;
+        }
+      }
+    }
+
+    /**
+     * This is an implementation of binary search which will always try and return
+     * the index of the closest element if there is no exact hit. This is because
+     * mappings between original and generated line/col pairs are single points,
+     * and there is an implicit region between each of them, so a miss just means
+     * that you aren't on the very start of a region.
+     *
+     * @param aNeedle The element you are looking for.
+     * @param aHaystack The array that is being searched.
+     * @param aCompare A function which takes the needle and an element in the
+     *     array and returns -1, 0, or 1 depending on whether the needle is less
+     *     than, equal to, or greater than the element, respectively.
+     * @param aBias Either 'binarySearch.GREATEST_LOWER_BOUND' or
+     *     'binarySearch.LEAST_UPPER_BOUND'. Specifies whether to return the
+     *     closest element that is smaller than or greater than the one we are
+     *     searching for, respectively, if the exact element cannot be found.
+     *     Defaults to 'binarySearch.GREATEST_LOWER_BOUND'.
+     */
+    exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
+      if (aHaystack.length === 0) {
+        return -1;
+      }
+
+      var index = recursiveSearch(-1, aHaystack.length, aNeedle, aHaystack,
+                                  aCompare, aBias || exports.GREATEST_LOWER_BOUND);
+      if (index < 0) {
+        return -1;
+      }
+
+      // We have found either the exact element, or the next-closest element than
+      // the one we are searching for. However, there may be more than one such
+      // element. Make sure we always return the smallest of these.
+      while (index - 1 >= 0) {
+        if (aCompare(aHaystack[index], aHaystack[index - 1], true) !== 0) {
+          break;
+        }
+        --index;
+      }
+
+      return index;
+    };
+    });
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+
+    var has = Object.prototype.hasOwnProperty;
+
+    /**
+     * A data structure which is a combination of an array and a set. Adding a new
+     * member is O(1), testing for membership is O(1), and finding the index of an
+     * element is O(1). Removing elements from the set is not supported. Only
+     * strings are supported for membership.
+     */
+    function ArraySet() {
+      this._array = [];
+      this._set = Object.create(null);
+    }
+
+    /**
+     * Static method for creating ArraySet instances from an existing array.
+     */
+    ArraySet.fromArray = function ArraySet_fromArray(aArray, aAllowDuplicates) {
+      var set = new ArraySet();
+      for (var i = 0, len = aArray.length; i < len; i++) {
+        set.add(aArray[i], aAllowDuplicates);
+      }
+      return set;
+    };
+
+    /**
+     * Return how many unique items are in this ArraySet. If duplicates have been
+     * added, than those do not count towards the size.
+     *
+     * @returns Number
+     */
+    ArraySet.prototype.size = function ArraySet_size() {
+      return Object.getOwnPropertyNames(this._set).length;
+    };
+
+    /**
+     * Add the given string to this set.
+     *
+     * @param String aStr
+     */
+    ArraySet.prototype.add = function ArraySet_add(aStr, aAllowDuplicates) {
+      var sStr = util.toSetString(aStr);
+      var isDuplicate = has.call(this._set, sStr);
+      var idx = this._array.length;
+      if (!isDuplicate || aAllowDuplicates) {
+        this._array.push(aStr);
+      }
+      if (!isDuplicate) {
+        this._set[sStr] = idx;
+      }
+    };
+
+    /**
+     * Is the given string a member of this set?
+     *
+     * @param String aStr
+     */
+    ArraySet.prototype.has = function ArraySet_has(aStr) {
+      var sStr = util.toSetString(aStr);
+      return has.call(this._set, sStr);
+    };
+
+    /**
+     * What is the index of the given string in the array?
+     *
+     * @param String aStr
+     */
+    ArraySet.prototype.indexOf = function ArraySet_indexOf(aStr) {
+      var sStr = util.toSetString(aStr);
+      if (has.call(this._set, sStr)) {
+        return this._set[sStr];
+      }
+      throw new Error('"' + aStr + '" is not in the set.');
+    };
+
+    /**
+     * What is the element at the given index?
+     *
+     * @param Number aIdx
+     */
+    ArraySet.prototype.at = function ArraySet_at(aIdx) {
+      if (aIdx >= 0 && aIdx < this._array.length) {
+        return this._array[aIdx];
+      }
+      throw new Error('No element indexed by ' + aIdx);
+    };
+
+    /**
+     * Returns the array representation of this set (which has the proper indices
+     * indicated by indexOf). Note that this is a copy of the internal array used
+     * for storing the members so that no one can mess with internal state.
+     */
+    ArraySet.prototype.toArray = function ArraySet_toArray() {
+      return this._array.slice();
+    };
+
+    var ArraySet_1 = ArraySet;
+
+    var arraySet = {
+    	ArraySet: ArraySet_1
+    };
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+    var intToCharMap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
+
+    /**
+     * Encode an integer in the range of 0 to 63 to a single base 64 digit.
+     */
+    var encode = function (number) {
+      if (0 <= number && number < intToCharMap.length) {
+        return intToCharMap[number];
+      }
+      throw new TypeError("Must be between 0 and 63: " + number);
+    };
+
+    /**
+     * Decode a single base 64 character code digit to an integer. Returns -1 on
+     * failure.
+     */
+    var decode = function (charCode) {
+      var bigA = 65;     // 'A'
+      var bigZ = 90;     // 'Z'
+
+      var littleA = 97;  // 'a'
+      var littleZ = 122; // 'z'
+
+      var zero = 48;     // '0'
+      var nine = 57;     // '9'
+
+      var plus = 43;     // '+'
+      var slash = 47;    // '/'
+
+      var littleOffset = 26;
+      var numberOffset = 52;
+
+      // 0 - 25: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      if (bigA <= charCode && charCode <= bigZ) {
+        return (charCode - bigA);
+      }
+
+      // 26 - 51: abcdefghijklmnopqrstuvwxyz
+      if (littleA <= charCode && charCode <= littleZ) {
+        return (charCode - littleA + littleOffset);
+      }
+
+      // 52 - 61: 0123456789
+      if (zero <= charCode && charCode <= nine) {
+        return (charCode - zero + numberOffset);
+      }
+
+      // 62: +
+      if (charCode == plus) {
+        return 62;
+      }
+
+      // 63: /
+      if (charCode == slash) {
+        return 63;
+      }
+
+      // Invalid base64 digit.
+      return -1;
+    };
+
+    var base64 = {
+    	encode: encode,
+    	decode: decode
+    };
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     *
+     * Based on the Base 64 VLQ implementation in Closure Compiler:
+     * https://code.google.com/p/closure-compiler/source/browse/trunk/src/com/google/debugging/sourcemap/Base64VLQ.java
+     *
+     * Copyright 2011 The Closure Compiler Authors. All rights reserved.
+     * Redistribution and use in source and binary forms, with or without
+     * modification, are permitted provided that the following conditions are
+     * met:
+     *
+     *  * Redistributions of source code must retain the above copyright
+     *    notice, this list of conditions and the following disclaimer.
+     *  * Redistributions in binary form must reproduce the above
+     *    copyright notice, this list of conditions and the following
+     *    disclaimer in the documentation and/or other materials provided
+     *    with the distribution.
+     *  * Neither the name of Google Inc. nor the names of its
+     *    contributors may be used to endorse or promote products derived
+     *    from this software without specific prior written permission.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+     * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+     * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+     * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+     * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+     * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+     * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+     * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+     * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+     * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+     */
+
+
+
+    // A single base 64 digit can contain 6 bits of data. For the base 64 variable
+    // length quantities we use in the source map spec, the first bit is the sign,
+    // the next four bits are the actual value, and the 6th bit is the
+    // continuation bit. The continuation bit tells us whether there are more
+    // digits in this value following this digit.
+    //
+    //   Continuation
+    //   |    Sign
+    //   |    |
+    //   V    V
+    //   101011
+
+    var VLQ_BASE_SHIFT = 5;
+
+    // binary: 100000
+    var VLQ_BASE = 1 << VLQ_BASE_SHIFT;
+
+    // binary: 011111
+    var VLQ_BASE_MASK = VLQ_BASE - 1;
+
+    // binary: 100000
+    var VLQ_CONTINUATION_BIT = VLQ_BASE;
+
+    /**
+     * Converts from a two-complement value to a value where the sign bit is
+     * placed in the least significant bit.  For example, as decimals:
+     *   1 becomes 2 (10 binary), -1 becomes 3 (11 binary)
+     *   2 becomes 4 (100 binary), -2 becomes 5 (101 binary)
+     */
+    function toVLQSigned(aValue) {
+      return aValue < 0
+        ? ((-aValue) << 1) + 1
+        : (aValue << 1) + 0;
+    }
+
+    /**
+     * Converts to a two-complement value from a value where the sign bit is
+     * placed in the least significant bit.  For example, as decimals:
+     *   2 (10 binary) becomes 1, 3 (11 binary) becomes -1
+     *   4 (100 binary) becomes 2, 5 (101 binary) becomes -2
+     */
+    function fromVLQSigned(aValue) {
+      var isNegative = (aValue & 1) === 1;
+      var shifted = aValue >> 1;
+      return isNegative
+        ? -shifted
+        : shifted;
+    }
+
+    /**
+     * Returns the base 64 VLQ encoded value.
+     */
+    var encode$1 = function base64VLQ_encode(aValue) {
+      var encoded = "";
+      var digit;
+
+      var vlq = toVLQSigned(aValue);
+
+      do {
+        digit = vlq & VLQ_BASE_MASK;
+        vlq >>>= VLQ_BASE_SHIFT;
+        if (vlq > 0) {
+          // There are still more digits in this value, so we must make sure the
+          // continuation bit is marked.
+          digit |= VLQ_CONTINUATION_BIT;
+        }
+        encoded += base64.encode(digit);
+      } while (vlq > 0);
+
+      return encoded;
+    };
+
+    /**
+     * Decodes the next base 64 VLQ value from the given string and returns the
+     * value and the rest of the string via the out parameter.
+     */
+    var decode$1 = function base64VLQ_decode(aStr, aIndex, aOutParam) {
+      var strLen = aStr.length;
+      var result = 0;
+      var shift = 0;
+      var continuation, digit;
+
+      do {
+        if (aIndex >= strLen) {
+          throw new Error("Expected more digits in base 64 VLQ value.");
+        }
+
+        digit = base64.decode(aStr.charCodeAt(aIndex++));
+        if (digit === -1) {
+          throw new Error("Invalid base64 digit: " + aStr.charAt(aIndex - 1));
+        }
+
+        continuation = !!(digit & VLQ_CONTINUATION_BIT);
+        digit &= VLQ_BASE_MASK;
+        result = result + (digit << shift);
+        shift += VLQ_BASE_SHIFT;
+      } while (continuation);
+
+      aOutParam.value = fromVLQSigned(result);
+      aOutParam.rest = aIndex;
+    };
+
+    var base64Vlq = {
+    	encode: encode$1,
+    	decode: decode$1
+    };
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+    // It turns out that some (most?) JavaScript engines don't self-host
+    // `Array.prototype.sort`. This makes sense because C++ will likely remain
+    // faster than JS when doing raw CPU-intensive sorting. However, when using a
+    // custom comparator function, calling back and forth between the VM's C++ and
+    // JIT'd JS is rather slow *and* loses JIT type information, resulting in
+    // worse generated code for the comparator function than would be optimal. In
+    // fact, when sorting with a comparator, these costs outweigh the benefits of
+    // sorting in C++. By using our own JS-implemented Quick Sort (below), we get
+    // a ~3500ms mean speed-up in `bench/bench.html`.
+
+    /**
+     * Swap the elements indexed by `x` and `y` in the array `ary`.
+     *
+     * @param {Array} ary
+     *        The array.
+     * @param {Number} x
+     *        The index of the first item.
+     * @param {Number} y
+     *        The index of the second item.
+     */
+    function swap(ary, x, y) {
+      var temp = ary[x];
+      ary[x] = ary[y];
+      ary[y] = temp;
+    }
+
+    /**
+     * Returns a random integer within the range `low .. high` inclusive.
+     *
+     * @param {Number} low
+     *        The lower bound on the range.
+     * @param {Number} high
+     *        The upper bound on the range.
+     */
+    function randomIntInRange(low, high) {
+      return Math.round(low + (Math.random() * (high - low)));
+    }
+
+    /**
+     * The Quick Sort algorithm.
+     *
+     * @param {Array} ary
+     *        An array to sort.
+     * @param {function} comparator
+     *        Function to use to compare two items.
+     * @param {Number} p
+     *        Start index of the array
+     * @param {Number} r
+     *        End index of the array
+     */
+    function doQuickSort(ary, comparator, p, r) {
+      // If our lower bound is less than our upper bound, we (1) partition the
+      // array into two pieces and (2) recurse on each half. If it is not, this is
+      // the empty array and our base case.
+
+      if (p < r) {
+        // (1) Partitioning.
+        //
+        // The partitioning chooses a pivot between `p` and `r` and moves all
+        // elements that are less than or equal to the pivot to the before it, and
+        // all the elements that are greater than it after it. The effect is that
+        // once partition is done, the pivot is in the exact place it will be when
+        // the array is put in sorted order, and it will not need to be moved
+        // again. This runs in O(n) time.
+
+        // Always choose a random pivot so that an input array which is reverse
+        // sorted does not cause O(n^2) running time.
+        var pivotIndex = randomIntInRange(p, r);
+        var i = p - 1;
+
+        swap(ary, pivotIndex, r);
+        var pivot = ary[r];
+
+        // Immediately after `j` is incremented in this loop, the following hold
+        // true:
+        //
+        //   * Every element in `ary[p .. i]` is less than or equal to the pivot.
+        //
+        //   * Every element in `ary[i+1 .. j-1]` is greater than the pivot.
+        for (var j = p; j < r; j++) {
+          if (comparator(ary[j], pivot) <= 0) {
+            i += 1;
+            swap(ary, i, j);
+          }
+        }
+
+        swap(ary, i + 1, j);
+        var q = i + 1;
+
+        // (2) Recurse on each half.
+
+        doQuickSort(ary, comparator, p, q - 1);
+        doQuickSort(ary, comparator, q + 1, r);
+      }
+    }
+
+    /**
+     * Sort the given array in-place with the given comparator function.
+     *
+     * @param {Array} ary
+     *        An array to sort.
+     * @param {function} comparator
+     *        Function to use to compare two items.
+     */
+    var quickSort_1 = function (ary, comparator) {
+      doQuickSort(ary, comparator, 0, ary.length - 1);
+    };
+
+    var quickSort = {
+    	quickSort: quickSort_1
+    };
+
+    /* -*- Mode: js; js-indent-level: 2; -*- */
+
+    /*
+     * Copyright 2011 Mozilla Foundation and contributors
+     * Licensed under the New BSD license. See LICENSE or:
+     * http://opensource.org/licenses/BSD-3-Clause
+     */
+
+
+
+    var ArraySet$1 = arraySet.ArraySet;
+
+    var quickSort$1 = quickSort.quickSort;
+
+    function SourceMapConsumer(aSourceMap) {
+      var sourceMap = aSourceMap;
+      if (typeof aSourceMap === 'string') {
+        sourceMap = JSON.parse(aSourceMap.replace(/^\)\]\}'/, ''));
+      }
+
+      return sourceMap.sections != null
+        ? new IndexedSourceMapConsumer(sourceMap)
+        : new BasicSourceMapConsumer(sourceMap);
+    }
+
+    SourceMapConsumer.fromSourceMap = function(aSourceMap) {
+      return BasicSourceMapConsumer.fromSourceMap(aSourceMap);
+    };
+
+    /**
+     * The version of the source mapping spec that we are consuming.
+     */
+    SourceMapConsumer.prototype._version = 3;
+
+    // `__generatedMappings` and `__originalMappings` are arrays that hold the
+    // parsed mapping coordinates from the source map's "mappings" attribute. They
+    // are lazily instantiated, accessed via the `_generatedMappings` and
+    // `_originalMappings` getters respectively, and we only parse the mappings
+    // and create these arrays once queried for a source location. We jump through
+    // these hoops because there can be many thousands of mappings, and parsing
+    // them is expensive, so we only want to do it if we must.
+    //
+    // Each object in the arrays is of the form:
+    //
+    //     {
+    //       generatedLine: The line number in the generated code,
+    //       generatedColumn: The column number in the generated code,
+    //       source: The path to the original source file that generated this
+    //               chunk of code,
+    //       originalLine: The line number in the original source that
+    //                     corresponds to this chunk of generated code,
+    //       originalColumn: The column number in the original source that
+    //                       corresponds to this chunk of generated code,
+    //       name: The name of the original symbol which generated this chunk of
+    //             code.
+    //     }
+    //
+    // All properties except for `generatedLine` and `generatedColumn` can be
+    // `null`.
+    //
+    // `_generatedMappings` is ordered by the generated positions.
+    //
+    // `_originalMappings` is ordered by the original positions.
+
+    SourceMapConsumer.prototype.__generatedMappings = null;
+    Object.defineProperty(SourceMapConsumer.prototype, '_generatedMappings', {
+      get: function () {
+        if (!this.__generatedMappings) {
+          this._parseMappings(this._mappings, this.sourceRoot);
+        }
+
+        return this.__generatedMappings;
+      }
+    });
+
+    SourceMapConsumer.prototype.__originalMappings = null;
+    Object.defineProperty(SourceMapConsumer.prototype, '_originalMappings', {
+      get: function () {
+        if (!this.__originalMappings) {
+          this._parseMappings(this._mappings, this.sourceRoot);
+        }
+
+        return this.__originalMappings;
+      }
+    });
+
+    SourceMapConsumer.prototype._charIsMappingSeparator =
+      function SourceMapConsumer_charIsMappingSeparator(aStr, index) {
+        var c = aStr.charAt(index);
+        return c === ";" || c === ",";
+      };
+
+    /**
+     * Parse the mappings in a string in to a data structure which we can easily
+     * query (the ordered arrays in the `this.__generatedMappings` and
+     * `this.__originalMappings` properties).
+     */
+    SourceMapConsumer.prototype._parseMappings =
+      function SourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+        throw new Error("Subclasses must implement _parseMappings");
+      };
+
+    SourceMapConsumer.GENERATED_ORDER = 1;
+    SourceMapConsumer.ORIGINAL_ORDER = 2;
+
+    SourceMapConsumer.GREATEST_LOWER_BOUND = 1;
+    SourceMapConsumer.LEAST_UPPER_BOUND = 2;
+
+    /**
+     * Iterate over each mapping between an original source/line/column and a
+     * generated line/column in this source map.
+     *
+     * @param Function aCallback
+     *        The function that is called with each mapping.
+     * @param Object aContext
+     *        Optional. If specified, this object will be the value of `this` every
+     *        time that `aCallback` is called.
+     * @param aOrder
+     *        Either `SourceMapConsumer.GENERATED_ORDER` or
+     *        `SourceMapConsumer.ORIGINAL_ORDER`. Specifies whether you want to
+     *        iterate over the mappings sorted by the generated file's line/column
+     *        order or the original's source/line/column order, respectively. Defaults to
+     *        `SourceMapConsumer.GENERATED_ORDER`.
+     */
+    SourceMapConsumer.prototype.eachMapping =
+      function SourceMapConsumer_eachMapping(aCallback, aContext, aOrder) {
+        var context = aContext || null;
+        var order = aOrder || SourceMapConsumer.GENERATED_ORDER;
+
+        var mappings;
+        switch (order) {
+        case SourceMapConsumer.GENERATED_ORDER:
+          mappings = this._generatedMappings;
+          break;
+        case SourceMapConsumer.ORIGINAL_ORDER:
+          mappings = this._originalMappings;
+          break;
+        default:
+          throw new Error("Unknown order of iteration.");
+        }
+
+        var sourceRoot = this.sourceRoot;
+        mappings.map(function (mapping) {
+          var source = mapping.source === null ? null : this._sources.at(mapping.source);
+          if (source != null && sourceRoot != null) {
+            source = util.join(sourceRoot, source);
+          }
+          return {
+            source: source,
+            generatedLine: mapping.generatedLine,
+            generatedColumn: mapping.generatedColumn,
+            originalLine: mapping.originalLine,
+            originalColumn: mapping.originalColumn,
+            name: mapping.name === null ? null : this._names.at(mapping.name)
+          };
+        }, this).forEach(aCallback, context);
+      };
+
+    /**
+     * Returns all generated line and column information for the original source,
+     * line, and column provided. If no column is provided, returns all mappings
+     * corresponding to a either the line we are searching for or the next
+     * closest line that has any mappings. Otherwise, returns all mappings
+     * corresponding to the given line and either the column we are searching for
+     * or the next closest column that has any offsets.
+     *
+     * The only argument is an object with the following properties:
+     *
+     *   - source: The filename of the original source.
+     *   - line: The line number in the original source.
+     *   - column: Optional. the column number in the original source.
+     *
+     * and an array of objects is returned, each with the following properties:
+     *
+     *   - line: The line number in the generated source, or null.
+     *   - column: The column number in the generated source, or null.
+     */
+    SourceMapConsumer.prototype.allGeneratedPositionsFor =
+      function SourceMapConsumer_allGeneratedPositionsFor(aArgs) {
+        var line = util.getArg(aArgs, 'line');
+
+        // When there is no exact match, BasicSourceMapConsumer.prototype._findMapping
+        // returns the index of the closest mapping less than the needle. By
+        // setting needle.originalColumn to 0, we thus find the last mapping for
+        // the given line, provided such a mapping exists.
+        var needle = {
+          source: util.getArg(aArgs, 'source'),
+          originalLine: line,
+          originalColumn: util.getArg(aArgs, 'column', 0)
+        };
+
+        if (this.sourceRoot != null) {
+          needle.source = util.relative(this.sourceRoot, needle.source);
+        }
+        if (!this._sources.has(needle.source)) {
+          return [];
+        }
+        needle.source = this._sources.indexOf(needle.source);
+
+        var mappings = [];
+
+        var index = this._findMapping(needle,
+                                      this._originalMappings,
+                                      "originalLine",
+                                      "originalColumn",
+                                      util.compareByOriginalPositions,
+                                      binarySearch.LEAST_UPPER_BOUND);
+        if (index >= 0) {
+          var mapping = this._originalMappings[index];
+
+          if (aArgs.column === undefined) {
+            var originalLine = mapping.originalLine;
+
+            // Iterate until either we run out of mappings, or we run into
+            // a mapping for a different line than the one we found. Since
+            // mappings are sorted, this is guaranteed to find all mappings for
+            // the line we found.
+            while (mapping && mapping.originalLine === originalLine) {
+              mappings.push({
+                line: util.getArg(mapping, 'generatedLine', null),
+                column: util.getArg(mapping, 'generatedColumn', null),
+                lastColumn: util.getArg(mapping, 'lastGeneratedColumn', null)
+              });
+
+              mapping = this._originalMappings[++index];
+            }
+          } else {
+            var originalColumn = mapping.originalColumn;
+
+            // Iterate until either we run out of mappings, or we run into
+            // a mapping for a different line than the one we were searching for.
+            // Since mappings are sorted, this is guaranteed to find all mappings for
+            // the line we are searching for.
+            while (mapping &&
+                   mapping.originalLine === line &&
+                   mapping.originalColumn == originalColumn) {
+              mappings.push({
+                line: util.getArg(mapping, 'generatedLine', null),
+                column: util.getArg(mapping, 'generatedColumn', null),
+                lastColumn: util.getArg(mapping, 'lastGeneratedColumn', null)
+              });
+
+              mapping = this._originalMappings[++index];
+            }
+          }
+        }
+
+        return mappings;
+      };
+
+    var SourceMapConsumer_1 = SourceMapConsumer;
+
+    /**
+     * A BasicSourceMapConsumer instance represents a parsed source map which we can
+     * query for information about the original file positions by giving it a file
+     * position in the generated source.
+     *
+     * The only parameter is the raw source map (either as a JSON string, or
+     * already parsed to an object). According to the spec, source maps have the
+     * following attributes:
+     *
+     *   - version: Which version of the source map spec this map is following.
+     *   - sources: An array of URLs to the original source files.
+     *   - names: An array of identifiers which can be referrenced by individual mappings.
+     *   - sourceRoot: Optional. The URL root from which all sources are relative.
+     *   - sourcesContent: Optional. An array of contents of the original source files.
+     *   - mappings: A string of base64 VLQs which contain the actual mappings.
+     *   - file: Optional. The generated file this source map is associated with.
+     *
+     * Here is an example source map, taken from the source map spec[0]:
+     *
+     *     {
+     *       version : 3,
+     *       file: "out.js",
+     *       sourceRoot : "",
+     *       sources: ["foo.js", "bar.js"],
+     *       names: ["src", "maps", "are", "fun"],
+     *       mappings: "AA,AB;;ABCDE;"
+     *     }
+     *
+     * [0]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?pli=1#
+     */
+    function BasicSourceMapConsumer(aSourceMap) {
+      var sourceMap = aSourceMap;
+      if (typeof aSourceMap === 'string') {
+        sourceMap = JSON.parse(aSourceMap.replace(/^\)\]\}'/, ''));
+      }
+
+      var version = util.getArg(sourceMap, 'version');
+      var sources = util.getArg(sourceMap, 'sources');
+      // Sass 3.3 leaves out the 'names' array, so we deviate from the spec (which
+      // requires the array) to play nice here.
+      var names = util.getArg(sourceMap, 'names', []);
+      var sourceRoot = util.getArg(sourceMap, 'sourceRoot', null);
+      var sourcesContent = util.getArg(sourceMap, 'sourcesContent', null);
+      var mappings = util.getArg(sourceMap, 'mappings');
+      var file = util.getArg(sourceMap, 'file', null);
+
+      // Once again, Sass deviates from the spec and supplies the version as a
+      // string rather than a number, so we use loose equality checking here.
+      if (version != this._version) {
+        throw new Error('Unsupported version: ' + version);
+      }
+
+      sources = sources
+        .map(String)
+        // Some source maps produce relative source paths like "./foo.js" instead of
+        // "foo.js".  Normalize these first so that future comparisons will succeed.
+        // See bugzil.la/1090768.
+        .map(util.normalize)
+        // Always ensure that absolute sources are internally stored relative to
+        // the source root, if the source root is absolute. Not doing this would
+        // be particularly problematic when the source root is a prefix of the
+        // source (valid, but why??). See github issue #199 and bugzil.la/1188982.
+        .map(function (source) {
+          return sourceRoot && util.isAbsolute(sourceRoot) && util.isAbsolute(source)
+            ? util.relative(sourceRoot, source)
+            : source;
+        });
+
+      // Pass `true` below to allow duplicate names and sources. While source maps
+      // are intended to be compressed and deduplicated, the TypeScript compiler
+      // sometimes generates source maps with duplicates in them. See Github issue
+      // #72 and bugzil.la/889492.
+      this._names = ArraySet$1.fromArray(names.map(String), true);
+      this._sources = ArraySet$1.fromArray(sources, true);
+
+      this.sourceRoot = sourceRoot;
+      this.sourcesContent = sourcesContent;
+      this._mappings = mappings;
+      this.file = file;
+    }
+
+    BasicSourceMapConsumer.prototype = Object.create(SourceMapConsumer.prototype);
+    BasicSourceMapConsumer.prototype.consumer = SourceMapConsumer;
+
+    /**
+     * Create a BasicSourceMapConsumer from a SourceMapGenerator.
+     *
+     * @param SourceMapGenerator aSourceMap
+     *        The source map that will be consumed.
+     * @returns BasicSourceMapConsumer
+     */
+    BasicSourceMapConsumer.fromSourceMap =
+      function SourceMapConsumer_fromSourceMap(aSourceMap) {
+        var smc = Object.create(BasicSourceMapConsumer.prototype);
+
+        var names = smc._names = ArraySet$1.fromArray(aSourceMap._names.toArray(), true);
+        var sources = smc._sources = ArraySet$1.fromArray(aSourceMap._sources.toArray(), true);
+        smc.sourceRoot = aSourceMap._sourceRoot;
+        smc.sourcesContent = aSourceMap._generateSourcesContent(smc._sources.toArray(),
+                                                                smc.sourceRoot);
+        smc.file = aSourceMap._file;
+
+        // Because we are modifying the entries (by converting string sources and
+        // names to indices into the sources and names ArraySets), we have to make
+        // a copy of the entry or else bad things happen. Shared mutable state
+        // strikes again! See github issue #191.
+
+        var generatedMappings = aSourceMap._mappings.toArray().slice();
+        var destGeneratedMappings = smc.__generatedMappings = [];
+        var destOriginalMappings = smc.__originalMappings = [];
+
+        for (var i = 0, length = generatedMappings.length; i < length; i++) {
+          var srcMapping = generatedMappings[i];
+          var destMapping = new Mapping;
+          destMapping.generatedLine = srcMapping.generatedLine;
+          destMapping.generatedColumn = srcMapping.generatedColumn;
+
+          if (srcMapping.source) {
+            destMapping.source = sources.indexOf(srcMapping.source);
+            destMapping.originalLine = srcMapping.originalLine;
+            destMapping.originalColumn = srcMapping.originalColumn;
+
+            if (srcMapping.name) {
+              destMapping.name = names.indexOf(srcMapping.name);
+            }
+
+            destOriginalMappings.push(destMapping);
+          }
+
+          destGeneratedMappings.push(destMapping);
+        }
+
+        quickSort$1(smc.__originalMappings, util.compareByOriginalPositions);
+
+        return smc;
+      };
+
+    /**
+     * The version of the source mapping spec that we are consuming.
+     */
+    BasicSourceMapConsumer.prototype._version = 3;
+
+    /**
+     * The list of original sources.
+     */
+    Object.defineProperty(BasicSourceMapConsumer.prototype, 'sources', {
+      get: function () {
+        return this._sources.toArray().map(function (s) {
+          return this.sourceRoot != null ? util.join(this.sourceRoot, s) : s;
+        }, this);
+      }
+    });
+
+    /**
+     * Provide the JIT with a nice shape / hidden class.
+     */
+    function Mapping() {
+      this.generatedLine = 0;
+      this.generatedColumn = 0;
+      this.source = null;
+      this.originalLine = null;
+      this.originalColumn = null;
+      this.name = null;
+    }
+
+    /**
+     * Parse the mappings in a string in to a data structure which we can easily
+     * query (the ordered arrays in the `this.__generatedMappings` and
+     * `this.__originalMappings` properties).
+     */
+    BasicSourceMapConsumer.prototype._parseMappings =
+      function SourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+        var generatedLine = 1;
+        var previousGeneratedColumn = 0;
+        var previousOriginalLine = 0;
+        var previousOriginalColumn = 0;
+        var previousSource = 0;
+        var previousName = 0;
+        var length = aStr.length;
+        var index = 0;
+        var cachedSegments = {};
+        var temp = {};
+        var originalMappings = [];
+        var generatedMappings = [];
+        var mapping, str, segment, end, value;
+
+        while (index < length) {
+          if (aStr.charAt(index) === ';') {
+            generatedLine++;
+            index++;
+            previousGeneratedColumn = 0;
+          }
+          else if (aStr.charAt(index) === ',') {
+            index++;
+          }
+          else {
+            mapping = new Mapping();
+            mapping.generatedLine = generatedLine;
+
+            // Because each offset is encoded relative to the previous one,
+            // many segments often have the same encoding. We can exploit this
+            // fact by caching the parsed variable length fields of each segment,
+            // allowing us to avoid a second parse if we encounter the same
+            // segment again.
+            for (end = index; end < length; end++) {
+              if (this._charIsMappingSeparator(aStr, end)) {
+                break;
+              }
+            }
+            str = aStr.slice(index, end);
+
+            segment = cachedSegments[str];
+            if (segment) {
+              index += str.length;
+            } else {
+              segment = [];
+              while (index < end) {
+                base64Vlq.decode(aStr, index, temp);
+                value = temp.value;
+                index = temp.rest;
+                segment.push(value);
+              }
+
+              if (segment.length === 2) {
+                throw new Error('Found a source, but no line and column');
+              }
+
+              if (segment.length === 3) {
+                throw new Error('Found a source and line, but no column');
+              }
+
+              cachedSegments[str] = segment;
+            }
+
+            // Generated column.
+            mapping.generatedColumn = previousGeneratedColumn + segment[0];
+            previousGeneratedColumn = mapping.generatedColumn;
+
+            if (segment.length > 1) {
+              // Original source.
+              mapping.source = previousSource + segment[1];
+              previousSource += segment[1];
+
+              // Original line.
+              mapping.originalLine = previousOriginalLine + segment[2];
+              previousOriginalLine = mapping.originalLine;
+              // Lines are stored 0-based
+              mapping.originalLine += 1;
+
+              // Original column.
+              mapping.originalColumn = previousOriginalColumn + segment[3];
+              previousOriginalColumn = mapping.originalColumn;
+
+              if (segment.length > 4) {
+                // Original name.
+                mapping.name = previousName + segment[4];
+                previousName += segment[4];
+              }
+            }
+
+            generatedMappings.push(mapping);
+            if (typeof mapping.originalLine === 'number') {
+              originalMappings.push(mapping);
+            }
+          }
+        }
+
+        quickSort$1(generatedMappings, util.compareByGeneratedPositionsDeflated);
+        this.__generatedMappings = generatedMappings;
+
+        quickSort$1(originalMappings, util.compareByOriginalPositions);
+        this.__originalMappings = originalMappings;
+      };
+
+    /**
+     * Find the mapping that best matches the hypothetical "needle" mapping that
+     * we are searching for in the given "haystack" of mappings.
+     */
+    BasicSourceMapConsumer.prototype._findMapping =
+      function SourceMapConsumer_findMapping(aNeedle, aMappings, aLineName,
+                                             aColumnName, aComparator, aBias) {
+        // To return the position we are searching for, we must first find the
+        // mapping for the given position and then return the opposite position it
+        // points to. Because the mappings are sorted, we can use binary search to
+        // find the best mapping.
+
+        if (aNeedle[aLineName] <= 0) {
+          throw new TypeError('Line must be greater than or equal to 1, got '
+                              + aNeedle[aLineName]);
+        }
+        if (aNeedle[aColumnName] < 0) {
+          throw new TypeError('Column must be greater than or equal to 0, got '
+                              + aNeedle[aColumnName]);
+        }
+
+        return binarySearch.search(aNeedle, aMappings, aComparator, aBias);
+      };
+
+    /**
+     * Compute the last column for each generated mapping. The last column is
+     * inclusive.
+     */
+    BasicSourceMapConsumer.prototype.computeColumnSpans =
+      function SourceMapConsumer_computeColumnSpans() {
+        for (var index = 0; index < this._generatedMappings.length; ++index) {
+          var mapping = this._generatedMappings[index];
+
+          // Mappings do not contain a field for the last generated columnt. We
+          // can come up with an optimistic estimate, however, by assuming that
+          // mappings are contiguous (i.e. given two consecutive mappings, the
+          // first mapping ends where the second one starts).
+          if (index + 1 < this._generatedMappings.length) {
+            var nextMapping = this._generatedMappings[index + 1];
+
+            if (mapping.generatedLine === nextMapping.generatedLine) {
+              mapping.lastGeneratedColumn = nextMapping.generatedColumn - 1;
+              continue;
+            }
+          }
+
+          // The last mapping for each line spans the entire line.
+          mapping.lastGeneratedColumn = Infinity;
+        }
+      };
+
+    /**
+     * Returns the original source, line, and column information for the generated
+     * source's line and column positions provided. The only argument is an object
+     * with the following properties:
+     *
+     *   - line: The line number in the generated source.
+     *   - column: The column number in the generated source.
+     *   - bias: Either 'SourceMapConsumer.GREATEST_LOWER_BOUND' or
+     *     'SourceMapConsumer.LEAST_UPPER_BOUND'. Specifies whether to return the
+     *     closest element that is smaller than or greater than the one we are
+     *     searching for, respectively, if the exact element cannot be found.
+     *     Defaults to 'SourceMapConsumer.GREATEST_LOWER_BOUND'.
+     *
+     * and an object is returned with the following properties:
+     *
+     *   - source: The original source file, or null.
+     *   - line: The line number in the original source, or null.
+     *   - column: The column number in the original source, or null.
+     *   - name: The original identifier, or null.
+     */
+    BasicSourceMapConsumer.prototype.originalPositionFor =
+      function SourceMapConsumer_originalPositionFor(aArgs) {
+        var needle = {
+          generatedLine: util.getArg(aArgs, 'line'),
+          generatedColumn: util.getArg(aArgs, 'column')
+        };
+
+        var index = this._findMapping(
+          needle,
+          this._generatedMappings,
+          "generatedLine",
+          "generatedColumn",
+          util.compareByGeneratedPositionsDeflated,
+          util.getArg(aArgs, 'bias', SourceMapConsumer.GREATEST_LOWER_BOUND)
+        );
+
+        if (index >= 0) {
+          var mapping = this._generatedMappings[index];
+
+          if (mapping.generatedLine === needle.generatedLine) {
+            var source = util.getArg(mapping, 'source', null);
+            if (source !== null) {
+              source = this._sources.at(source);
+              if (this.sourceRoot != null) {
+                source = util.join(this.sourceRoot, source);
+              }
+            }
+            var name = util.getArg(mapping, 'name', null);
+            if (name !== null) {
+              name = this._names.at(name);
+            }
+            return {
+              source: source,
+              line: util.getArg(mapping, 'originalLine', null),
+              column: util.getArg(mapping, 'originalColumn', null),
+              name: name
+            };
+          }
+        }
+
+        return {
+          source: null,
+          line: null,
+          column: null,
+          name: null
+        };
+      };
+
+    /**
+     * Return true if we have the source content for every source in the source
+     * map, false otherwise.
+     */
+    BasicSourceMapConsumer.prototype.hasContentsOfAllSources =
+      function BasicSourceMapConsumer_hasContentsOfAllSources() {
+        if (!this.sourcesContent) {
+          return false;
+        }
+        return this.sourcesContent.length >= this._sources.size() &&
+          !this.sourcesContent.some(function (sc) { return sc == null; });
+      };
+
+    /**
+     * Returns the original source content. The only argument is the url of the
+     * original source file. Returns null if no original source content is
+     * available.
+     */
+    BasicSourceMapConsumer.prototype.sourceContentFor =
+      function SourceMapConsumer_sourceContentFor(aSource, nullOnMissing) {
+        if (!this.sourcesContent) {
+          return null;
+        }
+
+        if (this.sourceRoot != null) {
+          aSource = util.relative(this.sourceRoot, aSource);
+        }
+
+        if (this._sources.has(aSource)) {
+          return this.sourcesContent[this._sources.indexOf(aSource)];
+        }
+
+        var url;
+        if (this.sourceRoot != null
+            && (url = util.urlParse(this.sourceRoot))) {
+          // XXX: file:// URIs and absolute paths lead to unexpected behavior for
+          // many users. We can help them out when they expect file:// URIs to
+          // behave like it would if they were running a local HTTP server. See
+          // https://bugzilla.mozilla.org/show_bug.cgi?id=885597.
+          var fileUriAbsPath = aSource.replace(/^file:\/\//, "");
+          if (url.scheme == "file"
+              && this._sources.has(fileUriAbsPath)) {
+            return this.sourcesContent[this._sources.indexOf(fileUriAbsPath)]
+          }
+
+          if ((!url.path || url.path == "/")
+              && this._sources.has("/" + aSource)) {
+            return this.sourcesContent[this._sources.indexOf("/" + aSource)];
+          }
+        }
+
+        // This function is used recursively from
+        // IndexedSourceMapConsumer.prototype.sourceContentFor. In that case, we
+        // don't want to throw if we can't find the source - we just want to
+        // return null, so we provide a flag to exit gracefully.
+        if (nullOnMissing) {
+          return null;
+        }
+        else {
+          throw new Error('"' + aSource + '" is not in the SourceMap.');
+        }
+      };
+
+    /**
+     * Returns the generated line and column information for the original source,
+     * line, and column positions provided. The only argument is an object with
+     * the following properties:
+     *
+     *   - source: The filename of the original source.
+     *   - line: The line number in the original source.
+     *   - column: The column number in the original source.
+     *   - bias: Either 'SourceMapConsumer.GREATEST_LOWER_BOUND' or
+     *     'SourceMapConsumer.LEAST_UPPER_BOUND'. Specifies whether to return the
+     *     closest element that is smaller than or greater than the one we are
+     *     searching for, respectively, if the exact element cannot be found.
+     *     Defaults to 'SourceMapConsumer.GREATEST_LOWER_BOUND'.
+     *
+     * and an object is returned with the following properties:
+     *
+     *   - line: The line number in the generated source, or null.
+     *   - column: The column number in the generated source, or null.
+     */
+    BasicSourceMapConsumer.prototype.generatedPositionFor =
+      function SourceMapConsumer_generatedPositionFor(aArgs) {
+        var source = util.getArg(aArgs, 'source');
+        if (this.sourceRoot != null) {
+          source = util.relative(this.sourceRoot, source);
+        }
+        if (!this._sources.has(source)) {
+          return {
+            line: null,
+            column: null,
+            lastColumn: null
+          };
+        }
+        source = this._sources.indexOf(source);
+
+        var needle = {
+          source: source,
+          originalLine: util.getArg(aArgs, 'line'),
+          originalColumn: util.getArg(aArgs, 'column')
+        };
+
+        var index = this._findMapping(
+          needle,
+          this._originalMappings,
+          "originalLine",
+          "originalColumn",
+          util.compareByOriginalPositions,
+          util.getArg(aArgs, 'bias', SourceMapConsumer.GREATEST_LOWER_BOUND)
+        );
+
+        if (index >= 0) {
+          var mapping = this._originalMappings[index];
+
+          if (mapping.source === needle.source) {
+            return {
+              line: util.getArg(mapping, 'generatedLine', null),
+              column: util.getArg(mapping, 'generatedColumn', null),
+              lastColumn: util.getArg(mapping, 'lastGeneratedColumn', null)
+            };
+          }
+        }
+
+        return {
+          line: null,
+          column: null,
+          lastColumn: null
+        };
+      };
+
+    var BasicSourceMapConsumer_1 = BasicSourceMapConsumer;
+
+    /**
+     * An IndexedSourceMapConsumer instance represents a parsed source map which
+     * we can query for information. It differs from BasicSourceMapConsumer in
+     * that it takes "indexed" source maps (i.e. ones with a "sections" field) as
+     * input.
+     *
+     * The only parameter is a raw source map (either as a JSON string, or already
+     * parsed to an object). According to the spec for indexed source maps, they
+     * have the following attributes:
+     *
+     *   - version: Which version of the source map spec this map is following.
+     *   - file: Optional. The generated file this source map is associated with.
+     *   - sections: A list of section definitions.
+     *
+     * Each value under the "sections" field has two fields:
+     *   - offset: The offset into the original specified at which this section
+     *       begins to apply, defined as an object with a "line" and "column"
+     *       field.
+     *   - map: A source map definition. This source map could also be indexed,
+     *       but doesn't have to be.
+     *
+     * Instead of the "map" field, it's also possible to have a "url" field
+     * specifying a URL to retrieve a source map from, but that's currently
+     * unsupported.
+     *
+     * Here's an example source map, taken from the source map spec[0], but
+     * modified to omit a section which uses the "url" field.
+     *
+     *  {
+     *    version : 3,
+     *    file: "app.js",
+     *    sections: [{
+     *      offset: {line:100, column:10},
+     *      map: {
+     *        version : 3,
+     *        file: "section.js",
+     *        sources: ["foo.js", "bar.js"],
+     *        names: ["src", "maps", "are", "fun"],
+     *        mappings: "AAAA,E;;ABCDE;"
+     *      }
+     *    }],
+     *  }
+     *
+     * [0]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.535es3xeprgt
+     */
+    function IndexedSourceMapConsumer(aSourceMap) {
+      var sourceMap = aSourceMap;
+      if (typeof aSourceMap === 'string') {
+        sourceMap = JSON.parse(aSourceMap.replace(/^\)\]\}'/, ''));
+      }
+
+      var version = util.getArg(sourceMap, 'version');
+      var sections = util.getArg(sourceMap, 'sections');
+
+      if (version != this._version) {
+        throw new Error('Unsupported version: ' + version);
+      }
+
+      this._sources = new ArraySet$1();
+      this._names = new ArraySet$1();
+
+      var lastOffset = {
+        line: -1,
+        column: 0
+      };
+      this._sections = sections.map(function (s) {
+        if (s.url) {
+          // The url field will require support for asynchronicity.
+          // See https://github.com/mozilla/source-map/issues/16
+          throw new Error('Support for url field in sections not implemented.');
+        }
+        var offset = util.getArg(s, 'offset');
+        var offsetLine = util.getArg(offset, 'line');
+        var offsetColumn = util.getArg(offset, 'column');
+
+        if (offsetLine < lastOffset.line ||
+            (offsetLine === lastOffset.line && offsetColumn < lastOffset.column)) {
+          throw new Error('Section offsets must be ordered and non-overlapping.');
+        }
+        lastOffset = offset;
+
+        return {
+          generatedOffset: {
+            // The offset fields are 0-based, but we use 1-based indices when
+            // encoding/decoding from VLQ.
+            generatedLine: offsetLine + 1,
+            generatedColumn: offsetColumn + 1
+          },
+          consumer: new SourceMapConsumer(util.getArg(s, 'map'))
+        }
+      });
+    }
+
+    IndexedSourceMapConsumer.prototype = Object.create(SourceMapConsumer.prototype);
+    IndexedSourceMapConsumer.prototype.constructor = SourceMapConsumer;
+
+    /**
+     * The version of the source mapping spec that we are consuming.
+     */
+    IndexedSourceMapConsumer.prototype._version = 3;
+
+    /**
+     * The list of original sources.
+     */
+    Object.defineProperty(IndexedSourceMapConsumer.prototype, 'sources', {
+      get: function () {
+        var sources = [];
+        for (var i = 0; i < this._sections.length; i++) {
+          for (var j = 0; j < this._sections[i].consumer.sources.length; j++) {
+            sources.push(this._sections[i].consumer.sources[j]);
+          }
+        }
+        return sources;
+      }
+    });
+
+    /**
+     * Returns the original source, line, and column information for the generated
+     * source's line and column positions provided. The only argument is an object
+     * with the following properties:
+     *
+     *   - line: The line number in the generated source.
+     *   - column: The column number in the generated source.
+     *
+     * and an object is returned with the following properties:
+     *
+     *   - source: The original source file, or null.
+     *   - line: The line number in the original source, or null.
+     *   - column: The column number in the original source, or null.
+     *   - name: The original identifier, or null.
+     */
+    IndexedSourceMapConsumer.prototype.originalPositionFor =
+      function IndexedSourceMapConsumer_originalPositionFor(aArgs) {
+        var needle = {
+          generatedLine: util.getArg(aArgs, 'line'),
+          generatedColumn: util.getArg(aArgs, 'column')
+        };
+
+        // Find the section containing the generated position we're trying to map
+        // to an original position.
+        var sectionIndex = binarySearch.search(needle, this._sections,
+          function(needle, section) {
+            var cmp = needle.generatedLine - section.generatedOffset.generatedLine;
+            if (cmp) {
+              return cmp;
+            }
+
+            return (needle.generatedColumn -
+                    section.generatedOffset.generatedColumn);
+          });
+        var section = this._sections[sectionIndex];
+
+        if (!section) {
+          return {
+            source: null,
+            line: null,
+            column: null,
+            name: null
+          };
+        }
+
+        return section.consumer.originalPositionFor({
+          line: needle.generatedLine -
+            (section.generatedOffset.generatedLine - 1),
+          column: needle.generatedColumn -
+            (section.generatedOffset.generatedLine === needle.generatedLine
+             ? section.generatedOffset.generatedColumn - 1
+             : 0),
+          bias: aArgs.bias
+        });
+      };
+
+    /**
+     * Return true if we have the source content for every source in the source
+     * map, false otherwise.
+     */
+    IndexedSourceMapConsumer.prototype.hasContentsOfAllSources =
+      function IndexedSourceMapConsumer_hasContentsOfAllSources() {
+        return this._sections.every(function (s) {
+          return s.consumer.hasContentsOfAllSources();
+        });
+      };
+
+    /**
+     * Returns the original source content. The only argument is the url of the
+     * original source file. Returns null if no original source content is
+     * available.
+     */
+    IndexedSourceMapConsumer.prototype.sourceContentFor =
+      function IndexedSourceMapConsumer_sourceContentFor(aSource, nullOnMissing) {
+        for (var i = 0; i < this._sections.length; i++) {
+          var section = this._sections[i];
+
+          var content = section.consumer.sourceContentFor(aSource, true);
+          if (content) {
+            return content;
+          }
+        }
+        if (nullOnMissing) {
+          return null;
+        }
+        else {
+          throw new Error('"' + aSource + '" is not in the SourceMap.');
+        }
+      };
+
+    /**
+     * Returns the generated line and column information for the original source,
+     * line, and column positions provided. The only argument is an object with
+     * the following properties:
+     *
+     *   - source: The filename of the original source.
+     *   - line: The line number in the original source.
+     *   - column: The column number in the original source.
+     *
+     * and an object is returned with the following properties:
+     *
+     *   - line: The line number in the generated source, or null.
+     *   - column: The column number in the generated source, or null.
+     */
+    IndexedSourceMapConsumer.prototype.generatedPositionFor =
+      function IndexedSourceMapConsumer_generatedPositionFor(aArgs) {
+        for (var i = 0; i < this._sections.length; i++) {
+          var section = this._sections[i];
+
+          // Only consider this section if the requested source is in the list of
+          // sources of the consumer.
+          if (section.consumer.sources.indexOf(util.getArg(aArgs, 'source')) === -1) {
+            continue;
+          }
+          var generatedPosition = section.consumer.generatedPositionFor(aArgs);
+          if (generatedPosition) {
+            var ret = {
+              line: generatedPosition.line +
+                (section.generatedOffset.generatedLine - 1),
+              column: generatedPosition.column +
+                (section.generatedOffset.generatedLine === generatedPosition.line
+                 ? section.generatedOffset.generatedColumn - 1
+                 : 0)
+            };
+            return ret;
+          }
+        }
+
+        return {
+          line: null,
+          column: null
+        };
+      };
+
+    /**
+     * Parse the mappings in a string in to a data structure which we can easily
+     * query (the ordered arrays in the `this.__generatedMappings` and
+     * `this.__originalMappings` properties).
+     */
+    IndexedSourceMapConsumer.prototype._parseMappings =
+      function IndexedSourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+        this.__generatedMappings = [];
+        this.__originalMappings = [];
+        for (var i = 0; i < this._sections.length; i++) {
+          var section = this._sections[i];
+          var sectionMappings = section.consumer._generatedMappings;
+          for (var j = 0; j < sectionMappings.length; j++) {
+            var mapping = sectionMappings[j];
+
+            var source = section.consumer._sources.at(mapping.source);
+            if (section.consumer.sourceRoot !== null) {
+              source = util.join(section.consumer.sourceRoot, source);
+            }
+            this._sources.add(source);
+            source = this._sources.indexOf(source);
+
+            var name = section.consumer._names.at(mapping.name);
+            this._names.add(name);
+            name = this._names.indexOf(name);
+
+            // The mappings coming from the consumer for the section have
+            // generated positions relative to the start of the section, so we
+            // need to offset them to be relative to the start of the concatenated
+            // generated file.
+            var adjustedMapping = {
+              source: source,
+              generatedLine: mapping.generatedLine +
+                (section.generatedOffset.generatedLine - 1),
+              generatedColumn: mapping.generatedColumn +
+                (section.generatedOffset.generatedLine === mapping.generatedLine
+                ? section.generatedOffset.generatedColumn - 1
+                : 0),
+              originalLine: mapping.originalLine,
+              originalColumn: mapping.originalColumn,
+              name: name
+            };
+
+            this.__generatedMappings.push(adjustedMapping);
+            if (typeof adjustedMapping.originalLine === 'number') {
+              this.__originalMappings.push(adjustedMapping);
+            }
+          }
+        }
+
+        quickSort$1(this.__generatedMappings, util.compareByGeneratedPositionsDeflated);
+        quickSort$1(this.__originalMappings, util.compareByOriginalPositions);
+      };
+
+    var IndexedSourceMapConsumer_1 = IndexedSourceMapConsumer;
+
+    var sourceMapConsumer = {
+    	SourceMapConsumer: SourceMapConsumer_1,
+    	BasicSourceMapConsumer: BasicSourceMapConsumer_1,
+    	IndexedSourceMapConsumer: IndexedSourceMapConsumer_1
+    };
+
+    var stacktraceGps = createCommonjsModule(function (module, exports) {
+    (function(root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory(sourceMapConsumer, stackframe);
+        }
+    }(commonjsGlobal, function(SourceMap, StackFrame) {
+
+        /**
+         * Make a X-Domain request to url and callback.
+         *
+         * @param {String} url
+         * @returns {Promise} with response text if fulfilled
+         */
+        function _xdr(url) {
+            return new Promise(function(resolve, reject) {
+                var req = new XMLHttpRequest();
+                req.open('get', url);
+                req.onerror = reject;
+                req.onreadystatechange = function onreadystatechange() {
+                    if (req.readyState === 4) {
+                        if (req.status >= 200 && req.status < 300) {
+                            resolve(req.responseText);
+                        } else {
+                            reject(new Error('HTTP status: ' + req.status + ' retrieving ' + url));
+                        }
+                    }
+                };
+                req.send();
+            });
+
+        }
+
+        /**
+         * Convert a Base64-encoded string into its original representation.
+         * Used for inline sourcemaps.
+         *
+         * @param {String} b64str Base-64 encoded string
+         * @returns {String} original representation of the base64-encoded string.
+         */
+        function _atob(b64str) {
+            if (typeof window !== 'undefined' && window.atob) {
+                return window.atob(b64str);
+            } else {
+                throw new Error('You must supply a polyfill for window.atob in this environment');
+            }
+        }
+
+        function _parseJson(string) {
+            if (typeof JSON !== 'undefined' && JSON.parse) {
+                return JSON.parse(string);
+            } else {
+                throw new Error('You must supply a polyfill for JSON.parse in this environment');
+            }
+        }
+
+        function _findFunctionName(source, lineNumber/*, columnNumber*/) {
+            // function {name}({args}) m[1]=name m[2]=args
+            var reFunctionDeclaration = /function\s+([^(]*?)\s*\(([^)]*)\)/;
+            // {name} = function ({args}) TODO args capture
+            var reFunctionExpression = /['"]?([$_A-Za-z][$_A-Za-z0-9]*)['"]?\s*[:=]\s*function\b/;
+            // {name} = eval()
+            var reFunctionEvaluation = /['"]?([$_A-Za-z][$_A-Za-z0-9]*)['"]?\s*[:=]\s*(?:eval|new Function)\b/;
+            var lines = source.split('\n');
+
+            // Walk backwards in the source lines until we find the line which matches one of the patterns above
+            var code = '';
+            var maxLines = Math.min(lineNumber, 20);
+            var m;
+            for (var i = 0; i < maxLines; ++i) {
+                // lineNo is 1-based, source[] is 0-based
+                var line = lines[lineNumber - i - 1];
+                var commentPos = line.indexOf('//');
+                if (commentPos >= 0) {
+                    line = line.substr(0, commentPos);
+                }
+
+                if (line) {
+                    code = line + code;
+                    m = reFunctionExpression.exec(code);
+                    if (m && m[1]) {
+                        return m[1];
+                    }
+                    m = reFunctionDeclaration.exec(code);
+                    if (m && m[1]) {
+                        return m[1];
+                    }
+                    m = reFunctionEvaluation.exec(code);
+                    if (m && m[1]) {
+                        return m[1];
+                    }
+                }
+            }
+            return undefined;
+        }
+
+        function _ensureSupportedEnvironment() {
+            if (typeof Object.defineProperty !== 'function' || typeof Object.create !== 'function') {
+                throw new Error('Unable to consume source maps in older browsers');
+            }
+        }
+
+        function _ensureStackFrameIsLegit(stackframe) {
+            if (typeof stackframe !== 'object') {
+                throw new TypeError('Given StackFrame is not an object');
+            } else if (typeof stackframe.fileName !== 'string') {
+                throw new TypeError('Given file name is not a String');
+            } else if (typeof stackframe.lineNumber !== 'number' ||
+                stackframe.lineNumber % 1 !== 0 ||
+                stackframe.lineNumber < 1) {
+                throw new TypeError('Given line number must be a positive integer');
+            } else if (typeof stackframe.columnNumber !== 'number' ||
+                stackframe.columnNumber % 1 !== 0 ||
+                stackframe.columnNumber < 0) {
+                throw new TypeError('Given column number must be a non-negative integer');
+            }
+            return true;
+        }
+
+        function _findSourceMappingURL(source) {
+            var m = /\/\/[#@] ?sourceMappingURL=([^\s'"]+)\s*$/.exec(source);
+            if (m && m[1]) {
+                return m[1];
+            } else {
+                throw new Error('sourceMappingURL not found');
+            }
+        }
+
+        function _extractLocationInfoFromSourceMap(stackframe, rawSourceMap, sourceCache) {
+            return new Promise(function(resolve, reject) {
+                var mapConsumer = new SourceMap.SourceMapConsumer(rawSourceMap);
+
+                var loc = mapConsumer.originalPositionFor({
+                    line: stackframe.lineNumber,
+                    column: stackframe.columnNumber
+                });
+
+                if (loc.source) {
+                    var mappedSource = mapConsumer.sourceContentFor(loc.source);
+                    if (mappedSource) {
+                        sourceCache[loc.source] = mappedSource;
+                    }
+                    resolve(
+                        new StackFrame(
+                            loc.name || stackframe.functionName,
+                            stackframe.args,
+                            loc.source,
+                            loc.line,
+                            loc.column));
+                } else {
+                    reject(new Error('Could not get original source for given stackframe and source map'));
+                }
+            });
+        }
+
+        /**
+         * @constructor
+         * @param {Object} opts
+         *      opts.sourceCache = {url: "Source String"} => preload source cache
+         *      opts.offline = True to prevent network requests.
+         *              Best effort without sources or source maps.
+         *      opts.ajax = Promise returning function to make X-Domain requests
+         */
+        return function StackTraceGPS(opts) {
+            if (!(this instanceof StackTraceGPS)) {
+                return new StackTraceGPS(opts);
+            }
+            opts = opts || {};
+
+            this.sourceCache = opts.sourceCache || {};
+
+            this.ajax = opts.ajax || _xdr;
+
+            this._atob = opts.atob || _atob;
+
+            this._get = function _get(location) {
+                return new Promise(function(resolve, reject) {
+                    var isDataUrl = location.substr(0, 5) === 'data:';
+                    if (this.sourceCache[location]) {
+                        resolve(this.sourceCache[location]);
+                    } else if (opts.offline && !isDataUrl) {
+                        reject(new Error('Cannot make network requests in offline mode'));
+                    } else {
+                        if (isDataUrl) {
+                            // data URLs can have parameters.
+                            // see http://tools.ietf.org/html/rfc2397
+                            var supportedEncodingRegexp =
+                                /^data:application\/json;([\w=:"-]+;)*base64,/;
+                            var match = location.match(supportedEncodingRegexp);
+                            if (match) {
+                                var sourceMapStart = match[0].length;
+                                var encodedSource = location.substr(sourceMapStart);
+                                var source = this._atob(encodedSource);
+                                this.sourceCache[location] = source;
+                                resolve(source);
+                            } else {
+                                reject(new Error('The encoding of the inline sourcemap is not supported'));
+                            }
+                        } else {
+                            var xhrPromise = this.ajax(location, {method: 'get'});
+                            // Cache the Promise to prevent duplicate in-flight requests
+                            this.sourceCache[location] = xhrPromise;
+                            xhrPromise.then(resolve, reject);
+                        }
+                    }
+                }.bind(this));
+            };
+
+            /**
+             * Given a StackFrame, enhance function name and use source maps for a
+             * better StackFrame.
+             *
+             * @param {StackFrame} stackframe object
+             * @returns {Promise} that resolves with with source-mapped StackFrame
+             */
+            this.pinpoint = function StackTraceGPS$$pinpoint(stackframe) {
+                return new Promise(function(resolve, reject) {
+                    this.getMappedLocation(stackframe).then(function(mappedStackFrame) {
+                        function resolveMappedStackFrame() {
+                            resolve(mappedStackFrame);
+                        }
+
+                        this.findFunctionName(mappedStackFrame)
+                            .then(resolve, resolveMappedStackFrame)
+                            ['catch'](resolveMappedStackFrame);
+                    }.bind(this), reject);
+                }.bind(this));
+            };
+
+            /**
+             * Given a StackFrame, guess function name from location information.
+             *
+             * @param {StackFrame} stackframe
+             * @returns {Promise} that resolves with enhanced StackFrame.
+             */
+            this.findFunctionName = function StackTraceGPS$$findFunctionName(stackframe) {
+                return new Promise(function(resolve, reject) {
+                    _ensureStackFrameIsLegit(stackframe);
+                    this._get(stackframe.fileName).then(function getSourceCallback(source) {
+                        var lineNumber = stackframe.lineNumber;
+                        var columnNumber = stackframe.columnNumber;
+                        var guessedFunctionName = _findFunctionName(source, lineNumber);
+                        // Only replace functionName if we found something
+                        if (guessedFunctionName) {
+                            resolve(new StackFrame(guessedFunctionName,
+                                stackframe.args,
+                                stackframe.fileName,
+                                lineNumber,
+                                columnNumber));
+                        } else {
+                            resolve(stackframe);
+                        }
+                    }, reject)['catch'](reject);
+                }.bind(this));
+            };
+
+            /**
+             * Given a StackFrame, seek source-mapped location and return new enhanced StackFrame.
+             *
+             * @param {StackFrame} stackframe
+             * @returns {Promise} that resolves with enhanced StackFrame.
+             */
+            this.getMappedLocation = function StackTraceGPS$$getMappedLocation(stackframe) {
+                return new Promise(function(resolve, reject) {
+                    _ensureSupportedEnvironment();
+                    _ensureStackFrameIsLegit(stackframe);
+
+                    var sourceCache = this.sourceCache;
+                    var fileName = stackframe.fileName;
+                    this._get(fileName).then(function(source) {
+                        var sourceMappingURL = _findSourceMappingURL(source);
+                        var isDataUrl = sourceMappingURL.substr(0, 5) === 'data:';
+                        var base = fileName.substring(0, fileName.lastIndexOf('/') + 1);
+
+                        if (sourceMappingURL[0] !== '/' && !isDataUrl && !(/^https?:\/\/|^\/\//i).test(sourceMappingURL)) {
+                            sourceMappingURL = base + sourceMappingURL;
+                        }
+
+                        this._get(sourceMappingURL).then(function(sourceMap) {
+                            if (typeof sourceMap === 'string') {
+                                sourceMap = _parseJson(sourceMap.replace(/^\)\]\}'/, ''));
+                            }
+                            if (typeof sourceMap.sourceRoot === 'undefined') {
+                                sourceMap.sourceRoot = base;
+                            }
+
+                            _extractLocationInfoFromSourceMap(stackframe, sourceMap, sourceCache)
+                                .then(resolve)['catch'](function() {
+                                resolve(stackframe);
+                            });
+                        }, reject)['catch'](reject);
+                    }.bind(this), reject)['catch'](reject);
+                }.bind(this));
+            };
+        };
+    }));
+    });
+
+    var stacktrace = createCommonjsModule(function (module, exports) {
+    (function(root, factory) {
+        // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js, Rhino, and browsers.
+
+        /* istanbul ignore next */
+        {
+            module.exports = factory(errorStackParser, stackGenerator, stacktraceGps);
+        }
+    }(commonjsGlobal, function StackTrace(ErrorStackParser, StackGenerator, StackTraceGPS) {
+        var _options = {
+            filter: function(stackframe) {
+                // Filter out stackframes for this library by default
+                return (stackframe.functionName || '').indexOf('StackTrace$$') === -1 &&
+                    (stackframe.functionName || '').indexOf('ErrorStackParser$$') === -1 &&
+                    (stackframe.functionName || '').indexOf('StackTraceGPS$$') === -1 &&
+                    (stackframe.functionName || '').indexOf('StackGenerator$$') === -1;
+            },
+            sourceCache: {}
+        };
+
+        var _generateError = function StackTrace$$GenerateError() {
+            try {
+                // Error must be thrown to get stack in IE
+                throw new Error();
+            } catch (err) {
+                return err;
+            }
+        };
+
+        /**
+         * Merge 2 given Objects. If a conflict occurs the second object wins.
+         * Does not do deep merges.
+         *
+         * @param {Object} first base object
+         * @param {Object} second overrides
+         * @returns {Object} merged first and second
+         * @private
+         */
+        function _merge(first, second) {
+            var target = {};
+
+            [first, second].forEach(function(obj) {
+                for (var prop in obj) {
+                    if (obj.hasOwnProperty(prop)) {
+                        target[prop] = obj[prop];
+                    }
+                }
+                return target;
+            });
+
+            return target;
+        }
+
+        function _isShapedLikeParsableError(err) {
+            return err.stack || err['opera#sourceloc'];
+        }
+
+        function _filtered(stackframes, filter) {
+            if (typeof filter === 'function') {
+                return stackframes.filter(filter);
+            }
+            return stackframes;
+        }
+
+        return {
+            /**
+             * Get a backtrace from invocation point.
+             *
+             * @param {Object} opts
+             * @returns {Array} of StackFrame
+             */
+            get: function StackTrace$$get(opts) {
+                var err = _generateError();
+                return _isShapedLikeParsableError(err) ? this.fromError(err, opts) : this.generateArtificially(opts);
+            },
+
+            /**
+             * Get a backtrace from invocation point.
+             * IMPORTANT: Does not handle source maps or guess function names!
+             *
+             * @param {Object} opts
+             * @returns {Array} of StackFrame
+             */
+            getSync: function StackTrace$$getSync(opts) {
+                opts = _merge(_options, opts);
+                var err = _generateError();
+                var stack = _isShapedLikeParsableError(err) ? ErrorStackParser.parse(err) : StackGenerator.backtrace(opts);
+                return _filtered(stack, opts.filter);
+            },
+
+            /**
+             * Given an error object, parse it.
+             *
+             * @param {Error} error object
+             * @param {Object} opts
+             * @returns {Promise} for Array[StackFrame}
+             */
+            fromError: function StackTrace$$fromError(error, opts) {
+                opts = _merge(_options, opts);
+                var gps = new StackTraceGPS(opts);
+                return new Promise(function(resolve) {
+                    var stackframes = _filtered(ErrorStackParser.parse(error), opts.filter);
+                    resolve(Promise.all(stackframes.map(function(sf) {
+                        return new Promise(function(resolve) {
+                            function resolveOriginal() {
+                                resolve(sf);
+                            }
+
+                            gps.pinpoint(sf).then(resolve, resolveOriginal)['catch'](resolveOriginal);
+                        });
+                    })));
+                }.bind(this));
+            },
+
+            /**
+             * Use StackGenerator to generate a backtrace.
+             *
+             * @param {Object} opts
+             * @returns {Promise} of Array[StackFrame]
+             */
+            generateArtificially: function StackTrace$$generateArtificially(opts) {
+                opts = _merge(_options, opts);
+                var stackFrames = StackGenerator.backtrace(opts);
+                if (typeof opts.filter === 'function') {
+                    stackFrames = stackFrames.filter(opts.filter);
+                }
+                return Promise.resolve(stackFrames);
+            },
+
+            /**
+             * Given a function, wrap it such that invocations trigger a callback that
+             * is called with a stack trace.
+             *
+             * @param {Function} fn to be instrumented
+             * @param {Function} callback function to call with a stack trace on invocation
+             * @param {Function} errback optional function to call with error if unable to get stack trace.
+             * @param {Object} thisArg optional context object (e.g. window)
+             */
+            instrument: function StackTrace$$instrument(fn, callback, errback, thisArg) {
+                if (typeof fn !== 'function') {
+                    throw new Error('Cannot instrument non-function object');
+                } else if (typeof fn.__stacktraceOriginalFn === 'function') {
+                    // Already instrumented, return given Function
+                    return fn;
+                }
+
+                var instrumented = function StackTrace$$instrumented() {
+                    try {
+                        this.get().then(callback, errback)['catch'](errback);
+                        return fn.apply(thisArg || this, arguments);
+                    } catch (e) {
+                        if (_isShapedLikeParsableError(e)) {
+                            this.fromError(e).then(callback, errback)['catch'](errback);
+                        }
+                        throw e;
+                    }
+                }.bind(this);
+                instrumented.__stacktraceOriginalFn = fn;
+
+                return instrumented;
+            },
+
+            /**
+             * Given a function that has been instrumented,
+             * revert the function to it's original (non-instrumented) state.
+             *
+             * @param {Function} fn to de-instrument
+             */
+            deinstrument: function StackTrace$$deinstrument(fn) {
+                if (typeof fn !== 'function') {
+                    throw new Error('Cannot de-instrument non-function object');
+                } else if (typeof fn.__stacktraceOriginalFn === 'function') {
+                    return fn.__stacktraceOriginalFn;
+                } else {
+                    // Function not instrumented, return original
+                    return fn;
+                }
+            },
+
+            /**
+             * Given an error message and Array of StackFrames, serialize and POST to given URL.
+             *
+             * @param {Array} stackframes
+             * @param {String} url
+             * @param {String} errorMsg
+             */
+            report: function StackTrace$$report(stackframes, url, errorMsg) {
+                return new Promise(function(resolve, reject) {
+                    var req = new XMLHttpRequest();
+                    req.onerror = reject;
+                    req.onreadystatechange = function onreadystatechange() {
+                        if (req.readyState === 4) {
+                            if (req.status >= 200 && req.status < 400) {
+                                resolve(req.responseText);
+                            } else {
+                                reject(new Error('POST to ' + url + ' failed with status: ' + req.status));
+                            }
+                        }
+                    };
+                    req.open('post', url);
+                    req.setRequestHeader('Content-Type', 'application/json');
+
+                    var reportPayload = {stack: stackframes};
+                    if (errorMsg !== undefined) {
+                        reportPayload.message = errorMsg;
+                    }
+
+                    req.send(JSON.stringify(reportPayload));
+                });
+            }
+        };
+    }));
+    });
+
+    /**
+     * Some utilities to format messages.
+     */
+    var MessageFormatUtils = (function () {
+        function MessageFormatUtils() {
+        }
+        /**
+         * Render given date in given DateFormat and return as String.
+         * @param date Date
+         * @param dateFormat Format
+         * @returns {string} Formatted date
+         */
+        MessageFormatUtils.renderDate = function (date, dateFormat) {
+            var lpad = function (value, chars, padWith) {
+                var howMany = chars - value.length;
+                if (howMany > 0) {
+                    var res = "";
+                    for (var i = 0; i < howMany; i++) {
+                        res += padWith;
+                    }
+                    res += value;
+                    return res;
+                }
+                return value;
+            };
+            var fullYear = function (d) {
+                return lpad(d.getFullYear().toString(), 4, "0");
+            };
+            var month = function (d) {
+                return lpad((d.getMonth() + 1).toString(), 2, "0");
+            };
+            var day = function (d) {
+                return lpad(d.getDate().toString(), 2, "0");
+            };
+            var hours = function (d) {
+                return lpad(d.getHours().toString(), 2, "0");
+            };
+            var minutes = function (d) {
+                return lpad(d.getMinutes().toString(), 2, "0");
+            };
+            var seconds = function (d) {
+                return lpad(d.getSeconds().toString(), 2, "0");
+            };
+            var millis = function (d) {
+                return lpad(d.getMilliseconds().toString(), 3, "0");
+            };
+            var dateSeparator = dateFormat.dateSeparator;
+            var ds = "";
+            switch (dateFormat.formatEnum) {
+                case LoggerOptions.DateFormatEnum.Default:
+                    // yyyy-mm-dd hh:mm:ss,m
+                    ds = fullYear(date) + dateSeparator + month(date) + dateSeparator + day(date) + " " +
+                        hours(date) + ":" + minutes(date) + ":" + seconds(date) + "," + millis(date);
+                    break;
+                case LoggerOptions.DateFormatEnum.YearMonthDayTime:
+                    ds = fullYear(date) + dateSeparator + month(date) + dateSeparator + day(date) + " " +
+                        hours(date) + ":" + minutes(date) + ":" + seconds(date);
+                    break;
+                case LoggerOptions.DateFormatEnum.YearDayMonthWithFullTime:
+                    ds = fullYear(date) + dateSeparator + day(date) + dateSeparator + month(date) + " " +
+                        hours(date) + ":" + minutes(date) + ":" + seconds(date) + "," + millis(date);
+                    break;
+                case LoggerOptions.DateFormatEnum.YearDayMonthTime:
+                    ds = fullYear(date) + dateSeparator + day(date) + dateSeparator + month(date) + " " +
+                        hours(date) + ":" + minutes(date) + ":" + seconds(date);
+                    break;
+                default:
+                    throw new Error("Unsupported date format enum: " + dateFormat.formatEnum);
+            }
+            return ds;
+        };
+        /**
+         * Renders given category log message in default format.
+         * @param msg Message to format
+         * @param addStack If true adds the stack to the output, otherwise skips it
+         * @returns {string} Formatted message
+         */
+        MessageFormatUtils.renderDefaultMessage = function (msg, addStack) {
+            var result = "";
+            var logFormat = msg.logFormat;
+            if (logFormat.showTimeStamp) {
+                result += MessageFormatUtils.renderDate(msg.date, logFormat.dateFormat) + " ";
+            }
+            result += LoggerOptions.LogLevel[msg.level].toUpperCase();
+            if (msg.isResolvedErrorMessage) {
+                result += " (resolved)";
+            }
+            result += " ";
+            if (logFormat.showCategoryName) {
+                result += "[";
+                msg.categories.forEach(function (value, idx) {
+                    if (idx > 0) {
+                        result += ", ";
+                    }
+                    result += value.name;
+                });
+                result += "]";
+            }
+            // Get the normal string message first
+            var actualStringMsg = "";
+            var dataString = "";
+            var messageOrLogData = msg.message;
+            if (typeof messageOrLogData === "string") {
+                actualStringMsg = messageOrLogData;
+            }
+            else {
+                var logData = messageOrLogData;
+                actualStringMsg = logData.msg;
+                // We do have data?
+                if (logData.data) {
+                    dataString = " [data]: " + (logData.ds ? logData.ds(logData.data) : JSON.stringify(logData.data));
+                }
+            }
+            result += " " + actualStringMsg + "" + dataString;
+            if (addStack && msg.errorAsStack !== null) {
+                result += "\n" + msg.errorAsStack;
+            }
+            return result;
+        };
+        /**
+         * Renders given log4j log message in default format.
+         * @param msg Message to format
+         * @param addStack If true adds the stack to the output, otherwise skips it
+         * @returns {string} Formatted message
+         */
+        MessageFormatUtils.renderDefaultLog4jMessage = function (msg, addStack) {
+            var format = msg.logGroupRule.logFormat;
+            var result = "";
+            if (format.showTimeStamp) {
+                result += MessageFormatUtils.renderDate(msg.date, format.dateFormat) + " ";
+            }
+            result += LoggerOptions.LogLevel[msg.level].toUpperCase() + " ";
+            if (format.showLoggerName) {
+                result += "[" + msg.loggerName + "]";
+            }
+            // Get the normal string message first
+            var actualStringMsg = "";
+            var dataString = "";
+            if (typeof msg.message === "string") {
+                actualStringMsg = msg.message;
+            }
+            else {
+                var logData = msg.message;
+                actualStringMsg = logData.msg;
+                // We do have data?
+                if (logData.data) {
+                    dataString = " [data]: " + (logData.ds ? logData.ds(logData.data) : JSON.stringify(logData.data));
+                }
+            }
+            result += " " + actualStringMsg + "" + dataString;
+            if (addStack && msg.errorAsStack !== null) {
+                result += "\n" + msg.errorAsStack;
+            }
+            return result;
+        };
+        /**
+         * Render error as stack
+         * @param error Return error as Promise
+         * @returns {Promise<string>|Promise} Promise for stack
+         */
+        MessageFormatUtils.renderError = function (error) {
+            var result = error.name + ": " + error.message + "\n@";
+            return new Promise(function (resolve) {
+                // This one has a promise too
+                stacktrace.fromError(error, { offline: true }).then(function (frames) {
+                    var stackStr = (frames.map(function (frame) {
+                        return frame.toString();
+                    })).join("\n  ");
+                    result += "\n" + stackStr;
+                    // This resolves our returned promise
+                    resolve(result);
+                }).catch(function () {
+                    result = "Unexpected error object was passed in. ";
+                    try {
+                        result += "Could not resolve it, stringified object: " + JSON.stringify(error);
+                    }
+                    catch (e) {
+                        // Cannot stringify can only tell something was wrong.
+                        result += "Could not resolve it or stringify it.";
+                    }
+                    resolve(result);
+                });
+            });
+        };
+        return MessageFormatUtils;
+    }());
+    var MessageFormatUtils_1 = MessageFormatUtils;
+
+
+    var MessageUtils = /*#__PURE__*/Object.defineProperty({
+    	MessageFormatUtils: MessageFormatUtils_1
+    }, '__esModule', {value: true});
+
+    var LogMessageInternalImpl = (function () {
+        function LogMessageInternalImpl(loggerName, message, errorAsStack, error, logGroupRule, date, level, ready) {
+            this._errorAsStack = null;
+            this._error = null;
+            this._loggerName = loggerName;
+            this._message = message;
+            this._errorAsStack = errorAsStack;
+            this._error = error;
+            this._logGroupRule = logGroupRule;
+            this._date = date;
+            this._level = level;
+            this._ready = ready;
+        }
+        Object.defineProperty(LogMessageInternalImpl.prototype, "loggerName", {
+            get: function () {
+                return this._loggerName;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "message", {
+            get: function () {
+                return this._message;
+            },
+            set: function (value) {
+                this._message = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "errorAsStack", {
+            get: function () {
+                return this._errorAsStack;
+            },
+            set: function (value) {
+                this._errorAsStack = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "error", {
+            get: function () {
+                return this._error;
+            },
+            set: function (value) {
+                this._error = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "logGroupRule", {
+            get: function () {
+                return this._logGroupRule;
+            },
+            set: function (value) {
+                this._logGroupRule = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "date", {
+            get: function () {
+                return this._date;
+            },
+            set: function (value) {
+                this._date = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "level", {
+            get: function () {
+                return this._level;
+            },
+            set: function (value) {
+                this._level = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "isMessageLogData", {
+            get: function () {
+                return typeof (this._message) !== "string";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "ready", {
+            get: function () {
+                return this._ready;
+            },
+            set: function (value) {
+                this._ready = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "messageAsString", {
+            get: function () {
+                if (typeof (this._message) === "string") {
+                    return this._message;
+                }
+                return this._message.msg;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogMessageInternalImpl.prototype, "logData", {
+            get: function () {
+                var result = null;
+                if (typeof (this._message) !== "string") {
+                    result = this.message;
+                }
+                return result;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LogMessageInternalImpl;
+    }());
+    /**
+     * Abstract base logger, extend to easily implement a custom logger that
+     * logs wherever you want. You only need to implement doLog(msg: LogMessage) and
+     * log that somewhere (it will contain format and everything else).
+     */
+    var AbstractLogger = (function () {
+        function AbstractLogger(name, logGroupRuntimeSettings) {
+            this._allMessages = new DataStructures.LinkedList();
+            this._open = true;
+            this._name = name;
+            this._logGroupRuntimeSettings = logGroupRuntimeSettings;
+        }
+        Object.defineProperty(AbstractLogger.prototype, "name", {
+            get: function () {
+                return this._name;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        AbstractLogger.prototype.trace = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Trace, msg, error);
+        };
+        AbstractLogger.prototype.debug = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Debug, msg, error);
+        };
+        AbstractLogger.prototype.info = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Info, msg, error);
+        };
+        AbstractLogger.prototype.warn = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Warn, msg, error);
+        };
+        AbstractLogger.prototype.error = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Error, msg, error);
+        };
+        AbstractLogger.prototype.fatal = function (msg, error) {
+            if (error === void 0) { error = null; }
+            this._log(LoggerOptions.LogLevel.Fatal, msg, error);
+        };
+        AbstractLogger.prototype.isTraceEnabled = function () {
+            return this._logGroupRuntimeSettings.level === LoggerOptions.LogLevel.Trace;
+        };
+        AbstractLogger.prototype.isDebugEnabled = function () {
+            return this._logGroupRuntimeSettings.level <= LoggerOptions.LogLevel.Debug;
+        };
+        AbstractLogger.prototype.isInfoEnabled = function () {
+            return this._logGroupRuntimeSettings.level <= LoggerOptions.LogLevel.Info;
+        };
+        AbstractLogger.prototype.isWarnEnabled = function () {
+            return this._logGroupRuntimeSettings.level <= LoggerOptions.LogLevel.Warn;
+        };
+        AbstractLogger.prototype.isErrorEnabled = function () {
+            return this._logGroupRuntimeSettings.level <= LoggerOptions.LogLevel.Error;
+        };
+        AbstractLogger.prototype.isFatalEnabled = function () {
+            return this._logGroupRuntimeSettings.level <= LoggerOptions.LogLevel.Fatal;
+        };
+        AbstractLogger.prototype.getLogLevel = function () {
+            return this._logGroupRuntimeSettings.level;
+        };
+        AbstractLogger.prototype.isOpen = function () {
+            return this._open;
+        };
+        AbstractLogger.prototype.close = function () {
+            this._open = false;
+            this._allMessages.clear();
+        };
+        AbstractLogger.prototype.createDefaultLogMessage = function (msg) {
+            return MessageUtils.MessageFormatUtils.renderDefaultLog4jMessage(msg, true);
+        };
+        /**
+         * Return optional message formatter. All LoggerTypes (except custom) will see if
+         * they have this, and if so use it to log.
+         * @returns {((message:LogMessage)=>string)|null}
+         */
+        AbstractLogger.prototype._getMessageFormatter = function () {
+            return this._logGroupRuntimeSettings.formatterLogMessage;
+        };
+        AbstractLogger.prototype._log = function (level, msg, error) {
+            if (error === void 0) { error = null; }
+            if (this._open && this._logGroupRuntimeSettings.level <= level) {
+                var functionMessage = function () {
+                    if (typeof msg === "function") {
+                        return msg();
+                    }
+                    return msg;
+                };
+                var functionError = function () {
+                    if (typeof error === "function") {
+                        return error();
+                    }
+                    return error;
+                };
+                this._allMessages.addTail(this.createMessage(level, functionMessage, functionError, new Date()));
+                this.processMessages();
+            }
+        };
+        AbstractLogger.prototype.createMessage = function (level, msg, error, date) {
+            var _this = this;
+            var errorResult = error();
+            if (errorResult !== null) {
+                var message_1 = new LogMessageInternalImpl(this._name, msg(), null, errorResult, this._logGroupRuntimeSettings.logGroupRule, date, level, false);
+                MessageUtils.MessageFormatUtils.renderError(errorResult).then(function (stack) {
+                    message_1.errorAsStack = stack;
+                    message_1.ready = true;
+                    _this.processMessages();
+                }).catch(function () {
+                    message_1.errorAsStack = "<UNKNOWN> unable to get stack.";
+                    message_1.ready = true;
+                    _this.processMessages();
+                });
+                return message_1;
+            }
+            return new LogMessageInternalImpl(this._name, msg(), null, errorResult, this._logGroupRuntimeSettings.logGroupRule, date, level, true);
+        };
+        AbstractLogger.prototype.processMessages = function () {
+            // Basically we wait until errors are resolved (those messages
+            // may not be ready).
+            var msgs = this._allMessages;
+            if (msgs.getSize() > 0) {
+                do {
+                    var msg = msgs.getHead();
+                    if (msg != null) {
+                        if (!msg.ready) {
+                            break;
+                        }
+                        msgs.removeHead();
+                        // This can never be null normally, but strict null checking ...
+                        if (msg.message !== null) {
+                            this.doLog(msg);
+                        }
+                    }
+                } while (msgs.getSize() > 0);
+            }
+        };
+        return AbstractLogger;
+    }());
+    var AbstractLogger_2 = AbstractLogger;
+
+
+    var AbstractLogger_1 = /*#__PURE__*/Object.defineProperty({
+    	AbstractLogger: AbstractLogger_2
+    }, '__esModule', {value: true});
+
+    var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+
+
+    /**
+     * Simple logger, that logs to the console. If the console is unavailable will throw exception.
+     */
+    var ConsoleLoggerImpl = (function (_super) {
+        __extends(ConsoleLoggerImpl, _super);
+        function ConsoleLoggerImpl(name, logGroupRuntimeSettings) {
+            return _super.call(this, name, logGroupRuntimeSettings) || this;
+        }
+        ConsoleLoggerImpl.prototype.doLog = function (message) {
+            if (console !== undefined) {
+                var logged = false;
+                var logLevel = message.level;
+                var messageFormatter = this._getMessageFormatter();
+                var msg = void 0;
+                if (messageFormatter === null) {
+                    msg = this.createDefaultLogMessage(message);
+                }
+                else {
+                    msg = messageFormatter(message);
+                }
+                /* tslint:disable:no-console */
+                switch (logLevel) {
+                    case LoggerOptions.LogLevel.Trace:
+                        // Do not try trace we don't want a stack
+                        break;
+                    case LoggerOptions.LogLevel.Debug:
+                        // Don't try, too much differences of consoles.
+                        break;
+                    case LoggerOptions.LogLevel.Info:
+                        if (console.info) {
+                            console.info(msg);
+                            logged = true;
+                        }
+                        break;
+                    case LoggerOptions.LogLevel.Warn:
+                        if (console.warn) {
+                            console.warn(msg);
+                            logged = true;
+                        }
+                        break;
+                    case LoggerOptions.LogLevel.Error:
+                    case LoggerOptions.LogLevel.Fatal:
+                        if (console.error) {
+                            console.error(msg);
+                            logged = true;
+                        }
+                        break;
+                    default:
+                        throw new Error("Log level not supported: " + logLevel);
+                }
+                if (!logged) {
+                    console.log(msg);
+                }
+                /* tslint:enable:no-console */
+            }
+            else {
+                throw new Error("Console is not defined, cannot log msg: " + message.message);
+            }
+        };
+        return ConsoleLoggerImpl;
+    }(AbstractLogger_1.AbstractLogger));
+    var ConsoleLoggerImpl_2 = ConsoleLoggerImpl;
+
+
+    var ConsoleLoggerImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	ConsoleLoggerImpl: ConsoleLoggerImpl_2
+    }, '__esModule', {value: true});
+
+    var __extends$1 = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+
+    /**
+     * Logger which buffers all messages, use with care due to possible high memory footprint.
+     * Can be convenient in some cases. Call toString() for full output, or cast to this class
+     * and call getMessages() to do something with it yourself.
+     */
+    var MessageBufferLoggerImpl = (function (_super) {
+        __extends$1(MessageBufferLoggerImpl, _super);
+        function MessageBufferLoggerImpl(name, logGroupRuntimeSettings) {
+            var _this = _super.call(this, name, logGroupRuntimeSettings) || this;
+            _this.messages = [];
+            return _this;
+        }
+        MessageBufferLoggerImpl.prototype.close = function () {
+            this.messages = [];
+            _super.prototype.close.call(this);
+        };
+        MessageBufferLoggerImpl.prototype.getMessages = function () {
+            return this.messages;
+        };
+        MessageBufferLoggerImpl.prototype.toString = function () {
+            return this.messages.map(function (msg) {
+                return msg;
+            }).join("\n");
+        };
+        MessageBufferLoggerImpl.prototype.doLog = function (message) {
+            var messageFormatter = this._getMessageFormatter();
+            var fullMsg;
+            if (messageFormatter === null) {
+                fullMsg = this.createDefaultLogMessage(message);
+            }
+            else {
+                fullMsg = messageFormatter(message);
+            }
+            this.messages.push(fullMsg);
+        };
+        return MessageBufferLoggerImpl;
+    }(AbstractLogger_1.AbstractLogger));
+    var MessageBufferLoggerImpl_2 = MessageBufferLoggerImpl;
+
+
+    var MessageBufferLoggerImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	MessageBufferLoggerImpl: MessageBufferLoggerImpl_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Represents the runtime settings for a LogGroup (LogGroupRule).
+     */
+    var LogGroupRuntimeSettings = (function () {
+        function LogGroupRuntimeSettings(logGroupRule) {
+            this._formatterLogMessage = null;
+            this._logGroupRule = logGroupRule;
+            this._level = logGroupRule.level;
+            this._loggerType = logGroupRule.loggerType;
+            this._logFormat = new LoggerOptions.LogFormat(new LoggerOptions.DateFormat(logGroupRule.logFormat.dateFormat.formatEnum, logGroupRule.logFormat.dateFormat.dateSeparator), logGroupRule.logFormat.showTimeStamp, logGroupRule.logFormat.showLoggerName);
+            this._callBackLogger = logGroupRule.callBackLogger;
+            this._formatterLogMessage = logGroupRule.formatterLogMessage;
+        }
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "logGroupRule", {
+            /**
+             * Returns original LogGroupRule (so not runtime settings!)
+             * @return {LogGroupRule}
+             */
+            get: function () {
+                return this._logGroupRule;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "level", {
+            get: function () {
+                return this._level;
+            },
+            set: function (value) {
+                this._level = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "loggerType", {
+            get: function () {
+                return this._loggerType;
+            },
+            set: function (value) {
+                this._loggerType = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "logFormat", {
+            get: function () {
+                return this._logFormat;
+            },
+            set: function (value) {
+                this._logFormat = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "callBackLogger", {
+            get: function () {
+                return this._callBackLogger;
+            },
+            set: function (value) {
+                this._callBackLogger = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRuntimeSettings.prototype, "formatterLogMessage", {
+            get: function () {
+                return this._formatterLogMessage;
+            },
+            set: function (value) {
+                this._formatterLogMessage = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LogGroupRuntimeSettings;
+    }());
+    var LogGroupRuntimeSettings_2 = LogGroupRuntimeSettings;
+
+
+    var LogGroupRuntimeSettings_1 = /*#__PURE__*/Object.defineProperty({
+    	LogGroupRuntimeSettings: LogGroupRuntimeSettings_2
+    }, '__esModule', {value: true});
+
+    var LoggerFactoryImpl = (function () {
+        function LoggerFactoryImpl(name, options) {
+            this._loggers = new DataStructures.SimpleMap();
+            this._logGroupRuntimeSettingsIndexed = [];
+            this._loggerToLogGroupSettings = new DataStructures.SimpleMap();
+            this._name = name;
+            this.configure(options);
+        }
+        LoggerFactoryImpl.prototype.configure = function (options) {
+            this._options = options;
+            // Close any current open loggers.
+            this.closeLoggers();
+            this._loggerToLogGroupSettings.clear();
+            this._logGroupRuntimeSettingsIndexed = [];
+            var logGroupRules = this._options.logGroupRules;
+            /* tslint:disable:prefer-for-of */
+            for (var i = 0; i < logGroupRules.length; i++) {
+                this._logGroupRuntimeSettingsIndexed.push(new LogGroupRuntimeSettings_1.LogGroupRuntimeSettings(logGroupRules[i]));
+            }
+            /* tslint:enable:prefer-for-of */
+        };
+        LoggerFactoryImpl.prototype.getLogger = function (named) {
+            if (!this._options.enabled) {
+                throw new Error("LoggerFactory is not enabled, please check your options passed in");
+            }
+            var logger = this._loggers.get(named);
+            if (typeof logger !== "undefined") {
+                return logger;
+            }
+            // Initialize logger with appropriate level
+            logger = this.loadLogger(named);
+            this._loggers.put(named, logger);
+            return logger;
+        };
+        LoggerFactoryImpl.prototype.isEnabled = function () {
+            return this._options.enabled;
+        };
+        LoggerFactoryImpl.prototype.closeLoggers = function () {
+            this._loggers.forEachValue(function (logger) {
+                // We can only close if AbstractLogger is used (our loggers, but user loggers may not extend it, even though unlikely).
+                if (logger instanceof AbstractLogger_1.AbstractLogger) {
+                    logger.close();
+                }
+            });
+            this._loggers.clear();
+        };
+        LoggerFactoryImpl.prototype.getName = function () {
+            return this._name;
+        };
+        LoggerFactoryImpl.prototype.getLogGroupRuntimeSettingsByIndex = function (idx) {
+            if (idx >= 0 && idx < this._logGroupRuntimeSettingsIndexed.length) {
+                return this._logGroupRuntimeSettingsIndexed[idx];
+            }
+            return null;
+        };
+        LoggerFactoryImpl.prototype.getLogGroupRuntimeSettingsByLoggerName = function (nameLogger) {
+            var result = this._loggerToLogGroupSettings.get(nameLogger);
+            if (typeof result === "undefined") {
+                return null;
+            }
+            return result;
+        };
+        LoggerFactoryImpl.prototype.getLogGroupRuntimeSettings = function () {
+            return this._logGroupRuntimeSettingsIndexed.slice(0);
+        };
+        LoggerFactoryImpl.prototype.loadLogger = function (named) {
+            var logGroupRules = this._options.logGroupRules;
+            for (var i = 0; i < logGroupRules.length; i++) {
+                var logGroupRule = logGroupRules[i];
+                if (logGroupRule.regExp.test(named)) {
+                    var logGroupRuntimeSettings = this._logGroupRuntimeSettingsIndexed[i];
+                    var logger = void 0;
+                    switch (logGroupRule.loggerType) {
+                        case LoggerOptions.LoggerType.Console:
+                            logger = new ConsoleLoggerImpl_1.ConsoleLoggerImpl(named, logGroupRuntimeSettings);
+                            break;
+                        case LoggerOptions.LoggerType.MessageBuffer:
+                            logger = new MessageBufferLoggerImpl_1.MessageBufferLoggerImpl(named, logGroupRuntimeSettings);
+                            break;
+                        case LoggerOptions.LoggerType.Custom:
+                            if (logGroupRule.callBackLogger != null) {
+                                logger = logGroupRule.callBackLogger(named, logGroupRuntimeSettings);
+                            }
+                            else {
+                                throw new Error("Cannot create a custom logger, custom callback is null");
+                            }
+                            break;
+                        default:
+                            throw new Error("Cannot create a Logger for LoggerType: " + logGroupRule.loggerType);
+                    }
+                    // For a new logger map it by its name
+                    this._loggerToLogGroupSettings.put(named, logGroupRuntimeSettings);
+                    return logger;
+                }
+            }
+            throw new Error("Failed to find a match to create a Logger for: " + named);
+        };
+        return LoggerFactoryImpl;
+    }());
+    var LoggerFactoryImpl_2 = LoggerFactoryImpl;
+
+
+    var LoggerFactoryImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	LoggerFactoryImpl: LoggerFactoryImpl_2
+    }, '__esModule', {value: true});
+
+    var CategoryLogMessageImpl = (function () {
+        function CategoryLogMessageImpl(message, error, categories, date, level, logFormat, ready) {
+            this._resolvedErrorMessage = false;
+            this._errorAsStack = null;
+            this._message = message;
+            this._error = error;
+            this._categories = categories;
+            this._date = date;
+            this._level = level;
+            this._logFormat = logFormat;
+            this._ready = ready;
+        }
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "message", {
+            get: function () {
+                return this._message;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "error", {
+            get: function () {
+                return this._error;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "categories", {
+            get: function () {
+                return this._categories;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "date", {
+            get: function () {
+                return this._date;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "level", {
+            get: function () {
+                return this._level;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "logFormat", {
+            get: function () {
+                return this._logFormat;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "isMessageLogData", {
+            get: function () {
+                return typeof (this._message) !== "string";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "messageAsString", {
+            get: function () {
+                if (typeof (this._message) === "string") {
+                    return this._message;
+                }
+                return this._message.msg;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "logData", {
+            get: function () {
+                var result = null;
+                if (typeof (this._message) !== "string") {
+                    result = this.message;
+                }
+                return result;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "isResolvedErrorMessage", {
+            get: function () {
+                return this._resolvedErrorMessage;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "errorAsStack", {
+            get: function () {
+                return this._errorAsStack;
+            },
+            set: function (stack) {
+                this._errorAsStack = stack;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CategoryLogMessageImpl.prototype.isReady = function () {
+            return this._ready;
+        };
+        CategoryLogMessageImpl.prototype.setReady = function (value) {
+            this._ready = value;
+        };
+        Object.defineProperty(CategoryLogMessageImpl.prototype, "resolvedErrorMessage", {
+            get: function () {
+                return this._resolvedErrorMessage;
+            },
+            set: function (value) {
+                this._resolvedErrorMessage = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return CategoryLogMessageImpl;
+    }());
+    /**
+     * Abstract category logger, use as your base class for new type of loggers (it
+     * saves you a lot of work) and override doLog(CategoryLogMessage). The message argument
+     * provides full access to anything related to the logging event.
+     * If you just want the standard line of logging, call: this.createDefaultLogMessage(msg) on
+     * this class which will return you the formatted log message as string (e.g. the
+     * default loggers all use this).
+     */
+    var AbstractCategoryLogger = (function () {
+        function AbstractCategoryLogger(rootCategory, runtimeSettings) {
+            this.allMessages = new DataStructures.LinkedList();
+            this.rootCategory = rootCategory;
+            this.runtimeSettings = runtimeSettings;
+        }
+        AbstractCategoryLogger.prototype.trace = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Trace, msg, null, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.debug = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Debug, msg, null, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.info = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Info, msg, null, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.warn = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Warn, msg, null, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.error = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Error, msg, error, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.fatal = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Fatal, msg, error, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.resolved = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this._log.apply(this, [LoggerOptions.LogLevel.Error, msg, error, true].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.log = function (level, msg, error) {
+            var categories = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                categories[_i - 3] = arguments[_i];
+            }
+            this._log.apply(this, [level, msg, error, false].concat(categories));
+        };
+        AbstractCategoryLogger.prototype.getRootCategory = function () {
+            return this.rootCategory;
+        };
+        AbstractCategoryLogger.prototype.createDefaultLogMessage = function (msg) {
+            return MessageUtils.MessageFormatUtils.renderDefaultMessage(msg, true);
+        };
+        /**
+         * Return optional message formatter. All LoggerTypes (except custom) will see if
+         * they have this, and if so use it to log.
+         * @returns {((message:CategoryLogMessage)=>string)|null}
+         */
+        AbstractCategoryLogger.prototype._getMessageFormatter = function () {
+            var categorySettings = this.runtimeSettings.getCategorySettings(this.rootCategory);
+            // Should not happen but make ts happy
+            if (categorySettings === null) {
+                throw new Error("Did not find CategorySettings for rootCategory: " + this.rootCategory.name);
+            }
+            return categorySettings.formatterLogMessage;
+        };
+        AbstractCategoryLogger.prototype._log = function (level, msg, error, resolved) {
+            if (error === void 0) { error = null; }
+            if (resolved === void 0) { resolved = false; }
+            var categories = [];
+            for (var _i = 4; _i < arguments.length; _i++) {
+                categories[_i - 4] = arguments[_i];
+            }
+            // this._logInternal(level, () => msg, () => error, resolved, ...categories);
+            var functionMessage = function () {
+                if (typeof msg === "function") {
+                    return msg();
+                }
+                return msg;
+            };
+            var functionError = function () {
+                if (typeof error === "function") {
+                    return error();
+                }
+                return error;
+            };
+            this._logInternal.apply(this, [level, functionMessage, functionError, resolved].concat(categories));
+        };
+        AbstractCategoryLogger.prototype._logInternal = function (level, msg, error, resolved) {
+            var _this = this;
+            var categories = [];
+            for (var _i = 4; _i < arguments.length; _i++) {
+                categories[_i - 4] = arguments[_i];
+            }
+            var logCategories = [this.rootCategory];
+            // Log root category by default if none present
+            if (typeof categories !== "undefined" && categories.length > 0) {
+                logCategories = logCategories.concat(categories.filter(function (c) { return c !== _this.rootCategory; }));
+            }
+            var _loop_1 = function (i) {
+                var category = logCategories[i];
+                if (category === null) {
+                    throw new Error("Cannot have a null element within categories, at index=" + i);
+                }
+                var settings = this_1.runtimeSettings.getCategorySettings(category);
+                if (settings === null) {
+                    throw new Error("Category with path: " + category.getCategoryPath() + " is not registered with this logger, maybe " +
+                        "you registered it with a different root logger?");
+                }
+                if (settings.logLevel <= level) {
+                    var actualError = error !== null ? error() : null;
+                    if (actualError === null) {
+                        var logMessage = new CategoryLogMessageImpl(msg(), actualError, logCategories, new Date(), level, settings.logFormat, true);
+                        logMessage.resolvedErrorMessage = resolved;
+                        this_1.allMessages.addTail(logMessage);
+                        this_1.processMessages();
+                    }
+                    else {
+                        var logMessage_1 = new CategoryLogMessageImpl(msg(), actualError, logCategories, new Date(), level, settings.logFormat, false);
+                        logMessage_1.resolvedErrorMessage = resolved;
+                        this_1.allMessages.addTail(logMessage_1);
+                        MessageUtils.MessageFormatUtils.renderError(actualError).then(function (stack) {
+                            logMessage_1.errorAsStack = stack;
+                            logMessage_1.setReady(true);
+                            _this.processMessages();
+                        }).catch(function () {
+                            logMessage_1.errorAsStack = "<UNKNOWN> unable to get stack.";
+                            logMessage_1.setReady(true);
+                            _this.processMessages();
+                        });
+                    }
+                    return "break";
+                }
+            };
+            var this_1 = this;
+            // Get the runtime levels for given categories. If their level is lower than given level, we log.
+            // In addition we pass along which category/categories we log this statement for.
+            for (var i = 0; i < logCategories.length; i++) {
+                var state_1 = _loop_1(i);
+                if (state_1 === "break")
+                    break;
+            }
+        };
+        AbstractCategoryLogger.prototype.processMessages = function () {
+            // Basically we wait until errors are resolved (those messages
+            // may not be ready).
+            var msgs = this.allMessages;
+            if (msgs.getSize() > 0) {
+                do {
+                    var msg = msgs.getHead();
+                    if (msg != null) {
+                        if (!msg.isReady()) {
+                            break;
+                        }
+                        msgs.removeHead();
+                        this.doLog(msg);
+                    }
+                } while (msgs.getSize() > 0);
+            }
+        };
+        return AbstractCategoryLogger;
+    }());
+    var AbstractCategoryLogger_2 = AbstractCategoryLogger;
+
+
+    var AbstractCategoryLogger_1 = /*#__PURE__*/Object.defineProperty({
+    	AbstractCategoryLogger: AbstractCategoryLogger_2
+    }, '__esModule', {value: true});
+
+    var __extends$2 = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+
+
+    /**
+     * Simple logger, that logs to the console. If the console is unavailable will throw an exception.
+     */
+    var CategoryConsoleLoggerImpl = (function (_super) {
+        __extends$2(CategoryConsoleLoggerImpl, _super);
+        function CategoryConsoleLoggerImpl(rootCategory, runtimeSettings) {
+            return _super.call(this, rootCategory, runtimeSettings) || this;
+        }
+        CategoryConsoleLoggerImpl.prototype.doLog = function (msg) {
+            if (console !== undefined) {
+                var messageFormatter = this._getMessageFormatter();
+                var fullMsg = void 0;
+                if (messageFormatter === null) {
+                    fullMsg = this.createDefaultLogMessage(msg);
+                }
+                else {
+                    fullMsg = messageFormatter(msg);
+                }
+                var logged = false;
+                /* tslint:disable:no-console */
+                switch (msg.level) {
+                    case LoggerOptions.LogLevel.Trace:
+                        // Don't try trace we don't want stacks
+                        break;
+                    case LoggerOptions.LogLevel.Debug:
+                        // Don't try, too much differences of consoles.
+                        break;
+                    case LoggerOptions.LogLevel.Info:
+                        if (console.info) {
+                            console.info(fullMsg);
+                            logged = true;
+                        }
+                        break;
+                    case LoggerOptions.LogLevel.Warn:
+                        if (console.warn) {
+                            console.warn(fullMsg);
+                            logged = true;
+                        }
+                        break;
+                    case LoggerOptions.LogLevel.Error:
+                    case LoggerOptions.LogLevel.Fatal:
+                        if (console.error) {
+                            console.error(fullMsg);
+                            logged = true;
+                        }
+                        break;
+                    default:
+                        throw new Error("Unsupported level: " + msg.level);
+                }
+                if (!logged) {
+                    console.log(fullMsg);
+                }
+                /* tslint:enable:no-console */
+            }
+            else {
+                throw new Error("Console is not defined, cannot log msg: " + msg.messageAsString);
+            }
+        };
+        return CategoryConsoleLoggerImpl;
+    }(AbstractCategoryLogger_1.AbstractCategoryLogger));
+    var CategoryConsoleLoggerImpl_2 = CategoryConsoleLoggerImpl;
+
+
+    var CategoryConsoleLoggerImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryConsoleLoggerImpl: CategoryConsoleLoggerImpl_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Delegate logger, delegates logging to given logger (constructor).
+     */
+    var CategoryDelegateLoggerImpl = (function () {
+        function CategoryDelegateLoggerImpl(delegate) {
+            this._delegate = delegate;
+        }
+        Object.defineProperty(CategoryDelegateLoggerImpl.prototype, "delegate", {
+            get: function () {
+                return this._delegate;
+            },
+            set: function (value) {
+                this._delegate = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CategoryDelegateLoggerImpl.prototype.trace = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            (_a = this._delegate).trace.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.debug = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            (_a = this._delegate).debug.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.info = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            (_a = this._delegate).info.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.warn = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            (_a = this._delegate).warn.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.error = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            (_a = this._delegate).error.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.fatal = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            (_a = this._delegate).fatal.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.resolved = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            (_a = this._delegate).resolved.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        CategoryDelegateLoggerImpl.prototype.log = function (level, msg, error) {
+            var categories = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                categories[_i - 3] = arguments[_i];
+            }
+            (_a = this._delegate).log.apply(_a, [level, msg, error].concat(categories));
+            var _a;
+        };
+        return CategoryDelegateLoggerImpl;
+    }());
+    var CategoryDelegateLoggerImpl_2 = CategoryDelegateLoggerImpl;
+
+
+    var CategoryDelegateLoggerImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryDelegateLoggerImpl: CategoryDelegateLoggerImpl_2
+    }, '__esModule', {value: true});
+
+    var __extends$3 = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+
+
+    /**
+     * This class should not be used directly, it is used for communication with the extension only.
+     */
+    var CategoryExtensionLoggerImpl = (function (_super) {
+        __extends$3(CategoryExtensionLoggerImpl, _super);
+        function CategoryExtensionLoggerImpl(rootCategory, runtimeSettings) {
+            return _super.call(this, rootCategory, runtimeSettings) || this;
+        }
+        CategoryExtensionLoggerImpl.prototype.doLog = function (msg) {
+            if (typeof window !== "undefined") {
+                ExtensionHelper_1.ExtensionHelper.sendCategoryLogMessage(msg);
+            }
+            else {
+                /* tslint:disable:no-console */
+                console.log("window is not available, you must be running in a browser for this. Dropped message.");
+                /* tslint:enable:no-console */
+            }
+        };
+        return CategoryExtensionLoggerImpl;
+    }(AbstractCategoryLogger_1.AbstractCategoryLogger));
+    var CategoryExtensionLoggerImpl_2 = CategoryExtensionLoggerImpl;
+
+
+    var CategoryExtensionLoggerImpl_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryExtensionLoggerImpl: CategoryExtensionLoggerImpl_2
+    }, '__esModule', {value: true});
+
+    var __extends$4 = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+
+    /**
+     * Logger which buffers all messages, use with care due to possible high memory footprint.
+     * Can be convenient in some cases. Call toString() for full output, or cast to this class
+     * and call getMessages() to do something with it yourself.
+     */
+    var CategoryMessageBufferLoggerImpl = (function (_super) {
+        __extends$4(CategoryMessageBufferLoggerImpl, _super);
+        function CategoryMessageBufferLoggerImpl() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.messages = [];
+            return _this;
+        }
+        CategoryMessageBufferLoggerImpl.prototype.getMessages = function () {
+            return this.messages;
+        };
+        CategoryMessageBufferLoggerImpl.prototype.toString = function () {
+            return this.messages.map(function (msg) {
+                return msg;
+            }).join("\n");
+        };
+        CategoryMessageBufferLoggerImpl.prototype.doLog = function (msg) {
+            var messageFormatter = this._getMessageFormatter();
+            var fullMsg;
+            if (messageFormatter === null) {
+                fullMsg = this.createDefaultLogMessage(msg);
+            }
+            else {
+                fullMsg = messageFormatter(msg);
+            }
+            this.messages.push(fullMsg);
+        };
+        return CategoryMessageBufferLoggerImpl;
+    }(AbstractCategoryLogger_1.AbstractCategoryLogger));
+    var CategoryMessageBufferLoggerImpl_1 = CategoryMessageBufferLoggerImpl;
+
+
+    var CategoryMessageBufferImpl = /*#__PURE__*/Object.defineProperty({
+    	CategoryMessageBufferLoggerImpl: CategoryMessageBufferLoggerImpl_1
+    }, '__esModule', {value: true});
+
+    /**
+     * RuntimeSettings for a category, at runtime these are associated to a category.
+     */
+    var CategoryRuntimeSettings = (function () {
+        function CategoryRuntimeSettings(category, logLevel, loggerType, logFormat, callBackLogger, formatterLogMessage) {
+            if (logLevel === void 0) { logLevel = LoggerOptions.LogLevel.Error; }
+            if (loggerType === void 0) { loggerType = LoggerOptions.LoggerType.Console; }
+            if (logFormat === void 0) { logFormat = new LoggerOptions.CategoryLogFormat(); }
+            if (callBackLogger === void 0) { callBackLogger = null; }
+            if (formatterLogMessage === void 0) { formatterLogMessage = null; }
+            this._formatterLogMessage = null;
+            this._category = category;
+            this._logLevel = logLevel;
+            this._loggerType = loggerType;
+            this._logFormat = logFormat;
+            this._callBackLogger = callBackLogger;
+            this._formatterLogMessage = formatterLogMessage;
+        }
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "category", {
+            get: function () {
+                return this._category;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "logLevel", {
+            get: function () {
+                return this._logLevel;
+            },
+            set: function (value) {
+                this._logLevel = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "loggerType", {
+            get: function () {
+                return this._loggerType;
+            },
+            set: function (value) {
+                this._loggerType = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "logFormat", {
+            get: function () {
+                return this._logFormat;
+            },
+            set: function (value) {
+                this._logFormat = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "callBackLogger", {
+            get: function () {
+                return this._callBackLogger;
+            },
+            set: function (value) {
+                this._callBackLogger = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryRuntimeSettings.prototype, "formatterLogMessage", {
+            get: function () {
+                return this._formatterLogMessage;
+            },
+            set: function (value) {
+                this._formatterLogMessage = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return CategoryRuntimeSettings;
+    }());
+    var CategoryRuntimeSettings_2 = CategoryRuntimeSettings;
+
+
+    var CategoryRuntimeSettings_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryRuntimeSettings: CategoryRuntimeSettings_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Default configuration, can be used to initially set a different default configuration
+     * on the CategoryServiceFactory. This will be applied to all categories already registered (or
+     * registered in the future). Can also be applied to one Category (and childs).
+     */
+    var CategoryConfiguration = (function () {
+        /**
+         * Create a new instance
+         * @param logLevel Log level for all loggers, default is LogLevel.Error
+         * @param loggerType Where to log, default is LoggerType.Console
+         * @param logFormat What logging format to use, use default instance, for default values see CategoryLogFormat.
+         * @param callBackLogger Optional callback, if LoggerType.Custom is used as loggerType. In that case must return a new Logger instance.
+         *            It is recommended to extend AbstractCategoryLogger to make your custom logger.
+         */
+        function CategoryConfiguration(logLevel, loggerType, logFormat, callBackLogger) {
+            if (logLevel === void 0) { logLevel = LoggerOptions.LogLevel.Error; }
+            if (loggerType === void 0) { loggerType = LoggerOptions.LoggerType.Console; }
+            if (logFormat === void 0) { logFormat = new LoggerOptions.CategoryLogFormat(); }
+            if (callBackLogger === void 0) { callBackLogger = null; }
+            this._formatterLogMessage = null;
+            this._logLevel = logLevel;
+            this._loggerType = loggerType;
+            this._logFormat = logFormat;
+            this._callBackLogger = callBackLogger;
+            if (this._loggerType === LoggerOptions.LoggerType.Custom && this.callBackLogger === null) {
+                throw new Error("If you specify loggerType to be Custom, you must provide the callBackLogger argument");
+            }
+        }
+        Object.defineProperty(CategoryConfiguration.prototype, "logLevel", {
+            get: function () {
+                return this._logLevel;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryConfiguration.prototype, "loggerType", {
+            get: function () {
+                return this._loggerType;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryConfiguration.prototype, "logFormat", {
+            get: function () {
+                return this._logFormat;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryConfiguration.prototype, "callBackLogger", {
+            get: function () {
+                return this._callBackLogger;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryConfiguration.prototype, "formatterLogMessage", {
+            /**
+             * Get the formatterLogMessage function, see comment on the setter.
+             * @returns {((message:CategoryLogMessage)=>string)|null}
+             */
+            get: function () {
+                return this._formatterLogMessage;
+            },
+            /**
+             * Set the default formatterLogMessage function, if set it is applied to all type of loggers except for a custom logger.
+             * By default this is null (not set). You can assign a function to allow custom formatting of a log message.
+             * Each log message will call this function then and expects your function to format the message and return a string.
+             * Will throw an error if you attempt to set a formatterLogMessage if the LoggerType is custom.
+             * @param value The formatter function, or null to reset it.
+             */
+            set: function (value) {
+                if (value !== null && this._loggerType === LoggerOptions.LoggerType.Custom) {
+                    throw new Error("You cannot specify a formatter for log messages if your loggerType is Custom");
+                }
+                this._formatterLogMessage = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CategoryConfiguration.prototype.copy = function () {
+            var config = new CategoryConfiguration(this.logLevel, this.loggerType, this.logFormat.copy(), this.callBackLogger);
+            config.formatterLogMessage = this.formatterLogMessage;
+            return config;
+        };
+        return CategoryConfiguration;
+    }());
+    var CategoryConfiguration_2 = CategoryConfiguration;
+
+
+    var CategoryConfiguration_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryConfiguration: CategoryConfiguration_2
+    }, '__esModule', {value: true});
+
+    /**
+     * The service (only available as singleton) for all category related stuff as
+     * retrieving, registering a logger. You should normally NOT use this,
+     * instead use CategoryServiceFactory which is meant for end users.
+     */
+    var CategoryServiceImpl = (function () {
+        function CategoryServiceImpl() {
+            this._defaultConfig = new CategoryConfiguration_1.CategoryConfiguration();
+            this._mapState = new DataStructures.SimpleMap();
+            // Private constructor
+            ExtensionHelper_1.ExtensionHelper.register();
+        }
+        CategoryServiceImpl.getInstance = function () {
+            // Load on-demand, to assure webpack ordering of module usage doesn't screw things over
+            // for us when we accidentally change the order.
+            if (CategoryServiceImpl._INSTANCE === null) {
+                CategoryServiceImpl._INSTANCE = new CategoryServiceImpl();
+            }
+            return CategoryServiceImpl._INSTANCE;
+        };
+        CategoryServiceImpl.prototype.getLogger = function (category) {
+            return this.createOrGetCategoryState(category).logger;
+        };
+        /**
+         * Clears everything, including a default configuration you may have set.
+         * After this you need to re-register your categories etc.
+         */
+        CategoryServiceImpl.prototype.clear = function () {
+            this._mapState.clear();
+            this.setDefaultConfiguration(new CategoryConfiguration_1.CategoryConfiguration());
+        };
+        CategoryServiceImpl.prototype.getCategorySettings = function (category) {
+            return this.createOrGetCategoryState(category).currentRuntimeSettings;
+        };
+        CategoryServiceImpl.prototype.getOriginalCategorySettings = function (category) {
+            return this.createOrGetCategoryState(category).originalRuntimeSettings;
+        };
+        /**
+         * Set the default configuration. New root loggers created get this
+         * applied. If you want to reset all current loggers to have this
+         * applied as well, pass in reset=true (the default is false). All
+         * categories will be reset then as well.
+         * @param config New config
+         * @param reset Defaults to true. Set to true to reset all loggers and current runtimesettings.
+         */
+        CategoryServiceImpl.prototype.setDefaultConfiguration = function (config, reset) {
+            if (reset === void 0) { reset = true; }
+            this._defaultConfig = config;
+            if (reset) {
+                this._mapState.forEachValue(function (state) {
+                    state.updateSettings(config);
+                });
+            }
+        };
+        /**
+         * Set new configuration settings for a category (and possibly its child categories)
+         * @param config Config
+         * @param category Category
+         * @param applyChildren True to apply to child categories, defaults to false.
+         */
+        CategoryServiceImpl.prototype.setConfigurationCategory = function (config, category, applyChildren) {
+            var _this = this;
+            if (applyChildren === void 0) { applyChildren = false; }
+            this.createOrGetCategoryState(category).updateSettings(config);
+            // Apply the settings to children recursive if requested
+            if (applyChildren) {
+                category.children.forEach(function (child) {
+                    // False flag, a child cannot reset a rootlogger
+                    _this.setConfigurationCategory(config, child, applyChildren);
+                });
+            }
+        };
+        CategoryServiceImpl.prototype.registerCategory = function (category) {
+            if (category === null || typeof category === "undefined") {
+                throw new Error("Category CANNOT be null/undefined");
+            }
+            if (this._mapState.exists(CategoryServiceImpl.getCategoryKey(category))) {
+                throw new Error("Cannot add this root category with name: " + category.name + ", it already exists (same name in hierarchy).");
+            }
+            this.createOrGetCategoryState(category);
+        };
+        /**
+         * Used to enable integration with chrome extension. Do not use manually, the
+         * extension and the logger framework deal with this.
+         */
+        CategoryServiceImpl.prototype.enableExtensionIntegration = function () {
+            var _this = this;
+            this._mapState.forEachValue(function (state) { return state.enableForExtension(_this); });
+        };
+        /**
+         * Return all root categories currently registered.
+         */
+        CategoryServiceImpl.prototype.getRootCategories = function () {
+            return this._mapState.values().filter(function (state) { return state.category.parent == null; }).map(function (state) { return state.category; });
+        };
+        /**
+         * Return Category by id
+         * @param id The id of the category to find
+         * @returns {Category} or null if not found
+         */
+        CategoryServiceImpl.prototype.getCategoryById = function (id) {
+            var result = this._mapState.values().filter(function (state) { return state.category.id === id; }).map(function (state) { return state.category; });
+            if (result.length === 1) {
+                return result[0];
+            }
+            return null;
+        };
+        CategoryServiceImpl.prototype.createOrGetCategoryState = function (category) {
+            var key = CategoryServiceImpl.getCategoryKey(category);
+            var state = this._mapState.get(key);
+            if (typeof state !== "undefined") {
+                return state;
+            }
+            var newState = this.createState(category);
+            this._mapState.put(key, newState);
+            return newState;
+        };
+        CategoryServiceImpl.prototype.createState = function (category) {
+            var _this = this;
+            return new CategoryState(category, function () { return _this._defaultConfig; }, function (config, cat) { return _this.createLogger(config, cat); });
+        };
+        CategoryServiceImpl.prototype.createLogger = function (config, category) {
+            // Default is always a console logger
+            switch (config.loggerType) {
+                case LoggerOptions.LoggerType.Console:
+                    return new CategoryConsoleLoggerImpl_1.CategoryConsoleLoggerImpl(category, this);
+                case LoggerOptions.LoggerType.MessageBuffer:
+                    return new CategoryMessageBufferImpl.CategoryMessageBufferLoggerImpl(category, this);
+                case LoggerOptions.LoggerType.Custom:
+                    if (config.callBackLogger === null) {
+                        throw new Error("Cannot create custom logger, custom callback is null");
+                    }
+                    else {
+                        return config.callBackLogger(category, this);
+                    }
+                default:
+                    throw new Error("Cannot create a Logger for LoggerType: " + config.loggerType);
+            }
+        };
+        CategoryServiceImpl.getCategoryKey = function (category) {
+            return category.getCategoryPath();
+        };
+        // Singleton category service, used by CategoryServiceFactory as well as Categories.
+        // Loaded on demand. Do NOT change as webpack may pack things in wrong order otherwise.
+        CategoryServiceImpl._INSTANCE = null;
+        return CategoryServiceImpl;
+    }());
+    var CategoryServiceImpl_1 = CategoryServiceImpl;
+    var CategoryState = (function () {
+        function CategoryState(category, defaultConfig, createLogger) {
+            this._category = category;
+            this._lazyState = new LazyState(category, defaultConfig, createLogger);
+        }
+        Object.defineProperty(CategoryState.prototype, "category", {
+            get: function () {
+                return this._category;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryState.prototype, "logger", {
+            get: function () {
+                return this._lazyState.getLogger();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryState.prototype, "originalRuntimeSettings", {
+            get: function () {
+                return this._lazyState.getOriginalRuntimeSettings();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(CategoryState.prototype, "currentRuntimeSettings", {
+            get: function () {
+                return this._lazyState.getCurrentRuntimeSettings();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CategoryState.prototype.enableForExtension = function (runtimeSettings) {
+            this._lazyState.enableForExtension(runtimeSettings);
+        };
+        CategoryState.prototype.updateSettings = function (config) {
+            this._lazyState.updateSettings(config);
+        };
+        return CategoryState;
+    }());
+    var LazyState = (function () {
+        function LazyState(category, defaultConfig, createLogger) {
+            this._category = category;
+            this._defaultConfig = defaultConfig;
+            this._createLogger = createLogger;
+        }
+        LazyState.prototype.isLoaded = function () {
+            return (typeof this._logger !== "undefined");
+        };
+        LazyState.prototype.getLogger = function () {
+            this.loadLoggerOnDemand();
+            return this._delegateLogger;
+        };
+        LazyState.prototype.getOriginalRuntimeSettings = function () {
+            this.loadLoggerOnDemand();
+            return this._originalRuntimeSettings;
+        };
+        LazyState.prototype.getCurrentRuntimeSettings = function () {
+            this.loadLoggerOnDemand();
+            return this._currentRuntimeSettings;
+        };
+        LazyState.prototype.enableForExtension = function (runtimeSettings) {
+            this.loadLoggerOnDemand();
+            if (!(this._wrappedLogger instanceof CategoryExtensionLoggerImpl_1.CategoryExtensionLoggerImpl)) {
+                /* tslint:disable no-console */
+                console.log("Reconfiguring logger for extension for category: " + this._category.name);
+                /* tslint:enable no-console */
+                this._wrappedLogger = new CategoryExtensionLoggerImpl_1.CategoryExtensionLoggerImpl(this._category, runtimeSettings);
+                this._delegateLogger.delegate = this._wrappedLogger;
+            }
+        };
+        LazyState.prototype.updateSettings = function (config) {
+            if (this.isLoaded()) {
+                this._currentRuntimeSettings.logLevel = config.logLevel;
+                this._currentRuntimeSettings.loggerType = config.loggerType;
+                this._currentRuntimeSettings.logFormat = config.logFormat;
+                this._currentRuntimeSettings.callBackLogger = config.callBackLogger;
+                this._currentRuntimeSettings.formatterLogMessage = config.formatterLogMessage;
+                // Replace the real logger, it may have changed.
+                this._logger = this._createLogger(config, this._category);
+                if (!(this._wrappedLogger instanceof CategoryExtensionLoggerImpl_1.CategoryExtensionLoggerImpl)) {
+                    this._wrappedLogger = this._logger;
+                }
+                this._delegateLogger.delegate = this._wrappedLogger;
+            }
+            else {
+                // Set this config, it may be for the category specific, the default is therefore not good enough.
+                this._defaultConfig = function () { return config; };
+            }
+        };
+        LazyState.prototype.loadLoggerOnDemand = function () {
+            if (!this.isLoaded()) {
+                this._logger = this._createLogger(this._defaultConfig(), this._category);
+                this._wrappedLogger = this._logger;
+                this._delegateLogger = new CategoryDelegateLoggerImpl_1.CategoryDelegateLoggerImpl(this._wrappedLogger);
+                this._originalRuntimeSettings = this.initNewSettings();
+                this._currentRuntimeSettings = this.initNewSettings();
+            }
+        };
+        LazyState.prototype.initNewSettings = function () {
+            var defSettings = this._defaultConfig().copy();
+            return new CategoryRuntimeSettings_1.CategoryRuntimeSettings(this._category, defSettings.logLevel, defSettings.loggerType, defSettings.logFormat, defSettings.callBackLogger, defSettings.formatterLogMessage);
+        };
+        return LazyState;
+    }());
+
+
+    var CategoryService = /*#__PURE__*/Object.defineProperty({
+    	CategoryServiceImpl: CategoryServiceImpl_1
+    }, '__esModule', {value: true});
+
+    var ExtensionHelper = (function () {
+        function ExtensionHelper() {
+            // Private constructor
+        }
+        /**
+         * Enables the window event listener to listen to messages (from extensions).
+         * Can be registered/enabled only once.
+         */
+        ExtensionHelper.register = function () {
+            if (!ExtensionHelper.registered) {
+                var listener = function (evt) {
+                    var msg = evt.data;
+                    if (msg !== null) {
+                        ExtensionHelper.processMessageFromExtension(msg);
+                    }
+                };
+                if (typeof window !== "undefined" && typeof window.removeEventListener !== "undefined" && typeof window.addEventListener !== "undefined") {
+                    window.removeEventListener("message", listener);
+                    window.addEventListener("message", listener);
+                    ExtensionHelper.registered = true;
+                }
+            }
+        };
+        ExtensionHelper.processMessageFromExtension = function (msg) {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            /* tslint:disable:no-console */
+            if (msg.from === "tsl-extension") {
+                var data = msg.data;
+                switch (data.type) {
+                    case "register":
+                        ExtensionHelper.enableExtensionIntegration();
+                        break;
+                    case "request-change-loglevel":
+                        var valueRequest = data.value;
+                        var catsApplied = ExtensionHelper.applyLogLevel(valueRequest.categoryId, valueRequest.logLevel, valueRequest.recursive);
+                        if (catsApplied.length > 0) {
+                            // Send changes back
+                            ExtensionHelper.sendCategoriesRuntimeUpdateMessage(catsApplied);
+                        }
+                        break;
+                    default:
+                        console.log("Unknown command to process message from extension, command was: " + data.type);
+                        break;
+                }
+            }
+            /* tslint:enable:no-console */
+        };
+        ExtensionHelper.sendCategoryLogMessage = function (msg) {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            var categoryIds = msg.categories.map(function (cat) {
+                return cat.id;
+            });
+            var content = {
+                type: "log-message",
+                value: {
+                    categories: categoryIds,
+                    errorAsStack: msg.errorAsStack,
+                    formattedMessage: MessageUtils.MessageFormatUtils.renderDefaultMessage(msg, false),
+                    logLevel: LoggerOptions.LogLevel[msg.level].toString(),
+                    message: msg.messageAsString,
+                    resolvedErrorMessage: msg.isResolvedErrorMessage
+                }
+            };
+            var message = {
+                data: content,
+                from: "tsl-logging",
+            };
+            ExtensionHelper.sendMessage(message);
+        };
+        ExtensionHelper.sendCategoriesRuntimeUpdateMessage = function (categories) {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            var service = CategoryService.CategoryServiceImpl.getInstance();
+            var catLevels = { categories: Array() };
+            categories.forEach(function (cat) {
+                var catSettings = service.getCategorySettings(cat);
+                if (catSettings != null) {
+                    catLevels.categories.push({ id: cat.id, logLevel: LoggerOptions.LogLevel[catSettings.logLevel].toString() });
+                }
+            });
+            var content = {
+                type: "categories-rt-update",
+                value: catLevels,
+            };
+            var message = {
+                data: content,
+                from: "tsl-logging"
+            };
+            ExtensionHelper.sendMessage(message);
+        };
+        ExtensionHelper.sendRootCategoriesToExtension = function () {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            var categories = CategoryService.CategoryServiceImpl.getInstance().getRootCategories().map(function (cat) {
+                return ExtensionHelper.getCategoryAsJSON(cat);
+            });
+            var content = {
+                type: "root-categories-tree",
+                value: categories
+            };
+            var message = {
+                data: content,
+                from: "tsl-logging"
+            };
+            ExtensionHelper.sendMessage(message);
+        };
+        /**
+         * If extension integration is enabled, will send the root categories over to the extension.
+         * Otherwise does nothing.
+         */
+        ExtensionHelper.getCategoryAsJSON = function (cat) {
+            var childCategories = cat.children.map(function (child) {
+                return ExtensionHelper.getCategoryAsJSON(child);
+            });
+            return {
+                children: childCategories,
+                id: cat.id,
+                logLevel: LoggerOptions.LogLevel[cat.logLevel].toString(),
+                name: cat.name,
+                parentId: (cat.parent != null ? cat.parent.id : null),
+            };
+        };
+        ExtensionHelper.applyLogLevel = function (categoryId, logLevel, recursive) {
+            var cats = [];
+            var category = CategoryService.CategoryServiceImpl.getInstance().getCategoryById(categoryId);
+            if (category != null) {
+                ExtensionHelper._applyLogLevelRecursive(category, LoggerOptions.LogLevel.fromString(logLevel), recursive, cats);
+            }
+            else {
+                /* tslint:disable:no-console */
+                console.log("Could not change log level, failed to find category with id: " + categoryId);
+                /* tslint:enable:no-console */
+            }
+            return cats;
+        };
+        ExtensionHelper._applyLogLevelRecursive = function (category, logLevel, recursive, cats) {
+            var categorySettings = CategoryService.CategoryServiceImpl.getInstance().getCategorySettings(category);
+            if (categorySettings != null) {
+                categorySettings.logLevel = logLevel;
+                cats.push(category);
+                if (recursive) {
+                    category.children.forEach(function (child) {
+                        ExtensionHelper._applyLogLevelRecursive(child, logLevel, recursive, cats);
+                    });
+                }
+            }
+        };
+        ExtensionHelper.getAllCategories = function () {
+            var cats = [];
+            var addCats = function (cat, allCats) {
+                allCats.push(cat);
+                cat.children.forEach(function (catChild) {
+                    addCats(catChild, allCats);
+                });
+            };
+            CategoryService.CategoryServiceImpl.getInstance().getRootCategories().forEach(function (cat) {
+                addCats(cat, cats);
+            });
+            return cats;
+        };
+        ExtensionHelper.sendMessage = function (msg) {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            if (typeof window !== "undefined" && typeof window.postMessage !== "undefined") {
+                window.postMessage(msg, "*");
+            }
+        };
+        /**
+         *  Extension framework will call this to enable the integration between two,
+         *  after this call the framework will respond with postMessage() messages.
+         */
+        ExtensionHelper.enableExtensionIntegration = function () {
+            if (!ExtensionHelper.registered) {
+                return;
+            }
+            var instance = CategoryService.CategoryServiceImpl.getInstance();
+            instance.enableExtensionIntegration();
+            // Send over all categories
+            ExtensionHelper.sendRootCategoriesToExtension();
+            // Send over the current runtime levels
+            var cats = ExtensionHelper.getAllCategories();
+            ExtensionHelper.sendCategoriesRuntimeUpdateMessage(cats);
+        };
+        ExtensionHelper.registered = false;
+        return ExtensionHelper;
+    }());
+    var ExtensionHelper_2 = ExtensionHelper;
+
+
+    var ExtensionHelper_1 = /*#__PURE__*/Object.defineProperty({
+    	ExtensionHelper: ExtensionHelper_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Defines a LogGroupRule, this allows you to either have everything configured the same way
+     * or for example loggers that start with name model. It allows you to group loggers together
+     * to have a certain loglevel and other settings. You can configure this when creating the
+     * LoggerFactory (which accepts multiple LogGroupRules).
+     */
+    var LogGroupRule = (function () {
+        /**
+         * Create a LogGroupRule. Basically you define what logger name(s) match for this group, what level should be used what logger type (where to log)
+         * and what format to write in. If the loggerType is custom, then the callBackLogger must be supplied as callback function to return a custom logger.
+         * @param regExp Regular expression, what matches for your logger names for this group
+         * @param level LogLevel
+         * @param logFormat LogFormat
+         * @param loggerType Type of logger, if Custom, make sure to implement callBackLogger and pass in, this will be called so you can return your own logger.
+         * @param callBackLogger Callback function to return a new clean custom logger (yours!)
+         */
+        function LogGroupRule(regExp, level, logFormat, loggerType, callBackLogger) {
+            if (logFormat === void 0) { logFormat = new LoggerOptions.LogFormat(); }
+            if (loggerType === void 0) { loggerType = LoggerOptions.LoggerType.Console; }
+            if (callBackLogger === void 0) { callBackLogger = null; }
+            this._formatterLogMessage = null;
+            this._regExp = regExp;
+            this._level = level;
+            this._logFormat = logFormat;
+            this._loggerType = loggerType;
+            this._callBackLogger = callBackLogger;
+        }
+        Object.defineProperty(LogGroupRule.prototype, "regExp", {
+            get: function () {
+                return this._regExp;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRule.prototype, "level", {
+            get: function () {
+                return this._level;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRule.prototype, "loggerType", {
+            get: function () {
+                return this._loggerType;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRule.prototype, "logFormat", {
+            get: function () {
+                return this._logFormat;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRule.prototype, "callBackLogger", {
+            get: function () {
+                return this._callBackLogger;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LogGroupRule.prototype, "formatterLogMessage", {
+            /**
+             * Get the formatterLogMessage function, see comment on the setter.
+             * @returns {((message:LogMessage)=>string)|null}
+             */
+            get: function () {
+                return this._formatterLogMessage;
+            },
+            /**
+             * Set the default formatterLogMessage function, if set it is applied to all type of loggers except for a custom logger.
+             * By default this is null (not set). You can assign a function to allow custom formatting of a log message.
+             * Each log message will call this function then and expects your function to format the message and return a string.
+             * Will throw an error if you attempt to set a formatterLogMessage if the LoggerType is custom.
+             * @param value The formatter function, or null to reset it.
+             */
+            set: function (value) {
+                if (value !== null && this._loggerType === LoggerOptions.LoggerType.Custom) {
+                    throw new Error("You cannot specify a formatter for log messages if your loggerType is Custom");
+                }
+                this._formatterLogMessage = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LogGroupRule;
+    }());
+    var LogGroupRule_2 = LogGroupRule;
+
+
+    var LogGroupRule_1 = /*#__PURE__*/Object.defineProperty({
+    	LogGroupRule: LogGroupRule_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Options object you can use to configure the LoggerFactory you create at LFService.
+     */
+    var LoggerFactoryOptions = (function () {
+        function LoggerFactoryOptions() {
+            this._logGroupRules = [];
+            this._enabled = true;
+        }
+        /**
+         * Add LogGroupRule, see {LogGroupRule) for details
+         * @param rule Rule to add
+         * @returns {LoggerFactoryOptions} returns itself
+         */
+        LoggerFactoryOptions.prototype.addLogGroupRule = function (rule) {
+            this._logGroupRules.push(rule);
+            return this;
+        };
+        /**
+         * Enable or disable logging completely for the LoggerFactory.
+         * @param enabled True for enabled (default)
+         * @returns {LoggerFactoryOptions} returns itself
+         */
+        LoggerFactoryOptions.prototype.setEnabled = function (enabled) {
+            this._enabled = enabled;
+            return this;
+        };
+        Object.defineProperty(LoggerFactoryOptions.prototype, "logGroupRules", {
+            get: function () {
+                return this._logGroupRules;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LoggerFactoryOptions.prototype, "enabled", {
+            get: function () {
+                return this._enabled;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return LoggerFactoryOptions;
+    }());
+    var LoggerFactoryOptions_2 = LoggerFactoryOptions;
+
+
+    var LoggerFactoryOptions_1 = /*#__PURE__*/Object.defineProperty({
+    	LoggerFactoryOptions: LoggerFactoryOptions_2
+    }, '__esModule', {value: true});
+
+    var LFServiceImpl = (function () {
+        function LFServiceImpl() {
+            // Private constructor.
+            this._nameCounter = 1;
+            this._mapFactories = new DataStructures.SimpleMap();
+            ExtensionHelper_1.ExtensionHelper.register();
+        }
+        LFServiceImpl.getInstance = function () {
+            // Loaded on demand. Do NOT change as webpack may pack things in wrong order otherwise.
+            if (LFServiceImpl._INSTANCE === null) {
+                LFServiceImpl._INSTANCE = new LFServiceImpl();
+            }
+            return LFServiceImpl._INSTANCE;
+        };
+        /**
+         * Create a new LoggerFactory with given options (if any). If no options
+         * are specified, the LoggerFactory, will accept any named logger and will
+         * log on info level by default for, to the console.
+         * @param options Options, optional.
+         * @returns {LoggerFactory}
+         */
+        LFServiceImpl.prototype.createLoggerFactory = function (options) {
+            if (options === void 0) { options = null; }
+            var name = "LoggerFactory" + this._nameCounter++;
+            return this.createNamedLoggerFactory(name, options);
+        };
+        /**
+         * Create a new LoggerFactory using given name (used for console api/extension).
+         * @param name Name Pick something short but distinguishable.
+         * @param options Options, optional
+         * @return {LoggerFactory}
+         */
+        LFServiceImpl.prototype.createNamedLoggerFactory = function (name, options) {
+            if (options === void 0) { options = null; }
+            if (this._mapFactories.exists(name)) {
+                throw new Error("LoggerFactory with name " + name + " already exists.");
+            }
+            var factory;
+            if (options !== null) {
+                factory = new LoggerFactoryImpl_1.LoggerFactoryImpl(name, options);
+            }
+            else {
+                factory = new LoggerFactoryImpl_1.LoggerFactoryImpl(name, LFServiceImpl.createDefaultOptions());
+            }
+            this._mapFactories.put(name, factory);
+            return factory;
+        };
+        /**
+         * Closes all Loggers for LoggerFactories that were created.
+         * After this call, all previously fetched Loggers (from their
+         * factories) are unusable. The factories remain as they were.
+         */
+        LFServiceImpl.prototype.closeLoggers = function () {
+            this._mapFactories.values().forEach(function (factory) {
+                factory.closeLoggers();
+            });
+            this._mapFactories.clear();
+            this._nameCounter = 1;
+        };
+        LFServiceImpl.prototype.getRuntimeSettingsForLoggerFactories = function () {
+            var result = [];
+            this._mapFactories.forEachValue(function (factory) { return result.push(factory); });
+            return result;
+        };
+        LFServiceImpl.prototype.getLogGroupSettings = function (nameLoggerFactory, idLogGroupRule) {
+            var factory = this._mapFactories.get(nameLoggerFactory);
+            if (typeof factory === "undefined") {
+                return null;
+            }
+            return factory.getLogGroupRuntimeSettingsByIndex(idLogGroupRule);
+        };
+        LFServiceImpl.prototype.getLoggerFactoryRuntimeSettingsByName = function (nameLoggerFactory) {
+            var result = this._mapFactories.get(nameLoggerFactory);
+            if (typeof result === "undefined") {
+                return null;
+            }
+            return result;
+        };
+        LFServiceImpl.createDefaultOptions = function () {
+            return new LoggerFactoryOptions_1.LoggerFactoryOptions().addLogGroupRule(new LogGroupRule_1.LogGroupRule(new RegExp(".+"), LoggerOptions.LogLevel.Info));
+        };
+        // Loaded on demand. Do NOT change as webpack may pack things in wrong order otherwise.
+        LFServiceImpl._INSTANCE = null;
+        return LFServiceImpl;
+    }());
+    /**
+     * Create and configure your LoggerFactory from here.
+     */
+    var LFService = (function () {
+        function LFService() {
+        }
+        /**
+         * Create a new LoggerFactory with given options (if any). If no options
+         * are specified, the LoggerFactory, will accept any named logger and will
+         * log on info level by default for, to the console.
+         * @param options Options, optional.
+         * @returns {LoggerFactory}
+         */
+        LFService.createLoggerFactory = function (options) {
+            if (options === void 0) { options = null; }
+            return LFService.INSTANCE_SERVICE.createLoggerFactory(options);
+        };
+        /**
+         * Create a new LoggerFactory using given name (used for console api/extension).
+         * @param name Name Pick something short but distinguishable. The word "DEFAULT" is reserved and cannot be taken, it is used
+         * for the default LoggerFactory.
+         * @param options Options, optional
+         * @return {LoggerFactory}
+         */
+        LFService.createNamedLoggerFactory = function (name, options) {
+            if (options === void 0) { options = null; }
+            if (name === LFService.DEFAULT_LOGGER_FACTORY_NAME) {
+                throw new Error("LoggerFactory name: " + LFService.DEFAULT_LOGGER_FACTORY_NAME + " is reserved and cannot be used.");
+            }
+            return LFService.INSTANCE_SERVICE.createNamedLoggerFactory(name, options);
+        };
+        /**
+         * Closes all Loggers for LoggerFactories that were created.
+         * After this call, all previously fetched Loggers (from their
+         * factories) are unusable. The factories remain as they were.
+         */
+        LFService.closeLoggers = function () {
+            return LFService.INSTANCE_SERVICE.closeLoggers();
+        };
+        /**
+         * Return LFServiceRuntimeSettings to retrieve information loggerfactories
+         * and their runtime settings.
+         * @returns {LFServiceRuntimeSettings}
+         */
+        LFService.getRuntimeSettings = function () {
+            return LFService.INSTANCE_SERVICE;
+        };
+        Object.defineProperty(LFService, "DEFAULT", {
+            /**
+             * This property returns the default LoggerFactory (if not yet initialized it is initialized).
+             * This LoggerFactory can be used to share among multiple
+             * applications/libraries - that way you can enable/change logging over everything from
+             * your own application when required.
+             * It is recommended to be used by library developers to make logging easily available for the
+             * consumers of their libraries.
+             * It is highly recommended to use Loggers from the LoggerFactory with unique grouping/names to prevent
+             * clashes of Loggers between multiple projects.
+             * @returns {LoggerFactory} Returns the default LoggerFactory
+             */
+            get: function () {
+                return LFService.getDefault();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        LFService.getDefault = function () {
+            if (LFService.DEFAULT_LOGGER_FACTORY === null) {
+                LFService.DEFAULT_LOGGER_FACTORY = LFService.DEFAULT_LOGGER_FACTORY = LFService.INSTANCE_SERVICE.createNamedLoggerFactory(LFService.DEFAULT_LOGGER_FACTORY_NAME, new LoggerFactoryOptions_1.LoggerFactoryOptions().addLogGroupRule(new LogGroupRule_1.LogGroupRule(new RegExp(".+"), LoggerOptions.LogLevel.Error)));
+            }
+            return LFService.DEFAULT_LOGGER_FACTORY;
+        };
+        LFService.DEFAULT_LOGGER_FACTORY_NAME = "DEFAULT";
+        LFService.INSTANCE_SERVICE = LFServiceImpl.getInstance();
+        LFService.DEFAULT_LOGGER_FACTORY = null;
+        return LFService;
+    }());
+    var LFService_2 = LFService;
+
+
+    var LFService_1 = /*#__PURE__*/Object.defineProperty({
+    	LFService: LFService_2
+    }, '__esModule', {value: true});
+
+    var LoggerControlImpl = (function () {
+        function LoggerControlImpl() {
+        }
+        LoggerControlImpl.prototype.help = function () {
+            /* tslint:disable:no-console */
+            console.log(LoggerControlImpl._help);
+            /* tslint:enable:no-console */
+        };
+        LoggerControlImpl.prototype.listFactories = function () {
+            var rtSettingsFactories = LoggerControlImpl._getRuntimeSettingsLoggerFactories();
+            var result = new DataStructures.StringBuilder();
+            result.appendLine("Registered LoggerFactories (index / name)");
+            for (var i = 0; i < rtSettingsFactories.length; i++) {
+                var rtSettingsFactory = rtSettingsFactories[i];
+                result.append("  " + i).append(": " + rtSettingsFactory.getName() + "\n");
+            }
+            /* tslint:disable:no-console */
+            console.log(result.toString());
+            /* tslint:enable:no-console */
+        };
+        LoggerControlImpl.prototype.showSettings = function (id) {
+            if (id === void 0) { id = "all"; }
+            var result = [];
+            if (id === "all") {
+                var idx_1 = 0;
+                LoggerControlImpl._getRuntimeSettingsLoggerFactories().forEach(function (item) {
+                    result.push(new DataStructures.TuplePair(idx_1++, item));
+                });
+            }
+            else {
+                var settings = LoggerControlImpl._getRuntimeSettingsLoggerFactories();
+                if (id >= 0 && id < settings.length) {
+                    result.push(new DataStructures.TuplePair(id, settings[id]));
+                }
+                else {
+                    throw new Error("Requested number: " + id + " was not found.");
+                }
+            }
+            for (var _i = 0, result_1 = result; _i < result_1.length; _i++) {
+                var setting = result_1[_i];
+                /* tslint:disable:no-console */
+                console.log("  LoggerFactory: " + setting.y.getName() + " (id=" + setting.x + ")");
+                var logGroupRuntimeSettings = setting.y.getLogGroupRuntimeSettings();
+                for (var g = 0; g < logGroupRuntimeSettings.length; g++) {
+                    var groupSetting = logGroupRuntimeSettings[g];
+                    console.log("     LogGroup: (id=" + g + ")");
+                    console.log("       RegExp: " + groupSetting.logGroupRule.regExp.source);
+                    console.log("       Level: " + LoggerOptions.LogLevel[groupSetting.level].toString());
+                    console.log("       LoggerType: " + LoggerOptions.LoggerType[groupSetting.loggerType].toString());
+                }
+                /* tslint:enable:no-console */
+            }
+        };
+        LoggerControlImpl.prototype.reset = function (idFactory) {
+            if (idFactory === void 0) { idFactory = "all"; }
+            var loggerFactoriesSettings = LoggerControlImpl._getRuntimeSettingsLoggerFactories();
+            var result = [];
+            if (idFactory === "all") {
+                result = loggerFactoriesSettings;
+            }
+            else {
+                if (idFactory >= 0 && idFactory < loggerFactoriesSettings.length) {
+                    result.push(loggerFactoriesSettings[idFactory]);
+                }
+            }
+            result.forEach(function (setting) {
+                /* tslint:disable:no-console */
+                console.log("Reset all settings for factory " + idFactory);
+                /* tslint:enable:no-console */
+                var control = new LoggerFactoryControlImpl(setting);
+                control.reset();
+            });
+        };
+        LoggerControlImpl.prototype.getLoggerFactoryControl = function (idFactory) {
+            var loggerFactoriesSettings = LoggerControlImpl._getRuntimeSettingsLoggerFactories();
+            if (idFactory >= 0 && idFactory < loggerFactoriesSettings.length) {
+                return new LoggerFactoryControlImpl(loggerFactoriesSettings[idFactory]);
+            }
+            throw new Error("idFactory is invalid (less than 0) or non existing id.");
+        };
+        LoggerControlImpl._getRuntimeSettingsLoggerFactories = function () {
+            return LoggerControlImpl._getSettings().getRuntimeSettingsForLoggerFactories();
+        };
+        LoggerControlImpl._getSettings = function () {
+            return LFService_1.LFService.getRuntimeSettings();
+        };
+        LoggerControlImpl._help = "\n  help(): void\n    ** Shows this help.\n\n  listFactories(): void\n    ** List all registered LoggerFactories with associated log groups with respective ids (ids can be used to target a factory and/or group).\n\n  showSettings(idFactory: number | \"all\"): void\n    ** Show log group settings for idFactory (use listFactories to find id for a LoggerFactory). If idFactory is \"all\" shows all factories.\n\n  getLoggerFactoryControl(idFactory: number): LoggerFactoryControl\n    ** Return LoggerFactoryControl when found for given idFactory or throws Error if invalid or null, get the id by using listFactories()\n\n  reset(idFactory: number | \"all\"): void\n    ** Resets given factory or all factories back to original values.\n";
+        return LoggerControlImpl;
+    }());
+    var LoggerControlImpl_1 = LoggerControlImpl;
+    var LoggerFactoryControlImpl = (function () {
+        function LoggerFactoryControlImpl(settings) {
+            this._settings = settings;
+        }
+        LoggerFactoryControlImpl.prototype.help = function () {
+            /* tslint:disable:no-console */
+            console.log(LoggerFactoryControlImpl._help);
+            /* tslint:enable:no-console */
+        };
+        LoggerFactoryControlImpl.prototype.example = function () {
+            /* tslint:disable:no-console */
+            console.log(LoggerFactoryControlImpl._example);
+            /* tslint:enable:no-console */
+        };
+        LoggerFactoryControlImpl.prototype.showSettings = function (id) {
+            var result = new DataStructures.StringBuilder();
+            var logGroupRuntimeSettings = this._settings.getLogGroupRuntimeSettings();
+            result.appendLine("Registered LogGroups (index / expression)");
+            for (var i = 0; i < logGroupRuntimeSettings.length; i++) {
+                var logGroupRuntimeSetting = logGroupRuntimeSettings[i];
+                result.appendLine("  " + i + ": " + logGroupRuntimeSetting.logGroupRule.regExp.source + ", logLevel=" +
+                    LoggerOptions.LogLevel[logGroupRuntimeSetting.level].toString() + ", showTimestamp=" + logGroupRuntimeSetting.logFormat.showTimeStamp +
+                    ", showLoggerName=" + logGroupRuntimeSetting.logFormat.showLoggerName +
+                    ", format=" + LoggerOptions.DateFormatEnum[logGroupRuntimeSetting.logFormat.dateFormat.formatEnum].toString());
+            }
+            /* tslint:disable:no-console */
+            console.log(result.toString());
+            /* tslint:enable:no-console */
+        };
+        LoggerFactoryControlImpl.prototype.change = function (settings) {
+            var logGroupRuntimeSettings = this._getLogGroupRunTimeSettingsFor(settings.group);
+            var logLevel = null;
+            var formatEnum = null;
+            var showLoggerName = null;
+            var showTimestamp = null;
+            var result = null;
+            var addResult = function (value) {
+                if (result !== null) {
+                    result += ", ";
+                }
+                if (result === null) {
+                    result = value;
+                }
+                else {
+                    result += value;
+                }
+            };
+            if (typeof settings.logLevel === "string") {
+                logLevel = LoggerOptions.LogLevel.fromString(settings.logLevel);
+                addResult("logLevel=" + settings.logLevel);
+            }
+            if (typeof settings.logFormat === "string") {
+                formatEnum = LoggerOptions.DateFormatEnum.fromString(settings.logFormat);
+                addResult("logFormat=" + settings.logFormat);
+            }
+            if (typeof settings.showLoggerName === "boolean") {
+                showLoggerName = settings.showLoggerName;
+                addResult("showLoggerName=" + settings.showLoggerName);
+            }
+            if (typeof settings.showTimestamp === "boolean") {
+                showTimestamp = settings.showTimestamp;
+                addResult("showTimestamp=" + settings.showTimestamp);
+            }
+            logGroupRuntimeSettings.forEach(function (s) {
+                if (logLevel !== null) {
+                    s.level = logLevel;
+                }
+                if (formatEnum !== null) {
+                    s.logFormat.dateFormat.formatEnum = formatEnum;
+                }
+                if (showTimestamp !== null) {
+                    s.logFormat.showTimeStamp = showTimestamp;
+                }
+                if (showLoggerName !== null) {
+                    s.logFormat.showLoggerName = showLoggerName;
+                }
+            });
+            /* tslint:disable:no-console */
+            console.log("Applied changes: " + result + " to log groups '" + settings.group + "'.");
+            /* tslint:enable:no-console */
+        };
+        LoggerFactoryControlImpl.prototype.reset = function (idGroup) {
+            if (idGroup === void 0) { idGroup = "all"; }
+            var settings = this._getLogGroupRunTimeSettingsFor(idGroup);
+            for (var _i = 0, settings_1 = settings; _i < settings_1.length; _i++) {
+                var setting = settings_1[_i];
+                setting.level = setting.logGroupRule.level;
+                setting.logFormat.showTimeStamp = setting.logGroupRule.logFormat.showTimeStamp;
+                setting.logFormat.showLoggerName = setting.logGroupRule.logFormat.showLoggerName;
+                setting.logFormat.dateFormat.formatEnum = setting.logGroupRule.logFormat.dateFormat.formatEnum;
+            }
+            /* tslint:disable:no-console */
+            console.log("Reset all settings for group " + idGroup);
+            /* tslint:enable:no-console */
+        };
+        LoggerFactoryControlImpl.prototype._getLogGroupRunTimeSettingsFor = function (idGroup) {
+            var settings = [];
+            if (idGroup === "all") {
+                settings = this._settings.getLogGroupRuntimeSettings();
+            }
+            else {
+                this._checkIndex(idGroup);
+                settings.push(this._settings.getLogGroupRuntimeSettings()[idGroup]);
+            }
+            return settings;
+        };
+        LoggerFactoryControlImpl.prototype._checkIndex = function (index) {
+            if (index < 0 || index >= this._settings.getLogGroupRuntimeSettings().length) {
+                throw new Error("Invalid index, use listLogGroups to find out a valid one.");
+            }
+        };
+        LoggerFactoryControlImpl._help = "\n  help(): void\n    ** Shows this help.\n\n  example(): void\n    ** Shows an example of usage.\n\n  showSettings(id: number | \"all\"): void\n    ** Prints settings for given group id, \"all\" for all group.\n\n  change(settings: LogGroupControlSettings): void\n    ** Changes the current settings for one or all log groups.\n    **\n       LogGroupControlSettings, properties of object:\n         group: number | \"all\"\n           ** Apply to specific group, or \"all\".\n           ** Required\n\n         logLevel: \"Fatal\" | \"Error\" | \"Warn\" | \"Info\" | \"Debug\" | \"Trace\" | undefined\n           ** Set log level, undefined will not change the setting.\n           ** Optional\n\n         logFormat: \"Default\" | \"YearMonthDayTime\" | \"YearDayMonthWithFullTime\" | \"YearDayMonthTime\" | undefined\n           ** Set the log format, undefined will not change the setting.\n           ** Optional\n\n         showTimestamp: boolean | undefined\n           ** Whether to show timestamp, undefined will not change the setting.\n           ** Optional\n\n         showLoggerName: boolean | undefined\n           ** Whether to show the logger name, undefined will not change the setting.\n           ** Optional\n\n  reset(id: number | \"all\"): void\n    ** Resets everything to original values, for one specific or for all groups.\n\n  help():\n    ** Shows this help.\n";
+        LoggerFactoryControlImpl._example = "\n  Examples:\n    change({group: \"all\", logLevel: \"Info\"})\n      ** Change loglevel to Info for all groups.\n\n    change({group: 1, recursive:false, logLevel: \"Warn\"})\n      ** Change logLevel for group 1 to Warn.\n\n    change({group: \"all\", logLevel: \"Debug\", logFormat: \"YearDayMonthTime\", showTimestamp:false, showLoggerName:false})\n      ** Change loglevel to Debug for all groups, apply format, do not show timestamp and logger names.\n";
+        return LoggerFactoryControlImpl;
+    }());
+
+
+    var LogGroupControl = /*#__PURE__*/Object.defineProperty({
+    	LoggerControlImpl: LoggerControlImpl_1
+    }, '__esModule', {value: true});
+
+    /**
+     * Implementation class for CategoryServiceControl.
+     */
+    var CategoryServiceControlImpl = (function () {
+        function CategoryServiceControlImpl() {
+        }
+        CategoryServiceControlImpl.prototype.help = function () {
+            /* tslint:disable:no-console */
+            console.log(CategoryServiceControlImpl._help);
+            /* tslint:enable:no-console */
+        };
+        CategoryServiceControlImpl.prototype.example = function () {
+            /* tslint:disable:no-console */
+            console.log(CategoryServiceControlImpl._example);
+            /* tslint:enable:no-console */
+        };
+        CategoryServiceControlImpl.prototype.showSettings = function (id) {
+            if (id === void 0) { id = "all"; }
+            var result = new DataStructures.StringBuilder();
+            var service = CategoryServiceControlImpl._getCategoryService();
+            var categories = CategoryServiceControlImpl._getCategories(id);
+            categories.forEach(function (category) {
+                CategoryServiceControlImpl._processCategory(service, category, result, 0);
+            });
+            /* tslint:disable:no-console */
+            console.log(result.toString());
+            /* tslint:enable:no-console */
+        };
+        CategoryServiceControlImpl.prototype.change = function (settings) {
+            var service = CategoryServiceControlImpl._getCategoryService();
+            var categories = CategoryServiceControlImpl._getCategories(settings.category);
+            var logLevel = null;
+            var formatEnum = null;
+            var showCategoryName = null;
+            var showTimestamp = null;
+            var result = null;
+            var addResult = function (value) {
+                if (result !== null) {
+                    result += ", ";
+                }
+                if (result === null) {
+                    result = value;
+                }
+                else {
+                    result += value;
+                }
+            };
+            addResult("recursive=" + settings.recursive);
+            if (typeof settings.logLevel === "string") {
+                logLevel = LoggerOptions.LogLevel.fromString(settings.logLevel);
+                addResult("logLevel=" + settings.logLevel);
+            }
+            if (typeof settings.logFormat === "string") {
+                formatEnum = LoggerOptions.DateFormatEnum.fromString(settings.logFormat);
+                addResult("logFormat=" + settings.logFormat);
+            }
+            if (typeof settings.showCategoryName === "boolean") {
+                showCategoryName = settings.showCategoryName;
+                addResult("showCategoryName=" + settings.showCategoryName);
+            }
+            if (typeof settings.showTimestamp === "boolean") {
+                showTimestamp = settings.showTimestamp;
+                addResult("showTimestamp=" + settings.showTimestamp);
+            }
+            var applyChanges = function (cat) {
+                var categorySettings = service.getCategorySettings(cat);
+                // Should not happen but make tslint happy
+                if (categorySettings !== null) {
+                    if (logLevel !== null) {
+                        categorySettings.logLevel = logLevel;
+                    }
+                    if (formatEnum !== null) {
+                        categorySettings.logFormat.dateFormat.formatEnum = formatEnum;
+                    }
+                    if (showTimestamp !== null) {
+                        categorySettings.logFormat.showTimeStamp = showTimestamp;
+                    }
+                    if (showCategoryName !== null) {
+                        categorySettings.logFormat.showCategoryName = showCategoryName;
+                    }
+                }
+            };
+            categories.forEach(function (cat) { return CategoryServiceControlImpl._applyToCategory(cat, settings.recursive, applyChanges); });
+            /* tslint:disable:no-console */
+            console.log("Applied changes: " + result + " to categories '" + settings.category + "'.");
+            /* tslint:enable:no-console */
+        };
+        CategoryServiceControlImpl.prototype.reset = function (id) {
+            if (id === void 0) { id = "all"; }
+            var service = CategoryServiceControlImpl._getCategoryService();
+            var categories = CategoryServiceControlImpl._getCategories(id);
+            var applyChanges = function (cat) {
+                var categorySettings = service.getCategorySettings(cat);
+                var original = service.getOriginalCategorySettings(cat);
+                // Should not happen but make tslint happy
+                if (categorySettings !== null && original !== null) {
+                    categorySettings.logLevel = original.logLevel;
+                    categorySettings.logFormat.dateFormat.formatEnum = original.logFormat.dateFormat.formatEnum;
+                    categorySettings.logFormat.showTimeStamp = original.logFormat.showTimeStamp;
+                    categorySettings.logFormat.showCategoryName = original.logFormat.showCategoryName;
+                }
+            };
+            categories.forEach(function (cat) { return CategoryServiceControlImpl._applyToCategory(cat, true, applyChanges); });
+            /* tslint:disable:no-console */
+            console.log("Applied reset to category: " + id + ".");
+            /* tslint:enable:no-console */
+        };
+        CategoryServiceControlImpl._processCategory = function (service, category, result, indent) {
+            var settings = service.getCategorySettings(category);
+            if (settings !== null) {
+                result.append("  " + category.id + ": ");
+                if (indent > 0) {
+                    for (var i = 0; i < indent; i++) {
+                        result.append("  ");
+                    }
+                }
+                result.append(category.name + " (" + LoggerOptions.LogLevel[settings.logLevel].toString() + "@" + LoggerOptions.LoggerType[settings.loggerType].toString() + ")\n");
+                if (category.children.length > 0) {
+                    category.children.forEach(function (child) {
+                        CategoryServiceControlImpl._processCategory(service, child, result, indent + 1);
+                    });
+                }
+            }
+        };
+        CategoryServiceControlImpl._applyToCategory = function (category, recursive, apply) {
+            apply(category);
+            if (recursive) {
+                category.children.forEach(function (child) {
+                    CategoryServiceControlImpl._applyToCategory(child, recursive, apply);
+                });
+            }
+        };
+        CategoryServiceControlImpl._getCategoryService = function () {
+            return CategoryService.CategoryServiceImpl.getInstance();
+        };
+        CategoryServiceControlImpl._getCategories = function (idCategory) {
+            var service = CategoryServiceControlImpl._getCategoryService();
+            var categories = [];
+            if (idCategory === "all") {
+                categories = service.getRootCategories();
+            }
+            else {
+                var category = service.getCategoryById(idCategory);
+                if (category === null) {
+                    throw new Error("Failed to find category with id " + idCategory);
+                }
+                categories.push(category);
+            }
+            return categories;
+        };
+        CategoryServiceControlImpl._help = "\n  help(): void\n    ** Shows this help.\n\n  example(): void\n    ** Shows an example on how to use this.\n\n  showSettings(id: number | \"all\" = \"all\"): void\n    ** Shows settings for a specific category, or for all. The id of categories can be found by calling this method without parameter.\n\n  change(settings: CategoryServiceControlSettings): void\n    ** Changes the current settings for one or all categories.\n    **\n       CategoryServiceControlSettings, properties of object:\n         category: number | \"all\"\n           ** Apply to specific category, or \"all\".\n           ** Required\n\n         recursive: boolean\n           ** Apply to child categories (true) or not.\n           ** Required\n\n         logLevel: \"Fatal\" | \"Error\" | \"Warn\" | \"Info\" | \"Debug\" | \"Trace\" | undefined\n           ** Set log level, undefined will not change the setting.\n           ** Optional\n\n         logFormat: \"Default\" | \"YearMonthDayTime\" | \"YearDayMonthWithFullTime\" | \"YearDayMonthTime\" | undefined\n           ** Set the log format, undefined will not change the setting.\n           ** Optional\n\n         showTimestamp: boolean | undefined\n           ** Whether to show timestamp, undefined will not change the setting.\n           ** Optional\n\n         showCategoryName: boolean | undefined\n           ** Whether to show the category name, undefined will not change the setting.\n           ** Optional\n\n   reset(id: number | \"all\"): void\n     ** Resets everything to original values, for one specific or for all categories.\n";
+        CategoryServiceControlImpl._example = "\n  Examples:\n    change({category: \"all\", recursive:true, logLevel: \"Info\"})\n      ** Change loglevel to Info for all categories, apply to child categories as well.\n\n    change({category: 1, recursive:false, logLevel: \"Warn\"})\n      ** Change logLevel for category 1, do not recurse.\n\n    change({category: \"all\", recursive:true, logLevel: \"Debug\", logFormat: \"YearDayMonthTime\", showTimestamp:false, showCategoryName:false})\n      ** Change loglevel to Debug for all categories, apply format, do not show timestamp and category names - recursively to child categories.\n\n";
+        return CategoryServiceControlImpl;
+    }());
+    var CategoryServiceControlImpl_1 = CategoryServiceControlImpl;
+
+
+    var CategoryServiceControl = /*#__PURE__*/Object.defineProperty({
+    	CategoryServiceControlImpl: CategoryServiceControlImpl_1
+    }, '__esModule', {value: true});
+
+    /**
+     * Category for use with categorized logging.
+     * At minimum you need one category, which will serve as the root category.
+     * You can create child categories (like a tree). You can have multiple root
+     * categories.
+     */
+    var Category = (function () {
+        function Category(name, parent) {
+            if (parent === void 0) { parent = null; }
+            this._children = [];
+            this._logLevel = LoggerOptions.LogLevel.Error;
+            if (name.indexOf("#") !== -1) {
+                throw new Error("Cannot use # in a name of a Category");
+            }
+            this._id = Category.nextId();
+            this._name = name;
+            this._parent = parent;
+            if (this._parent !== null) {
+                this._parent._children.push(this);
+            }
+            CategoryService.CategoryServiceImpl.getInstance().registerCategory(this);
+        }
+        Object.defineProperty(Category.prototype, "name", {
+            get: function () {
+                return this._name;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Category.prototype, "parent", {
+            get: function () {
+                return this._parent;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Category.prototype, "children", {
+            get: function () {
+                return this._children;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Category.prototype, "logLevel", {
+            get: function () {
+                return this._logLevel;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Category.prototype.trace = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).trace.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        Category.prototype.debug = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).debug.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        Category.prototype.info = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).info.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        Category.prototype.warn = function (msg) {
+            var categories = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                categories[_i - 1] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).warn.apply(_a, [msg].concat(categories));
+            var _a;
+        };
+        Category.prototype.error = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).error.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        Category.prototype.fatal = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).fatal.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        Category.prototype.resolved = function (msg, error) {
+            var categories = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                categories[_i - 2] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).resolved.apply(_a, [msg, error].concat(categories));
+            var _a;
+        };
+        Category.prototype.log = function (level, msg, error) {
+            var categories = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                categories[_i - 3] = arguments[_i];
+            }
+            this.loadCategoryLogger();
+            (_a = this._logger).log.apply(_a, [level, msg, error].concat(categories));
+            var _a;
+        };
+        Category.prototype.getCategoryPath = function () {
+            var result = this.name;
+            var cat = this.parent;
+            while (cat != null) {
+                result = cat.name + "#" + result;
+                cat = cat.parent;
+            }
+            return result;
+        };
+        Object.defineProperty(Category.prototype, "id", {
+            /**
+             * Returns the id for this category (this
+             * is for internal purposes only).
+             * @returns {number} Id
+             */
+            get: function () {
+                return this._id;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Category.prototype.loadCategoryLogger = function () {
+            if (!this._logger) {
+                this._logger = CategoryService.CategoryServiceImpl.getInstance().getLogger(this);
+            }
+            if (typeof this._logger === "undefined" || this._logger === null) {
+                throw new Error("Failed to load a logger for category (should not happen): " + this.name);
+            }
+        };
+        Category.nextId = function () {
+            return Category.currentId++;
+        };
+        Category.currentId = 1;
+        return Category;
+    }());
+    var Category_2 = Category;
+
+
+    var Category_1 = /*#__PURE__*/Object.defineProperty({
+    	Category: Category_2
+    }, '__esModule', {value: true});
+
+    /**
+     * Categorized service for logging, where logging is bound to categories which
+     * can log horizontally through specific application logic (services, group(s) of components etc).
+     * For the standard way of logging like most frameworks do these days, use LFService instead.
+     * If you want fine grained control to divide sections of your application in
+     * logical units to enable/disable logging for, this is the service you want to use instead.
+     * Also for this type a browser plugin will be available.
+     */
+    var CategoryServiceFactory = (function () {
+        function CategoryServiceFactory() {
+            // Private constructor.
+        }
+        /**
+         * Return a CategoryLogger for given ROOT category (thus has no parent).
+         * You can only retrieve loggers for their root, when logging
+         * you specify to log for what (child)categories.
+         * @param root Category root (has no parent)
+         * @returns {CategoryLogger}
+         */
+        CategoryServiceFactory.getLogger = function (root) {
+            return CategoryService.CategoryServiceImpl.getInstance().getLogger(root);
+        };
+        /**
+         * Clears everything, any registered (root)categories and loggers
+         * are discarded. Resets to default configuration.
+         */
+        CategoryServiceFactory.clear = function () {
+            return CategoryService.CategoryServiceImpl.getInstance().clear();
+        };
+        /**
+         * Set the default configuration. New root loggers created get this
+         * applied. If you want to reset all current loggers to have this
+         * applied as well, pass in reset=true (the default is false). All
+         * categories runtimesettings will be reset then as well.
+         * @param config The new default configuration
+         * @param reset If true, will reset *all* runtimesettings for all loggers/categories to these. Default is true.
+         */
+        CategoryServiceFactory.setDefaultConfiguration = function (config, reset) {
+            if (reset === void 0) { reset = true; }
+            CategoryService.CategoryServiceImpl.getInstance().setDefaultConfiguration(config, reset);
+        };
+        /**
+         * Set new configuration settings for a category (and possibly its child categories)
+         * @param config Config
+         * @param category Category
+         * @param applyChildren True to apply to child categories, defaults to false.
+         */
+        CategoryServiceFactory.setConfigurationCategory = function (config, category, applyChildren) {
+            if (applyChildren === void 0) { applyChildren = false; }
+            CategoryService.CategoryServiceImpl.getInstance().setConfigurationCategory(config, category, applyChildren);
+        };
+        return CategoryServiceFactory;
+    }());
+    var CategoryServiceFactory_2 = CategoryServiceFactory;
+
+
+    var CategoryServiceFactory_1 = /*#__PURE__*/Object.defineProperty({
+    	CategoryServiceFactory: CategoryServiceFactory_2
+    }, '__esModule', {value: true});
+
+    var __extends$5 = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
+        var extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+
+    /**
+     * Module containing bunch of JSON related stuff.
+     */
+
+
+    var JSONTypeImpl = (function () {
+        function JSONTypeImpl(value) {
+            this._value = value;
+        }
+        JSONTypeImpl.prototype.getValue = function () {
+            return this._value;
+        };
+        JSONTypeImpl.prototype.toString = function () {
+            var value = this.getValue();
+            if (value != null) {
+                return value.toString();
+            }
+            return "null";
+        };
+        return JSONTypeImpl;
+    }());
+    var JSONBooleanType = (function (_super) {
+        __extends$5(JSONBooleanType, _super);
+        function JSONBooleanType(value) {
+            return _super.call(this, value) || this;
+        }
+        return JSONBooleanType;
+    }(JSONTypeImpl));
+    var JSONNumberType = (function (_super) {
+        __extends$5(JSONNumberType, _super);
+        function JSONNumberType(value) {
+            return _super.call(this, value) || this;
+        }
+        return JSONNumberType;
+    }(JSONTypeImpl));
+    var JSONStringType = (function (_super) {
+        __extends$5(JSONStringType, _super);
+        function JSONStringType(value) {
+            return _super.call(this, value) || this;
+        }
+        JSONStringType.prototype.toString = function () {
+            var value = this.getValue();
+            if (value != null) {
+                return JSON.stringify(value.toString());
+            }
+            return "null";
+        };
+        return JSONStringType;
+    }(JSONTypeImpl));
+    var JSONObjectType = (function (_super) {
+        __extends$5(JSONObjectType, _super);
+        function JSONObjectType(value) {
+            return _super.call(this, value) || this;
+        }
+        return JSONObjectType;
+    }(JSONTypeImpl));
+    var JSONArrayType = (function (_super) {
+        __extends$5(JSONArrayType, _super);
+        function JSONArrayType(value) {
+            return _super.call(this, value) || this;
+        }
+        JSONArrayType.prototype.toString = function () {
+            var value = this.getValue();
+            if (value != null) {
+                return value.toString();
+            }
+            return "null";
+        };
+        return JSONArrayType;
+    }(JSONTypeImpl));
+    var JSONNullType = (function (_super) {
+        __extends$5(JSONNullType, _super);
+        function JSONNullType() {
+            return _super.call(this, null) || this;
+        }
+        JSONNullType.prototype.toString = function () {
+            return "null";
+        };
+        return JSONNullType;
+    }(JSONTypeImpl));
+    var JSONTypeConverter = (function () {
+        function JSONTypeConverter() {
+        }
+        JSONTypeConverter.toJSONType = function (value) {
+            if (value === null) {
+                return new JSONNullType();
+            }
+            if (typeof value === "string") {
+                return new JSONStringType(value);
+            }
+            if (typeof value === "number") {
+                return new JSONNumberType(value);
+            }
+            if (typeof value === "boolean") {
+                return new JSONBooleanType(value);
+            }
+            if (value instanceof JSONObject) {
+                return new JSONObjectType(value);
+            }
+            throw new Error("Type not supported for value: " + value);
+        };
+        return JSONTypeConverter;
+    }());
+    var JSONObject = (function () {
+        function JSONObject() {
+            this.values = new DataStructures.SimpleMap();
+        }
+        JSONObject.prototype.addBoolean = function (name, value) {
+            this.checkName(name);
+            JSONObject.checkValue(value);
+            this.values.put(name, new JSONBooleanType(value));
+            return this;
+        };
+        JSONObject.prototype.addNumber = function (name, value) {
+            this.checkName(name);
+            JSONObject.checkValue(value);
+            this.values.put(name, new JSONNumberType(value));
+            return this;
+        };
+        JSONObject.prototype.addString = function (name, value) {
+            this.checkName(name);
+            JSONObject.checkValue(value);
+            this.values.put(name, new JSONStringType(value));
+            return this;
+        };
+        JSONObject.prototype.addNull = function (name) {
+            this.checkName(name);
+            this.values.put(name, new JSONNullType());
+            return this;
+        };
+        JSONObject.prototype.addArray = function (name, array) {
+            this.checkName(name);
+            JSONObject.checkValue(array);
+            if (array == null) {
+                throw new Error("Cannot add array as null");
+            }
+            this.values.put(name, new JSONArrayType(array));
+            return this;
+        };
+        JSONObject.prototype.addObject = function (name, object) {
+            this.checkName(name);
+            JSONObject.checkValue(object);
+            if (object == null) {
+                throw new Error("Cannot add object as null");
+            }
+            this.values.put(name, new JSONObjectType(object));
+            return this;
+        };
+        JSONObject.prototype.toString = function (pretty) {
+            var _this = this;
+            var comma = false;
+            var buffer = new DataStructures.StringBuilder();
+            buffer.append("{");
+            this.values.keys().forEach(function (key) {
+                var value = _this.values.get(key);
+                if (value != null) {
+                    if (comma) {
+                        buffer.append(",");
+                    }
+                    buffer.append('"').append(key).append('":').append(value.toString());
+                    comma = true;
+                }
+            });
+            buffer.append("}");
+            return buffer.toString();
+        };
+        JSONObject.prototype.checkName = function (name) {
+            if (name == null || name === undefined) {
+                throw new Error("Name is null or undefined");
+            }
+            if (this.values.exists(name)) {
+                throw new Error("Name " + name + " is already present for this object");
+            }
+        };
+        JSONObject.checkValue = function (value) {
+            if (value === undefined) {
+                throw new Error("Value is undefined");
+            }
+        };
+        return JSONObject;
+    }());
+    var JSONObject_1 = JSONObject;
+    var JSONArray = (function () {
+        function JSONArray() {
+            this.objects = [];
+        }
+        JSONArray.prototype.add = function (object) {
+            if (object === undefined) {
+                throw new Error("Object is not allowed to be undefined");
+            }
+            this.objects.push(JSONTypeConverter.toJSONType(object));
+            return this;
+        };
+        JSONArray.prototype.toString = function (pretty) {
+            var buffer = new DataStructures.StringBuilder();
+            buffer.append("[");
+            this.objects.forEach(function (value, index) {
+                if (index > 0) {
+                    buffer.append(",");
+                }
+                buffer.append(value.toString());
+            });
+            buffer.append("]");
+            return buffer.toString();
+        };
+        return JSONArray;
+    }());
+    var JSONArray_1 = JSONArray;
+    /**
+     * Utility class that helps us convert things to and from json (not for normal usage).
+     */
+    var JSONHelper = (function () {
+        function JSONHelper() {
+        }
+        JSONHelper.categoryToJSON = function (cat, recursive) {
+            /*
+             {
+             "categories":
+             [
+             { id=1,
+             name: "x",
+             parent: null,
+             logLevel: "Error"
+             },
+             { id=2,
+             name: "y",
+             parent: 1,
+             logLevel: "Error"
+             }
+             ]
+             }
+             */
+            var arr = new JSONArray();
+            JSONHelper._categoryToJSON(cat, arr, recursive);
+            var object = new JSONObject();
+            object.addArray("categories", arr);
+            return object;
+        };
+        JSONHelper._categoryToJSON = function (cat, arr, recursive) {
+            var object = new JSONObject();
+            object.addNumber("id", cat.id);
+            object.addString("name", cat.name);
+            object.addString("logLevel", LoggerOptions.LogLevel[cat.logLevel].toString());
+            if (cat.parent != null) {
+                object.addNumber("parent", cat.parent.id);
+            }
+            else {
+                object.addNull("parent");
+            }
+            arr.add(object);
+            if (recursive) {
+                cat.children.forEach(function (child) {
+                    JSONHelper._categoryToJSON(child, arr, recursive);
+                });
+            }
+        };
+        return JSONHelper;
+    }());
+    var JSONHelper_2 = JSONHelper;
+
+
+    var JSONHelper_1 = /*#__PURE__*/Object.defineProperty({
+    	JSONObject: JSONObject_1,
+    	JSONArray: JSONArray_1,
+    	JSONHelper: JSONHelper_2
+    }, '__esModule', {value: true});
+
+    var typescriptLogging = createCommonjsModule(function (module, exports) {
+    function __export(m) {
+        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+
+
+    exports.ExtensionHelper = ExtensionHelper_1.ExtensionHelper;
+    // Category related
+
+    exports.AbstractCategoryLogger = AbstractCategoryLogger_1.AbstractCategoryLogger;
+
+    exports.CategoryConsoleLoggerImpl = CategoryConsoleLoggerImpl_1.CategoryConsoleLoggerImpl;
+
+    exports.CategoryDelegateLoggerImpl = CategoryDelegateLoggerImpl_1.CategoryDelegateLoggerImpl;
+
+    exports.Category = Category_1.Category;
+
+    exports.CategoryRuntimeSettings = CategoryRuntimeSettings_1.CategoryRuntimeSettings;
+
+    exports.CategoryConfiguration = CategoryConfiguration_1.CategoryConfiguration;
+
+    exports.CategoryMessageBufferLoggerImpl = CategoryMessageBufferImpl.CategoryMessageBufferLoggerImpl;
+
+    exports.CategoryServiceFactory = CategoryServiceFactory_1.CategoryServiceFactory;
+
+    exports.LoggerFactoryOptions = LoggerFactoryOptions_1.LoggerFactoryOptions;
+
+    exports.LogGroupRule = LogGroupRule_1.LogGroupRule;
+
+    exports.LFService = LFService_1.LFService;
+
+    exports.AbstractLogger = AbstractLogger_1.AbstractLogger;
+
+    exports.ConsoleLoggerImpl = ConsoleLoggerImpl_1.ConsoleLoggerImpl;
+
+    exports.MessageBufferLoggerImpl = MessageBufferLoggerImpl_1.MessageBufferLoggerImpl;
+
+    exports.CategoryLogFormat = LoggerOptions.CategoryLogFormat;
+    exports.DateFormat = LoggerOptions.DateFormat;
+    exports.DateFormatEnum = LoggerOptions.DateFormatEnum;
+    exports.LogFormat = LoggerOptions.LogFormat;
+    exports.LoggerType = LoggerOptions.LoggerType;
+    exports.LogLevel = LoggerOptions.LogLevel;
+    // Utilities
+
+    exports.SimpleMap = DataStructures.SimpleMap;
+    exports.LinkedList = DataStructures.LinkedList;
+    __export(JSONHelper_1);
+
+    exports.MessageFormatUtils = MessageUtils.MessageFormatUtils;
+    /*
+     Functions to export on TSL libarary var.
+    */
+    // Export help function
+    function help() {
+        /* tslint:disable:no-console */
+        console.log("help()\n   ** Shows this help\n\n getLogControl(): LoggerControl\n   ** Returns LoggerControl Object, use to dynamically change loglevels for log4j logging.\n   ** Call .help() on LoggerControl object for available options.\n\n getCategoryControl(): CategoryServiceControl\n   ** Returns CategoryServiceControl Object, use to dynamically change loglevels for category logging.\n   ** Call .help() on CategoryServiceControl object for available options.\n");
+        /* tslint:enable:no-console */
+    }
+    exports.help = help;
+    // Export LogControl function (log4j)
+    function getLogControl() {
+        return new LogGroupControl.LoggerControlImpl();
+    }
+    exports.getLogControl = getLogControl;
+    // Export CategoryControl function
+    function getCategoryControl() {
+        return new CategoryServiceControl.CategoryServiceControlImpl();
+    }
+    exports.getCategoryControl = getCategoryControl;
+
+    });
+
+    const options = new typescriptLogging.LoggerFactoryOptions()
+        .addLogGroupRule(new typescriptLogging.LogGroupRule(new RegExp('.+'), typescriptLogging.LogLevel.Info));
+    var factory = typescriptLogging.LFService.createNamedLoggerFactory('LoggerFactory', options);
+
+    const playerStore = writable([]);
+    const playerId = writable('');
+    const undercoverCount = writable(0);
+    const mrWhiteCount = writable(0);
+    const connectionOpened = writable(false);
+    const ownWord = writable('init');
+    const playingState = writable('init');
+    const playerToWords = writable([]);
+    const currentPlayerTurn = writable('');
+    const hasVoted = writable(false);
+    const playersWhoVoted = writable([]);
+    const logger = factory.getLogger('store');
+    const socket = new WebSocket('ws://b455891f6f6b.ngrok.io');
+    socket.addEventListener('open', () => connectionOpened.set(true));
+    socket.addEventListener('message', onMessageEvent);
+    function onMessageEvent(event) {
+        logger.info(`Received data from WS, ${event.data}`);
+        const resp = JSON.parse(event.data);
+        if (resp.topic === 'player') {
+            if (resp.subtopic === 'update') {
+                const addPlayerResponse = resp;
+                updatePlayerStore(addPlayerResponse);
+            }
+        }
+        else if (resp.topic === 'settings') {
+            const settingsResponse = resp;
+            updateSettings(settingsResponse);
+        }
+        else if (resp.topic === 'game') {
+            if (resp.subtopic === 'word') {
+                const getWordResp = resp;
+                ownWord.set(getWordResp.data);
+                playingState.set('started');
+            }
+            else if (resp.subtopic === 'update') {
+                const inGameResponse = resp;
+                const data = inGameResponse.data;
+                playerToWords.set(data.playerToWords);
+                currentPlayerTurn.set(data.player);
+                if (data.turn !== 0 && data.turn % get_store_value(playerStore).length === 0) {
+                    playingState.set('voting');
+                }
+            }
+        }
+        else if (resp.topic === 'vote') {
+            if (resp.subtopic === 'update') {
+                const response = resp;
+                playersWhoVoted.set(response.data.playersWhoVoted);
+            }
+        }
+    }
+    function updateSettings(resp) {
+        const data = resp.data;
+        undercoverCount.set(data.underCoverCount);
+        mrWhiteCount.set(data.mrWhiteCount);
+    }
+    function updatePlayerStore(resp) {
+        // console.log(`Before: ${get(playerStore)}`);
+        playerStore.set(resp.data);
+        // console.log(`After: ${get(playerStore)}`);
+    }
+    const sendMessage = (message) => {
+        if (get_store_value(connectionOpened)) {
+            // console.log(`Sending ${JSON.stringify(message)}`);
+            socket.send(JSON.stringify(message));
+        }
+    };
+
+    const [s, r] = crossfade({
+        duration: d => Math.sqrt(d * 200),
+        fallback(node) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
+            return {
+                duration: 600,
+                easing: quintOut,
+                css: t => `
+        transform: ${transform} scale(${t});
+        opacity: ${t}
+      `
+            };
+        }
+    });
+    const send = s;
+    const receive = r;
+
+    function flip(node, animation, params) {
+        const style = getComputedStyle(node);
+        const transform = style.transform === 'none' ? '' : style.transform;
+        const scaleX = animation.from.width / node.clientWidth;
+        const scaleY = animation.from.height / node.clientHeight;
+        const dx = (animation.from.left - animation.to.left) / scaleX;
+        const dy = (animation.from.top - animation.to.top) / scaleY;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        const { delay = 0, duration = (d) => Math.sqrt(d) * 120, easing = cubicOut } = params;
+        return {
+            delay,
+            duration: is_function(duration) ? duration(d) : duration,
+            easing,
+            css: (_t, u) => `transform: ${transform} translate(${u * dx}px, ${u * dy}px);`
+        };
+    }
+
+    /* src/PlayersGrid.svelte generated by Svelte v3.31.2 */
+    const file = "src/PlayersGrid.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[1] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
+    	return child_ctx;
+    }
+
+    // (36:6) {#each entry[1] as word, _ (word)}
+    function create_each_block_1(key_1, ctx) {
+    	let p;
+    	let t_value = /*word*/ ctx[4] + "";
+    	let t;
+    	let p_intro;
+    	let rect;
+    	let stop_animation = noop;
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			p = element("p");
+    			t = text(t_value);
+    			attr_dev(p, "class", "item svelte-8e6fra");
+    			add_location(p, file, 36, 8, 634);
+    			this.first = p;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			append_dev(p, t);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty & /*$playerToWords*/ 1 && t_value !== (t_value = /*word*/ ctx[4] + "")) set_data_dev(t, t_value);
+    		},
+    		r: function measure() {
+    			rect = p.getBoundingClientRect();
+    		},
+    		f: function fix() {
+    			fix_position(p);
+    			stop_animation();
+    		},
+    		a: function animate() {
+    			stop_animation();
+    			stop_animation = create_animation(p, rect, flip, {});
+    		},
+    		i: function intro(local) {
+    			if (!p_intro) {
+    				add_render_callback(() => {
+    					p_intro = create_in_transition(p, receive, { key: /*word*/ ctx[4] });
+    					p_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(36:6) {#each entry[1] as word, _ (word)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (32:2) {#each $playerToWords as entry}
+    function create_each_block(ctx) {
+    	let div1;
+    	let div0;
+    	let t0_value = /*entry*/ ctx[1][0] + "";
+    	let t0;
+    	let t1;
+    	let p;
+    	let t3;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let t4;
+    	let each_value_1 = /*entry*/ ctx[1][1];
+    	validate_each_argument(each_value_1);
+    	const get_key = ctx => /*word*/ ctx[4];
+    	validate_each_keys(ctx, each_value_1, get_each_context_1, get_key);
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		let child_ctx = get_each_context_1(ctx, each_value_1, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block_1(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			p = element("p");
+    			p.textContent = "* * *";
+    			t3 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t4 = space();
+    			add_location(div0, file, 33, 6, 544);
+    			attr_dev(p, "class", "svelte-8e6fra");
+    			add_location(p, file, 34, 6, 572);
+    			attr_dev(div1, "class", "card svelte-8e6fra");
+    			add_location(div1, file, 32, 4, 519);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div1, t1);
+    			append_dev(div1, p);
+    			append_dev(div1, t3);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div1, null);
+    			}
+
+    			append_dev(div1, t4);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$playerToWords*/ 1 && t0_value !== (t0_value = /*entry*/ ctx[1][0] + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*$playerToWords*/ 1) {
+    				each_value_1 = /*entry*/ ctx[1][1];
+    				validate_each_argument(each_value_1);
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].r();
+    				validate_each_keys(ctx, each_value_1, get_each_context_1, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value_1, each_1_lookup, div1, fix_and_destroy_block, create_each_block_1, t4, get_each_context_1);
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].a();
+    			}
+    		},
+    		i: function intro(local) {
+    			for (let i = 0; i < each_value_1.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d();
+    			}
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(32:2) {#each $playerToWords as entry}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let main;
+    	let each_value = /*$playerToWords*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(main, "class", "svelte-8e6fra");
+    			add_location(main, file, 30, 0, 474);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(main, null);
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*$playerToWords*/ 1) {
+    				each_value = /*$playerToWords*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(main, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: function intro(local) {
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let $playerToWords;
+    	validate_store(playerToWords, "playerToWords");
+    	component_subscribe($$self, playerToWords, $$value => $$invalidate(0, $playerToWords = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("PlayersGrid", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<PlayersGrid> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		playerToWords,
+    		receive,
+    		flip,
+    		$playerToWords
+    	});
+
+    	return [$playerToWords];
+    }
+
+    class PlayersGrid extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "PlayersGrid",
+    			options,
+    			id: create_fragment.name
+    		});
+    	}
+    }
+
+    /* src/PlayerTurn.svelte generated by Svelte v3.31.2 */
+    const file$1 = "src/PlayerTurn.svelte";
+
+    function create_fragment$1(ctx) {
+    	let main;
+    	let p;
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			p = element("p");
+    			t = text(/*turnText*/ ctx[0]);
+    			add_location(p, file$1, 11, 2, 294);
+    			add_location(main, file$1, 10, 0, 285);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, p);
+    			append_dev(p, t);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*turnText*/ 1) set_data_dev(t, /*turnText*/ ctx[0]);
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let turnText;
+    	let $currentPlayerTurn;
+    	let $playerId;
+    	validate_store(currentPlayerTurn, "currentPlayerTurn");
+    	component_subscribe($$self, currentPlayerTurn, $$value => $$invalidate(1, $currentPlayerTurn = $$value));
+    	validate_store(playerId, "playerId");
+    	component_subscribe($$self, playerId, $$value => $$invalidate(2, $playerId = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("PlayerTurn", slots, []);
+
+    	function getText(currentPlayer) {
+    		if ($playerId === currentPlayer) {
+    			return `It's your turn!`;
+    		}
+
+    		return `It's ${currentPlayer}'s turn`;
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<PlayerTurn> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		currentPlayerTurn,
+    		playerId,
+    		getText,
+    		turnText,
+    		$currentPlayerTurn,
+    		$playerId
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("turnText" in $$props) $$invalidate(0, turnText = $$props.turnText);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$currentPlayerTurn*/ 2) {
+    			 $$invalidate(0, turnText = getText($currentPlayerTurn));
+    		}
+    	};
+
+    	return [turnText, $currentPlayerTurn];
+    }
+
+    class PlayerTurn extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "PlayerTurn",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+    }
+
+    /* src/Word.svelte generated by Svelte v3.31.2 */
+    const file$2 = "src/Word.svelte";
+
+    function create_fragment$2(ctx) {
+    	let main;
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			add_location(main, file$2, 14, 0, 349);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			main.innerHTML = /*text*/ ctx[0];
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*text*/ 1) main.innerHTML = /*text*/ ctx[0];		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function getText(word) {
+    	if (word) {
+    		if (word === "init") {
+    			return "<p>Retrieving your word..</p>";
+    		}
+
+    		return `<p> Your word is </p>
+      <p><b>${word}</b></p>`;
+    	}
+
+    	return "<p><b>You are Mr.white!</b></p>";
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let text;
+    	let $ownWord;
+    	validate_store(ownWord, "ownWord");
+    	component_subscribe($$self, ownWord, $$value => $$invalidate(1, $ownWord = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Word", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Word> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({ ownWord, getText, text, $ownWord });
+
+    	$$self.$inject_state = $$props => {
+    		if ("text" in $$props) $$invalidate(0, text = $$props.text);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$ownWord*/ 2) {
+    			 $$invalidate(0, text = getText($ownWord));
+    		}
+    	};
+
+    	return [text, $ownWord];
+    }
+
+    class Word extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Word",
+    			options,
+    			id: create_fragment$2.name
+    		});
+    	}
+    }
+
+    function wrapAddPlayerPayload(message) {
+        return {
+            topic: 'player',
+            subtopic: 'add',
+            data: message
+        };
+    }
+    function getPlayersPayload() {
+        return {
+            topic: 'player',
+            subtopic: 'get',
+        };
+    }
+    function createGetSettingsPayload() {
+        return {
+            topic: 'settings',
+            subtopic: 'get',
+        };
+    }
+    function getAddWordPayload(word) {
+        return {
+            topic: 'game',
+            subtopic: 'add',
+            data: word
+        };
+    }
+    function getVoteAgainstPayload(player) {
+        return {
+            topic: 'vote',
+            subtopic: 'against',
+            data: player
+        };
+    }
+
+    /* src/WordInput.svelte generated by Svelte v3.31.2 */
+    const file$3 = "src/WordInput.svelte";
+
+    function create_fragment$3(ctx) {
+    	let main;
+    	let input;
+    	let t0;
+    	let button;
+    	let t1;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			input = element("input");
+    			t0 = space();
+    			button = element("button");
+    			t1 = text("Describe");
+    			attr_dev(input, "type", "text");
+    			attr_dev(input, "class", "svelte-16ysrrr");
+    			add_location(input, file$3, 31, 4, 680);
+    			button.disabled = /*disabledButton*/ ctx[1];
+    			add_location(button, file$3, 32, 4, 764);
+    			attr_dev(main, "class", "svelte-16ysrrr");
+    			add_location(main, file$3, 29, 0, 608);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, input);
+    			set_input_value(input, /*message*/ ctx[0]);
+    			append_dev(main, t0);
+    			append_dev(main, button);
+    			append_dev(button, t1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[6]),
+    					listen_dev(input, "keyup", prevent_default(/*handleKeyup*/ ctx[3]), false, true, false),
+    					listen_dev(button, "click", /*handleClick*/ ctx[2], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*message*/ 1 && input.value !== /*message*/ ctx[0]) {
+    				set_input_value(input, /*message*/ ctx[0]);
+    			}
+
+    			if (dirty & /*disabledButton*/ 2) {
+    				prop_dev(button, "disabled", /*disabledButton*/ ctx[1]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let disabledButton;
+    	let $currentPlayerTurn;
+    	let $playerId;
+    	validate_store(currentPlayerTurn, "currentPlayerTurn");
+    	component_subscribe($$self, currentPlayerTurn, $$value => $$invalidate(4, $currentPlayerTurn = $$value));
+    	validate_store(playerId, "playerId");
+    	component_subscribe($$self, playerId, $$value => $$invalidate(5, $playerId = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("WordInput", slots, []);
+    	let message = "";
+
+    	// TODO check if word not already seen
+    	function handleClick() {
+    		if (message.length > 0) {
+    			sendMessage(getAddWordPayload(message));
+    			$$invalidate(0, message = "");
+    		}
+    	}
+
+    	function handleKeyup() {
+    		// @ts-ignore
+    		if (event.code === "Enter") {
+    			handleClick();
+    		}
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<WordInput> was created with unknown prop '${key}'`);
+    	});
+
+    	function input_input_handler() {
+    		message = this.value;
+    		$$invalidate(0, message);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		currentPlayerTurn,
+    		playerId,
+    		sendMessage,
+    		getAddWordPayload,
+    		message,
+    		handleClick,
+    		handleKeyup,
+    		disabledButton,
+    		$currentPlayerTurn,
+    		$playerId
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("message" in $$props) $$invalidate(0, message = $$props.message);
+    		if ("disabledButton" in $$props) $$invalidate(1, disabledButton = $$props.disabledButton);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$currentPlayerTurn, $playerId*/ 48) {
+    			 $$invalidate(1, disabledButton = $currentPlayerTurn !== $playerId);
+    		}
+    	};
+
+    	return [
+    		message,
+    		disabledButton,
+    		handleClick,
+    		handleKeyup,
+    		$currentPlayerTurn,
+    		$playerId,
+    		input_input_handler
+    	];
+    }
+
+    class WordInput extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "WordInput",
+    			options,
+    			id: create_fragment$3.name
+    		});
+    	}
+    }
+
+    /**
+     * This will help prevent the 'jumping' animations
+     * https://stackoverflow.com/questions/59882179/svelte-transition-between-two-elements-jumps
+     */
+    function statefulSwap(initialState) {
+    	const state = writable(initialState);
+    	let nextState = initialState;
+    	
+    	function transitionTo(newState) {
+    		if(nextState === newState) return;
+    		nextState = newState;
+    		state.set(null);
+    	}
+    	
+    	function onOutro() {
+    		state.set(nextState);
+    	}
+    	return {
+    		state,
+    		transitionTo,
+    		onOutro
+    	}
+    }
+
+    /* src/VotePicker.svelte generated by Svelte v3.31.2 */
+    const file$4 = "src/VotePicker.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (24:4) {#if player !== $playerId}
+    function create_if_block(ctx) {
+    	let p;
+    	let button;
+    	let t0_value = /*player*/ ctx[5] + "";
+    	let t0;
+    	let t1;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler() {
+    		return /*click_handler*/ ctx[4](/*player*/ ctx[5]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			button = element("button");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(button, "class", "svelte-1ci3dly");
+    			add_location(button, file$4, 25, 8, 540);
+    			add_location(p, file$4, 24, 6, 528);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			append_dev(p, button);
+    			append_dev(button, t0);
+    			append_dev(p, t1);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", click_handler, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty & /*players*/ 1 && t0_value !== (t0_value = /*player*/ ctx[5] + "")) set_data_dev(t0, t0_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(24:4) {#if player !== $playerId}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (23:2) {#each players as player, _ (player)}
+    function create_each_block$1(key_1, ctx) {
+    	let first;
+    	let if_block_anchor;
+    	let if_block = /*player*/ ctx[5] !== /*$playerId*/ ctx[1] && create_if_block(ctx);
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			first = empty();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    			this.first = first;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, first, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (/*player*/ ctx[5] !== /*$playerId*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(first);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(23:2) {#each players as player, _ (player)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$4(ctx) {
+    	let main;
+    	let h2;
+    	let t1;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let each_value = /*players*/ ctx[0];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*player*/ ctx[5];
+    	validate_each_keys(ctx, each_value, get_each_context$1, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context$1(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			h2 = element("h2");
+    			h2.textContent = "Vote against";
+    			t1 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(h2, "class", "svelte-1ci3dly");
+    			add_location(h2, file$4, 21, 2, 429);
+    			add_location(main, file$4, 20, 0, 420);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, h2);
+    			append_dev(main, t1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(main, null);
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*handleClick, players, $playerId*/ 7) {
+    				each_value = /*players*/ ctx[0];
+    				validate_each_argument(each_value);
+    				validate_each_keys(ctx, each_value, get_each_context$1, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, main, destroy_block, create_each_block$1, null, get_each_context$1);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d();
+    			}
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let players;
+    	let $playerStore;
+    	let $playerId;
+    	validate_store(playerStore, "playerStore");
+    	component_subscribe($$self, playerStore, $$value => $$invalidate(3, $playerStore = $$value));
+    	validate_store(playerId, "playerId");
+    	component_subscribe($$self, playerId, $$value => $$invalidate(1, $playerId = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("VotePicker", slots, []);
+
+    	function handleClick(selected) {
+    		sendMessage(getVoteAgainstPayload(selected));
+    		hasVoted.set(true);
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<VotePicker> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = player => handleClick(player);
+
+    	$$self.$capture_state = () => ({
+    		playerStore,
+    		playerId,
+    		sendMessage,
+    		hasVoted,
+    		getVoteAgainstPayload,
+    		handleClick,
+    		players,
+    		$playerStore,
+    		$playerId
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("players" in $$props) $$invalidate(0, players = $$props.players);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playerStore*/ 8) {
+    			 $$invalidate(0, players = $playerStore);
+    		}
+    	};
+
+    	return [players, $playerId, handleClick, $playerStore, click_handler];
+    }
+
+    class VotePicker extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "VotePicker",
+    			options,
+    			id: create_fragment$4.name
+    		});
+    	}
+    }
+
+    /* src/HasVoted.svelte generated by Svelte v3.31.2 */
+    const file$5 = "src/HasVoted.svelte";
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[2] = list[i];
+    	child_ctx[4] = i;
+    	return child_ctx;
+    }
+
+    // (29:2) {#each $playersWhoVoted as player, _ (player) }
+    function create_each_block$2(key_1, ctx) {
+    	let div;
+    	let t_value = `${/*player*/ ctx[2]} ` + "";
+    	let t;
+    	let div_intro;
+    	let div_outro;
+    	let rect;
+    	let stop_animation = noop;
+    	let current;
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "class", "item svelte-194m0yb");
+    			add_location(div, file$5, 29, 4, 580);
+    			this.first = div;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    			current = true;
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty & /*$playersWhoVoted*/ 1) && t_value !== (t_value = `${/*player*/ ctx[2]} ` + "")) set_data_dev(t, t_value);
+    		},
+    		r: function measure() {
+    			rect = div.getBoundingClientRect();
+    		},
+    		f: function fix() {
+    			fix_position(div);
+    			stop_animation();
+    			add_transform(div, rect);
+    		},
+    		a: function animate() {
+    			stop_animation();
+    			stop_animation = create_animation(div, rect, flip, {});
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (div_outro) div_outro.end(1);
+    				if (!div_intro) div_intro = create_in_transition(div, receive, { key: /*player*/ ctx[2] });
+    				div_intro.start();
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (div_intro) div_intro.invalidate();
+    			div_outro = create_out_transition(div, send, { key: /*player*/ ctx[2] });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (detaching && div_outro) div_outro.end();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(29:2) {#each $playersWhoVoted as player, _ (player) }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$5(ctx) {
+    	let main;
+    	let h2;
+    	let t0;
+    	let t1;
+    	let br;
+    	let t2;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let current;
+    	let each_value = /*$playersWhoVoted*/ ctx[0];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*player*/ ctx[2];
+    	validate_each_keys(ctx, each_value, get_each_context$2, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context$2(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$2(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			h2 = element("h2");
+    			t0 = text(/*text*/ ctx[1]);
+    			t1 = space();
+    			br = element("br");
+    			t2 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(h2, "class", "svelte-194m0yb");
+    			add_location(h2, file$5, 26, 2, 503);
+    			add_location(br, file$5, 27, 2, 521);
+    			attr_dev(main, "class", "svelte-194m0yb");
+    			add_location(main, file$5, 25, 0, 494);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, h2);
+    			append_dev(h2, t0);
+    			append_dev(main, t1);
+    			append_dev(main, br);
+    			append_dev(main, t2);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(main, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (!current || dirty & /*text*/ 2) set_data_dev(t0, /*text*/ ctx[1]);
+
+    			if (dirty & /*$playersWhoVoted*/ 1) {
+    				each_value = /*$playersWhoVoted*/ ctx[0];
+    				validate_each_argument(each_value);
+    				group_outros();
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].r();
+    				validate_each_keys(ctx, each_value, get_each_context$2, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, main, fix_and_outro_and_destroy_block, create_each_block$2, null, get_each_context$2);
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].a();
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d();
+    			}
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$5.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let text;
+    	let $playersWhoVoted;
+    	validate_store(playersWhoVoted, "playersWhoVoted");
+    	component_subscribe($$self, playersWhoVoted, $$value => $$invalidate(0, $playersWhoVoted = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("HasVoted", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<HasVoted> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		playersWhoVoted,
+    		flip,
+    		send,
+    		receive,
+    		text,
+    		$playersWhoVoted
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("text" in $$props) $$invalidate(1, text = $$props.text);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playersWhoVoted*/ 1) {
+    			 $$invalidate(1, text = $playersWhoVoted.length > 0
+    			? "Has voted: "
+    			: "Nobody has voted yet 🤷‍♂️");
+    		}
+    	};
+
+    	return [$playersWhoVoted, text];
+    }
+
+    class HasVoted extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "HasVoted",
+    			options,
+    			id: create_fragment$5.name
+    		});
+    	}
+    }
+
+    /* src/WaitingForVote.svelte generated by Svelte v3.31.2 */
+
+    const file$6 = "src/WaitingForVote.svelte";
+
+    function create_fragment$6(ctx) {
+    	let h2;
+
+    	const block = {
+    		c: function create() {
+    			h2 = element("h2");
+    			h2.textContent = "Waiting for vote completion..";
+    			attr_dev(h2, "class", "svelte-ydyzfp");
+    			add_location(h2, file$6, 8, 0, 100);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h2, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$6.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$6($$self, $$props) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("WaitingForVote", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<WaitingForVote> was created with unknown prop '${key}'`);
+    	});
+
+    	return [];
+    }
+
+    class WaitingForVote extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "WaitingForVote",
+    			options,
+    			id: create_fragment$6.name
+    		});
+    	}
+    }
+
+    /* src/VoteScreen.svelte generated by Svelte v3.31.2 */
+    const file$7 = "src/VoteScreen.svelte";
+
+    // (18:2) {#if $state === "init"}
+    function create_if_block_1(ctx) {
+    	let div;
+    	let votepicker;
+    	let t0;
+    	let hasvoted;
+    	let t1;
+    	let playersgrid;
+    	let div_outro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	votepicker = new VotePicker({ $$inline: true });
+    	hasvoted = new HasVoted({ $$inline: true });
+    	playersgrid = new PlayersGrid({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(votepicker.$$.fragment);
+    			t0 = space();
+    			create_component(hasvoted.$$.fragment);
+    			t1 = space();
+    			create_component(playersgrid.$$.fragment);
+    			add_location(div, file$7, 18, 4, 502);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(votepicker, div, null);
+    			append_dev(div, t0);
+    			mount_component(hasvoted, div, null);
+    			append_dev(div, t1);
+    			mount_component(playersgrid, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(votepicker.$$.fragment, local);
+    			transition_in(hasvoted.$$.fragment, local);
+    			transition_in(playersgrid.$$.fragment, local);
+    			if (div_outro) div_outro.end(1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(votepicker.$$.fragment, local);
+    			transition_out(hasvoted.$$.fragment, local);
+    			transition_out(playersgrid.$$.fragment, local);
+    			div_outro = create_out_transition(div, fade, {});
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(votepicker);
+    			destroy_component(hasvoted);
+    			destroy_component(playersgrid);
+    			if (detaching && div_outro) div_outro.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(18:2) {#if $state === \\\"init\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (25:2) {#if $state === "voted"}
+    function create_if_block$1(ctx) {
+    	let div;
+    	let waitingforvote;
+    	let t;
+    	let hasvoted;
+    	let div_intro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	waitingforvote = new WaitingForVote({ $$inline: true });
+    	hasvoted = new HasVoted({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(waitingforvote.$$.fragment);
+    			t = space();
+    			create_component(hasvoted.$$.fragment);
+    			add_location(div, file$7, 25, 4, 651);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(waitingforvote, div, null);
+    			append_dev(div, t);
+    			mount_component(hasvoted, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(waitingforvote.$$.fragment, local);
+    			transition_in(hasvoted.$$.fragment, local);
+
+    			if (!div_intro) {
+    				add_render_callback(() => {
+    					div_intro = create_in_transition(div, fade, {});
+    					div_intro.start();
+    				});
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(waitingforvote.$$.fragment, local);
+    			transition_out(hasvoted.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(waitingforvote);
+    			destroy_component(hasvoted);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(25:2) {#if $state === \\\"voted\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$7(ctx) {
+    	let main;
+    	let t;
+    	let current;
+    	let if_block0 = /*$state*/ ctx[0] === "init" && create_if_block_1(ctx);
+    	let if_block1 = /*$state*/ ctx[0] === "voted" && create_if_block$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			if (if_block0) if_block0.c();
+    			t = space();
+    			if (if_block1) if_block1.c();
+    			add_location(main, file$7, 16, 0, 465);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			if (if_block0) if_block0.m(main, null);
+    			append_dev(main, t);
+    			if (if_block1) if_block1.m(main, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*$state*/ ctx[0] === "init") {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_1(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(main, t);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*$state*/ ctx[0] === "voted") {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block$1(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(main, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let $hasVoted;
+    	let $state;
+    	validate_store(hasVoted, "hasVoted");
+    	component_subscribe($$self, hasVoted, $$value => $$invalidate(3, $hasVoted = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("VoteScreen", slots, []);
+    	const { onOutro, transitionTo, state } = statefulSwap("init");
+    	validate_store(state, "state");
+    	component_subscribe($$self, state, value => $$invalidate(0, $state = value));
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<VoteScreen> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		VotePicker,
+    		statefulSwap,
+    		HasVoted,
+    		PlayersGrid,
+    		hasVoted,
+    		fade,
+    		WaitingForVote,
+    		onOutro,
+    		transitionTo,
+    		state,
+    		$hasVoted,
+    		$state
+    	});
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$hasVoted*/ 8) {
+    			 if ($hasVoted) {
+    				transitionTo("voted");
+    			}
+    		}
+    	};
+
+    	return [$state, onOutro, state, $hasVoted];
+    }
+
+    class VoteScreen extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "VoteScreen",
+    			options,
+    			id: create_fragment$7.name
+    		});
+    	}
+    }
+
+    /* src/GameBoard.svelte generated by Svelte v3.31.2 */
+    const file$8 = "src/GameBoard.svelte";
+
+    // (16:2) {#if $state === "started"}
+    function create_if_block_1$1(ctx) {
+    	let div;
+    	let word;
+    	let t0;
+    	let playerturn;
+    	let t1;
+    	let wordinput;
+    	let t2;
+    	let br;
+    	let t3;
+    	let playersgrid;
+    	let div_intro;
+    	let div_outro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	word = new Word({ $$inline: true });
+    	playerturn = new PlayerTurn({ $$inline: true });
+    	wordinput = new WordInput({ $$inline: true });
+    	playersgrid = new PlayersGrid({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(word.$$.fragment);
+    			t0 = space();
+    			create_component(playerturn.$$.fragment);
+    			t1 = space();
+    			create_component(wordinput.$$.fragment);
+    			t2 = space();
+    			br = element("br");
+    			t3 = space();
+    			create_component(playersgrid.$$.fragment);
+    			add_location(br, file$8, 22, 4, 699);
+    			add_location(div, file$8, 16, 2, 534);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(word, div, null);
+    			append_dev(div, t0);
+    			mount_component(playerturn, div, null);
+    			append_dev(div, t1);
+    			mount_component(wordinput, div, null);
+    			append_dev(div, t2);
+    			append_dev(div, br);
+    			append_dev(div, t3);
+    			mount_component(playersgrid, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(word.$$.fragment, local);
+    			transition_in(playerturn.$$.fragment, local);
+    			transition_in(wordinput.$$.fragment, local);
+    			transition_in(playersgrid.$$.fragment, local);
+
+    			add_render_callback(() => {
+    				if (div_outro) div_outro.end(1);
+    				if (!div_intro) div_intro = create_in_transition(div, fly, { y: 500, duration: 300 });
+    				div_intro.start();
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(word.$$.fragment, local);
+    			transition_out(playerturn.$$.fragment, local);
+    			transition_out(wordinput.$$.fragment, local);
+    			transition_out(playersgrid.$$.fragment, local);
+    			if (div_intro) div_intro.invalidate();
+    			div_outro = create_out_transition(div, fly, { y: 500, duration: 300 });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(word);
+    			destroy_component(playerturn);
+    			destroy_component(wordinput);
+    			destroy_component(playersgrid);
+    			if (detaching && div_outro) div_outro.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(16:2) {#if $state === \\\"started\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (28:2) {#if $state === "voting"}
+    function create_if_block$2(ctx) {
+    	let div;
+    	let votescreen;
+    	let div_intro;
+    	let div_outro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	votescreen = new VoteScreen({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(votescreen.$$.fragment);
+    			add_location(div, file$8, 28, 2, 772);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(votescreen, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(votescreen.$$.fragment, local);
+
+    			add_render_callback(() => {
+    				if (div_outro) div_outro.end(1);
+    				if (!div_intro) div_intro = create_in_transition(div, fly, { y: 500, duration: 300 });
+    				div_intro.start();
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(votescreen.$$.fragment, local);
+    			if (div_intro) div_intro.invalidate();
+    			div_outro = create_out_transition(div, fly, { y: 500, duration: 300 });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(votescreen);
+    			if (detaching && div_outro) div_outro.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(28:2) {#if $state === \\\"voting\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$8(ctx) {
+    	let main;
+    	let t;
+    	let current;
+    	let if_block0 = /*$state*/ ctx[0] === "started" && create_if_block_1$1(ctx);
+    	let if_block1 = /*$state*/ ctx[0] === "voting" && create_if_block$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			if (if_block0) if_block0.c();
+    			t = space();
+    			if (if_block1) if_block1.c();
+    			add_location(main, file$8, 14, 0, 496);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			if (if_block0) if_block0.m(main, null);
+    			append_dev(main, t);
+    			if (if_block1) if_block1.m(main, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*$state*/ ctx[0] === "started") {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_1$1(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(main, t);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*$state*/ ctx[0] === "voting") {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block$2(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(main, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$8.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let $playingState;
+    	let $state;
+    	validate_store(playingState, "playingState");
+    	component_subscribe($$self, playingState, $$value => $$invalidate(3, $playingState = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("GameBoard", slots, []);
+    	const { onOutro, transitionTo, state } = statefulSwap("started");
+    	validate_store(state, "state");
+    	component_subscribe($$self, state, value => $$invalidate(0, $state = value));
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<GameBoard> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		PlayersGrid,
+    		PlayerTurn,
+    		Word,
+    		WordInput,
+    		statefulSwap,
+    		fly,
+    		playingState,
+    		VoteScreen,
+    		onOutro,
+    		transitionTo,
+    		state,
+    		$playingState,
+    		$state
+    	});
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playingState*/ 8) {
+    			 if ($playingState) {
+    				transitionTo($playingState);
+    			}
+    		}
+    	};
+
+    	return [$state, onOutro, state, $playingState];
+    }
+
+    class GameBoard extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "GameBoard",
+    			options,
+    			id: create_fragment$8.name
+    		});
+    	}
+    }
+
+    /* src/NameInput.svelte generated by Svelte v3.31.2 */
+    const file$9 = "src/NameInput.svelte";
+
+    function create_fragment$9(ctx) {
+    	let main;
+    	let h1;
+    	let t1;
+    	let h2;
+    	let t3;
+    	let br0;
+    	let t4;
+    	let input;
+    	let t5;
+    	let br1;
+    	let t6;
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			h1 = element("h1");
+    			h1.textContent = "Undercover";
+    			t1 = space();
+    			h2 = element("h2");
+    			h2.textContent = "Input your name";
+    			t3 = space();
+    			br0 = element("br");
+    			t4 = space();
+    			input = element("input");
+    			t5 = space();
+    			br1 = element("br");
+    			t6 = space();
+    			button = element("button");
+    			button.textContent = "OK";
+    			attr_dev(h1, "class", "svelte-4w4a9t");
+    			add_location(h1, file$9, 53, 2, 931);
+    			attr_dev(h2, "class", "svelte-4w4a9t");
+    			add_location(h2, file$9, 54, 2, 955);
+    			add_location(br0, file$9, 55, 2, 984);
+    			attr_dev(input, "type", "text");
+    			attr_dev(input, "size", "15");
+    			attr_dev(input, "class", "svelte-4w4a9t");
+    			add_location(input, file$9, 56, 2, 991);
+    			add_location(br1, file$9, 60, 2, 1097);
+    			attr_dev(button, "class", "svelte-4w4a9t");
+    			add_location(button, file$9, 61, 2, 1104);
+    			add_location(main, file$9, 52, 0, 922);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, h1);
+    			append_dev(main, t1);
+    			append_dev(main, h2);
+    			append_dev(main, t3);
+    			append_dev(main, br0);
+    			append_dev(main, t4);
+    			append_dev(main, input);
+    			set_input_value(input, /*message*/ ctx[0]);
+    			append_dev(main, t5);
+    			append_dev(main, br1);
+    			append_dev(main, t6);
+    			append_dev(main, button);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[5]),
+    					listen_dev(input, "keyup", prevent_default(/*handleKeyup*/ ctx[2]), false, true, false),
+    					listen_dev(button, "click", /*handleClick*/ ctx[1], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*message*/ 1 && input.value !== /*message*/ ctx[0]) {
+    				set_input_value(input, /*message*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let players;
+    	let $playerStore;
+    	let $connectionOpened;
+    	validate_store(playerStore, "playerStore");
+    	component_subscribe($$self, playerStore, $$value => $$invalidate(3, $playerStore = $$value));
+    	validate_store(connectionOpened, "connectionOpened");
+    	component_subscribe($$self, connectionOpened, $$value => $$invalidate(4, $connectionOpened = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("NameInput", slots, []);
+    	let message = "";
+
+    	function handleClick() {
+    		if (message.length > 0) {
+    			if (players.indexOf(message) === -1) {
+    				sendMessage(wrapAddPlayerPayload(message));
+    				playerId.set(message);
+    			} else {
+    				alert("This name has already been picked!");
+    			}
+    		}
+    	}
+
+    	function handleKeyup() {
+    		if (event.code === "Enter") {
+    			handleClick();
+    		}
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<NameInput> was created with unknown prop '${key}'`);
+    	});
+
+    	function input_input_handler() {
+    		message = this.value;
+    		$$invalidate(0, message);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		sendMessage,
+    		playerId,
+    		playerStore,
+    		connectionOpened,
+    		getPlayersPayload,
+    		wrapAddPlayerPayload,
+    		message,
+    		handleClick,
+    		handleKeyup,
+    		players,
+    		$playerStore,
+    		$connectionOpened
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("message" in $$props) $$invalidate(0, message = $$props.message);
+    		if ("players" in $$props) players = $$props.players;
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playerStore*/ 8) {
+    			 players = $playerStore;
+    		}
+
+    		if ($$self.$$.dirty & /*$connectionOpened*/ 16) {
+    			 if ($connectionOpened) {
+    				sendMessage(getPlayersPayload());
+    			}
+    		}
+    	};
+
+    	return [
+    		message,
+    		handleClick,
+    		handleKeyup,
+    		$playerStore,
+    		$connectionOpened,
+    		input_input_handler
+    	];
+    }
+
+    class NameInput extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "NameInput",
+    			options,
+    			id: create_fragment$9.name
+    		});
+    	}
+    }
+
+    /* src/PlayerList.svelte generated by Svelte v3.31.2 */
+    const file$a = "src/PlayerList.svelte";
+
+    function get_each_context$3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[3] = list[i];
+    	child_ctx[5] = i;
+    	return child_ctx;
+    }
+
+    // (22:2) {#each players as player, _ (player)}
+    function create_each_block$3(key_1, ctx) {
+    	let p;
+    	let html_tag;
+    	let raw_value = formatName(/*$playerId*/ ctx[1], /*player*/ ctx[3]) + "";
+    	let t;
+    	let p_intro;
+    	let p_outro;
+    	let rect;
+    	let stop_animation = noop;
+    	let current;
+
+    	const block = {
+    		key: key_1,
+    		first: null,
+    		c: function create() {
+    			p = element("p");
+    			t = space();
+    			html_tag = new HtmlTag(t);
+    			add_location(p, file$a, 22, 4, 517);
+    			this.first = p;
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			html_tag.m(raw_value, p);
+    			append_dev(p, t);
+    			current = true;
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty & /*$playerId, players*/ 3) && raw_value !== (raw_value = formatName(/*$playerId*/ ctx[1], /*player*/ ctx[3]) + "")) html_tag.p(raw_value);
+    		},
+    		r: function measure() {
+    			rect = p.getBoundingClientRect();
+    		},
+    		f: function fix() {
+    			fix_position(p);
+    			stop_animation();
+    			add_transform(p, rect);
+    		},
+    		a: function animate() {
+    			stop_animation();
+    			stop_animation = create_animation(p, rect, flip, {});
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (p_outro) p_outro.end(1);
+    				if (!p_intro) p_intro = create_in_transition(p, receive, { key: /*$playerId*/ ctx[1] });
+    				p_intro.start();
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (p_intro) p_intro.invalidate();
+    			p_outro = create_out_transition(p, send, { key: /*$playerId*/ ctx[1] });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    			if (detaching && p_outro) p_outro.end();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$3.name,
+    		type: "each",
+    		source: "(22:2) {#each players as player, _ (player)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$a(ctx) {
+    	let main;
+    	let h2;
+    	let t1;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
+    	let current;
+    	let each_value = /*players*/ ctx[0];
+    	validate_each_argument(each_value);
+    	const get_key = ctx => /*player*/ ctx[3];
+    	validate_each_keys(ctx, each_value, get_each_context$3, get_key);
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		let child_ctx = get_each_context$3(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$3(key, child_ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			h2 = element("h2");
+    			h2.textContent = "Connected players";
+    			t1 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(h2, "class", "svelte-dk8aud");
+    			add_location(h2, file$a, 20, 2, 446);
+    			add_location(main, file$a, 19, 0, 437);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, h2);
+    			append_dev(main, t1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(main, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*$playerId, formatName, players*/ 3) {
+    				each_value = /*players*/ ctx[0];
+    				validate_each_argument(each_value);
+    				group_outros();
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].r();
+    				validate_each_keys(ctx, each_value, get_each_context$3, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, main, fix_and_outro_and_destroy_block, create_each_block$3, null, get_each_context$3);
+    				for (let i = 0; i < each_blocks.length; i += 1) each_blocks[i].a();
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d();
+    			}
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function formatName(playerId, currentPlayer) {
+    	return playerId === currentPlayer
+    	? `<b> ${currentPlayer} <b>`
+    	: currentPlayer;
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let players;
+    	let $playerStore;
+    	let $playerId;
+    	validate_store(playerStore, "playerStore");
+    	component_subscribe($$self, playerStore, $$value => $$invalidate(2, $playerStore = $$value));
+    	validate_store(playerId, "playerId");
+    	component_subscribe($$self, playerId, $$value => $$invalidate(1, $playerId = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("PlayerList", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<PlayerList> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		playerStore,
+    		playerId,
+    		flip,
+    		send,
+    		receive,
+    		formatName,
+    		players,
+    		$playerStore,
+    		$playerId
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("players" in $$props) $$invalidate(0, players = $$props.players);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playerStore*/ 4) {
+    			 $$invalidate(0, players = $playerStore);
+    		}
+    	};
+
+    	return [players, $playerId, $playerStore];
+    }
+
+    class PlayerList extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "PlayerList",
+    			options,
+    			id: create_fragment$a.name
+    		});
+    	}
+    }
+
+    /* src/Settings.svelte generated by Svelte v3.31.2 */
+    const file$b = "src/Settings.svelte";
+
+    function create_fragment$b(ctx) {
+    	let main;
+    	let h2;
+    	let t1;
+    	let p0;
+    	let t3;
+    	let button0;
+    	let t5;
+    	let div0;
+    	let t6;
+    	let t7;
+    	let button1;
+    	let t9;
+    	let p1;
+    	let t11;
+    	let button2;
+    	let t13;
+    	let div1;
+    	let t14;
+    	let t15;
+    	let button3;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			h2 = element("h2");
+    			h2.textContent = "Settings";
+    			t1 = space();
+    			p0 = element("p");
+    			p0.textContent = "Undercover";
+    			t3 = space();
+    			button0 = element("button");
+    			button0.textContent = `${"<"}`;
+    			t5 = space();
+    			div0 = element("div");
+    			t6 = text(/*$undercoverCount*/ ctx[0]);
+    			t7 = space();
+    			button1 = element("button");
+    			button1.textContent = `${">"}`;
+    			t9 = space();
+    			p1 = element("p");
+    			p1.textContent = "Mr White";
+    			t11 = space();
+    			button2 = element("button");
+    			button2.textContent = `${"<"}`;
+    			t13 = space();
+    			div1 = element("div");
+    			t14 = text(/*$mrWhiteCount*/ ctx[1]);
+    			t15 = space();
+    			button3 = element("button");
+    			button3.textContent = `${">"}`;
+    			attr_dev(h2, "class", "svelte-15h6cuf");
+    			add_location(h2, file$b, 38, 2, 660);
+    			add_location(p0, file$b, 39, 2, 682);
+    			attr_dev(button0, "class", "svelte-15h6cuf");
+    			add_location(button0, file$b, 40, 2, 702);
+    			attr_dev(div0, "class", "svelte-15h6cuf");
+    			add_location(div0, file$b, 41, 2, 785);
+    			attr_dev(button1, "class", "svelte-15h6cuf");
+    			add_location(button1, file$b, 42, 2, 817);
+    			add_location(p1, file$b, 43, 2, 900);
+    			attr_dev(button2, "class", "svelte-15h6cuf");
+    			add_location(button2, file$b, 44, 2, 918);
+    			attr_dev(div1, "class", "svelte-15h6cuf");
+    			add_location(div1, file$b, 45, 2, 996);
+    			attr_dev(button3, "class", "svelte-15h6cuf");
+    			add_location(button3, file$b, 46, 2, 1025);
+    			attr_dev(main, "class", "svelte-15h6cuf");
+    			add_location(main, file$b, 37, 0, 651);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, h2);
+    			append_dev(main, t1);
+    			append_dev(main, p0);
+    			append_dev(main, t3);
+    			append_dev(main, button0);
+    			append_dev(main, t5);
+    			append_dev(main, div0);
+    			append_dev(div0, t6);
+    			append_dev(main, t7);
+    			append_dev(main, button1);
+    			append_dev(main, t9);
+    			append_dev(main, p1);
+    			append_dev(main, t11);
+    			append_dev(main, button2);
+    			append_dev(main, t13);
+    			append_dev(main, div1);
+    			append_dev(div1, t14);
+    			append_dev(main, t15);
+    			append_dev(main, button3);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button0, "click", /*click_handler*/ ctx[3], false, false, false),
+    					listen_dev(button1, "click", /*click_handler_1*/ ctx[4], false, false, false),
+    					listen_dev(button2, "click", /*click_handler_2*/ ctx[5], false, false, false),
+    					listen_dev(button3, "click", /*click_handler_3*/ ctx[6], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*$undercoverCount*/ 1) set_data_dev(t6, /*$undercoverCount*/ ctx[0]);
+    			if (dirty & /*$mrWhiteCount*/ 2) set_data_dev(t14, /*$mrWhiteCount*/ ctx[1]);
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$b.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let $undercoverCount;
+    	let $mrWhiteCount;
+    	validate_store(undercoverCount, "undercoverCount");
+    	component_subscribe($$self, undercoverCount, $$value => $$invalidate(0, $undercoverCount = $$value));
+    	validate_store(mrWhiteCount, "mrWhiteCount");
+    	component_subscribe($$self, mrWhiteCount, $$value => $$invalidate(1, $mrWhiteCount = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Settings", slots, []);
+
+    	function updateValue(subtopic, data) {
+    		sendMessage({ topic: "settings", subtopic, data });
+    	}
+
+    	onMount(() => {
+    		sendMessage(createGetSettingsPayload());
+    	});
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Settings> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = () => updateValue("undercover", "decrement");
+    	const click_handler_1 = () => updateValue("undercover", "increment");
+    	const click_handler_2 = () => updateValue("white", "decrement");
+    	const click_handler_3 = () => updateValue("white", "increment");
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		undercoverCount,
+    		mrWhiteCount,
+    		sendMessage,
+    		createGetSettingsPayload,
+    		updateValue,
+    		$undercoverCount,
+    		$mrWhiteCount
+    	});
+
+    	return [
+    		$undercoverCount,
+    		$mrWhiteCount,
+    		updateValue,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2,
+    		click_handler_3
+    	];
+    }
+
+    class Settings extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Settings",
+    			options,
+    			id: create_fragment$b.name
+    		});
+    	}
+    }
+
+    /* src/StartButton.svelte generated by Svelte v3.31.2 */
+    const file$c = "src/StartButton.svelte";
+
+    function create_fragment$c(ctx) {
+    	let button;
+    	let t;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			t = text("Start");
+    			button.disabled = /*disabledButton*/ ctx[0];
+    			add_location(button, file$c, 20, 0, 716);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, t);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*startGame*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*disabledButton*/ 1) {
+    				prop_dev(button, "disabled", /*disabledButton*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$c.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function canStartGame(ucCount, mrWhiteCount, playerNumber) {
+    	let specialCharacterCount = ucCount + mrWhiteCount;
+    	const otherCount = playerNumber - specialCharacterCount;
+
+    	if (playerNumber < 3 || specialCharacterCount === 0 || specialCharacterCount >= playerNumber) {
+    		return false;
+    	}
+
+    	return otherCount >= 2;
+    }
+
+    function instance$c($$self, $$props, $$invalidate) {
+    	let playerNumbers;
+    	let disabledButton;
+    	let $playerStore;
+    	let $undercoverCount;
+    	let $mrWhiteCount;
+    	validate_store(playerStore, "playerStore");
+    	component_subscribe($$self, playerStore, $$value => $$invalidate(3, $playerStore = $$value));
+    	validate_store(undercoverCount, "undercoverCount");
+    	component_subscribe($$self, undercoverCount, $$value => $$invalidate(4, $undercoverCount = $$value));
+    	validate_store(mrWhiteCount, "mrWhiteCount");
+    	component_subscribe($$self, mrWhiteCount, $$value => $$invalidate(5, $mrWhiteCount = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("StartButton", slots, []);
+
+    	function startGame() {
+    		sendMessage({ topic: "game", subtopic: "start" });
+    	}
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<StartButton> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		undercoverCount,
+    		mrWhiteCount,
+    		playerStore,
+    		sendMessage,
+    		canStartGame,
+    		startGame,
+    		playerNumbers,
+    		$playerStore,
+    		disabledButton,
+    		$undercoverCount,
+    		$mrWhiteCount
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("playerNumbers" in $$props) $$invalidate(2, playerNumbers = $$props.playerNumbers);
+    		if ("disabledButton" in $$props) $$invalidate(0, disabledButton = $$props.disabledButton);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playerStore*/ 8) {
+    			 $$invalidate(2, playerNumbers = $playerStore.length);
+    		}
+
+    		if ($$self.$$.dirty & /*$undercoverCount, $mrWhiteCount, playerNumbers*/ 52) {
+    			 $$invalidate(0, disabledButton = !canStartGame($undercoverCount, $mrWhiteCount, playerNumbers));
+    		}
+    	};
+
+    	return [
+    		disabledButton,
+    		startGame,
+    		playerNumbers,
+    		$playerStore,
+    		$undercoverCount,
+    		$mrWhiteCount
+    	];
+    }
+
+    class StartButton extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "StartButton",
+    			options,
+    			id: create_fragment$c.name
+    		});
+    	}
+    }
+
+    /* src/Lobby.svelte generated by Svelte v3.31.2 */
+    const file$d = "src/Lobby.svelte";
+
+    // (15:1) {#if $state === "init"}
+    function create_if_block_1$2(ctx) {
+    	let div;
+    	let nameinput;
+    	let div_outro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	nameinput = new NameInput({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(nameinput.$$.fragment);
+    			add_location(div, file$d, 15, 4, 482);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(nameinput, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[2], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(nameinput.$$.fragment, local);
+    			if (div_outro) div_outro.end(1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(nameinput.$$.fragment, local);
+    			div_outro = create_out_transition(div, fly, { y: 500, duration: 300 });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(nameinput);
+    			if (detaching && div_outro) div_outro.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$2.name,
+    		type: "if",
+    		source: "(15:1) {#if $state === \\\"init\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (20:2) {#if $state === $playerId}
+    function create_if_block$3(ctx) {
+    	let div;
+    	let settings;
+    	let t0;
+    	let br0;
+    	let t1;
+    	let startbutton;
+    	let t2;
+    	let br1;
+    	let t3;
+    	let playerlist;
+    	let div_intro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	settings = new Settings({ $$inline: true });
+    	startbutton = new StartButton({ $$inline: true });
+    	playerlist = new PlayerList({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(settings.$$.fragment);
+    			t0 = space();
+    			br0 = element("br");
+    			t1 = space();
+    			create_component(startbutton.$$.fragment);
+    			t2 = space();
+    			br1 = element("br");
+    			t3 = space();
+    			create_component(playerlist.$$.fragment);
+    			add_location(br0, file$d, 22, 6, 709);
+    			add_location(br1, file$d, 24, 6, 742);
+    			add_location(div, file$d, 20, 4, 619);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(settings, div, null);
+    			append_dev(div, t0);
+    			append_dev(div, br0);
+    			append_dev(div, t1);
+    			mount_component(startbutton, div, null);
+    			append_dev(div, t2);
+    			append_dev(div, br1);
+    			append_dev(div, t3);
+    			mount_component(playerlist, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[2], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(settings.$$.fragment, local);
+    			transition_in(startbutton.$$.fragment, local);
+    			transition_in(playerlist.$$.fragment, local);
+
+    			if (!div_intro) {
+    				add_render_callback(() => {
+    					div_intro = create_in_transition(div, fly, { y: 500, duration: 500 });
+    					div_intro.start();
+    				});
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(settings.$$.fragment, local);
+    			transition_out(startbutton.$$.fragment, local);
+    			transition_out(playerlist.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(settings);
+    			destroy_component(startbutton);
+    			destroy_component(playerlist);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$3.name,
+    		type: "if",
+    		source: "(20:2) {#if $state === $playerId}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$d(ctx) {
+    	let main;
+    	let t;
+    	let current;
+    	let if_block0 = /*$state*/ ctx[1] === "init" && create_if_block_1$2(ctx);
+    	let if_block1 = /*$state*/ ctx[1] === /*$playerId*/ ctx[0] && create_if_block$3(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			if (if_block0) if_block0.c();
+    			t = space();
+    			if (if_block1) if_block1.c();
+    			add_location(main, file$d, 13, 0, 446);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			if (if_block0) if_block0.m(main, null);
+    			append_dev(main, t);
+    			if (if_block1) if_block1.m(main, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*$state*/ ctx[1] === "init") {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 2) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_1$2(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(main, t);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*$state*/ ctx[1] === /*$playerId*/ ctx[0]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*$state, $playerId*/ 3) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block$3(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(main, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$d.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let $playerId;
+    	let $state;
+    	validate_store(playerId, "playerId");
+    	component_subscribe($$self, playerId, $$value => $$invalidate(0, $playerId = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Lobby", slots, []);
+    	const { onOutro, transitionTo, state } = statefulSwap("init");
+    	validate_store(state, "state");
+    	component_subscribe($$self, state, value => $$invalidate(1, $state = value));
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Lobby> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		fly,
+    		NameInput,
+    		PlayerList,
+    		Settings,
+    		StartButton,
+    		playerId,
+    		statefulSwap,
+    		onOutro,
+    		transitionTo,
+    		state,
+    		$playerId,
+    		$state
+    	});
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playerId*/ 1) {
+    			 if ($playerId) {
+    				transitionTo($playerId);
+    			}
+    		}
+    	};
+
+    	return [$playerId, $state, onOutro, state];
+    }
+
+    class Lobby extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$d, create_fragment$d, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Lobby",
+    			options,
+    			id: create_fragment$d.name
+    		});
+    	}
+    }
+
+    /* src/App.svelte generated by Svelte v3.31.2 */
+    const file$e = "src/App.svelte";
+
+    // (13:1) {#if $state === 'init'}
+    function create_if_block_1$3(ctx) {
+    	let div;
+    	let lobby;
+    	let div_outro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	lobby = new Lobby({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(lobby.$$.fragment);
+    			add_location(div, file$e, 13, 2, 399);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(lobby, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(lobby.$$.fragment, local);
+    			if (div_outro) div_outro.end(1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(lobby.$$.fragment, local);
+    			div_outro = create_out_transition(div, fly, { y: 500, duration: 300 });
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(lobby);
+    			if (detaching && div_outro) div_outro.end();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$3.name,
+    		type: "if",
+    		source: "(13:1) {#if $state === 'init'}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (18:1) {#if $state === 'started'}
+    function create_if_block$4(ctx) {
+    	let div;
+    	let gameboard;
+    	let div_intro;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	gameboard = new GameBoard({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(gameboard.$$.fragment);
+    			add_location(div, file$e, 18, 2, 524);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(gameboard, div, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(div, "outroend", /*onOutro*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(gameboard.$$.fragment, local);
+
+    			if (!div_intro) {
+    				add_render_callback(() => {
+    					div_intro = create_in_transition(div, fly, { y: 500, duration: 500 });
+    					div_intro.start();
+    				});
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(gameboard.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(gameboard);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$4.name,
+    		type: "if",
+    		source: "(18:1) {#if $state === 'started'}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$e(ctx) {
+    	let main;
+    	let t;
+    	let current;
+    	let if_block0 = /*$state*/ ctx[0] === "init" && create_if_block_1$3(ctx);
+    	let if_block1 = /*$state*/ ctx[0] === "started" && create_if_block$4(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			if (if_block0) if_block0.c();
+    			t = space();
+    			if (if_block1) if_block1.c();
+    			attr_dev(main, "class", "svelte-yg16s0");
+    			add_location(main, file$e, 11, 0, 365);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			if (if_block0) if_block0.m(main, null);
+    			append_dev(main, t);
+    			if (if_block1) if_block1.m(main, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*$state*/ ctx[0] === "init") {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_1$3(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(main, t);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*$state*/ ctx[0] === "started") {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*$state*/ 1) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block$4(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(main, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$e.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$e($$self, $$props, $$invalidate) {
+    	let $playingState;
+    	let $state;
+    	validate_store(playingState, "playingState");
+    	component_subscribe($$self, playingState, $$value => $$invalidate(3, $playingState = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("App", slots, []);
+    	const { onOutro, transitionTo, state } = statefulSwap("init");
+    	validate_store(state, "state");
+    	component_subscribe($$self, state, value => $$invalidate(0, $state = value));
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({
+    		fly,
+    		GameBoard,
+    		Lobby,
+    		statefulSwap,
+    		playingState,
+    		onOutro,
+    		transitionTo,
+    		state,
+    		$playingState,
+    		$state
+    	});
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*$playingState*/ 8) {
+    			 if ($playingState === "started") {
+    				transitionTo("started");
+    			}
+    		}
+    	};
+
+    	return [$state, onOutro, state, $playingState];
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "App",
+    			options,
+    			id: create_fragment$e.name
+    		});
+    	}
+    }
+
+    const app = new App({
+        target: document.body,
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle.js.map
