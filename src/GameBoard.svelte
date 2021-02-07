@@ -17,23 +17,23 @@
 
 <main>
   {#if $state === "started"}
-  <div out:fly="{{ y: 500, duration: 300 }}"
-    in:fly="{{ y: 500, duration: 300 }}"
-    on:outroend={onOutro}>
-    <Word />
-    <PlayerTurn />
-    <WordInput />
-    <br>
-    <PlayersGrid />
-  </div>
+    <div out:fly="{{ y: 500, duration: 300 }}"
+      in:fly="{{ y: 500, duration: 300 }}"
+      on:outroend={onOutro}>
+      <Word />
+      <PlayerTurn />
+      <WordInput />
+      <br>
+      <PlayersGrid />
+    </div>
   {/if}
 
   {#if $state === "voting"}
-  <div out:fly="{{ y: 500, duration: 300 }}"
-    in:fly="{{ y: 500, duration: 300 }}"
-    on:outroend={onOutro}>
-    <VoteScreen />
-  </div>
+    <div out:fly="{{ y: 500, duration: 300 }}"
+      in:fly="{{ y: 500, duration: 300 }}"
+      on:outroend={onOutro}>
+      <VoteScreen />
+    </div>
   {/if}
   
 </main>

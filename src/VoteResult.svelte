@@ -1,12 +1,29 @@
 <script lang="ts">
-  import { voteResult } from "./store";
+  import { onMount } from 'svelte';
+  import { playersWhoVoted, playingState, voteEnded, voteResult } from "./store";
 
-  $: result = $voteResult.result;
+  $: isDraw = $voteResult.result === 'DRAW';
   $: detail = $voteResult.voteDetails;
-  $: text = result === 'DRAW'
+  $: text = isDraw
     ? 'It is a draw! 🙃'
     : `${$voteResult.playerOut} has been voted out! ☠️`;
 
+  $: btnText = isDraw
+    ? 'Vote again!'
+    : `Next turn`;
+
+  function handleClick() {
+    if (isDraw) {
+      voteEnded.set(false);
+      playingState.set('voting');
+    } else {
+      playingState.set('started');
+    }
+  }
+
+  onMount(() => {
+    playersWhoVoted.set([]);
+  })
 </script>
 
 <style>
@@ -30,4 +47,6 @@
   {/each}
 
   <h3> {text} </h3>
+  <br>
+  <button on:click={handleClick}> {btnText} </button>
 </main>

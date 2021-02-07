@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import VotePicker from "./VotePicker.svelte";
   import statefulSwap from "./StatefulSwap";
   import HasVoted from './HasVoted.svelte';
   import PlayersGrid from './PlayersGrid.svelte';
-  import { hasVoted, voteEnded } from './store';
+  import { hasVoted, voteEnded, playersWhoVoted } from './store';
   import { fade } from 'svelte/transition';
   import WaitingForVote from "./WaitingForVote.svelte";
   import VoteResult from "./VoteResult.svelte";
@@ -16,6 +16,10 @@
 
   $: if ($voteEnded) {
     transitionTo('result');
+  }
+  
+  $: if (!$voteEnded && !$hasVoted) {
+    transitionTo('init');
   }
 </script>
 
