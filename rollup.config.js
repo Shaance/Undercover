@@ -48,13 +48,6 @@ export default {
 				dev: !production
 			}
 		}),
-		replace({
-			process: JSON.stringify({
-        env: {
-          ...config().parsed
-        }
-      })
-		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
@@ -84,7 +77,14 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+		replace({
+			process: JSON.stringify({
+        env: {
+          ...config().parsed
+        }
+      })
+		}),
 	],
 	watch: {
 		clearScreen: false

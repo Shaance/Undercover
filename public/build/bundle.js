@@ -1035,7 +1035,9 @@ var app = (function () {
     const hasVoted = writable(false);
     const playersWhoVoted = writable([]);
     // @ts-ignore
-    console.log({"env":{"API_URL":"wss://b455891f6f6b.ngrok.io"}}.env.API_URL);
+    console.log('{"env":{"API_URL":"wss://b455891f6f6b.ngrok.io"}} + ' + {"env":{"API_URL":"wss://b455891f6f6b.ngrok.io"}}.env.API_URL);
+    // @ts-ignore
+    console.log('\nprocess.env.OTHER ' + {"env":{"API_URL":"wss://b455891f6f6b.ngrok.io"}}.env.OTHER);
     // @ts-ignore
     const socket = new WebSocket({"env":{"API_URL":"wss://b455891f6f6b.ngrok.io"}}.env.API_URL);
     socket.addEventListener('open', () => connectionOpened.set(true));
