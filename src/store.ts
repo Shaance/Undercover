@@ -16,6 +16,8 @@ export const voteResult = writable({});
 export const playersWhoVoted = writable([]);
 
 // @ts-ignore
+console.log(process.env.API_URL);
+// @ts-ignore
 const socket = new WebSocket(process.env.API_URL);
 
 socket.addEventListener('open', () => connectionOpened.set(true));
