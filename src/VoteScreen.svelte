@@ -10,15 +10,20 @@
 
   const { onOutro, transitionTo, state } = statefulSwap("init");
 
-  $: if ($hasVoted) {
+  $: if ($hasVoted && !$voteEnded) {
+    console.log(`$hasVoted: ${$hasVoted}, voteEnded: ${$voteEnded}.
+    $playersWhoVoted: ${$playersWhoVoted}`);
+    console.log('has voted!!');
     transitionTo('voted');
   }
 
   $: if ($voteEnded) {
+    console.log('Showing result!!');
     transitionTo('result');
   }
   
   $: if (!$voteEnded && !$hasVoted) {
+    console.log('Vote init!!');
     transitionTo('init');
   }
 </script>

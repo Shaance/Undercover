@@ -6,7 +6,8 @@ export interface VoteResult {
 }
 
 export interface VoteUpdate {
-  playersWhoVoted: string[]
+  playersWhoVoted: string[];
+  state: string;
 }
 export interface Message {
   topic: string;
@@ -43,7 +44,8 @@ export interface InGameResponse extends Message {
   data: {
     turn: number,
     player: string,
-    playerToWords: any[]
+    playerToWords: any[],
+    state: string
   }
 }
 
@@ -53,4 +55,11 @@ export interface VoteUpdateResponse extends Message {
 
 export interface VoteResultResponse extends Message {
   data: VoteResult;
+}
+
+export enum Status {
+  LOBBY = 'LOBBY',
+  PLAYING = 'PLAYING',
+  VOTING = 'VOTING',
+  FINISHED_VOTING = 'FINISHED_VOTING',
 }

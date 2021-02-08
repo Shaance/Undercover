@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { playerStore, playerId, sendMessage, hasVoted } from './store';
+  import { playerStore, playerId, sendMessage } from './store';
   import { getVoteAgainstPayload } from './wsHelper';
   $: players = $playerStore;
   
   function handleClick(selected: string) {
     sendMessage(getVoteAgainstPayload(selected));
-    hasVoted.set(true);
   }
 </script>
 

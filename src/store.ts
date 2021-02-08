@@ -1,5 +1,6 @@
 import { writable, get, derived } from 'svelte/store';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult } from './wsTypes';
+import { getVoteResultPayload } from './wsHelper';
+import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult, Status } from './wsTypes';
 
 export const playerStore = writable<string[]>([]);
 export const playerId = writable('');
@@ -10,7 +11,6 @@ export const ownWord = writable('init');
 export const playingState = writable('init');
 export const playerToWords = writable<[string, string][]>([]);
 export const currentPlayerTurn = writable('');
-export const hasVoted = writable(false);
 export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
 export const voteResult = writable<VoteResult>({
@@ -18,9 +18,15 @@ export const voteResult = writable<VoteResult>({
   result: 'DRAW'
 });
 export const playersWhoVoted = writable([]);
+export const hasVoted = derived(
+  [playersWhoVoted, playerId],
+	([$playersWhoVoted, $playerId]) => {
+    return $playersWhoVoted.indexOf($playerId) !== -1
+  }
+);
 export const playerLost = derived(
-	[votedOutPlayers, playerId],
-	([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1
+  [votedOutPlayers, playerId],
+  ([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1
 );
 
 // TODO put ws url into env variable, possible bug in Vercel
@@ -53,19 +59,25 @@ function onMessageEvent(event) {
       const data = inGameResponse.data;
       playerToWords.set(data.playerToWords);
       currentPlayerTurn.set(data.player);
-      if (data.turn !== 0 && data.turn % get(playerStore).length === 0) {
+      if (data.state === Status.VOTING) {
         playingState.set('voting');
       }
     }
   } else if (resp.topic === 'vote') {
     if (resp.subtopic === 'update') {
       const response = resp as VoteUpdateResponse;
+      console.log(`Updating playersWhoVoted ${get(playersWhoVoted)}`);
+      console.log(`hasVoted ${get(hasVoted)}`);
       playersWhoVoted.set(response.data.playersWhoVoted);
+      console.log(`Updated playersWhoVoted ${get(playersWhoVoted)}`);
+      console.log(`hasVoted ${get(hasVoted)}`);
+      if (response.data.state === Status.FINISHED_VOTING) {
+        sendMessage(getVoteResultPayload());
+      }
     } else if (resp.subtopic === 'result') {
       const response = resp as VoteResultResponse;
       voteResult.set(response.data);
       voteEnded.set(true);
-      hasVoted.set(false);
     }
   }
 }

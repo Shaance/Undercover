@@ -37,3 +37,10 @@ export function getVoteAgainstPayload(player: string): VoteAgainstPayload {
     data: player
   }
 }
+
+export function getVoteResultPayload(): Message {
+  return {
+    topic: 'vote',
+    subtopic: 'result'
+  }
+}
