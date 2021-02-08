@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentPlayerTurn, playerId, sendMessage } from './store';
+  import { currentPlayerTurn, playerId, sendMessage, usedWords } from './store';
   import { getAddWordPayload } from './wsHelper';
 
   $: disabledButton = $currentPlayerTurn !== $playerId;
@@ -9,7 +9,11 @@
   // TODO check if word not already seen
   function handleClick() {
     if (message.length > 0) {
-      sendMessage(getAddWordPayload(message));
+      if ($usedWords.has(message)) {
+        alert(`${message} has already been used!`);
+      } else {
+        sendMessage(getAddWordPayload(message));
+      }
       message = '';
     }
   }

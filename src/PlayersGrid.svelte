@@ -1,8 +1,15 @@
 <script lang="ts">
-  import { playerToWords } from './store';
+  import { playerToWords, votedOutPlayers } from './store';
   import { receive } from './Animations';
   import { flip } from 'svelte/animate';
   // TODO try to fix when too many items
+
+  function getPlayerText(votedOutPlayers: string[], player: string) {
+    if (votedOutPlayers.indexOf(player) !== -1) {
+      return `<div style="color: grey;"><s>${player}</s></div>`
+    }
+    return `<div>${player}</div>`
+  }
 </script>
 
 <style>
@@ -32,7 +39,7 @@
 <main>
   {#each $playerToWords as entry}
     <div class="card">
-      <div>{entry[0]}</div>
+      <div>{@html getPlayerText($votedOutPlayers, entry[0])}</div>
       <p>* * *</p>
       {#each entry[1] as word, _ (word)}
         <p class="item" in:receive="{{key: word}}" animate:flip>

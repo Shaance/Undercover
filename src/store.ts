@@ -1,30 +1,57 @@
-import { writable, get } from 'svelte/store';
-import factory from './ConfigLog4j';
-import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse } from './wsTypes';
+import { writable, get, derived } from 'svelte/store';
+import { getVoteResultPayload } from './wsHelper';
+import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult, Status } from './wsTypes';
 
-export const playerStore = writable([]);
+export const playerStore = writable<string[]>([]);
 export const playerId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
 export const ownWord = writable('init');
 export const playingState = writable('init');
-export const playerToWords = writable([]);
+export const playerToWords = writable<[string, string[]][]>([]);
 export const currentPlayerTurn = writable('');
-export const hasVoted = writable(false);
+export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
-export const voteResult = writable({});
+export const voteResult = writable<VoteResult>({
+  turn: 0,
+  result: 'DRAW'
+});
 export const playersWhoVoted = writable([]);
+export const hasVoted = derived(
+  [playersWhoVoted, playerId],
+	([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1
+);
+export const playerLost = derived(
+  [votedOutPlayers, playerId],
+  ([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1
+);
 
-const logger = factory.getLogger('store');
-const socket = new WebSocket('ws://localhost:3000');
+export const stillInGamePlayers = derived(
+  [votedOutPlayers, playerStore],
+  ([$votedOutPlayers, $playerStore]) => $playerStore.filter((p) => $votedOutPlayers.indexOf(p) === -1)
+)
+
+export const usedWords = derived(
+  playerToWords,
+  ($playerToWords) => {
+    return new Set($playerToWords.reduce((acc, pToWords) => {
+      return acc.concat(pToWords[1]);
+    }, []))
+  }
+);
+
+// TODO put ws url into env variable, possible bug in Vercel
+// @ts-ignore
+console.log('process + ' + process.env.API_URL);
+// @ts-ignore
+const socket = new WebSocket("ws://localhost:3000");
 
 socket.addEventListener('open', () => connectionOpened.set(true));
 
 socket.addEventListener('message', onMessageEvent);
 
 function onMessageEvent(event) {
-  logger.info(`Received data from WS, ${event.data}`);
   const resp: Message = JSON.parse(event.data);
   if (resp.topic === 'player') {
     if (resp.subtopic === 'update') {
@@ -44,14 +71,30 @@ function onMessageEvent(event) {
       const data = inGameResponse.data;
       playerToWords.set(data.playerToWords);
       currentPlayerTurn.set(data.player);
-      if (data.turn !== 0 && data.turn % get(playerStore).length === 0) {
+      if (data.state === Status.VOTING) {
+        console.log(`Switching to voting mode!
+        voteEnded: ${get(voteEnded)},
+        hasVoted: ${get(hasVoted)},
+        playersWhoVoted: ${get(playersWhoVoted)}
+        `);
         playingState.set('voting');
       }
     }
   } else if (resp.topic === 'vote') {
     if (resp.subtopic === 'update') {
       const response = resp as VoteUpdateResponse;
+      console.log(`Updating playersWhoVoted ${get(playersWhoVoted)}`);
+      console.log(`hasVoted ${get(hasVoted)}`);
       playersWhoVoted.set(response.data.playersWhoVoted);
+      console.log(`Updated playersWhoVoted ${get(playersWhoVoted)}`);
+      console.log(`hasVoted ${get(hasVoted)}`);
+      if (response.data.state === Status.FINISHED_VOTING) {
+        sendMessage(getVoteResultPayload());
+      }
+    } else if (resp.subtopic === 'result') {
+      const response = resp as VoteResultResponse;
+      voteResult.set(response.data);
+      voteEnded.set(true);
     }
   }
 }
@@ -63,14 +106,11 @@ function updateSettings(resp: SettingTopicResponse) {
 }
 
 function updatePlayerStore(resp: UpdatePlayerMessage) {
-  // console.log(`Before: ${get(playerStore)}`);
   playerStore.set(resp.data);
-  // console.log(`After: ${get(playerStore)}`);
 }
 
 export const sendMessage = (message) => {
   if (get(connectionOpened)) {
-    // console.log(`Sending ${JSON.stringify(message)}`);
     socket.send(JSON.stringify(message));
   }
 }

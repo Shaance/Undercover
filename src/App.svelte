@@ -2,7 +2,7 @@
 	import { fly } from "svelte/transition";
 	import GameBoard from "./GameBoard.svelte";
 	import Lobby from "./Lobby.svelte";
-	import statefulSwap from "./statefulSwap"
+	import statefulSwap from "./StatefulSwap"
 	import { playingState } from "./store";
 
   const { onOutro, transitionTo, state } = statefulSwap("init");
