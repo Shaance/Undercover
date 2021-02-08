@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { playerStore, playerId, sendMessage } from './store';
+  import { stillInGamePlayers, playerId, sendMessage } from './store';
   import { getVoteAgainstPayload } from './wsHelper';
-  $: players = $playerStore;
+  $: players = $stillInGamePlayers;
   
   function handleClick(selected: string) {
     sendMessage(getVoteAgainstPayload(selected));

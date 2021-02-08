@@ -29,6 +29,11 @@ export const playerLost = derived(
   ([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1
 );
 
+export const stillInGamePlayers = derived(
+  [votedOutPlayers, playerStore],
+  ([$votedOutPlayers, $playerStore]) => $playerStore.filter((p) => $votedOutPlayers.indexOf(p) === -1)
+)
+
 // TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
