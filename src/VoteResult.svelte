@@ -2,12 +2,13 @@
   import { onMount } from 'svelte';
   import { playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
   import { getGameInfoPayload } from './wsHelper';
+  import { Role } from './wsTypes';
 
   $: isDraw = $voteResult.result === 'DRAW';
   $: detail = $voteResult.voteDetails;
   $: text = isDraw
     ? 'It is a draw! 🙃'
-    : `${$voteResult.playerOut} has been voted out! ☠️`;
+    : `${$voteResult.playerOut} (${$voteResult.playerOutRole}) has been eliminated! ☠️`;
 
   $: btnText = isDraw
     ? 'Vote again!'
@@ -24,6 +25,15 @@
       playingState.set('started');
       voteEnded.set(false);
     }
+  }
+
+  function getRoleText(playerRole: Role) {
+    `$voteResult.playerOut (${Role.OTHER}) has been eliminated! ☠️`;
+    let suffix = '';
+    if (playerRole === Role.OTHER) {
+      suffix = '..';
+    }
+    return `Player role was ${playerRole}${suffix}`;
   }
 
   onMount(() => {

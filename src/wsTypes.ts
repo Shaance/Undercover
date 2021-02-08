@@ -1,8 +1,15 @@
 export interface VoteResult {
-  turn: number,
-  result: 'DRAW' | 'OUT',
-  playerOut?: string,
-  voteDetails?: [string, number][]
+  turn: number;
+  result: 'DRAW' | 'OUT';
+  playerOut?: string;
+  playerOutRole?: Role;
+  voteDetails?: [string, number][];
+}
+
+export enum Role {
+  UNDERCOVER = 'Undercover',
+  MR_WHITE = 'Mr. White',
+  OTHER = 'Civilian',
 }
 
 export interface VoteUpdate {
