@@ -27,15 +27,6 @@
     }
   }
 
-  function getRoleText(playerRole: Role) {
-    `$voteResult.playerOut (${Role.OTHER}) has been eliminated! ☠️`;
-    let suffix = '';
-    if (playerRole === Role.OTHER) {
-      suffix = '..';
-    }
-    return `Player role was ${playerRole}${suffix}`;
-  }
-
   onMount(() => {
     playersWhoVoted.set([]);
   })
