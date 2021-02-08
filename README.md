@@ -7,7 +7,6 @@ WIP - This project relies on the WS server logic to work.
 - edit name
 - go back to lobby
 - skip word
-- vote
 - mr white guess
 - polish with transitions
 - polish with css styling
