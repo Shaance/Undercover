@@ -9,7 +9,7 @@ export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
 export const ownWord = writable('init');
 export const playingState = writable('init');
-export const playerToWords = writable<[string, string][]>([]);
+export const playerToWords = writable<[string, string[]][]>([]);
 export const currentPlayerTurn = writable('');
 export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
@@ -20,9 +20,7 @@ export const voteResult = writable<VoteResult>({
 export const playersWhoVoted = writable([]);
 export const hasVoted = derived(
   [playersWhoVoted, playerId],
-	([$playersWhoVoted, $playerId]) => {
-    return $playersWhoVoted.indexOf($playerId) !== -1
-  }
+	([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1
 );
 export const playerLost = derived(
   [votedOutPlayers, playerId],
@@ -33,6 +31,15 @@ export const stillInGamePlayers = derived(
   [votedOutPlayers, playerStore],
   ([$votedOutPlayers, $playerStore]) => $playerStore.filter((p) => $votedOutPlayers.indexOf(p) === -1)
 )
+
+export const usedWords = derived(
+  playerToWords,
+  ($playerToWords) => {
+    return new Set($playerToWords.reduce((acc, pToWords) => {
+      return acc.concat(pToWords[1]);
+    }, []))
+  }
+);
 
 // TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore

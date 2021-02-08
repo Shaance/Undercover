@@ -1149,11 +1149,14 @@ var app = (function () {
         result: 'DRAW'
     });
     const playersWhoVoted = writable([]);
-    const hasVoted = derived([playersWhoVoted, playerId], ([$playersWhoVoted, $playerId]) => {
-        return $playersWhoVoted.indexOf($playerId) !== -1;
-    });
+    const hasVoted = derived([playersWhoVoted, playerId], ([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1);
     const playerLost = derived([votedOutPlayers, playerId], ([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1);
     const stillInGamePlayers = derived([votedOutPlayers, playerStore], ([$votedOutPlayers, $playerStore]) => $playerStore.filter((p) => $votedOutPlayers.indexOf(p) === -1));
+    const usedWords = derived(playerToWords, ($playerToWords) => {
+        return new Set($playerToWords.reduce((acc, pToWords) => {
+            return acc.concat(pToWords[1]);
+        }, []));
+    });
     // TODO put ws url into env variable, possible bug in Vercel
     // @ts-ignore
     console.log('{"env":{"VERCEL":"1","VERCEL_ENV":"development","VERCEL_URL":"","VERCEL_GIT_PROVIDER":"","VERCEL_GIT_REPO_SLUG":"","VERCEL_GIT_REPO_OWNER":"","VERCEL_GIT_REPO_ID":"","VERCEL_GIT_COMMIT_REF":"","VERCEL_GIT_COMMIT_SHA":"","VERCEL_GIT_COMMIT_MESSAGE":"","VERCEL_GIT_COMMIT_AUTHOR_LOGIN":"","VERCEL_GIT_COMMIT_AUTHOR_NAME":"","API_URL":"wss://b455891f6f6b.ngrok.io"}} + ' + {"env":{"VERCEL":"1","VERCEL_ENV":"development","VERCEL_URL":"","VERCEL_GIT_PROVIDER":"","VERCEL_GIT_REPO_SLUG":"","VERCEL_GIT_REPO_OWNER":"","VERCEL_GIT_REPO_ID":"","VERCEL_GIT_COMMIT_REF":"","VERCEL_GIT_COMMIT_SHA":"","VERCEL_GIT_COMMIT_MESSAGE":"","VERCEL_GIT_COMMIT_AUTHOR_LOGIN":"","VERCEL_GIT_COMMIT_AUTHOR_NAME":"","API_URL":"wss://b455891f6f6b.ngrok.io"}}.env.API_URL);
@@ -1793,11 +1796,11 @@ var app = (function () {
     			t1 = text("Describe");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "class", "svelte-16ysrrr");
-    			add_location(input, file$3, 31, 4, 680);
+    			add_location(input, file$3, 36, 4, 825);
     			button.disabled = /*disabledButton*/ ctx[1];
-    			add_location(button, file$3, 32, 4, 764);
+    			add_location(button, file$3, 37, 4, 909);
     			attr_dev(main, "class", "svelte-16ysrrr");
-    			add_location(main, file$3, 29, 0, 608);
+    			add_location(main, file$3, 34, 0, 753);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1853,10 +1856,13 @@ var app = (function () {
     	let disabledButton;
     	let $currentPlayerTurn;
     	let $playerId;
+    	let $usedWords;
     	validate_store(currentPlayerTurn, "currentPlayerTurn");
     	component_subscribe($$self, currentPlayerTurn, $$value => $$invalidate(4, $currentPlayerTurn = $$value));
     	validate_store(playerId, "playerId");
     	component_subscribe($$self, playerId, $$value => $$invalidate(5, $playerId = $$value));
+    	validate_store(usedWords, "usedWords");
+    	component_subscribe($$self, usedWords, $$value => $$invalidate(7, $usedWords = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("WordInput", slots, []);
     	let message = "";
@@ -1864,7 +1870,12 @@ var app = (function () {
     	// TODO check if word not already seen
     	function handleClick() {
     		if (message.length > 0) {
-    			sendMessage(getAddWordPayload(message));
+    			if ($usedWords.has(message)) {
+    				alert(`${message} has already been used!`);
+    			} else {
+    				sendMessage(getAddWordPayload(message));
+    			}
+
     			$$invalidate(0, message = "");
     		}
     	}
@@ -1891,13 +1902,15 @@ var app = (function () {
     		currentPlayerTurn,
     		playerId,
     		sendMessage,
+    		usedWords,
     		getAddWordPayload,
     		message,
     		handleClick,
     		handleKeyup,
     		disabledButton,
     		$currentPlayerTurn,
-    		$playerId
+    		$playerId,
+    		$usedWords
     	});
 
     	$$self.$inject_state = $$props => {
