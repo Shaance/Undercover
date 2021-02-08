@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store';
+import { writable, get, derived } from 'svelte/store';
 import type { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult } from './wsTypes';
 
 export const playerStore = writable<string[]>([]);
@@ -18,6 +18,10 @@ export const voteResult = writable<VoteResult>({
   result: 'DRAW'
 });
 export const playersWhoVoted = writable([]);
+export const playerLost = derived(
+	[votedOutPlayers, playerId],
+	([$votedOutPlayers, $playerId]) => $votedOutPlayers.indexOf($playerId) !== -1
+);
 
 // TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore

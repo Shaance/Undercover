@@ -5,8 +5,9 @@
   import WordInput from './WordInput.svelte';
   import statefulSwap from "./StatefulSwap"
   import { fly } from 'svelte/transition';
-  import { playingState } from './store';
+  import { playerLost, playingState } from './store';
   import VoteScreen from './VoteScreen.svelte';
+  import WaitForGameCompletion from './WaitForGameCompletion.svelte';
 
   const { onOutro, transitionTo, state } = statefulSwap("started");
 
@@ -22,11 +23,17 @@
     <div out:fly="{{ y: 500, duration: 300 }}"
       in:fly="{{ y: 500, duration: 300 }}"
       on:outroend={onOutro}>
-      <Word />
-      <PlayerTurn />
-      <WordInput />
-      <br>
-      <PlayersGrid />
+      {#if $playerLost}
+        <WaitForGameCompletion />
+        <Word />
+        <PlayerTurn />
+      {:else}
+        <Word />
+        <PlayerTurn />
+        <WordInput />
+      {/if}
+        <br>
+        <PlayersGrid />
     </div>
   {/if}
 
