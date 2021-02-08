@@ -30,6 +30,13 @@ export function getAddWordPayload(word: string): AddWordPayload {
   }
 }
 
+export function getGameInfoPayload(): Message {
+  return {
+    topic: 'game',
+    subtopic: 'update'
+  }
+}
+
 export function getVoteAgainstPayload(player: string): VoteAgainstPayload {
   return {
     topic: 'vote',

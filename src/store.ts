@@ -60,6 +60,11 @@ function onMessageEvent(event) {
       playerToWords.set(data.playerToWords);
       currentPlayerTurn.set(data.player);
       if (data.state === Status.VOTING) {
+        console.log(`Switching to voting mode!
+        voteEnded: ${get(voteEnded)},
+        hasVoted: ${get(hasVoted)},
+        playersWhoVoted: ${get(playersWhoVoted)}
+        `);
         playingState.set('voting');
       }
     }

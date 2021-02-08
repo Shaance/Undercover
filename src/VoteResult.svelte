@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { playersWhoVoted, playingState, votedOutPlayers, voteEnded, voteResult } from "./store";
+  import { playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
+  import { getGameInfoPayload } from './wsHelper';
 
   $: isDraw = $voteResult.result === 'DRAW';
   $: detail = $voteResult.voteDetails;
@@ -17,8 +18,11 @@
       voteEnded.set(false);
       playingState.set('voting');
     } else {
+      // sync with server on player turn
+      sendMessage(getGameInfoPayload());
       votedOutPlayers.set([...$votedOutPlayers, $voteResult.playerOut]);
       playingState.set('started');
+      voteEnded.set(false);
     }
   }
 
