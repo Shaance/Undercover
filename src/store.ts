@@ -15,7 +15,8 @@ export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
 export const voteResult = writable<VoteResult>({
   turn: 0,
-  result: 'DRAW'
+  result: 'DRAW',
+  gameState: Status.PLAYING
 });
 export const playersWhoVoted = writable([]);
 export const hasVoted = derived(

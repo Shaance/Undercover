@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
   import { getGameInfoPayload } from './wsHelper';
-  import { Role } from './wsTypes';
+  import { Status } from './wsTypes';
 
   $: isDraw = $voteResult.result === 'DRAW';
   $: detail = $voteResult.voteDetails;
@@ -10,9 +10,8 @@
     ? 'It is a draw! 🙃'
     : `${$voteResult.playerOut} (${$voteResult.playerOutRole}) has been eliminated! ☠️`;
 
-  $: btnText = isDraw
-    ? 'Vote again!'
-    : `Next turn`;
+  $: gameState = $voteResult.gameState;
+  $: btnText = getBtnText(gameState, $voteResult.result);
 
   function handleClick() {
     if (isDraw) {
@@ -26,6 +25,23 @@
       voteEnded.set(false);
     }
   }
+  
+  function getEndGameText(state: Status) {
+    const suffix = `won the game!`;
+    if (state === Status.WON) {
+      return `Cilivians ${suffix}`;
+    }
+    return `Vilains ${suffix}`;
+  }
+
+  function getBtnText(state: Status, voteResult: string) {
+    if (finishedState(state)) {
+      return 'Play again';
+    }
+    return voteResult === 'DRAW' ? 'Vote again!' : 'Next turn';
+  }
+
+  const finishedState = (state: Status) => state === Status.WON || state === Status.LOST;
 
   onMount(() => {
     playersWhoVoted.set([]);
@@ -53,6 +69,10 @@
   {/each}
 
   <h3> {text} </h3>
+  {#if finishedState(gameState)}
+    <br>
+    <h3>{getEndGameText(gameState)}</h3>
+  {/if}
   <br>
   <button on:click={handleClick}> {btnText} </button>
 </main>

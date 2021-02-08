@@ -4,6 +4,7 @@ export interface VoteResult {
   playerOut?: string;
   playerOutRole?: Role;
   voteDetails?: [string, number][];
+  gameState: Status;
 }
 
 export enum Role {
@@ -69,4 +70,7 @@ export enum Status {
   PLAYING = 'PLAYING',
   VOTING = 'VOTING',
   FINISHED_VOTING = 'FINISHED_VOTING',
+  DRAW_VOTE = 'DRAW_VOTE',
+  WON = 'WON',
+  LOST = 'LOST',
 }
