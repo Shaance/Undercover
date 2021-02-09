@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import EndGameText from './EndGameText.svelte';
-  import { playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
+  import MrWhiteGuess from './MrWhiteGuess.svelte';
+  import { playerId, playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
   import { getGameInfoPayload } from './wsHelper';
   import { Status } from './wsTypes';
 
@@ -12,7 +13,10 @@
     : `${$voteResult.playerOut} (${$voteResult.playerOutRole}) has been eliminated! ☠️`;
 
   $: gameState = $voteResult.gameState;
+  $: playerOut = $voteResult.playerOut;
   $: btnText = getBtnText(gameState, $voteResult.result);
+
+  $: waitingForMrWhiteGuess = gameState === Status.MR_WHITE_GUESS_WAITING;
 
   function handleClick() {
     if (isDraw) {
@@ -25,14 +29,6 @@
       playingState.set('started');
       voteEnded.set(false);
     }
-  }
-
-  function getEndGameText(state: Status) {
-    const suffix = `won the game!`;
-    if (state === Status.WON) {
-      return `Cilivians ${suffix}`;
-    }
-    return `Vilains ${suffix}`;
   }
 
   function getBtnText(state: Status, voteResult: string) {
@@ -72,7 +68,13 @@
   <h3> {text} </h3>
   {#if finishedState(gameState)}
     <EndGameText />
+  {:else if waitingForMrWhiteGuess}
+    {#if playerOut !== $playerId}
+      <h3> Waiting for Mr white's guess...</h3>
+    {:else}
+      <MrWhiteGuess />
+    {/if}
   {/if}
   <br>
-  <button on:click={handleClick}> {btnText} </button>
+  <button disabled="{waitingForMrWhiteGuess}" on:click={handleClick}> {btnText} </button>
 </main>

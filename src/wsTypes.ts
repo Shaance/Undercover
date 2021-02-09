@@ -38,6 +38,14 @@ export interface VoteAgainstPayload extends Message {
   data: string;
 }
 
+export interface GuessWordPayload extends Message {
+  data: string;
+}
+
+export interface GuessWordResponse extends Message {
+  data: Status;
+}
+
 export interface SettingTopicResponse extends Message {
   data: {
     underCoverCount: number,
@@ -71,6 +79,7 @@ export enum Status {
   VOTING = 'VOTING',
   FINISHED_VOTING = 'FINISHED_VOTING',
   DRAW_VOTE = 'DRAW_VOTE',
+  MR_WHITE_GUESS_WAITING = 'MR_WHITE_GUESS_WAITING',
   WON = 'WON',
   LOST = 'LOST',
 }

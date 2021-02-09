@@ -1,6 +1,6 @@
 import { writable, get, derived } from 'svelte/store';
 import { getVoteResultPayload } from './wsHelper';
-import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult, Status } from './wsTypes';
+import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult, Status, GuessWordResponse } from './wsTypes';
 
 export const playerStore = writable<string[]>([]);
 export const playerId = writable('');
@@ -13,6 +13,7 @@ export const playerToWords = writable<[string, string[]][]>([]);
 export const currentPlayerTurn = writable('');
 export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
+export const mrWhiteGuessStatus = writable('');
 export const voteResult = writable<VoteResult>({
   turn: 0,
   result: 'DRAW',
@@ -89,13 +90,18 @@ function onMessageEvent(event) {
       playersWhoVoted.set(response.data.playersWhoVoted);
       console.log(`Updated playersWhoVoted ${get(playersWhoVoted)}`);
       console.log(`hasVoted ${get(hasVoted)}`);
-      if (response.data.state === Status.FINISHED_VOTING) {
+      if (response.data.state === Status.FINISHED_VOTING || response.data.state === Status.MR_WHITE_GUESS_WAITING) {
         sendMessage(getVoteResultPayload());
       }
     } else if (resp.subtopic === 'result') {
       const response = resp as VoteResultResponse;
       voteResult.set(response.data);
       voteEnded.set(true);
+    } else if (resp.subtopic === 'guess') {
+      const response = resp as GuessWordResponse;
+      let newVoteResult = get(voteResult);
+      newVoteResult.gameState = response.data;
+      voteResult.set(newVoteResult);
     }
   }
 }
