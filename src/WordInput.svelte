@@ -9,7 +9,7 @@
   // TODO check if word not already seen
   function handleClick() {
     if (message.length > 0) {
-      if ($usedWords.has(message)) {
+      if ($usedWords.has(message.toLowerCase())) {
         alert(`${message} has already been used!`);
       } else {
         sendMessage(getAddWordPayload(message));

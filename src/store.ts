@@ -37,7 +37,7 @@ export const usedWords = derived(
   playerToWords,
   ($playerToWords) => {
     return new Set($playerToWords.reduce((acc, pToWords) => {
-      return acc.concat(pToWords[1]);
+      return acc.concat(pToWords[1].map(word => word.toLowerCase()));
     }, []))
   }
 );
