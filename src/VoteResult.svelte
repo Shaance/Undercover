@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import EndGameText from './EndGameText.svelte';
   import { playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
   import { getGameInfoPayload } from './wsHelper';
   import { Status } from './wsTypes';
@@ -59,13 +60,6 @@
     font-size: 1.3em;
     font-weight: 250;
   }
-
-  .end {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-size: 1.35em;
-    font-weight: 350;
-  }
 </style>
 
 <main>
@@ -77,7 +71,7 @@
 
   <h3> {text} </h3>
   {#if finishedState(gameState)}
-    <div class="end">{getEndGameText(gameState)}</div>
+    <EndGameText />
   {/if}
   <br>
   <button on:click={handleClick}> {btnText} </button>
