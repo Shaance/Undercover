@@ -25,7 +25,7 @@
       voteEnded.set(false);
     }
   }
-  
+
   function getEndGameText(state: Status) {
     const suffix = `won the game!`;
     if (state === Status.WON) {
@@ -59,6 +59,13 @@
     font-size: 1.3em;
     font-weight: 250;
   }
+
+  .end {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.35em;
+    font-weight: 350;
+  }
 </style>
 
 <main>
@@ -70,8 +77,7 @@
 
   <h3> {text} </h3>
   {#if finishedState(gameState)}
-    <br>
-    <h3>{getEndGameText(gameState)}</h3>
+    <div class="end">{getEndGameText(gameState)}</div>
   {/if}
   <br>
   <button on:click={handleClick}> {btnText} </button>

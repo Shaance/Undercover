@@ -13,5 +13,3 @@ WIP - This project relies on the WS server logic to work.
 - voting timer
 - input word timer
 - point system
-- mr white should be at least third
-- prevent players who have lost to vote
