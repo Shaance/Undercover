@@ -8,11 +8,12 @@
 
   // TODO check if word not already seen
   function handleClick() {
-    if (message.length > 0) {
-      if ($usedWords.has(message.toLowerCase())) {
-        alert(`${message} has already been used!`);
+    const trimmedWord = message.trim();
+    if (trimmedWord.length > 0) {
+      if ($usedWords.has(trimmedWord.toLowerCase())) {
+        alert(`${trimmedWord} has already been used!`);
       } else {
-        sendMessage(getAddWordPayload(message));
+        sendMessage(getAddWordPayload(trimmedWord));
       }
       message = '';
     }
