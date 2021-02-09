@@ -18,10 +18,21 @@
 
   $: waitingForMrWhiteGuess = gameState === Status.MR_WHITE_GUESS_WAITING;
 
-  function handleClick() {
+  $: if(finishedState(gameState)) {
+    voteEnded.set(false);
+    votedOutPlayers.set([]);
+  }
+
+  function handleClick(gameState: Status) {
     if (isDraw) {
       voteEnded.set(false);
       playingState.set('voting');
+    } else if (finishedState(gameState)) {
+      sendMessage({
+        topic: 'game',
+        subtopic: 'start'
+      });
+      playingState.set('started');
     } else {
       // sync with server on player turn
       sendMessage(getGameInfoPayload());
@@ -76,5 +87,5 @@
     {/if}
   {/if}
   <br>
-  <button disabled="{waitingForMrWhiteGuess}" on:click={handleClick}> {btnText} </button>
+  <button disabled="{waitingForMrWhiteGuess}" on:click={() => handleClick(gameState)}> {btnText} </button>
 </main>
