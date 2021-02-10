@@ -20,6 +20,10 @@
     }
   }
 
+  function init(el){
+    el.focus();
+  }
+
   function handleKeyup() {
     if (event.code === 'Enter') {
 			handleClick();
@@ -35,16 +39,19 @@
   h1 {
 		color: #ff3e00;
 		text-transform: uppercase;
-		font-size: 2em;
-		font-weight: 100;
+		font-size: 2.5em;
+		font-weight: 150;
+    margin-top: 50px;
+    margin-bottom: 50px;
 	}
 
   h2 {
-		font-size: 1em;
+		font-size: 1.3em;
 		font-weight: 350;
 	}
   
   button {
+    margin-top: 20px;
     font-size: 1em;
 		font-weight: 200;
   }
@@ -56,9 +63,9 @@
   <br>
   <input type="text" 
     size="15"
+    use:init
     bind:value={message} 
     on:keyup|preventDefault={handleKeyup}/>
   <br>
   <button on:click={handleClick}> OK </button>
 </main>
-
