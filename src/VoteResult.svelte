@@ -59,13 +59,19 @@
 <style>
   h2 {
     color:darkslateblue;
-    font-size: 1.5em;
-    font-weight: 350;
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 30px;
   }
 
   h3 {
     font-size: 1.3em;
     font-weight: 250;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: 1em;
   }
 </style>
 
@@ -75,7 +81,8 @@
   {#each detail as pair}
     <p>{`${pair[0]}: ${pair[1]}`}</p>
   {/each}
-
+  <br>
+  <br>
   <h3> {text} </h3>
   {#if finishedState(gameState)}
     <EndGameText />

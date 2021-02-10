@@ -2377,7 +2377,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (29:2) {#each $playersWhoVoted as player, _ (player) }
+    // (30:2) {#each $playersWhoVoted as player, _ (player) }
     function create_each_block$2(key_1, ctx) {
     	let div;
     	let t_value = `${/*player*/ ctx[2]} ` + "";
@@ -2394,8 +2394,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "item svelte-194m0yb");
-    			add_location(div, file$5, 29, 4, 580);
+    			attr_dev(div, "class", "item svelte-1ko2p7z");
+    			add_location(div, file$5, 30, 4, 605);
     			this.first = div;
     		},
     		m: function mount(target, anchor) {
@@ -2445,7 +2445,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(29:2) {#each $playersWhoVoted as player, _ (player) }",
+    		source: "(30:2) {#each $playersWhoVoted as player, _ (player) }",
     		ctx
     	});
 
@@ -2486,11 +2486,11 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(h2, "class", "svelte-194m0yb");
-    			add_location(h2, file$5, 26, 2, 503);
-    			add_location(br, file$5, 27, 2, 521);
-    			attr_dev(main, "class", "svelte-194m0yb");
-    			add_location(main, file$5, 25, 0, 494);
+    			attr_dev(h2, "class", "svelte-1ko2p7z");
+    			add_location(h2, file$5, 27, 2, 528);
+    			add_location(br, file$5, 28, 2, 546);
+    			attr_dev(main, "class", "svelte-1ko2p7z");
+    			add_location(main, file$5, 26, 0, 519);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2939,7 +2939,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (68:2) {#each detail as pair}
+    // (74:2) {#each detail as pair}
     function create_each_block$3(ctx) {
     	let p;
     	let t_value = `${/*pair*/ ctx[14][0]}: ${/*pair*/ ctx[14][1]}` + "";
@@ -2949,7 +2949,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$9, 68, 4, 1937);
+    			attr_dev(p, "class", "svelte-1kvarbr");
+    			add_location(p, file$9, 74, 4, 2016);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2967,14 +2968,14 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(68:2) {#each detail as pair}",
+    		source: "(74:2) {#each detail as pair}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (75:35) 
+    // (82:35) 
     function create_if_block_1(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -3043,14 +3044,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(75:35) ",
+    		source: "(82:35) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (73:2) {#if finishedState(gameState)}
+    // (80:2) {#if finishedState(gameState)}
     function create_if_block$2(ctx) {
     	let endgametext;
     	let current;
@@ -3083,14 +3084,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(73:2) {#if finishedState(gameState)}",
+    		source: "(80:2) {#if finishedState(gameState)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (78:4) {:else}
+    // (85:4) {:else}
     function create_else_block$1(ctx) {
     	let mrwhiteguess;
     	let current;
@@ -3122,14 +3123,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(78:4) {:else}",
+    		source: "(85:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:4) {#if playerOut !== $playerId}
+    // (83:4) {#if playerOut !== $playerId}
     function create_if_block_2(ctx) {
     	let h3;
 
@@ -3137,8 +3138,8 @@ var app = (function () {
     		c: function create() {
     			h3 = element("h3");
     			h3.textContent = "Waiting for Mr white's guess...";
-    			attr_dev(h3, "class", "svelte-dsn2ke");
-    			add_location(h3, file$9, 76, 6, 2131);
+    			attr_dev(h3, "class", "svelte-1kvarbr");
+    			add_location(h3, file$9, 83, 6, 2223);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -3154,7 +3155,7 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(76:4) {#if playerOut !== $playerId}",
+    		source: "(83:4) {#if playerOut !== $playerId}",
     		ctx
     	});
 
@@ -3166,17 +3167,21 @@ var app = (function () {
     	let h2;
     	let t1;
     	let t2;
-    	let h3;
+    	let br0;
     	let t3;
+    	let br1;
     	let t4;
+    	let h3;
+    	let t5;
+    	let t6;
     	let show_if;
     	let current_block_type_index;
     	let if_block;
-    	let t5;
-    	let br;
-    	let t6;
-    	let button;
     	let t7;
+    	let br2;
+    	let t8;
+    	let button;
+    	let t9;
     	let current;
     	let mounted;
     	let dispose;
@@ -3214,23 +3219,29 @@ var app = (function () {
     			}
 
     			t2 = space();
-    			h3 = element("h3");
-    			t3 = text(/*text*/ ctx[2]);
+    			br0 = element("br");
+    			t3 = space();
+    			br1 = element("br");
     			t4 = space();
-    			if (if_block) if_block.c();
-    			t5 = space();
-    			br = element("br");
+    			h3 = element("h3");
+    			t5 = text(/*text*/ ctx[2]);
     			t6 = space();
+    			if (if_block) if_block.c();
+    			t7 = space();
+    			br2 = element("br");
+    			t8 = space();
     			button = element("button");
-    			t7 = text(/*btnText*/ ctx[4]);
-    			attr_dev(h2, "class", "svelte-dsn2ke");
-    			add_location(h2, file$9, 65, 2, 1886);
-    			attr_dev(h3, "class", "svelte-dsn2ke");
-    			add_location(h3, file$9, 71, 2, 1984);
-    			add_location(br, file$9, 81, 2, 2228);
+    			t9 = text(/*btnText*/ ctx[4]);
+    			attr_dev(h2, "class", "svelte-1kvarbr");
+    			add_location(h2, file$9, 71, 2, 1965);
+    			add_location(br0, file$9, 76, 2, 2062);
+    			add_location(br1, file$9, 77, 2, 2069);
+    			attr_dev(h3, "class", "svelte-1kvarbr");
+    			add_location(h3, file$9, 78, 2, 2076);
+    			add_location(br2, file$9, 88, 2, 2320);
     			button.disabled = /*waitingForMrWhiteGuess*/ ctx[5];
-    			add_location(button, file$9, 82, 2, 2235);
-    			add_location(main, file$9, 64, 0, 1877);
+    			add_location(button, file$9, 89, 2, 2327);
+    			add_location(main, file$9, 70, 0, 1956);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3245,19 +3256,23 @@ var app = (function () {
     			}
 
     			append_dev(main, t2);
-    			append_dev(main, h3);
-    			append_dev(h3, t3);
+    			append_dev(main, br0);
+    			append_dev(main, t3);
+    			append_dev(main, br1);
     			append_dev(main, t4);
+    			append_dev(main, h3);
+    			append_dev(h3, t5);
+    			append_dev(main, t6);
 
     			if (~current_block_type_index) {
     				if_blocks[current_block_type_index].m(main, null);
     			}
 
-    			append_dev(main, t5);
-    			append_dev(main, br);
-    			append_dev(main, t6);
+    			append_dev(main, t7);
+    			append_dev(main, br2);
+    			append_dev(main, t8);
     			append_dev(main, button);
-    			append_dev(button, t7);
+    			append_dev(button, t9);
     			current = true;
 
     			if (!mounted) {
@@ -3290,7 +3305,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (!current || dirty & /*text*/ 4) set_data_dev(t3, /*text*/ ctx[2]);
+    			if (!current || dirty & /*text*/ 4) set_data_dev(t5, /*text*/ ctx[2]);
     			let previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type(ctx, dirty);
 
@@ -3320,13 +3335,13 @@ var app = (function () {
     					}
 
     					transition_in(if_block, 1);
-    					if_block.m(main, t5);
+    					if_block.m(main, t7);
     				} else {
     					if_block = null;
     				}
     			}
 
-    			if (!current || dirty & /*btnText*/ 16) set_data_dev(t7, /*btnText*/ ctx[4]);
+    			if (!current || dirty & /*btnText*/ 16) set_data_dev(t9, /*btnText*/ ctx[4]);
 
     			if (!current || dirty & /*waitingForMrWhiteGuess*/ 32) {
     				prop_dev(button, "disabled", /*waitingForMrWhiteGuess*/ ctx[5]);
@@ -4194,9 +4209,11 @@ var app = (function () {
     }
 
     /* src/GameBoard.svelte generated by Svelte v3.32.1 */
+
+    const { console: console_1$1 } = globals;
     const file$d = "src/GameBoard.svelte";
 
-    // (24:2) {#if $state === "first"}
+    // (30:2) {#if $state === "first"}
     function create_if_block_3$1(ctx) {
     	let div;
     	let word;
@@ -4230,8 +4247,8 @@ var app = (function () {
     			br = element("br");
     			t3 = space();
     			create_component(skipword.$$.fragment);
-    			add_location(br, file$d, 30, 6, 992);
-    			add_location(div, file$d, 24, 4, 815);
+    			add_location(br, file$d, 36, 6, 1117);
+    			add_location(div, file$d, 30, 4, 940);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4292,14 +4309,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(24:2) {#if $state === \\\"first\\\"}",
+    		source: "(30:2) {#if $state === \\\"first\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:2) {#if $state === "started"}
+    // (41:2) {#if $state === "started"}
     function create_if_block_1$2(ctx) {
     	let div;
     	let current_block_type_index;
@@ -4333,8 +4350,8 @@ var app = (function () {
     			br = element("br");
     			t1 = space();
     			create_component(playersgrid.$$.fragment);
-    			add_location(br, file$d, 47, 8, 1377);
-    			add_location(div, file$d, 35, 4, 1068);
+    			add_location(br, file$d, 53, 8, 1502);
+    			add_location(div, file$d, 41, 4, 1193);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4407,14 +4424,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(35:2) {#if $state === \\\"started\\\"}",
+    		source: "(41:2) {#if $state === \\\"started\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (43:6) {:else}
+    // (49:6) {:else}
     function create_else_block$2(ctx) {
     	let word;
     	let t0;
@@ -4468,14 +4485,14 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(43:6) {:else}",
+    		source: "(49:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (39:6) {#if $playerLost}
+    // (45:6) {#if $playerLost}
     function create_if_block_2$2(ctx) {
     	let waitforgamecompletion;
     	let t0;
@@ -4529,14 +4546,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(39:6) {#if $playerLost}",
+    		source: "(45:6) {#if $playerLost}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (53:2) {#if $state === "voting"}
+    // (59:2) {#if $state === "voting"}
     function create_if_block$4(ctx) {
     	let div;
     	let votescreen;
@@ -4551,7 +4568,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(votescreen.$$.fragment);
-    			add_location(div, file$d, 53, 4, 1458);
+    			add_location(div, file$d, 59, 4, 1583);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4595,7 +4612,7 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(53:2) {#if $state === \\\"voting\\\"}",
+    		source: "(59:2) {#if $state === \\\"voting\\\"}",
     		ctx
     	});
 
@@ -4619,7 +4636,7 @@ var app = (function () {
     			if (if_block1) if_block1.c();
     			t1 = space();
     			if (if_block2) if_block2.c();
-    			add_location(main, file$d, 22, 0, 777);
+    			add_location(main, file$d, 28, 0, 902);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4754,7 +4771,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<GameBoard> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<GameBoard> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
@@ -4782,11 +4799,16 @@ var app = (function () {
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*$currentTurn, $playingState*/ 48) {
     			if ($currentTurn === 0) {
+    				console.log("first");
     				transitionTo("first");
     			} else if ($playingState === "voting") {
+    				console.log("voting");
     				transitionTo($playingState);
     			} else if ($playingState === "started") {
+    				console.log("started");
     				transitionTo($playingState);
+    			} else {
+    				console.log("I'm nowhere...");
     			}
     		}
     	};

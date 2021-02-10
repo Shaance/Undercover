@@ -13,11 +13,16 @@
   const { onOutro, transitionTo, state } = statefulSwap("first");
 
   $: if ($currentTurn === 0) {
+    console.log("first");
     transitionTo("first");
   } else if ($playingState === "voting") {
+    console.log("voting");
     transitionTo($playingState);
   } else if ($playingState === "started") {
+    console.log("started");
     transitionTo($playingState);
+  } else {
+    console.log("I'm nowhere...");
   }
 </script>
 

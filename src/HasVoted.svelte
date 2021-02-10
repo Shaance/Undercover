@@ -10,6 +10,7 @@
   main {
     display: inline-block;
     min-height: 120px;
+    margin-bottom: 30px;
   }
 
   .item {
