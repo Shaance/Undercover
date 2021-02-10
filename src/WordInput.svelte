@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { currentPlayerTurn, playerId, sendMessage, usedWords } from './store';
+  import { currentPlayerTurn, isMrWhite, ownWord, playerId, sendMessage, usedWords } from './store';
   import { getAddWordPayload } from './wsHelper';
 
   $: disabledButton = $currentPlayerTurn !== $playerId;
-
+  $: placeHolderText = $isMrWhite ? 'Try to describe..' : `Describe ${$ownWord}`;
+  
   let message = '';
 
   // TODO check if word not already seen
@@ -31,14 +32,20 @@
   main {
     font-size: 1em;
 		font-weight: 200;
+    margin-bottom: 40px;
   }
   input {
     margin-bottom: 20px;
+  }
+  ::-webkit-input-placeholder {
+    text-align: center;
   }
 </style>
 
 <main>
     <!-- svelte-ignore a11y-label-has-associated-control -->
-    <input type="text" bind:value={message} on:keyup|preventDefault={handleKeyup}/>
-    <button disabled="{disabledButton}" on:click={handleClick}> Describe </button>
+    <input type="text"
+      placeholder={placeHolderText}
+      bind:value={message} on:keyup|preventDefault={handleKeyup}/>
+    <button disabled="{disabledButton}" on:click={handleClick}> Submit </button>
 </main>

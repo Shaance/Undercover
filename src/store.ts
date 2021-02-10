@@ -21,6 +21,10 @@ export const voteResult = writable<VoteResult>({
   gameState: Status.PLAYING
 });
 export const playersWhoVoted = writable([]);
+export const isMrWhite = derived(
+  ownWord,
+  ($ownWord) => $ownWord === ''
+);
 export const hasVoted = derived(
   [playersWhoVoted, playerId],
 	([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1
