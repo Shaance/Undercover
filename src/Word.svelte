@@ -1,20 +1,25 @@
 <script lang="ts">
   import { ownWord } from "./store";
-
-  $: text = getText($ownWord);
-
-  function getText(word: string) {
-    if (word) {
-      if (word === 'init') {
-        return '<p>Retrieving your word..</p>'
-      }
-      return `<p> Your word is </p>
-      <p><b>${word}</b></p>`;
-    }
-    return '<p><b>You are Mr.white!</b></p>'
-  }
 </script>
 
+<style>
+  h2 {
+    color:darkslateblue;
+    font-size: 1.7em;
+    font-weight: 500;
+  }
+  
+  h3 {
+    font-size: 1.4em;
+    font-weight: 500;
+  }
+</style>
+
 <main>
-  {@html text}
+  {#if $ownWord}
+    <h2>Your word is</h2>
+    <h3>{$ownWord}</h3>
+  {:else}
+    <h2>You are Mr.White!</h2>
+  {/if}
 </main>
