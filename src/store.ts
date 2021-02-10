@@ -14,6 +14,7 @@ export const currentPlayerTurn = writable('');
 export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
 export const mrWhiteGuessStatus = writable('');
+export const currentTurn = writable(0);
 export const voteResult = writable<VoteResult>({
   turn: 0,
   result: 'DRAW',
@@ -72,6 +73,7 @@ function onMessageEvent(event) {
       const inGameResponse = resp as InGameResponse;
       const data = inGameResponse.data;
       playerToWords.set(data.playerToWords);
+      currentTurn.set(data.turn);
       currentPlayerTurn.set(data.player);
       if (data.state === Status.VOTING) {
         console.log(`Switching to voting mode!
