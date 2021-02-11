@@ -81,7 +81,7 @@ export default {
 		replace({
 			process: JSON.stringify({
         env: {
-          ...config().parsed
+          API_URL: process.env.API_URL
         }
       })
 		}),
