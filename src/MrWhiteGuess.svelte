@@ -11,6 +11,10 @@
     }
   }
 
+  function focus(el) {
+    el.focus();
+  }
+
   function handleKeyup() {
     // @ts-ignore
     if (event.code === "Enter") {
@@ -24,6 +28,7 @@
   <!-- svelte-ignore a11y-label-has-associated-control -->
   <input
     type="text"
+    use:focus
     bind:value={message}
     on:keyup|preventDefault={handleKeyup}
   />
