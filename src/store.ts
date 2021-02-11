@@ -11,7 +11,6 @@ export const ownWord = writable('init');
 export const playingState = writable('init');
 export const playerToWords = writable<[string, string[]][]>([]);
 export const currentPlayerTurn = writable('');
-export const voteEnded = writable(false);
 export const votedOutPlayers = writable([]);
 export const mrWhiteGuessStatus = writable('');
 export const currentTurn = writable(0);
@@ -81,7 +80,7 @@ function onMessageEvent(event) {
       currentPlayerTurn.set(data.player);
       if (data.state === Status.VOTING) {
         console.log(`Switching to voting mode!
-        voteEnded: ${get(voteEnded)},
+        playingState: ${get(playingState)},
         hasVoted: ${get(hasVoted)},
         playersWhoVoted: ${get(playersWhoVoted)}
         `);
@@ -102,7 +101,7 @@ function onMessageEvent(event) {
     } else if (resp.subtopic === 'result') {
       const response = resp as VoteResultResponse;
       voteResult.set(response.data);
-      voteEnded.set(true);
+      playingState.set('result');
     } else if (resp.subtopic === 'guess') {
       const response = resp as GuessWordResponse;
       let newVoteResult = get(voteResult);
@@ -110,6 +109,14 @@ function onMessageEvent(event) {
       voteResult.set(newVoteResult);
     }
   }
+  console.log(`Logging stores after message
+  playingState: ${get(playingState)},
+  voteResult: ${JSON.stringify(get(voteResult))},
+  currentTurn: ${get(currentTurn)},
+  playersWhoVoted: ${get(playersWhoVoted)},
+  votedOutPlayers: ${get(votedOutPlayers)},
+  playerLost: ${get(playerLost)},
+  `)
 }
 
 function updateSettings(resp: SettingTopicResponse) {

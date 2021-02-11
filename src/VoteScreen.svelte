@@ -3,29 +3,26 @@
   import statefulSwap from "./StatefulSwap";
   import HasVoted from './HasVoted.svelte';
   import PlayersGrid from './PlayersGrid.svelte';
-  import { hasVoted, voteEnded, playersWhoVoted, playerLost } from './store';
+  import { hasVoted, playersWhoVoted, playerLost, playingState } from './store';
   import { fade } from 'svelte/transition';
   import WaitingForVote from "./WaitingForVote.svelte";
   import VoteResult from "./VoteResult.svelte";
 
   const { onOutro, transitionTo, state } = statefulSwap("init");
 
-  $: if ($hasVoted && !$voteEnded) {
-    console.log(`$hasVoted: ${$hasVoted}, voteEnded: ${$voteEnded}.
+  $: if ($playingState === 'voting' && !$hasVoted) {
+    console.log('Vote init!!');
+    transitionTo('init');
+  } else if ($playingState === 'result') {
+    console.log('Showing result!!');
+    transitionTo('result');
+  } else {
+    console.log(`$hasVoted: ${$hasVoted}, playingState: ${$playingState}.
     $playersWhoVoted: ${$playersWhoVoted}`);
     console.log('has voted!!');
     transitionTo('voted');
   }
 
-  $: if ($voteEnded) {
-    console.log('Showing result!!');
-    transitionTo('result');
-  }
-  
-  $: if (!$voteEnded && !$hasVoted) {
-    console.log('Vote init!!');
-    transitionTo('init');
-  }
 </script>
 
 <main>

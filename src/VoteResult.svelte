@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import EndGameText from './EndGameText.svelte';
   import MrWhiteGuess from './MrWhiteGuess.svelte';
-  import { playerId, playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteEnded, voteResult } from "./store";
+  import { playerId, playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteResult } from "./store";
   import { getGameInfoPayload } from './wsHelper';
   import { Status } from './wsTypes';
 
@@ -19,13 +19,11 @@
   $: waitingForMrWhiteGuess = gameState === Status.MR_WHITE_GUESS_WAITING;
 
   $: if(finishedState(gameState)) {
-    voteEnded.set(false);
     votedOutPlayers.set([]);
   }
 
   function handleClick(gameState: Status) {
     if (isDraw) {
-      voteEnded.set(false);
       playingState.set('voting');
     } else if (finishedState(gameState)) {
       sendMessage({
@@ -38,7 +36,6 @@
       sendMessage(getGameInfoPayload());
       votedOutPlayers.set([...$votedOutPlayers, $voteResult.playerOut]);
       playingState.set('started');
-      voteEnded.set(false);
     }
   }
 
