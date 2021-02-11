@@ -1,11 +1,26 @@
 <script lang="ts">
-  import { currentPlayerTurn, isMrWhite, ownWord, playerId, sendMessage, usedWords } from './store';
-  import { getAddWordPayload } from './wsHelper';
+  import { onMount } from "svelte";
+  import {
+    isMrWhite,
+    ownWord,
+    sendMessage,
+    usedWords,
+    yourTurn,
+  } from "./store";
+  import { getAddWordPayload } from "./wsHelper";
 
-  $: disabledButton = $currentPlayerTurn !== $playerId;
-  $: placeHolderText = $isMrWhite ? 'Try to describe..' : `Describe ${$ownWord}`;
-  
-  let message = '';
+  $: placeHolderText = $isMrWhite
+    ? "Try to describe.."
+    : `Describe ${$ownWord}`;
+  $: if ($yourTurn && mounted) {
+    input.focus();
+  }
+
+  let message = "";
+  let input;
+  let mounted = false;
+
+  onMount(() => (mounted = true));
 
   // TODO check if word not already seen
   function handleClick() {
@@ -16,22 +31,33 @@
       } else {
         sendMessage(getAddWordPayload(trimmedWord));
       }
-      message = '';
+      message = "";
     }
   }
 
   function handleKeyup() {
     // @ts-ignore
-    if (event.code === 'Enter') {
-			handleClick();
-		}
+    if (event.code === "Enter") {
+      handleClick();
+    }
   }
 </script>
+
+<main>
+  <input
+    type="text"
+    placeholder={placeHolderText}
+    bind:this={input}
+    bind:value={message}
+    on:keyup|preventDefault={handleKeyup}
+  />
+  <button disabled={!$yourTurn} on:click={handleClick}> Submit </button>
+</main>
 
 <style>
   main {
     font-size: 1em;
-		font-weight: 200;
+    font-weight: 200;
     margin-bottom: 40px;
   }
   input {
@@ -41,11 +67,3 @@
     text-align: center;
   }
 </style>
-
-<main>
-    <!-- svelte-ignore a11y-label-has-associated-control -->
-    <input type="text"
-      placeholder={placeHolderText}
-      bind:value={message} on:keyup|preventDefault={handleKeyup}/>
-    <button disabled="{disabledButton}" on:click={handleClick}> Submit </button>
-</main>

@@ -47,6 +47,11 @@ export const usedWords = derived(
   }
 );
 
+export const yourTurn = derived(
+  [currentPlayerTurn, playerId],
+  ([$currentPlayerTurn, $playerId]) => $currentPlayerTurn === $playerId
+);
+
 // TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
