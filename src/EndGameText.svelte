@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Status } from "./wsTypes";
   import { voteResult } from "./store";
-  
+
   $: gameState = $voteResult.gameState;
   function getEndGameText(state: Status) {
     const suffix = `won the game!`;

@@ -1,15 +1,22 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import EndGameText from './EndGameText.svelte';
-  import MrWhiteGuess from './MrWhiteGuess.svelte';
-  import { playerId, playersWhoVoted, playingState, sendMessage, votedOutPlayers, voteResult } from "./store";
-  import { getGameInfoPayload } from './wsHelper';
-  import { Status } from './wsTypes';
+  import { onMount } from "svelte";
+  import EndGameText from "./EndGameText.svelte";
+  import MrWhiteGuess from "./MrWhiteGuess.svelte";
+  import {
+    playerId,
+    playersWhoVoted,
+    playingState,
+    sendMessage,
+    votedOutPlayers,
+    voteResult,
+  } from "./store";
+  import { getGameInfoPayload } from "./wsHelper";
+  import { Status } from "./wsTypes";
 
-  $: isDraw = $voteResult.result === 'DRAW';
+  $: isDraw = $voteResult.result === "DRAW";
   $: detail = $voteResult.voteDetails;
   $: text = isDraw
-    ? 'It is a draw! 🙃'
+    ? "It is a draw! 🙃"
     : `${$voteResult.playerOut} (${$voteResult.playerOutRole}) has been eliminated! ☠️`;
 
   $: gameState = $voteResult.gameState;
@@ -18,44 +25,72 @@
 
   $: waitingForMrWhiteGuess = gameState === Status.MR_WHITE_GUESS_WAITING;
 
-  $: if(finishedState(gameState)) {
+  $: if (finishedState(gameState)) {
     votedOutPlayers.set([]);
   }
 
   function handleClick(gameState: Status) {
     if (isDraw) {
-      playingState.set('voting');
+      playingState.set("voting");
     } else if (finishedState(gameState)) {
       sendMessage({
-        topic: 'game',
-        subtopic: 'start'
+        topic: "game",
+        subtopic: "start",
       });
-      playingState.set('started');
+      playingState.set("started");
     } else {
       // sync with server on player turn
       sendMessage(getGameInfoPayload());
       votedOutPlayers.set([...$votedOutPlayers, $voteResult.playerOut]);
-      playingState.set('started');
+      playingState.set("started");
     }
   }
 
   function getBtnText(state: Status, voteResult: string) {
     if (finishedState(state)) {
-      return 'Play again';
+      return "Play again";
     }
-    return voteResult === 'DRAW' ? 'Vote again!' : 'Next turn';
+    return voteResult === "DRAW" ? "Vote again!" : "Next turn";
   }
 
-  const finishedState = (state: Status) => state === Status.WON || state === Status.LOST;
+  const finishedState = (state: Status) =>
+    state === Status.WON || state === Status.LOST;
 
   onMount(() => {
     playersWhoVoted.set([]);
-  })
+  });
 </script>
+
+<main>
+  <h2>Vote result</h2>
+
+  {#each detail as pair}
+    <p>{`${pair[0]}: ${pair[1]}`}</p>
+  {/each}
+  <br />
+  <br />
+  <h3>{text}</h3>
+  {#if finishedState(gameState)}
+    <EndGameText />
+  {:else if waitingForMrWhiteGuess}
+    {#if playerOut !== $playerId}
+      <h3>Waiting for Mr white's guess...</h3>
+    {:else}
+      <MrWhiteGuess />
+    {/if}
+  {/if}
+  <br />
+  <button
+    disabled={waitingForMrWhiteGuess}
+    on:click={() => handleClick(gameState)}
+  >
+    {btnText}
+  </button>
+</main>
 
 <style>
   h2 {
-    color:darkslateblue;
+    color: darkslateblue;
     font-size: 2em;
     font-weight: 500;
     margin-bottom: 30px;
@@ -71,25 +106,3 @@
     font-size: 1em;
   }
 </style>
-
-<main>
-  <h2>Vote result</h2>
-
-  {#each detail as pair}
-    <p>{`${pair[0]}: ${pair[1]}`}</p>
-  {/each}
-  <br>
-  <br>
-  <h3> {text} </h3>
-  {#if finishedState(gameState)}
-    <EndGameText />
-  {:else if waitingForMrWhiteGuess}
-    {#if playerOut !== $playerId}
-      <h3> Waiting for Mr white's guess...</h3>
-    {:else}
-      <MrWhiteGuess />
-    {/if}
-  {/if}
-  <br>
-  <button disabled="{waitingForMrWhiteGuess}" on:click={() => handleClick(gameState)}> {btnText} </button>
-</main>

@@ -1,23 +1,12 @@
 <script lang="ts">
-  import { stillInGamePlayers, playerId, sendMessage } from './store';
-  import { getVoteAgainstPayload } from './wsHelper';
+  import { stillInGamePlayers, playerId, sendMessage } from "./store";
+  import { getVoteAgainstPayload } from "./wsHelper";
   $: players = $stillInGamePlayers;
-  
+
   function handleClick(selected: string) {
     sendMessage(getVoteAgainstPayload(selected));
   }
 </script>
-
-<style>
-  h2 {
-    color:darkslateblue;
-    font-size: 1.5em;
-    font-weight: 350;
-  }
-  button {
-    border: none;
-  }
-</style>
 
 <main>
   <h2>Vote against</h2>
@@ -29,3 +18,14 @@
     {/if}
   {/each}
 </main>
+
+<style>
+  h2 {
+    color: darkslateblue;
+    font-size: 1.5em;
+    font-weight: 350;
+  }
+  button {
+    border: none;
+  }
+</style>

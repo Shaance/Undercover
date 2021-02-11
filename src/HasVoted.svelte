@@ -1,10 +1,26 @@
 <script lang="ts">
   import { playersWhoVoted } from "./store";
-  import { flip } from 'svelte/animate';
-  import { send, receive } from './Animations';
+  import { flip } from "svelte/animate";
+  import { send, receive } from "./Animations";
 
-  $: text = $playersWhoVoted.length > 0 ? 'Has voted: ' : 'Nobody has voted yet 🤷‍♂️';
+  $: text =
+    $playersWhoVoted.length > 0 ? "Has voted: " : "Nobody has voted yet 🤷‍♂️";
 </script>
+
+<main>
+  <h2>{text}</h2>
+  <br />
+  {#each $playersWhoVoted as player, _ (player)}
+    <div
+      class="item"
+      in:receive={{ key: player }}
+      out:send={{ key: player }}
+      animate:flip
+    >
+      {`${player} `}
+    </div>
+  {/each}
+</main>
 
 <style>
   main {
@@ -20,20 +36,8 @@
   }
 
   h2 {
-    color:darkslateblue;
+    color: darkslateblue;
     font-size: 1.1em;
     font-weight: 250;
   }
 </style>
-
-<main>
-  <h2>{text}</h2>
-  <br>
-  {#each $playersWhoVoted as player, _ (player) }
-    <div class="item"
-      in:receive="{{key: player}}"
-      out:send="{{key: player}}"
-      animate:flip
-    >{`${player} `}</div>
-  {/each}
-</main>
