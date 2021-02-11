@@ -56,7 +56,7 @@ export const yourTurn = derived(
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
 // @ts-ignore
-const socket = new WebSocket("ws://localhost:3000");
+const socket = new WebSocket(process.env.API_URL);
 
 socket.addEventListener('open', () => connectionOpened.set(true));
 
