@@ -13,3 +13,6 @@ WIP - This project relies on the WS server logic to work.
 - voting timer
 - input word timer
 - point system
+- edit vilain settings
+- lobby creatiion
+- add all the tests
