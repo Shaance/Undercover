@@ -82,7 +82,7 @@ export default {
 			process: JSON.stringify({
         env: {
           API_URL: process.env.API_URL,
-					NODE_TLS_REJECT_UNAUTHORIZED: process.env.NODE_TLS_REJECT_UNAUTHORIZED
+					NODE_TLS_REJECT_UNAUTHORIZED: '0'
         }
       })
 		}),
