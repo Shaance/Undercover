@@ -14,12 +14,12 @@
 
 <main>
   {#if $state === "init"}
-    <div out:fly={{ y: 500, duration: 300 }} on:outroend={onOutro}>
+    <div out:fly={{ y: -150 }} on:outroend={onOutro}>
       <Lobby />
     </div>
   {/if}
   {#if $state === "started"}
-    <div in:fly={{ y: 500, duration: 500 }} on:outroend={onOutro}>
+    <div in:fly={{ y: 150 }} on:outroend={onOutro}>
       <GameBoard />
     </div>
   {/if}
