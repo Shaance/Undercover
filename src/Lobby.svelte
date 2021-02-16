@@ -16,7 +16,7 @@
 
 <main>
   {#if $state === ""}
-    <div out:fly={{ x: -500, duration: 200 }} on:outroend={onOutro}>
+    <div out:fly={{ x: -100, duration: 100 }} on:outroend={onOutro}>
       <NameInput />
     </div>
   {:else}

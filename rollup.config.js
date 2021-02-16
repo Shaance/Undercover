@@ -81,7 +81,7 @@ export default {
 		replace({
 			process: JSON.stringify({
         env: {
-          API_URL: process.env.API_URL,
+          API_URL: process.env.API_URL || 'ws://localhost:8080',
 					NODE_TLS_REJECT_UNAUTHORIZED: '0'
         }
       })
