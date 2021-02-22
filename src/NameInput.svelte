@@ -63,6 +63,7 @@
     font-weight: 150;
     margin-top: 50px;
     margin-bottom: 50px;
+    text-shadow: 5px 5px 20px grey;
   }
 
   h2 {
