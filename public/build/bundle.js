@@ -1182,9 +1182,9 @@ var app = (function () {
     const yourTurn = derived([currentPlayerTurn, playerId], ([$currentPlayerTurn, $playerId]) => $currentPlayerTurn === $playerId);
     // TODO put ws url into env variable, possible bug in Vercel
     // @ts-ignore
-    console.log('{"env":{"API_URL":"ws://localhost:8080","NODE_TLS_REJECT_UNAUTHORIZED":"0"}} + ' + {"env":{"API_URL":"ws://localhost:8080","NODE_TLS_REJECT_UNAUTHORIZED":"0"}}.env.API_URL);
+    console.log('{"env":{"API_URL":"wss://uc.hashcode.dev/ws"}} + ' + {"env":{"API_URL":"wss://uc.hashcode.dev/ws"}}.env.API_URL);
     // @ts-ignore
-    const socket = new WebSocket({"env":{"API_URL":"ws://localhost:8080","NODE_TLS_REJECT_UNAUTHORIZED":"0"}}.env.API_URL);
+    const socket = new WebSocket({"env":{"API_URL":"wss://uc.hashcode.dev/ws"}}.env.API_URL);
     socket.addEventListener('open', () => connectionOpened.set(true));
     socket.addEventListener('message', onMessageEvent);
     function onMessageEvent(event) {
