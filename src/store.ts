@@ -41,18 +41,17 @@ export const stillInGamePlayers = derived(
 export const usedWords = derived(
   playerToWords,
   ($playerToWords) => {
-    return new Set($playerToWords.reduce((acc, pToWords) => {
-      return acc.concat(pToWords[1].map(word => word.toLowerCase()));
-    }, []))
-  }
-);
+    const allWordsLowerCase = $playerToWords.reduce(
+      (acc, pToWords) => acc.concat(pToWords[1].map(word => word.toLowerCase()))
+      , []);
+    return new Set(allWordsLowerCase);
+  });
 
 export const yourTurn = derived(
   [currentPlayerTurn, playerId],
   ([$currentPlayerTurn, $playerId]) => $currentPlayerTurn === $playerId
 );
 
-// TODO put ws url into env variable, possible bug in Vercel
 // @ts-ignore
 console.log('process + ' + process.env.API_URL);
 // @ts-ignore
