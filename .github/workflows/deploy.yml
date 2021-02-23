@@ -1,0 +1,24 @@
+name: Deploy to server
+on: [push]
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script: | 
+          source ~/.nvm/nvm.sh
+          cd undercover/
+          nvm use stable
+          pm2 stop "svelte"
+          git pull
+          npm install
+          npm run build
+          pm2 start npm --name "svelte" -- start
