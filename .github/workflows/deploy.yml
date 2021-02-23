@@ -16,7 +16,7 @@ jobs:
         script: | 
           source ~/.nvm/nvm.sh
           cd undercover/
-          nvm use stable
+          nvm use
           pm2 stop "svelte"
           git pull
           npm install
