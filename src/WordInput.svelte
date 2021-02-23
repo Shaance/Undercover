@@ -26,12 +26,16 @@
   function handleClick() {
     const trimmedWord = message.trim();
     if (trimmedWord.length > 0) {
-      if ($usedWords.has(trimmedWord.toLowerCase())) {
-        alert(`${trimmedWord} has already been used!`);
+      if (!$yourTurn) {
+        alert('Psst not your turn yet 👀');
       } else {
-        sendMessage(getAddWordPayload(trimmedWord));
+        if ($usedWords.has(trimmedWord.toLowerCase())) {
+          alert(`${trimmedWord} has already been used!`);
+        } else {
+          sendMessage(getAddWordPayload(trimmedWord));
+        }
+        message = "";
       }
-      message = "";
     }
   }
 
