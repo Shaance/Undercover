@@ -22,13 +22,13 @@
   <button on:click={() => updateValue("undercover", "decrement")}>
     {"<"}
   </button>
-  <div>{$undercoverCount}</div>
+  <div data-testid="undercoverCount">{$undercoverCount}</div>
   <button on:click={() => updateValue("undercover", "increment")}>
     {">"}
   </button>
   <p>Mr White</p>
   <button on:click={() => updateValue("white", "decrement")}> {"<"} </button>
-  <div>{$mrWhiteCount}</div>
+  <div data-testid="mrWhiteCount">{$mrWhiteCount}</div>
   <button on:click={() => updateValue("white", "increment")}> {">"} </button>
 </main>
 
