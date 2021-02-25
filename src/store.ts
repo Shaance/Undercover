@@ -26,7 +26,7 @@ export const isMrWhite = derived(
 );
 export const hasVoted = derived(
   [playersWhoVoted, playerId],
-	([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1
+  ([$playersWhoVoted, $playerId]) => $playersWhoVoted.indexOf($playerId) !== -1
 );
 export const playerLost = derived(
   [votedOutPlayers, playerId],
