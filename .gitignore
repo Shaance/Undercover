@@ -122,3 +122,4 @@ lib
 .metals
 .vercel
 public/build/
+.env
