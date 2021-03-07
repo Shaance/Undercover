@@ -26,6 +26,7 @@ import RoomId from "./RoomId.svelte";
       <br />
       <StartButton />
       <br />
+      <br />
       <RoomId />
       <PlayerList />
     </div>
