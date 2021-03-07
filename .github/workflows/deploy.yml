@@ -19,8 +19,10 @@ jobs:
           source ~/.nvm/nvm.sh
           cd undercover/
           nvm use
-          pm2 stop "svelte"
+          pm2 stop svelte
           git pull
           npm install
+          rm .env
+          cp ../.env_backup .env
           npm run build
-          pm2 start npm --name "svelte" -- start
+          pm2 restart svelte
