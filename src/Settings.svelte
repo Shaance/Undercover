@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { undercoverCount, mrWhiteCount, sendMessage } from "./store";
+  import { undercoverCount, mrWhiteCount, sendMessage, roomId } from "./store";
   import { createGetSettingsPayload } from "./wsHelper";
 
   function updateValue(subtopic: string, data: string) {
@@ -8,11 +8,12 @@
       topic: "settings",
       subtopic,
       data,
+      roomId: $roomId,
     });
   }
 
   onMount(() => {
-    sendMessage(createGetSettingsPayload());
+    sendMessage(createGetSettingsPayload($roomId));
   });
 </script>
 
@@ -22,13 +23,13 @@
   <button on:click={() => updateValue("undercover", "decrement")}>
     {"<"}
   </button>
-  <div>{$undercoverCount}</div>
+  <div data-testid="undercoverCount">{$undercoverCount}</div>
   <button on:click={() => updateValue("undercover", "increment")}>
     {">"}
   </button>
   <p>Mr White</p>
   <button on:click={() => updateValue("white", "decrement")}> {"<"} </button>
-  <div>{$mrWhiteCount}</div>
+  <div data-testid="mrWhiteCount">{$mrWhiteCount}</div>
   <button on:click={() => updateValue("white", "increment")}> {">"} </button>
 </main>
 

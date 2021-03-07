@@ -4,7 +4,9 @@
     mrWhiteCount,
     playerStore,
     sendMessage,
+    roomId,
   } from "./store";
+  import { getStartGamePayload } from "./wsHelper";
 
   $: playerNumbers = $playerStore.length;
   $: disabledButton = !canStartGame(
@@ -33,10 +35,7 @@
   }
 
   function startGame() {
-    sendMessage({
-      topic: "game",
-      subtopic: "start",
-    });
+    sendMessage(getStartGamePayload($roomId));
   }
 </script>
 

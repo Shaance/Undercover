@@ -20,6 +20,7 @@ export interface VoteUpdate {
 export interface Message {
   topic: string;
   subtopic: string;
+  roomId?: string;
 }
 
 export interface AddPlayerPayload extends Message {
@@ -55,7 +56,9 @@ export interface SettingTopicResponse extends Message {
 
 export interface UpdatePlayerMessage extends Message {
   data: string[];
+  roomId: string;
 }
+
 export interface InGameResponse extends Message {
   data: {
     turn: number,

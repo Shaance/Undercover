@@ -9,8 +9,9 @@
     sendMessage,
     votedOutPlayers,
     voteResult,
+    roomId,
   } from "./store";
-  import { getGameInfoPayload } from "./wsHelper";
+  import { getGameInfoPayload, getStartGamePayload } from "./wsHelper";
   import { Status } from "./wsTypes";
 
   $: isDraw = $voteResult.result === "DRAW";
@@ -33,14 +34,11 @@
     if (isDraw) {
       playingState.set("voting");
     } else if (finishedState(gameState)) {
-      sendMessage({
-        topic: "game",
-        subtopic: "start",
-      });
+      sendMessage(getStartGamePayload($roomId));
       playingState.set("started");
     } else {
       // sync with server on player turn
-      sendMessage(getGameInfoPayload());
+      sendMessage(getGameInfoPayload($roomId));
       votedOutPlayers.set([...$votedOutPlayers, $voteResult.playerOut]);
       playingState.set("started");
     }

@@ -2,53 +2,89 @@
   import {
     sendMessage,
     playerId,
-    playerStore,
-    connectionOpened,
+    roomId,
   } from "./store.js";
-  import { getPlayersPayload, wrapAddPlayerPayload } from "./wsHelper";
+  import { wrapAddPlayerPayload } from "./wsHelper";
 
-  let message = "";
+  const roomApiUrl = process?.env?.REST_API_URL ?? 'http://localhost:8081';
+  let playerName = "";
+  let inputRoomId = "";
 
-  $: players = $playerStore;
-  $: if ($connectionOpened) {
-    sendMessage(getPlayersPayload());
+  async function createRoom() {
+    if (playerName.length === 0) {
+      alert('Cannot have empty name');
+      return;
+    }
+    const resp = await fetch(roomApiUrl + '/rooms', {
+      method: 'POST'
+    });
+    if (resp.status === 200) {
+      const generatedRoomId = await resp.json();
+      roomId.set(generatedRoomId);
+      sendMessage(wrapAddPlayerPayload(playerName, generatedRoomId));
+      playerId.set(playerName);
+    } else {
+      alert("Server returned an error");
+    }
   }
 
-  function handleClick() {
-    if (message.length > 0) {
-      if (players.indexOf(message) === -1) {
-        sendMessage(wrapAddPlayerPayload(message));
-        playerId.set(message);
-      } else {
-        alert("This name has already been picked!");
-      }
+  async function joinRoom() {
+    if (playerName.length === 0) {
+      alert('Cannot have empty name');
+      return;
+    }
+    const finalRoomId = inputRoomId?.toUpperCase();
+    const resp = await fetch(`${roomApiUrl}/rooms/${finalRoomId}`);
+    if (resp.status === 200) {
+        const playersInTheRoom = await resp.json();
+        if (playersInTheRoom.indexOf(playerName) === -1) {
+          roomId.set(finalRoomId);
+          sendMessage(wrapAddPlayerPayload(playerName, finalRoomId));
+          playerId.set(playerName);
+        } else {
+          alert("This name already exist");
+        }
+    } else if (resp.status === 404) {
+      alert("This room id does not exist!");
+    } else {
+      alert("Error connecting to the server");
     }
   }
 
   function focus(el) {
     el.focus();
   }
-
-  function handleKeyup() {
-    if (event.code === "Enter") {
-      handleClick();
-    }
-  }
 </script>
 
 <main>
   <h1>Undercover</h1>
-  <h2>Input your name</h2>
+  <h2>Choose your name</h2>
   <br />
   <input
     type="text"
     size="15"
+    maxlength="15"
     use:focus
-    bind:value={message}
-    on:keyup|preventDefault={handleKeyup}
+    bind:value={playerName}
   />
   <br />
-  <button on:click={handleClick}> OK </button>
+  <button on:click={createRoom}> Create room </button>
+
+  <br />
+  <br />
+  <h3>Or</h3>
+  <br />
+  <h2>Join room with code</h2>
+  <br />
+  <input
+    type="text"
+    size="5"
+    maxlength="5"
+    style="text-transform:uppercase"
+    bind:value={inputRoomId}
+  />
+  <br />
+  <button on:click={joinRoom}> Join room </button>
 </main>
 
 <style>
@@ -69,6 +105,11 @@
   h2 {
     font-size: 1.3em;
     font-weight: 350;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 150;
   }
 
   button {

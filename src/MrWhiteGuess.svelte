@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sendMessage } from "./store";
+  import { sendMessage, roomId } from "./store";
   import { guessWordPayload } from "./wsHelper";
 
   let message = "";
@@ -7,7 +7,7 @@
   function handleClick() {
     const trimmedWord = message.trim();
     if (trimmedWord.length > 0) {
-      sendMessage(guessWordPayload(trimmedWord));
+      sendMessage(guessWordPayload(trimmedWord, $roomId));
     }
   }
 

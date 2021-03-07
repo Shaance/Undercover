@@ -6,6 +6,7 @@
     sendMessage,
     usedWords,
     yourTurn,
+    roomId,
   } from "./store";
   import { getAddWordPayload } from "./wsHelper";
 
@@ -32,7 +33,7 @@
         if ($usedWords.has(trimmedWord.toLowerCase())) {
           alert(`${trimmedWord} has already been used!`);
         } else {
-          sendMessage(getAddWordPayload(trimmedWord));
+          sendMessage(getAddWordPayload(trimmedWord, $roomId));
         }
         message = "";
       }

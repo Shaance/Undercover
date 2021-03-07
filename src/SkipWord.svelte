@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { sendMessage } from "./store";
+  import { roomId, sendMessage } from "./store";
+  import { getStartGamePayload } from "./wsHelper";
+
   function handleClick() {
-    sendMessage({
-      topic: "game",
-      subtopic: "start",
-    });
+    sendMessage(getStartGamePayload($roomId));
   }
 </script>
 
