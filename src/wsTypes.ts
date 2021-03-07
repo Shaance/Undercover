@@ -5,6 +5,8 @@ export interface VoteResult {
   playerOutRole?: Role;
   voteDetails?: [string, number][];
   gameState: Status;
+  goodWord?: string;
+  undercoverWord?: string;
 }
 
 export enum Role {

@@ -4,9 +4,9 @@
   import PlayerList from "./PlayerList.svelte";
   import Settings from "./Settings.svelte";
   import StartButton from "./StartButton.svelte";
-  import { playerId, roomId } from "./store.js";
+  import { playerId } from "./store.js";
   import statefulSwap from "./StatefulSwap";
-import RoomId from "./RoomId.svelte";
+  import RoomId from "./RoomId.svelte";
 
   const { onOutro, transitionTo, state } = statefulSwap($playerId);
 
