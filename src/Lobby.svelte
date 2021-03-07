@@ -6,6 +6,7 @@
   import StartButton from "./StartButton.svelte";
   import { playerId, roomId } from "./store.js";
   import statefulSwap from "./StatefulSwap";
+import RoomId from "./RoomId.svelte";
 
   const { onOutro, transitionTo, state } = statefulSwap($playerId);
 
@@ -20,31 +21,13 @@
       <NameInput />
     </div>
   {:else}
-    <div class ="content" in:fly={{ x: 500, duration: 1000 }} on:outroend={onOutro}>
+    <div in:fly={{ x: 500, duration: 1000 }} on:outroend={onOutro}>
       <Settings />
       <br />
       <StartButton />
       <br />
+      <RoomId />
       <PlayerList />
     </div>
-    <footer> Room ID: {$roomId} </footer>
   {/if}
 </main>
-
-<style>
-  main {
-    position: relative;
-    min-height: 100vh;
-  }
-
-  .content {
-    padding-bottom: 6.5rem;
-  }
-
-  footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 6.5rem;
-  }
-</style>

@@ -87,11 +87,11 @@ function onMessageEvent(event) {
       currentTurn.set(data.turn);
       currentPlayerTurn.set(data.player);
       if (data.state === Status.VOTING) {
-        console.log(`Switching to voting mode!
-        playingState: ${get(playingState)},
-        hasVoted: ${get(hasVoted)},
-        playersWhoVoted: ${get(playersWhoVoted)}
-        `);
+        // console.log(`Switching to voting mode!
+        // playingState: ${get(playingState)},
+        // hasVoted: ${get(hasVoted)},
+        // playersWhoVoted: ${get(playersWhoVoted)}
+        // `);
         playingState.set('voting');
       }
     }
@@ -117,15 +117,15 @@ function onMessageEvent(event) {
       voteResult.set(newVoteResult);
     }
   }
-  console.log(`Logging stores after message
-    playingState: ${get(playingState)},
-    voteResult: ${JSON.stringify(get(voteResult))},
-    currentTurn: ${get(currentTurn)},
-    playersWhoVoted: ${get(playersWhoVoted)},
-    votedOutPlayers: ${get(votedOutPlayers)},
-    playerLost: ${get(playerLost)},
-    roomId: ${get(roomId)},
-  `);
+  // console.log(`Logging stores after message
+  //   playingState: ${get(playingState)},
+  //   voteResult: ${JSON.stringify(get(voteResult))},
+  //   currentTurn: ${get(currentTurn)},
+  //   playersWhoVoted: ${get(playersWhoVoted)},
+  //   votedOutPlayers: ${get(votedOutPlayers)},
+  //   playerLost: ${get(playerLost)},
+  //   roomId: ${get(roomId)},
+  // `);
 }
 
 function updateSettings(resp: SettingTopicResponse) {
