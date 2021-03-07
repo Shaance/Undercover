@@ -4,6 +4,7 @@ import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, In
 
 export const playerStore = writable<string[]>([]);
 export const playerId = writable('');
+export const roomId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
 export const connectionOpened = writable(false);
@@ -53,9 +54,7 @@ export const yourTurn = derived(
 );
 
 // @ts-ignore
-// console.log('process + ' + process.env.API_URL);
-const url = process?.env?.API_URL ?? 'ws://localhost:8080';
-// @ts-ignore
+const url = process?.env?.WS_API_URL ?? 'ws://localhost:8080';
 const socket = new WebSocket(url);
 
 socket.addEventListener('open', () => connectionOpened.set(true));
@@ -64,6 +63,10 @@ socket.addEventListener('message', onMessageEvent);
 
 function onMessageEvent(event) {
   const resp: Message = JSON.parse(event.data);
+  if (resp?.roomId != get(roomId)){
+    console.log('Not the same roomId ignore message');
+    return;
+  }
   if (resp.topic === 'player') {
     if (resp.subtopic === 'update') {
       const addPlayerResponse = resp as UpdatePlayerMessage;
@@ -101,7 +104,7 @@ function onMessageEvent(event) {
       console.log(`Updated playersWhoVoted ${get(playersWhoVoted)}`);
       console.log(`hasVoted ${get(hasVoted)}`);
       if (response.data.state === Status.FINISHED_VOTING || response.data.state === Status.MR_WHITE_GUESS_WAITING) {
-        sendMessage(getVoteResultPayload());
+        sendMessage(getVoteResultPayload(get(roomId)));
       }
     } else if (resp.subtopic === 'result') {
       const response = resp as VoteResultResponse;
@@ -115,13 +118,14 @@ function onMessageEvent(event) {
     }
   }
   console.log(`Logging stores after message
-  playingState: ${get(playingState)},
-  voteResult: ${JSON.stringify(get(voteResult))},
-  currentTurn: ${get(currentTurn)},
-  playersWhoVoted: ${get(playersWhoVoted)},
-  votedOutPlayers: ${get(votedOutPlayers)},
-  playerLost: ${get(playerLost)},
-  `)
+    playingState: ${get(playingState)},
+    voteResult: ${JSON.stringify(get(voteResult))},
+    currentTurn: ${get(currentTurn)},
+    playersWhoVoted: ${get(playersWhoVoted)},
+    votedOutPlayers: ${get(votedOutPlayers)},
+    playerLost: ${get(playerLost)},
+    roomId: ${get(roomId)},
+  `);
 }
 
 function updateSettings(resp: SettingTopicResponse) {

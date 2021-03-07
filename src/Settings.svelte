@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { undercoverCount, mrWhiteCount, sendMessage } from "./store";
+  import { undercoverCount, mrWhiteCount, sendMessage, roomId } from "./store";
   import { createGetSettingsPayload } from "./wsHelper";
 
   function updateValue(subtopic: string, data: string) {
@@ -8,11 +8,12 @@
       topic: "settings",
       subtopic,
       data,
+      roomId: $roomId,
     });
   }
 
   onMount(() => {
-    sendMessage(createGetSettingsPayload());
+    sendMessage(createGetSettingsPayload($roomId));
   });
 </script>
 
