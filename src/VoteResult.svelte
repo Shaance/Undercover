@@ -62,8 +62,8 @@
 <main>
   <h2>Vote result</h2>
 
-  {#each detail as pair}
-    <p>{`${pair[0]}: ${pair[1]}`}</p>
+  {#each detail as [name, votesAgainst]}
+    <p>{`${name}: ${votesAgainst}`}</p>
   {/each}
   <br />
   <br />

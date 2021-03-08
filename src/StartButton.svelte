@@ -8,11 +8,10 @@
   } from "./store";
   import { getStartGamePayload } from "./wsHelper";
 
-  $: playerNumbers = $playerStore.length;
   $: disabledButton = !canStartGame(
     $undercoverCount,
     $mrWhiteCount,
-    playerNumbers
+    $playerStore.length
   );
 
   // don't really know the proper rules so meh

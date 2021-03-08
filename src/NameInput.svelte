@@ -92,7 +92,7 @@
     bind:value={inputRoomId}
   />
   <br />
-  <button on:click={joinRoom}> Join room </button>
+  <button on:click={joinRoom}> Join </button>
 </main>
 
 <style>
