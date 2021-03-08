@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
   import {
     sendMessage,
     playerId,
     roomId,
+    nameChosen,
   } from "./store.js";
+  import { get } from 'svelte/store';
   import { wrapAddPlayerPayload } from "./wsHelper";
 
   const roomApiUrl = process?.env?.REST_API_URL ?? 'http://localhost:8081';
-  let playerName = "";
+  let playerName = get(playerId);
   let inputRoomId = "";
 
   async function createRoom() {
@@ -22,7 +24,7 @@
       const generatedRoomId = await resp.json();
       roomId.set(generatedRoomId);
       sendMessage(wrapAddPlayerPayload(playerName, generatedRoomId));
-      playerId.set(playerName);
+      _setPlayerName(playerName);
     } else {
       alert("Server returned an error");
     }
@@ -40,7 +42,7 @@
         if (playersInTheRoom.indexOf(playerName) === -1) {
           roomId.set(finalRoomId);
           sendMessage(wrapAddPlayerPayload(playerName, finalRoomId));
-          playerId.set(playerName);
+          _setPlayerName(playerName);
         } else {
           alert("This name already exist");
         }
@@ -49,6 +51,12 @@
     } else {
       alert("Error connecting to the server");
     }
+  }
+
+  function _setPlayerName(playerName: string) {
+    playerId.set(playerName);
+    localStorage.setItem('playerId', playerName);
+    nameChosen.set(true);
   }
 
   function focus(el) {

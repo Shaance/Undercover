@@ -3,7 +3,8 @@ import { getVoteResultPayload } from './wsHelper';
 import { UpdatePlayerMessage, Message, SettingTopicResponse, GetWordResponse, InGameResponse, VoteUpdateResponse, VoteResultResponse, VoteResult, Status, GuessWordResponse } from './wsTypes';
 
 export const playerStore = writable<string[]>([]);
-export const playerId = writable('');
+export const playerId = writable(localStorage.getItem('playerId') ?? '');
+export const nameChosen = writable(false);
 export const roomId = writable('');
 export const undercoverCount = writable(0);
 export const mrWhiteCount = writable(0);
