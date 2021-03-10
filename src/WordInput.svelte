@@ -23,7 +23,6 @@
 
   onMount(() => (mounted = true));
 
-  // TODO check if word not already seen
   function handleClick() {
     const trimmedWord = message.trim();
     if (trimmedWord.length > 0) {

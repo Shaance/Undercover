@@ -17,7 +17,7 @@
       out:send={{ key: player }}
       animate:flip
     >
-      {`${player} `}
+      {player}
     </div>
   {/each}
 </main>

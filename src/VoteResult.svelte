@@ -63,7 +63,7 @@
   <h2>Vote result</h2>
 
   {#each detail as [name, votesAgainst]}
-    <p>{`${name}: ${votesAgainst}`}</p>
+    <p>{`${name}: ${Array(votesAgainst).fill('❌').join('')}`}</p>
   {/each}
   <br />
   <br />
