@@ -43,9 +43,12 @@ export const stillInGamePlayers = derived(
 export const usedWords = derived(
   playerToWords,
   ($playerToWords) => {
-    const allWordsLowerCase = $playerToWords.reduce(
-      (acc, pToWords) => acc.concat(pToWords[1].map(word => word.toLowerCase()))
-      , []);
+    const allWordsLowerCase = $playerToWords
+      .map(([_, words]) => words.map(word => word.toLowerCase()))
+      .reduce((acc, words) => {
+        words.forEach(word => acc.push(word));
+        return acc;
+      }, []);
     return new Set(allWordsLowerCase);
   });
 
@@ -88,22 +91,13 @@ function onMessageEvent(event) {
       currentTurn.set(data.turn);
       currentPlayerTurn.set(data.player);
       if (data.state === Status.VOTING) {
-        // console.log(`Switching to voting mode!
-        // playingState: ${get(playingState)},
-        // hasVoted: ${get(hasVoted)},
-        // playersWhoVoted: ${get(playersWhoVoted)}
-        // `);
         playingState.set('voting');
       }
     }
   } else if (resp.topic === 'vote') {
     if (resp.subtopic === 'update') {
       const response = resp as VoteUpdateResponse;
-      console.log(`Updating playersWhoVoted ${get(playersWhoVoted)}`);
-      console.log(`hasVoted ${get(hasVoted)}`);
       playersWhoVoted.set(response.data.playersWhoVoted);
-      console.log(`Updated playersWhoVoted ${get(playersWhoVoted)}`);
-      console.log(`hasVoted ${get(hasVoted)}`);
       if (response.data.state === Status.FINISHED_VOTING || response.data.state === Status.MR_WHITE_GUESS_WAITING) {
         sendMessage(getVoteResultPayload(get(roomId)));
       }
@@ -118,15 +112,6 @@ function onMessageEvent(event) {
       voteResult.set(newVoteResult);
     }
   }
-  // console.log(`Logging stores after message
-  //   playingState: ${get(playingState)},
-  //   voteResult: ${JSON.stringify(get(voteResult))},
-  //   currentTurn: ${get(currentTurn)},
-  //   playersWhoVoted: ${get(playersWhoVoted)},
-  //   votedOutPlayers: ${get(votedOutPlayers)},
-  //   playerLost: ${get(playerLost)},
-  //   roomId: ${get(roomId)},
-  // `);
 }
 
 function updateSettings(resp: SettingTopicResponse) {
