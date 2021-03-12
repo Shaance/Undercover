@@ -17,8 +17,7 @@
     <div out:fly={{ y: -150 }} on:outroend={onOutro}>
       <Lobby />
     </div>
-  {/if}
-  {#if $state === "started"}
+  {:else if $state === "started"}
     <div in:fly={{ y: 150 }} on:outroend={onOutro}>
       <GameBoard />
     </div>
