@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import postcss from 'rollup-plugin-postcss';
 import replace from '@rollup/plugin-replace';
 import { config } from 'dotenv';
 
@@ -51,6 +52,11 @@ export default {
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
+		postcss({
+			extract: 'public/global.css',
+			sourceMap: true,
+			minimize: true,
+		}),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -80,10 +86,10 @@ export default {
 		production && terser(),
 		replace({
 			process: JSON.stringify({
-        env: {
-			...config().parsed
-        }
-      })
+				env: {
+					...config().parsed
+				}
+			})
 		}),
 	],
 	watch: {
