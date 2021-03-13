@@ -53,7 +53,7 @@ export default {
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
 		postcss({
-			extract: 'public/global.css',
+			extract: 'global.css',
 			sourceMap: true,
 			minimize: true,
 		}),
