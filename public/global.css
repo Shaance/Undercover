@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -12,12 +13,12 @@ body {
 }
 
 h2 {
-	padding-top: 15%;
-    padding-bottom: 15%;
+	padding-top: 15% !important;
+	padding-bottom: 15% !important;
 }
 
 a {
-	color: rgb(0,100,200);
+	color: rgb(0, 100, 200);
 	text-decoration: none;
 }
 
@@ -26,14 +27,17 @@ a:hover {
 }
 
 a:visited {
-	color: rgb(0,80,160);
+	color: rgb(0, 80, 160);
 }
 
 label {
 	display: block;
 }
 
-input, button, select, textarea {
+input,
+button,
+select,
+textarea {
 	font-family: inherit;
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
@@ -68,5 +72,5 @@ button:focus {
 }
 
 button:hover {
-	background-color:lightgray;
+	background-color: lightgray;
 }
