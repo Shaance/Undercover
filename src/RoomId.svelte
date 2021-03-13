@@ -1,10 +1,12 @@
 <script lang="ts">
   import { roomId } from "./store.js";
+  import Toast from './Toast.svelte';
 
   function copyRoomId() {
     navigator.clipboard.writeText($roomId)
     .then(
-      () => alert("Copied room ID to clipboard!"),
+      // @ts-ignore
+      () => window.pushToast("Copied room ID to clipboard!"),
       (err) => console.error("Async: Could not copy text: ", err)
     );
   }
@@ -12,9 +14,10 @@
 
 <main>
   <h2>Room ID: {$roomId} &nbsp;</h2>
-  <button on:click={copyRoomId}>
+  <button id="liveToastBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy room ID" on:click={copyRoomId}>
     <i class="far fa-copy"/>
   </button>
+  <Toast retainMs={1000} />
 </main>
 
 <style>
@@ -28,8 +31,4 @@
   button {
     border: 0;
   }
-
-  button:hover {
-	background-color:rgb(202, 202, 235);
-}
 </style>

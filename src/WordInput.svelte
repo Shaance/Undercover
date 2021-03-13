@@ -9,6 +9,7 @@
     roomId,
   } from "./store";
   import { getAddWordPayload } from "./wsHelper";
+  import Toast from './Toast.svelte';
 
   $: placeHolderText = $isMrWhite
     ? "Try to describe.."
@@ -26,16 +27,16 @@
   function handleClick() {
     const trimmedWord = message.trim();
     if (trimmedWord.length > 0) {
-      if (!$yourTurn) {
-        alert('Psst not your turn yet 👀');
+      if ($usedWords.has(trimmedWord.toLowerCase())) {
+        // @ts-ignore
+        window.pushToast(`${trimmedWord} has already been used!`);
       } else {
-        if ($usedWords.has(trimmedWord.toLowerCase())) {
-          alert(`${trimmedWord} has already been used!`);
-        } else {
-          sendMessage(getAddWordPayload(trimmedWord, $roomId));
-        }
-        message = "";
+        sendMessage(getAddWordPayload(trimmedWord, $roomId));
       }
+      message = "";
+    } else {
+      // @ts-ignore
+      window.pushToast('Not a very clear description 👀');
     }
   }
 
@@ -51,11 +52,13 @@
   <input
     type="text"
     placeholder={placeHolderText}
+    size="15"
     bind:this={input}
     bind:value={message}
     on:keyup|preventDefault={handleKeyup}
   />
-  <button disabled={!$yourTurn} on:click={handleClick}> Submit </button>
+  <button class="btn btn-light" disabled={!$yourTurn} on:click={handleClick}> Submit </button>
+  <Toast/>
 </main>
 
 <style>
@@ -69,5 +72,9 @@
   }
   ::-webkit-input-placeholder {
     text-align: center;
+  }
+
+  ::-moz-placeholder {
+   text-align: center;
   }
 </style>

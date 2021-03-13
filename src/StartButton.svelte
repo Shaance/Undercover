@@ -38,4 +38,4 @@
   }
 </script>
 
-<button disabled={disabledButton} on:click={startGame}> Start </button>
+<button class="btn btn-light" disabled={disabledButton} on:click={startGame}> Start </button>

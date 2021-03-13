@@ -20,17 +20,18 @@
 <main>
   <h2>Settings</h2>
   <p>Undercover</p>
-  <button on:click={() => updateValue("undercover", "decrement")}>
+  <button class="btn btn-light" on:click={() => updateValue("undercover", "decrement")}>
     {"<"}
   </button>
   <div data-testid="undercoverCount">{$undercoverCount}</div>
-  <button on:click={() => updateValue("undercover", "increment")}>
+  <button class="btn btn-light" on:click={() => updateValue("undercover", "increment")}>
     {">"}
   </button>
+  <br><br>
   <p>Mr White</p>
-  <button on:click={() => updateValue("white", "decrement")}> {"<"} </button>
+  <button class="btn btn-light" on:click={() => updateValue("white", "decrement")}> {"<"} </button>
   <div data-testid="mrWhiteCount">{$mrWhiteCount}</div>
-  <button on:click={() => updateValue("white", "increment")}> {">"} </button>
+  <button class="btn btn-light" on:click={() => updateValue("white", "increment")}> {">"} </button>
 </main>
 
 <style>

@@ -29,9 +29,11 @@
     <div in:fade out:fade on:outroend={onOutro}>
       {#if !$playerLost}
         <VotePicker />
+        <br/>
+        <br/>
       {/if}
-      <HasVoted />
       <PlayersGrid />
+      <HasVoted />
     </div>
   {:else if $state === "voted"}
     <div in:fade on:outroend={onOutro} out:fade>

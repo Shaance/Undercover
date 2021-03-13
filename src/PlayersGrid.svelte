@@ -36,10 +36,11 @@
   .card {
     min-width: 100px;
     min-height: 200px;
+    border: 0;
   }
 
   .item {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
   }
@@ -47,5 +48,6 @@
   p {
     font-size: 1em;
     font-weight: 100;
+    margin-bottom: 0;
   }
 </style>

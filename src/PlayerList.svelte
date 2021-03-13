@@ -30,5 +30,6 @@
     color: darkslateblue;
     font-size: 1.5em;
     font-weight: 350;
+    padding-top: 0%;
   }
 </style>

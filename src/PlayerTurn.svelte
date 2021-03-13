@@ -20,9 +20,4 @@
     font-size: 1.3em;
     font-weight: 350;
   }
-
-  main {
-    margin-top: 30px;
-    margin-bottom: 50px;
-  }
 </style>

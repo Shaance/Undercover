@@ -7,4 +7,4 @@
   }
 </script>
 
-<button on:click={handleClick}> Skip word </button>
+<button class="btn btn-light" on:click={handleClick}> Skip word </button>

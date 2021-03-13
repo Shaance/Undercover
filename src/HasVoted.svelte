@@ -9,7 +9,6 @@
 
 <main>
   <h2>{text}</h2>
-  <br />
   {#each $playersWhoVoted as player, _ (player)}
     <div
       class="item"
@@ -25,14 +24,12 @@
 <style>
   main {
     display: inline-block;
-    min-height: 120px;
-    margin-bottom: 30px;
+    min-height: 250px;
+    margin-bottom: 50%;
   }
 
   .item {
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-bottom: 15%;
   }
 
   h2 {

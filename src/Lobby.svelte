@@ -26,7 +26,6 @@
       <br />
       <StartButton />
       <br />
-      <br />
       <RoomId />
       <PlayerList />
     </div>

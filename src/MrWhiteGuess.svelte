@@ -28,11 +28,12 @@
   <!-- svelte-ignore a11y-label-has-associated-control -->
   <input
     type="text"
+    size="15"
     use:focus
     bind:value={message}
     on:keyup|preventDefault={handleKeyup}
   />
-  <button on:click={handleClick}> Guess </button>
+  <button class="btn btn-light" on:click={handleClick}> Guess </button>
 </main>
 
 <style>

@@ -79,6 +79,7 @@
   {/if}
   <br />
   <button
+    class="btn btn-light"
     disabled={waitingForMrWhiteGuess}
     on:click={() => handleClick(gameState)}
   >

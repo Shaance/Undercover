@@ -7,6 +7,7 @@
   } from "./store.js";
   import { get } from 'svelte/store';
   import { wrapAddPlayerPayload } from "./wsHelper";
+  import Toast from './Toast.svelte';
 
   const roomApiUrl = process?.env?.REST_API_URL ?? 'http://localhost:8081';
   let playerName = get(playerId);
@@ -14,7 +15,8 @@
 
   async function createRoom() {
     if (playerName.length === 0) {
-      alert('Cannot have empty name');
+      // @ts-ignore
+      window.pushToast('Cannot have empty name');
       return;
     }
     const resp = await fetch(roomApiUrl + '/rooms', {
@@ -26,13 +28,15 @@
       sendMessage(wrapAddPlayerPayload(playerName, generatedRoomId));
       _setPlayerName(playerName);
     } else {
-      alert("Server returned an error");
+      // @ts-ignore
+      window.pushToast("Server returned an error");
     }
   }
 
   async function joinRoom() {
     if (playerName.length === 0) {
-      alert('Cannot have empty name');
+      // @ts-ignore
+      window.pushToast('Cannot have empty name');
       return;
     }
     const finalRoomId = inputRoomId?.toUpperCase();
@@ -44,12 +48,15 @@
           sendMessage(wrapAddPlayerPayload(playerName, finalRoomId));
           _setPlayerName(playerName);
         } else {
-          alert("This name already exist");
+          // @ts-ignore
+          window.pushToast("This name already exist");
         }
     } else if (resp.status === 404) {
-      alert("This room id does not exist!");
+      // @ts-ignore
+      window.pushToast("This room id does not exist!");
     } else {
-      alert("Error connecting to the server");
+      // @ts-ignore
+      window.pushToast("Error connecting to the server");
     }
   }
 
@@ -67,7 +74,6 @@
 <main>
   <h1>Undercover</h1>
   <h2>Choose your name</h2>
-  <br />
   <input
     type="text"
     size="15"
@@ -76,14 +82,13 @@
     bind:value={playerName}
   />
   <br />
-  <button on:click={createRoom}> Create room </button>
-
+  <button class="btn btn-light" on:click={createRoom}> Create room </button>
+  <br />
   <br />
   <br />
   <h3>Or</h3>
   <br />
   <h2>Join room with code</h2>
-  <br />
   <input
     type="text"
     size="5"
@@ -92,7 +97,8 @@
     bind:value={inputRoomId}
   />
   <br />
-  <button on:click={joinRoom}> Join </button>
+  <button class="btn btn-light" on:click={joinRoom}> Join </button>
+  <Toast />
 </main>
 
 <style>
@@ -101,13 +107,13 @@
   }
 
   h1 {
-    color: #ff3e00;
+    color: darkslateblue;
     text-transform: uppercase;
-    font-size: 2.5em;
-    font-weight: 150;
+    font-size: 2em;
+    font-weight: 250;
     margin-top: 50px;
     margin-bottom: 50px;
-    text-shadow: 5px 5px 20px grey;
+    text-shadow: 5px 5px 30px grey;
   }
 
   h2 {

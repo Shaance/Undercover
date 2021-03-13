@@ -13,7 +13,7 @@
   {#each players as player, _ (player)}
     {#if player !== $playerId}
       <p>
-        <button on:click={() => handleClick(player)}> {player} </button>
+        <button class="btn btn-light" on:click={() => handleClick(player)}> {player} </button>
       </p>
     {/if}
   {/each}
