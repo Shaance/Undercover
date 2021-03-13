@@ -26,7 +26,10 @@
 
   function handleClick() {
     const trimmedWord = message.trim();
-    if (trimmedWord.length > 0) {
+    if (!$yourTurn) {
+      // @ts-ignore
+      window.pushToast('Not your turn yet 🤷‍♂️');
+    } else if (trimmedWord.length > 0) {
       if ($usedWords.has(trimmedWord.toLowerCase())) {
         // @ts-ignore
         window.pushToast(`${trimmedWord} has already been used!`);
