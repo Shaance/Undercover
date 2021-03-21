@@ -4,16 +4,15 @@
 
 <main>
   {#if $ownWord}
-    <h2>Your word is</h2>
+    <h2 class="blue-main">Your word is</h2>
     <h3>{$ownWord}</h3>
   {:else}
-    <h2>You are Mr.White!</h2>
+    <h2 class="blue-main">You are Mr.White!</h2>
   {/if}
 </main>
 
 <style>
   h2 {
-    color: darkslateblue;
     font-size: 1.7em;
     font-weight: 500;
   }

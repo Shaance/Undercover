@@ -18,7 +18,7 @@
 </script>
 
 <main>
-  <h2>Settings</h2>
+  <h2 class="blue-main">Settings</h2>
   <p>Undercover</p>
   <button class="btn btn-light" on:click={() => updateValue("undercover", "decrement")}>
     {"<"}
@@ -46,7 +46,6 @@
   }
 
   h2 {
-    color: darkslateblue;
     font-size: 2em;
     font-weight: 350;
   }

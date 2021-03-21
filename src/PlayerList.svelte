@@ -13,7 +13,7 @@
 </script>
 
 <main>
-  <h2>Connected players</h2>
+  <h2 class="blue-main">Connected players</h2>
   {#each players as player, _ (player)}
     <p
       in:receive={{ key: $playerId }}
@@ -27,7 +27,6 @@
 
 <style>
   h2 {
-    color: darkslateblue;
     font-size: 1.5em;
     font-weight: 350;
     padding-top: 0%;

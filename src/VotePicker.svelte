@@ -9,7 +9,7 @@
 </script>
 
 <main>
-  <h2>Vote against</h2>
+  <h2 class="blue-main">Vote against</h2>
   {#each players as player, _ (player)}
     {#if player !== $playerId}
       <p>
@@ -21,7 +21,6 @@
 
 <style>
   h2 {
-    color: darkslateblue;
     font-size: 1.5em;
     font-weight: 350;
   }

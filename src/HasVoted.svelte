@@ -8,7 +8,7 @@
 </script>
 
 <main>
-  <h2>{text}</h2>
+  <h2 class="blue-main">{text}</h2>
   {#each $playersWhoVoted as player, _ (player)}
     <div
       class="item"
@@ -33,7 +33,6 @@
   }
 
   h2 {
-    color: darkslateblue;
     font-size: 1.1em;
     font-weight: 250;
   }

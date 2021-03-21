@@ -60,7 +60,7 @@
 </script>
 
 <main>
-  <h2>Vote result</h2>
+  <h2 class="blue-main">Vote result</h2>
 
   {#each detail as [name, votesAgainst]}
     <p>{`${name}: ${Array(votesAgainst).fill('❌').join('')}`}</p>
@@ -89,7 +89,6 @@
 
 <style>
   h2 {
-    color: darkslateblue;
     font-size: 2em;
     font-weight: 500;
     margin-bottom: 30px;

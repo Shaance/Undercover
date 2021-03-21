@@ -74,3 +74,7 @@ button:focus {
 button:hover {
 	background-color: lightgray;
 }
+
+.blue-main {
+	color: darkslateblue;
+}

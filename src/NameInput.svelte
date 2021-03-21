@@ -72,7 +72,7 @@
 </script>
 
 <main>
-  <h1>Undercover</h1>
+  <h1 class="blue-main">Undercover</h1>
   <h2>Choose your name</h2>
   <input
     type="text"
@@ -107,7 +107,6 @@
   }
 
   h1 {
-    color: darkslateblue;
     text-transform: uppercase;
     font-size: 2em;
     font-weight: 250;
