@@ -13,7 +13,7 @@
 </script>
 
 <main>
-  <h2 class="blue-main">Room ID: {$roomId} &nbsp;</h2>
+  <h2 id="room-id" class="blue-main">Room ID: {$roomId} &nbsp;</h2>
   <button id="liveToastBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy room ID" on:click={copyRoomId}>
     <i class="far fa-copy"/>
   </button>

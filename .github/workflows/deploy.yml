@@ -26,3 +26,4 @@ jobs:
           cp ../.env_backup .env
           npm run build
           pm2 restart svelte
+          npm run cy:run
