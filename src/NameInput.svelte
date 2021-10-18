@@ -39,6 +39,11 @@
       window.pushToast('Cannot have empty name');
       return;
     }
+    if (inputRoomId?.length !== 5) {
+      // @ts-ignore
+      window.pushToast('Room IDs should be of length 5');
+      return;
+    }
     const finalRoomId = inputRoomId?.toUpperCase();
     const resp = await fetch(`${roomApiUrl}/rooms/${finalRoomId}`);
     if (resp.status === 200) {
@@ -75,6 +80,7 @@
   <h1 class="blue-main">Undercover</h1>
   <h2>Choose your name</h2>
   <input
+    id="name"
     type="text"
     size="15"
     maxlength="15"
@@ -82,7 +88,7 @@
     bind:value={playerName}
   />
   <br />
-  <button class="btn btn-light" on:click={createRoom}> Create room </button>
+  <button id="create-room-btn" class="btn btn-light" on:click={createRoom}> Create room </button>
   <br />
   <br />
   <br />
@@ -90,14 +96,15 @@
   <br />
   <h2>Join room with code</h2>
   <input
+    id="room-id"
     type="text"
-    size="5"
+    size="6"
     maxlength="5"
     style="text-transform:uppercase"
     bind:value={inputRoomId}
   />
   <br />
-  <button class="btn btn-light" on:click={joinRoom}> Join </button>
+  <button id="join-room-btn" class="btn btn-light" on:click={joinRoom}> Join </button>
   <Toast />
 </main>
 
