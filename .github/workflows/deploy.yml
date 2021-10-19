@@ -4,7 +4,7 @@ on:
     branches: [main]
 jobs:
 
-  test_svelte:
+  tests_frontend:
     name: Build and run frontend tests
     runs-on: ubuntu-latest
     steps:
@@ -16,12 +16,18 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: npm test
+      - name: Set env vars
+        run: printf "WS_API_URL=${{ secrets.WS_API_URL }}\nREST_API_URL=${{ secrets.REST_API_URL }}" > .env
       - name: Build the app
         run: npm run build
+      - name: Start the server
+        run: npm start & wait-on http://localhost:5000
+      - name: Run integration tests
+        run: npm run cy:run
 
   deploy_svelte:
-    needs: test_svelte
-    name: Deploy
+    needs: tests_frontend
+    name: Deploy frontend app
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using key
@@ -41,5 +47,5 @@ jobs:
           git merge '@{u}'
           printf "WS_API_URL=${{ secrets.WS_API_URL }}\nREST_API_URL=${{ secrets.REST_API_URL }}" > .env
           npm install
+          npm run build
           pm2 restart svelte
-          npm run cy:run
