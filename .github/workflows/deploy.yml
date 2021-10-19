@@ -46,6 +46,6 @@ jobs:
           git reset --hard HEAD
           git merge '@{u}'
           printf "WS_API_URL=${{ secrets.WS_API_URL }}\nREST_API_URL=${{ secrets.REST_API_URL }}" > .env
-          npm install
+          npm install --production
           npm run build
           pm2 restart svelte
