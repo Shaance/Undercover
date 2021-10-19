@@ -20,7 +20,7 @@ jobs:
           cd undercover/
           nvm use
           pm2 stop svelte
-          git pull
+          git pull --force
           npm install
           rm .env
           cp ../.env_backup .env
