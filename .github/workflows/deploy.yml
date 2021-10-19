@@ -21,7 +21,7 @@ jobs:
       - name: Build the app
         run: npm run build
       - name: Start the server
-        run: npm start & wait-on http://localhost:5000
+        run: npm run start:wait-on
       - name: Run integration tests
         run: npm run cy:run
 

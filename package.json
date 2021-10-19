@@ -7,6 +7,7 @@
     "start": "sirv public",
     "validate": "svelte-check",
     "cy:run": "npx cypress run",
+    "start:wait-on": "npm start & npx wait-on http://localhost:5000",
     "test": "jest src",
     "test:watch": "npm run test -- --watch"
   },
@@ -36,7 +37,8 @@
     "svelte-preprocess": "^4.0.0",
     "ts-jest": "^26.5.2",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "wait-on": "^6.0.0"
   },
   "dependencies": {
     "rollup-plugin-postcss": "^1.6.3",
