@@ -8,7 +8,7 @@
     "validate": "svelte-check",
     "cy:run": "npx cypress run",
     "start:wait-on": "npm start & npx wait-on http://localhost:5000",
-    "test": "jest src",
+    "test": "npx jest",
     "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
@@ -59,7 +59,8 @@
       "js",
       "ts",
       "svelte"
-    ]
+    ],
+    "testMatch": ["**/tests/*.spec.js"]
   },
   "setupFilesAfterEnv": [
     "@testing-library/jest-dom/extend-expect"

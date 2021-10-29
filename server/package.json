@@ -7,11 +7,15 @@
     "build": "npx tsc -p .",
     "start": "NODE_ENV=production node lib/index.js",
     "start:dev": "npx ts-node-dev --respawn --transpile-only src/index.ts",
-    "test": "jest src",
+    "test": "npx jest src",
     "lint": "npx eslint -c .eslintrc.js --ext .ts src/**",
     "lint:fix": "npx eslint --fix -c .eslintrc.js --ext .ts src/**"
   },
-  "keywords": ["websocket", "nodejs", "typescript"],
+  "keywords": [
+    "websocket",
+    "nodejs",
+    "typescript"
+  ],
   "author": "Christophe Ha",
   "license": "ISC",
   "dependencies": {
@@ -22,6 +26,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "@types/jest": "^27.0.2",
     "@types/node": "^14.14.9",
     "@types/ws": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
