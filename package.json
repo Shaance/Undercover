@@ -2,13 +2,13 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx rollup -c",
-    "dev": "npx rollup -c -w",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "start": "sirv public",
     "validate": "svelte-check",
-    "cy:run": "npx cypress run",
+    "cy:run": "cypress run",
     "start:wait-on": "npm start & npx wait-on http://localhost:5000",
-    "test": "npx jest",
+    "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
