@@ -115,10 +115,11 @@ dist
 .pnp.*
 out/
 yarn.lock
-lib
 *zip
 .webpack
 .build
 .metals
 .vercel
+lib
+public/build/
 cypress/videos/

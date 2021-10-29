@@ -9,12 +9,6 @@
   import { getStartGamePayload } from "./wsHelper";
   import Toast from './Toast.svelte';
 
-  $: disabledButton = !canStartGame(
-    $undercoverCount,
-    $mrWhiteCount,
-    $playerStore.length
-  );
-
   // don't really know the proper rules so meh
   function canStartGame(
     ucCount: number,
@@ -44,7 +38,7 @@
   }
 </script>
 
-<button class="btn btn-light" title="totoooo" on:click={startGame}>
+<button class="btn btn-light" on:click={startGame}>
   Start
 </button>
 <Toast />
