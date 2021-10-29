@@ -45,8 +45,31 @@ jobs:
       - name: Run integration tests
         run: npm run cy:run
 
+  deploy_server:
+    needs: tests_server
+    name: Deploy server
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script: |
+          source ~/.nvm/nvm.sh
+          cd undercover/server
+          nvm use
+          git fetch
+          git reset --hard HEAD
+          git merge '@{u}'
+          npm install
+          npm run build
+          pm2 restart lib/index.js --name "ws"
+
   deploy_svelte:
-    needs: tests_frontend
+    needs: [tests_frontend, deploy_server]
     name: Deploy frontend app
     runs-on: ubuntu-latest
     steps:
