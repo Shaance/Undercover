@@ -1,9 +1,13 @@
 ## TODO
 
 - edit name
-- css styling
+- go back to lobby
+- polish with transitions
+- polish with css styling
 - voting timer
 - input word timer
 - point system
-- go back to lobby / edit settings
-- add missing tests
+- edit vilain settings
+- add different languages
+- add all the tests
+- Chat during vote time (or always available?)
