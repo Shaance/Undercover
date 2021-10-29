@@ -26,11 +26,12 @@
     "cypress": "^8.6.0",
     "dotenv": "^8.2.0",
     "jest": "^26.6.3",
-    "rollup": "^2.3.4",
+    "pre-commit": "^1.2.2",
     "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-postcss": "^1.6.3",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.0.0",
     "svelte-check": "^1.0.0",
     "svelte-jester": "^1.3.0",
@@ -41,9 +42,13 @@
     "wait-on": "^6.0.0"
   },
   "dependencies": {
-    "rollup-plugin-postcss": "^1.6.3",
     "sirv-cli": "^1.0.0"
   },
+  "pre-commit": [
+    "validate",
+    "test",
+    "build"
+  ],
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest",
@@ -60,7 +65,9 @@
       "ts",
       "svelte"
     ],
-    "testMatch": ["**/tests/*.spec.js"]
+    "testMatch": [
+      "**/tests/*.spec.js"
+    ]
   },
   "setupFilesAfterEnv": [
     "@testing-library/jest-dom/extend-expect"

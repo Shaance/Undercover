@@ -121,5 +121,4 @@ lib
 .build
 .metals
 .vercel
-public/build/
 cypress/videos/
