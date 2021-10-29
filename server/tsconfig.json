@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2019",
+    "outDir": "lib",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.test.ts",
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    ".vscode/**/*",
+    "./*.*"
+  ]
+}

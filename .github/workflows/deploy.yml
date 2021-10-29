@@ -4,6 +4,26 @@ on:
     branches: [main]
 jobs:
 
+  tests_server:
+    name: Build and run backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Installing depedencies
+        run: npm install
+      - name: Linting
+        run: npm run lint
+      - name: Run unit tests
+        run: npm test
+      - name: Build the app
+        run: npm run build
+
   tests_frontend:
     name: Build and run frontend tests
     runs-on: ubuntu-latest
