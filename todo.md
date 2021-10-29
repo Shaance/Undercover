@@ -11,3 +11,4 @@
 - add different languages
 - add all the tests
 - Chat during vote time (or always available?)
+- Handle when someone quits (front end)

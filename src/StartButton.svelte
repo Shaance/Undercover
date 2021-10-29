@@ -7,6 +7,7 @@
     roomId,
   } from "./store";
   import { getStartGamePayload } from "./wsHelper";
+  import Toast from './Toast.svelte';
 
   $: disabledButton = !canStartGame(
     $undercoverCount,
@@ -34,8 +35,16 @@
   }
 
   function startGame() {
-    sendMessage(getStartGamePayload($roomId));
+    if (canStartGame($undercoverCount, $mrWhiteCount, $playerStore.length)) {
+      sendMessage(getStartGamePayload($roomId));
+    } else {
+      // @ts-ignore
+      window.pushToast('Must have minimum 3 players with 2 normal players to start the game');
+    }
   }
 </script>
 
-<button class="btn btn-light" disabled={disabledButton} on:click={startGame}> Start </button>
+<button class="btn btn-light" title="totoooo" on:click={startGame}>
+  Start
+</button>
+<Toast />
