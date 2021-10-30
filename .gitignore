@@ -123,3 +123,4 @@ yarn.lock
 lib
 public/build/
 cypress/videos/
+cypress/screenshots/
