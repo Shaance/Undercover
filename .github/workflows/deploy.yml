@@ -59,7 +59,9 @@ jobs:
         port: 22
         script: |
           source ~/.nvm/nvm.sh
-          cd undercover/server
+          cd undercover
+
+          cd server
           nvm use
           pm2 stop "ws"
           git fetch
