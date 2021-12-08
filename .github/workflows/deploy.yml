@@ -60,14 +60,13 @@ jobs:
         script: |
           source ~/.nvm/nvm.sh
           cd undercover
-
           cd server
           nvm use
           pm2 stop "ws"
           git fetch
           git reset --hard HEAD
           git merge '@{u}'
-          npm install --production
+          npm install
           npm run build
           pm2 restart lib/index.js --name "ws"
 
@@ -92,6 +91,6 @@ jobs:
           git reset --hard HEAD
           git merge '@{u}'
           printf "WS_API_URL=${{ secrets.WS_API_URL }}\nREST_API_URL=${{ secrets.REST_API_URL }}" > .env
-          npm install --production
-          npm run build:npx
+          npm install
+          npm run build
           pm2 restart svelte
