@@ -28,7 +28,7 @@
     {">"}
   </button>
   <br><br>
-  <p>Mr White</p>
+  <p>Mr. White</p>
   <button class="btn btn-light" on:click={() => updateValue("white", "decrement")}> {"<"} </button>
   <div data-testid="mrWhiteCount">{$mrWhiteCount}</div>
   <button class="btn btn-light" on:click={() => updateValue("white", "increment")}> {">"} </button>

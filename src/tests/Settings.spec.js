@@ -13,7 +13,7 @@ test('Settings component has expected text', () => {
 
   expect(getByText('Settings')).toBeInTheDocument();
   expect(getByText('Undercover')).toBeInTheDocument();
-  expect(getByText('Mr White')).toBeInTheDocument();
+  expect(getByText('Mr. White')).toBeInTheDocument();
 });
 
 test('Undercover and Mr.white are initialized at store value', () => {
